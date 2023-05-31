@@ -19,6 +19,11 @@ export default function LandingPage() {
 	};
 	return (
 		<main>
+			<div>
+				<Link to='/login'>
+					<button>ingresar</button>
+				</Link>
+			</div>
 			<header>
 				<div>
 					<h1>
