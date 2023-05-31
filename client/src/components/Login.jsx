@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
+import style from "../css/Login.css";
 const Login = () => {
   const initialValues = {
     email: "",
@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className={style.marco}>
       <h1>Acceder a tu cuenta</h1>
       <Formik
         initialValues={initialValues}
@@ -29,7 +29,7 @@ const Login = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <div>
+            <div >
               <label htmlFor="email">Email</label>
               <Field type="email" name="email" />
               <ErrorMessage name="email" component="div" />
@@ -39,7 +39,7 @@ const Login = () => {
               <Field type="password" name="password" />
               <ErrorMessage name="password" component="div" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button className={style.buttonini} type="submit" disabled={isSubmitting}>
               Ingresar
             </button>
           </Form>
