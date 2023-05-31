@@ -10,7 +10,7 @@ const Nav = (props) => {
             <Link to="/allcards"> <button className={styles.ButtonNav}>All Cards</button> </Link>
             <Link to="/favorites"> <button className={styles.ButtonNav}>FAVORITES</button> </Link>
             <Link to="/about"> <button className={styles.ButtonNav}>ABOUT</button> </Link>
-            {pathname === "/home" && <SearchBar onSearch={props.onSearch}/>}
+            /*luego agrego el seacrh*/
         </div>
     )
 }
