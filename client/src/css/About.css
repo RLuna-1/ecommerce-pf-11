@@ -1,0 +1,80 @@
+.container {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.contenidoHero {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.titleHero {
+    margin: 0;
+    color: #fff;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.leyendHero {
+    margin: .2rem 0;
+    color: #e7e983;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: .1rem;
+}
+
+.descriptionHero {
+    color: #fff;
+    line-height: 1.5rem;
+    font-size: 18px;
+    text-align: justify;
+    letter-spacing: 1px;
+}
+
+.descriptionHero span a {
+    color: #F7CD54;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: default;
+}
+
+.descriptionHero span a:hover {
+    text-decoration: underline;
+    cursor: default;
+}
+
+/* .imgHero {
+    width: 500px;
+    object-fit: cover;
+} */
+
+
+/* ================================= */
+
+
+.contenidoAbout {
+    background-color: #33383bb6;
+    padding: .5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 10px;
+}
+
+.titleAbout {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 600;
+    margin: .5rem 0;
+}
+
+/* .descriptionAbout {
+    color: #fff;
+    line-height: 1.5rem;
+    font-size: 18px;
+    text-align: justify;
+    letter-spacing: 1px;
+} */
+
+
+/* Path: src\components\About\About.js */
