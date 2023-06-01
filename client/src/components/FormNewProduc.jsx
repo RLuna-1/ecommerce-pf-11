@@ -64,7 +64,7 @@ export default function FormNewProduc() {
 			onSubmit={onSubmit}
 			validate={validateForm}>
 			{({ values, setFieldValue, isValid }) => (
-				<Form className='max-w-md mx-auto mt-10'>
+				<Form className='max-w-md mx-auto mt-10 mb-10'>
 					<div className='mb-4'>
 						<label htmlFor='title' className='block mb-2 font-sans'>
 							Title
