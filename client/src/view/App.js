@@ -1,20 +1,23 @@
-import "../css/App.css";
-//import LandingPage from "../components/LandingPage";
-import { Routes, Route } from "react-router-dom";
-// import Detail from "../components/Detail";
-// import Form from "../components/Form";
-import About from "../components/About";
-import Login from "../components/Login";
+import logo from '../logo.svg';
+import '../css/App.css';
+
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<About />} />
-        {/* <Route path="/" element={<LandingPage />} /> */}
-        {/* <Route path="/form" element={<Form />} /> */}
-        {/* <Route path="/detail" element={<Detail />} /> */}
-      </Routes>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
