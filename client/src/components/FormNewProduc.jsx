@@ -8,8 +8,7 @@ export default function FormNewProduc() {
 		description: '',
 		image: '',
 		marca: '',
-		categoria: '',
-		stock: '',
+		category: '',
 		price: '',
 	};
 
@@ -47,13 +46,8 @@ export default function FormNewProduc() {
 		if (!values.marca) {
 			errors.marca = 'Este campo es obligatorio';
 		}
-		if (!values.categoria) {
-			errors.categoria = 'Este campo es obligatorio';
-		}
-		if (!values.stock) {
-			errors.stock = 'Este campo es obligatorio';
-		} else if (isNaN(values.stock) || values.stock <= 0) {
-			errors.stock = 'Ingrese un número positivo mayor a cero';
+		if (!values.category) {
+			errors.category = 'Este campo es obligatorio';
 		}
 		if (!values.price) {
 			errors.price = 'Este campo es obligatorio';
@@ -70,7 +64,7 @@ export default function FormNewProduc() {
 			onSubmit={onSubmit}
 			validate={validateForm}>
 			{({ values, setFieldValue, isValid }) => (
-				<Form className='max-w-md mx-auto mt-10'>
+				<Form className='max-w-md mx-auto mt-10 mb-10'>
 					<div className='mb-4'>
 						<label htmlFor='title' className='block mb-2 font-sans'>
 							Title
@@ -153,44 +147,24 @@ export default function FormNewProduc() {
 					</div>
 
 					<div className='mb-4'>
-						<label htmlFor='categoria' className='block mb-2'>
+						<label htmlFor='category' className='block mb-2'>
 							Categoria
 						</label>
 						<Field
 							type='text'
-							id='categoria'
-							name='categoria'
+							id='category'
+							name='category'
 							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
 						<ErrorMessage
-							name='categoria'
+							name='category'
 							component='div'
 							className='text-red-500'
 						/>
 					</div>
-
-					<div className='mb-4'>
-						<label htmlFor='stock' className='block mb-2'>
-							Stock
-						</label>
-						<Field
-							type='number'
-							id='stock'
-							name='stock'
-							min='1'
-							step='1'
-							className='w-full p-2 border rounded drop-shadow-lg'
-						/>
-						<ErrorMessage
-							name='stock'
-							component='div'
-							className='text-red-500'
-						/>
-					</div>
-
 					<div className='mb-4'>
 						<label htmlFor='price' className='block mb-2'>
-							Price
+							Precio
 						</label>
 						<Field
 							type='number'
