@@ -164,7 +164,7 @@ export default function FormNewProduc() {
 					</div>
 					<div className='mb-4'>
 						<label htmlFor='price' className='block mb-2'>
-							Price
+							Precio
 						</label>
 						<Field
 							type='number'
