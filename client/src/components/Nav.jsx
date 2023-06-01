@@ -14,15 +14,15 @@ const Nav = () => {
             </div>
             {pathname !== "/" && <div className={styles.DivCentral}>
                 <Link to="/productos"> <button className={styles.ButtonNav}>Productos</button> </Link>
-                <Link to="/productos"> <button className={styles.ButtonNav}>Vender</button> </Link>
+                <Link to="/vender"> <button className={styles.ButtonNav}>Vender</button> </Link>
                 <Link to="/filtrar"> <button className={styles.ButtonNav}>Filtrar</button> </Link> {/*luego lo tranformo en desplegable*/}
                 <input className={styles.SearchBar} placeholder="Buscar Software" type="text"/>
                 {/*luego agrego el seacrh*/}
             </div>}
             
             <div className={styles.DivLogin}>
-                {pathname !== "/home" && <Link to="/home"><button className={styles.ButtonNav}>Ingresar</button> </Link>}
-                {(pathname !== "/" && pathname !== "/carrito") && <Link to="/Carrito"> <button className={styles.ButtonNav}>Carrito</button> </Link>}
+                {(pathname === "/" && pathname !== "/carrito") && <Link to="/home"><button className={styles.ButtonNav}>Ingresar</button> </Link>}
+                {(pathname !== "/" && pathname !== "/carrito") && <Link to="/carrito"> <button className={styles.ButtonNav}>Carrito</button> </Link>}
                 <Link to="/login"> <button className={styles.Iniciar}>Iniciar Sesion</button> </Link>
                 {/*<Link to="/"> <button className={styles.Cerrar}>Cerrar Sesion</button> </Link>*/}
             </div>
