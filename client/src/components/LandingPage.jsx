@@ -1,38 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../css/LandingPage.module.css';
 import rayo from '../img/rayo-landing.png';
 import cubo from '../img/cubo-landing.png'
-import Slider from 'react-slick';
 import Carousel1 from '../img/Carousel-1.jpg';
 import Carousel2 from '../img/Carousel-2.png';
 import Carousel3 from '../img/Carousel-3.png';
+import MP from '../img/MP.png'
+import Appel from '../img/Appel.png';
+import MasterCard from '../img/MasterCard.png';
+import CheckOn from '../img/CheckOn.jpg';
+import CheckOff from '../img/CheckOff.jpg';
 
 export default function LandingPage() {
-
-	const settings = {
-		dots: true,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1
-	};
-
-	const images = [
-		'https://i.ytimg.com/vi/-dqwh8LoMzo/hqdefault.jpg',
-		'https://i.ytimg.com/vi/qh3dYM6Keuw/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLASzvUxs_Z77IenPKcNqdw4AZd1kQ',
-		'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgpxq7pCCawQX4TkeidWXdB5gRwczj7julHA4fY41bPfeWn9pVAxdc2emZPy4wcCHJHDI&usqp=CAU',
-	];
+	const images = [Carousel1, Carousel2, Carousel3];
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
-	const nextImage = () => {
-		setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+	const handleImageChange = (index) => {
+		setCurrentImageIndex(index);
+		setActiveButtonIndex(index);
 	};
 
-	const previousImage = () => {
-		setCurrentImageIndex(
-			(prevIndex) => (prevIndex - 1 + images.length) % images.length,
-		);
-	};
+	useEffect(() => {
+		const interval = setInterval(() => {
+		  const newIndex = (currentImageIndex + 1) % images.length;
+		  setCurrentImageIndex(newIndex);
+		  setActiveButtonIndex(newIndex);
+		}, 5000);
+	
+		return () => clearInterval(interval);
+	}, [currentImageIndex, images.length]);
+	
 	return (
 		<main className={styles.Main}>
 			<header className={styles.Div1}>
@@ -84,29 +82,16 @@ export default function LandingPage() {
 					</div>
 				</section>
 			</header>
-			{/* <div className={styles.CarouselContainer}>
-				<Slider {...settings}>
-					<div>
-					<img src={Carousel1} alt="Carousel 1" className={styles.CarouselImage}/>
-					</div>
-					<div>
-					<img src={Carousel2} alt="Carousel 2" className={styles.CarouselImage}/>
-					</div>
-					<div>
-					<img src={Carousel3} alt="Carousel 3" className={styles.CarouselImage}/>
-					</div>
-				</Slider>
-				<img src={images[currentImageIndex]} alt='Carousel' className={styles.CarouselImg}/>
-				<button className={styles.BotonCarousel}></button>
-				<button className={styles.BotonCarousel}></button>
-				<button className={styles.BotonCarousel}></button>
-				<button onClick={previousImage}>Previous</button>
-				<button onClick={nextImage}>Next</button>
-			</div> */}
-			<section>
-				<h1>Impulsa su crecimiento impulsado sus productos</h1>
+			<div className={styles.CarouselContainer}>
+				<img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
+				<button id="btnImage1" onClick={() => handleImageChange(0)} className={activeButtonIndex === 0 ? styles.ActiveButton : styles.BotonCarousel}/>
+				<button id="btnImage2" onClick={() => handleImageChange(1)} className={activeButtonIndex === 1 ? styles.ActiveButton : styles.BotonCarousel}/>
+				<button id="btnImage3" onClick={() => handleImageChange(2)} className={activeButtonIndex === 2 ? styles.ActiveButton : styles.BotonCarousel}/>
+			</div>
+			<section className={styles.Div1}>
+				<h1 className={styles.Title}>Impulsa su crecimiento impulsado sus productos</h1>
 				<div>
-					<p>
+					<p className={styles.TextoCentrado}>
 						Brinde asistencia a los usuarios para que descubran y
 						comprendan el significado de su producto durante cada
 						etapa de su experiencia, desde aquellos que recién
@@ -115,34 +100,40 @@ export default function LandingPage() {
 					</p>
 				</div>
 			</section>
-			<section>
-				<h1>Realiza tus pagos facilmente con Mercado Pago</h1>
-				<div>
-					<p>
+			<section className={styles.DivSection}>
+				<div className={styles.Soluciones}>
+					<h1>Realiza tus pagos facilmente con Mercado Pago</h1>
+					<p className={styles.Texto}>
 						Integre Mercado pago una vez para impulsar el éxito de
 						sus pagos para siempre. Cree su propia experiencia de
 						pago, luego rastree y gestione todo sin problemas a
 						través de sus procesadores de pago.
 					</p>
 				</div>
-				<div>
-					<img
-						src='https://cdn.lovesavingsgroup.com/logos/mercado-pago.png'
-						alt='imagen mercado pago'
-					/>
+				<div className={styles.DivMP}>
+					<img src={MP} alt='imagen mercado pago' className={styles.ImagenMP}/>
+					<div className={styles.Pago}>
+						<button className={styles.BotonPago}> + Nuevo metodo de pagos </button>
+						<img src={Appel} alt='Appel' className={styles.PagoImg}/>
+						<p className={styles.TextoPago}> Appel pay </p>
+						<img src={CheckOn} className={styles.PagoImg}/>
+						<img src={MasterCard} alt='MasterCard' className={styles.PagoImg}/>
+						<p className={styles.TextoPago}> Master Card </p>
+						<img src={CheckOff} className={styles.PagoImg}/>
+					</div>
 				</div>
 			</section>
-			<section>
-				<h1>El kit completo para dirigir su empresa</h1>
-				<div>
-					<p>
-						La solución, todo en uno para gestionar su empresas,
-						adquirir productos, crear productos, crear propuestas,
-						solucionar necesidades y automatizar el flujo de
-						trabajo.
-					</p>
-				</div>
+			<section className={styles.DivEnd}>
+				<h1 className={styles.TitleEnd}>El kit completo para dirigir su empresa</h1>
+				<p className={styles.TextoEnd}>
+					La solución, todo en uno para gestionar su empresas,
+					adquirir productos, crear productos, crear propuestas,
+					solucionar necesidades y automatizar el flujo de
+					trabajo.
+				</p>
+				<button className={styles.BotonEnd}> Ingrese Ahora </button>
 			</section>
+			
 		</main>
 	);
 }
