@@ -21,7 +21,7 @@ const Nav = () => {
             </div>}
             
             <div className={styles.DivLogin}>
-                {(pathname === "/" && pathname !== "/carrito") && <Link to="/home"><button className={styles.ButtonNav}>Ingresar</button> </Link>}
+                {pathname === "/" && <Link to="/aaa"><button className={styles.ButtonNav}>Ingresar</button> </Link>}
                 {(pathname !== "/" && pathname !== "/carrito") && <Link to="/carrito"> <button className={styles.ButtonNav}>Carrito</button> </Link>}
                 <Link to="/login"> <button className={styles.Iniciar}>Iniciar Sesion</button> </Link>
                 {/*<Link to="/"> <button className={styles.Cerrar}>Cerrar Sesion</button> </Link>*/}
