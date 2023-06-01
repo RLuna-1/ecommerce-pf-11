@@ -1,10 +1,11 @@
 import React from 'react';
-import Productos from './productos';
+import Productos from './productos.jsx';
 
 const Home = () => {
   return (
     <div>
-      <Productos /> {/* Llamada al componente de producto */}
+      <h1>hola mundo</h1>
+      <Productos /> 
     </div>
   );
 }
