@@ -1,7 +1,8 @@
+/*
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getRecipeByDetail } from '../../redux/actions';
+import { getRecipeByDetail } from '../redux/actions/actions';
 import styles from '../css/Detail.css';
 
 export default function Detail() {
@@ -54,3 +55,4 @@ export default function Detail() {
 		</div>
 	);
 }
+*/

@@ -1,24 +1,18 @@
-import logo from '../logo.svg';
+import {Nav, LandingPage, Login} from '../components/index'
+import {Routes, Route, useLocation} from 'react-router-dom';
 import '../css/App.css';
 
 function App() {
+  const {pathname} = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {pathname !== "/login" && <Nav />}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        {/*<Route path="/vender" element={<Form />} />*/}
+      </Routes>
+    </>
   );
 }
 

@@ -1,0 +1,211 @@
+.Main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5em 5em 1em 5em;
+}
+
+.Div1 {
+    padding: 1.5em 7em 1em 7em;
+    background: #EFF0FC;;
+    border-radius: 16px;
+}
+
+.Title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    color: #1C1934;
+}
+
+.TextoCentrado {
+    color: #5E5D6D;
+    text-align: left;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 1em 5em 1.5em 5em;
+    text-align: center;
+}
+
+.Texto {
+    color: #5E5D6D;
+    text-align: left;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: left;
+}
+
+.DivSection{
+    justify-content: space-between;
+    display: flex;
+}
+
+h2{
+    flex-basis: 100%;
+}
+
+.Soluciones {
+    display: flex;
+    width: 50%;
+    overflow: hidden;
+    flex-wrap: wrap;
+    padding: 0.5em 2.3em 0.7em 2.3em;
+    margin-bottom: 4%;
+}
+
+li {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #1C1934;
+    list-style-image: url('../img/check-lista.png');
+}
+
+.Camino {
+    display: flex;
+    width: 60%;
+    height: 40%;
+    background: #D8DBFB;
+    border-radius: 12px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+.Ver {
+    margin: -5% 13% 10%;
+    border-radius: 8px;
+    display: flex;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    height: 25%;
+    border: 0.5px solid #5E5D6D;
+    padding: 0em 0em 0.8em 1.2em;
+}
+
+.Comprar {
+    margin-left: 28%;
+    border-radius: 8px;
+    border: 2px solid #6F47EB;
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    width: 50%;
+    height: 35%;
+    padding: 0em 0em 0.8em 1.2em;
+}
+
+.Entregar {
+    margin: 10% 16% -5%;
+    border-radius: 8px;
+    display: flex;
+    background: white;
+    display: flex;
+    width: 40%;
+    height: 25%;
+    border: 0.5px solid #5E5D6D;
+    padding-left: 2em;
+}
+
+h3{
+    flex-basis: 80%;
+}
+
+.ImgCamino {
+    margin: 1em 0.5em 0 0;
+    width: 30px;
+    height: 30px;
+}
+
+.BotonesCamino {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 30px;
+    color: #307996;
+    background: #C9EFFF;
+    border-radius: 17px;
+    border: 0px;
+    margin-right: 2em;
+    width: 4.8em;
+    height: 2.8em;
+}
+
+.BotonAceptar {
+    color: #1A39A7;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    background: #D8DBFB;
+    border-radius: 17px;   
+    border: 0px;
+    margin-right: 2em;
+    width: 4.8em;
+    height: 2.8em;
+}
+
+.BotonDevolver {
+    background: #6F47EB;
+    border-radius: 17px;
+    color: #DADEEC;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 30px;
+    border: 0px;
+    margin-right: 2em;
+    width: 4.8em;
+    height: 2.8em;
+}
+
+.SectionImg {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1% 0 3% 14%;
+    padding: 3%;
+}
+
+.CarouselImg {
+    border: 10px solid #FFFFFF;
+    border-radius: 20px;
+    flex-basis: 100%;
+}
+
+.BotonCarousel {
+    background: rgba(111, 71, 235, 0.3);
+    margin: 2em 2em 0 0;
+    width: 5em;
+    height: 1em;
+    border: 0;
+}
+
+.CarouselContainer {
+    max-width: 1072px; /* Establece el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding-left: 95%;
+}
+  
+.CarouselImage {
+    width: 100%; /* Ajusta el ancho de las imágenes al 100% del contenedor */
+    height: auto; /* Ajusta la altura de las imágenes automáticamente según el ancho */
+    max-width: 1072px; /* Establece el ancho máximo de las imágenes */
+    max-height: 540px; /* Establece la altura máxima de las imágenes */
+}

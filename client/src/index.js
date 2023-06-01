@@ -4,14 +4,14 @@ import './css/index.css';
 import App from './view/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</React.StrictMode>,
+  <React.StrictMode>
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+   
+  </React.StrictMode>
 );
 
 //cambia el nombre de la pestaña

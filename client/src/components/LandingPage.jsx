@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
-import styles from '../css/LandingPage.css';
+import styles from '../css/LandingPage.module.css';
+import rayo from '../img/rayo-landing.png';
+import cubo from '../img/cubo-landing.png'
+import Slider from 'react-slick';
+import Carousel1 from '../img/Carousel-1.jpg';
+import Carousel2 from '../img/Carousel-2.png';
+import Carousel3 from '../img/Carousel-3.png';
+
 export default function LandingPage() {
+
+	const settings = {
+		dots: true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1
+	};
+
 	const images = [
 		'https://i.ytimg.com/vi/-dqwh8LoMzo/hqdefault.jpg',
 		'https://i.ytimg.com/vi/qh3dYM6Keuw/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLASzvUxs_Z77IenPKcNqdw4AZd1kQ',
@@ -18,20 +34,15 @@ export default function LandingPage() {
 		);
 	};
 	return (
-		<main>
-			<div>
-				<Link to='/login'>
-					<button>ingresar</button>
-				</Link>
-			</div>
-			<header>
+		<main className={styles.Main}>
+			<header className={styles.Div1}>
 				<div>
-					<h1>
+					<h1 className={styles.Title}>
 						Simplifique su negocio de comercio electrónico
 						CodeXpress
 					</h1>
 				</div>
-				<p>
+				<p className={styles.TextoCentrado}>
 					Descubre nuestra plataforma de comercio electrónico
 					especializada en soluciones para desarrolladores. Ofrecemos
 					plantillas, características y softwares prediseñados
@@ -39,40 +50,59 @@ export default function LandingPage() {
 					según tu criterio. Encuentra todo lo que necesitas en un
 					solo lugar y lleva tu desarrollo al siguiente nivel.
 				</p>
-				<section>
-					<h2>Encuentre soluciones </h2>
-					<p>
-						Ajuste sus productos segun las necesidades de sus
-						clientes.
-					</p>
-					<h2>Esta al Tanto</h2>
-					<ul>
-						<li>Quié compra?</li>
-						<li>Qué compra?</li>
-						<li>Dónde compra?</li>
-					</ul>
-					<div>
-						<div>
+				<section className={styles.DivSection}>
+					<div className={styles.Soluciones}>
+						<h2>Encuentre soluciones </h2>
+						<p className={styles.Texto}>
+							Ajuste sus productos segun las necesidades de sus
+							clientes.
+						</p>
+						<h2>Estar al Tanto</h2>
+						<ul>
+							<li>Quié compra?</li>
+							<li>Qué compra?</li>
+							<li>Dónde compra?</li>
+						</ul>
+					</div>
+					<div className={styles.Camino}>
+						<div className={styles.Ver}>
+							<img src={rayo} alt='Img-Rayo' className={styles.ImgCamino}/>
 							<h3>Ver</h3>
-							<p>buscar</p>
-							<p>agregar</p>
+							<button className={styles.BotonesCamino}>Buscar</button>
+							<button className={styles.BotonesCamino}>Agregar</button>
 						</div>
-						<div>
+						<div className={styles.Comprar}>
+							<img src={cubo} alt='Img-Cubo' className={styles.ImgCamino}/>
 							<h3>Comprar</h3>
-							<p>Aceptar</p>
-							<p>Devolver</p>
+							<button className={styles.BotonAceptar}>Aceptar</button>
+							<button className={styles.BotonDevolver}>Devolver</button>
 						</div>
-						<div>
+						<div className={styles.Entregar}>
+							<img src={cubo} alt='Img-Cubo' className={styles.ImgCamino}/>
 							<h3>Entregar</h3>
 						</div>
 					</div>
 				</section>
 			</header>
-			<section>
+			{/* <div className={styles.CarouselContainer}>
+				<Slider {...settings}>
+					<div>
+					<img src={Carousel1} alt="Carousel 1" className={styles.CarouselImage}/>
+					</div>
+					<div>
+					<img src={Carousel2} alt="Carousel 2" className={styles.CarouselImage}/>
+					</div>
+					<div>
+					<img src={Carousel3} alt="Carousel 3" className={styles.CarouselImage}/>
+					</div>
+				</Slider>
+				<img src={images[currentImageIndex]} alt='Carousel' className={styles.CarouselImg}/>
+				<button className={styles.BotonCarousel}></button>
+				<button className={styles.BotonCarousel}></button>
+				<button className={styles.BotonCarousel}></button>
 				<button onClick={previousImage}>Previous</button>
-				<img src={images[currentImageIndex]} alt='Carousel' />
 				<button onClick={nextImage}>Next</button>
-			</section>
+			</div> */}
 			<section>
 				<h1>Impulsa su crecimiento impulsado sus productos</h1>
 				<div>
