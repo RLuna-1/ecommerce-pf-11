@@ -1,7 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import styles from '../css/FormNewProduc.css';
 
 export default function FormNewProduc() {
 	const initialValues = {
@@ -17,10 +16,6 @@ export default function FormNewProduc() {
 	const navigate = useNavigate();
 
 	const onSubmit = (values, { resetForm }) => {
-		console.log(values); // Puedes realizar acciones con los valores del formulario aquí
-
-		// Realizar acciones adicionales, si es necesario
-
 		// Redireccionar a la ruta "detail"
 		navigate('/detail');
 
@@ -75,74 +70,148 @@ export default function FormNewProduc() {
 			onSubmit={onSubmit}
 			validate={validateForm}>
 			{({ values, setFieldValue, isValid }) => (
-				<Form>
-					<div>
-						<label htmlFor='title'>Title </label>
-						<Field type='text' id='title' name='title' />
-						<ErrorMessage name='title' component='div' />
+				<Form className='max-w-md mx-auto mt-10'>
+					<div className='mb-4'>
+						<label htmlFor='title' className='block mb-2 font-sans'>
+							Title
+						</label>
+						<Field
+							type='text'
+							id='title'
+							name='title'
+							className='w-full p-2 border rounded drop-shadow-lg'
+						/>
+						<ErrorMessage
+							name='title'
+							component='div'
+							className='text-red-500'
+						/>
 					</div>
-					<div>
-						<label htmlFor='image'>Imagen </label>
-						<Field type='text' id='image' name='image' />
-						<ErrorMessage name='image' component='div' />
+					<div className='mb-4'>
+						<label htmlFor='image' className='block mb-2'>
+							Imagen
+						</label>
+						<Field
+							type='text'
+							id='image'
+							name='image'
+							className='w-full p-2 border rounded drop-shadow-lg'
+						/>
+						<ErrorMessage
+							name='image'
+							component='div'
+							className='text-red-500'
+						/>
 					</div>
 					{values.image.trim() && (
 						<div>
 							{validateForm(values).image ? (
-								<div>URL de imagen inválida</div>
+								<div className='text-red-500'>
+									URL de imagen inválida
+								</div>
 							) : (
-								<img src={values.image} alt='Product' />
+								<img
+									src={values.image}
+									alt='Product'
+									className='w-32 h-32 mx-auto mt-4'
+								/>
 							)}
 						</div>
 					)}
-					<div>
-						<label htmlFor='description'>Description </label>
+					<div className='mb-4'>
+						<label htmlFor='description' className='block mb-2'>
+							Description
+						</label>
 						<Field
 							type='text'
 							id='description'
 							name='description'
+							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
-						<ErrorMessage name='description' component='div' />
+						<ErrorMessage
+							name='description'
+							component='div'
+							className='text-red-500'
+						/>
 					</div>
 
-					<div>
-						<label htmlFor='marca'>Marca </label>
-						<Field type='text' id='marca' name='marca' />
-						<ErrorMessage name='marca' component='div' />
+					<div className='mb-4'>
+						<label htmlFor='marca' className='block mb-2'>
+							Marca
+						</label>
+						<Field
+							type='text'
+							id='marca'
+							name='marca'
+							className='w-full p-2 border rounded drop-shadow-lg'
+						/>
+						<ErrorMessage
+							name='marca'
+							component='div'
+							className='text-red-500'
+						/>
 					</div>
 
-					<div>
-						<label htmlFor='categoria'>Categoria </label>
-						<Field type='text' id='categoria' name='categoria' />
-						<ErrorMessage name='categoria' component='div' />
+					<div className='mb-4'>
+						<label htmlFor='categoria' className='block mb-2'>
+							Categoria
+						</label>
+						<Field
+							type='text'
+							id='categoria'
+							name='categoria'
+							className='w-full p-2 border rounded drop-shadow-lg'
+						/>
+						<ErrorMessage
+							name='categoria'
+							component='div'
+							className='text-red-500'
+						/>
 					</div>
 
-					<div>
-						<label htmlFor='stock'>Stock </label>
+					<div className='mb-4'>
+						<label htmlFor='stock' className='block mb-2'>
+							Stock
+						</label>
 						<Field
 							type='number'
 							id='stock'
 							name='stock'
 							min='1'
 							step='1'
+							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
-						<ErrorMessage name='stock' component='div' />
+						<ErrorMessage
+							name='stock'
+							component='div'
+							className='text-red-500'
+						/>
 					</div>
 
-					<div>
-						<label htmlFor='price'>Price </label>
+					<div className='mb-4'>
+						<label htmlFor='price' className='block mb-2'>
+							Price
+						</label>
 						<Field
 							type='number'
 							id='price'
 							name='price'
-							min='0'
+							min='1'
 							step='any'
+							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
-						<ErrorMessage name='price' component='div' />
+						<ErrorMessage
+							name='price'
+							component='div'
+							className='text-red-500'
+						/>
 					</div>
 
 					<div>
-						<button type='submit' disabled={!isValid}>
+						<button
+							type='submit'
+							disabled={!isValid}
+							className='bg-[#6F47EB] hover:bg-[#4c1d95] text-white font-bold py-2 px-4 rounded'>
 							Submit
 						</button>
 					</div>
