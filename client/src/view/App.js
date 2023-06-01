@@ -1,4 +1,4 @@
-import {Nav, LandingPage, Login, Home} from '../components/index'
+import {Nav, LandingPage, Login, Home, Footer} from '../components/index'
 import {Routes, Route, useLocation} from 'react-router-dom';
 import '../css/App.css';
 
@@ -13,6 +13,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         {/*<Route path="/vender" element={<Form />} />*/}
       </Routes>
+      {pathname !== "/login" && <Footer/>}
     </>
   );
 }
