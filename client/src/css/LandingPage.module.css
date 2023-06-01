@@ -183,29 +183,139 @@ h3{
     padding: 3%;
 }
 
-.CarouselImg {
-    border: 10px solid #FFFFFF;
-    border-radius: 20px;
+
+.CarouselContainer {
+    max-width: 1072px; /* Establece el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    margin: 3% 0 1% 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.CarouselImage {
+    max-width: 90%;
+    border-radius: 10%;
     flex-basis: 100%;
 }
 
 .BotonCarousel {
     background: rgba(111, 71, 235, 0.3);
-    margin: 2em 2em 0 0;
+    margin: 5em 2em 3em 2em;
     width: 5em;
     height: 1em;
     border: 0;
 }
 
-.CarouselContainer {
-    max-width: 1072px; /* Establece el ancho máximo del contenedor */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
-    padding-left: 95%;
+.ActiveButton {
+    background: #6F47EB;;
+    margin: 5em 2em 0 2em;
+    width: 5em;
+    height: 1em;
+    border: 0;
 }
-  
-.CarouselImage {
-    width: 100%; /* Ajusta el ancho de las imágenes al 100% del contenedor */
-    height: auto; /* Ajusta la altura de las imágenes automáticamente según el ancho */
-    max-width: 1072px; /* Establece el ancho máximo de las imágenes */
-    max-height: 540px; /* Establece la altura máxima de las imágenes */
+
+.DivMP {
+   display: flex;
+   flex-direction: column;
+   justify-content: end;
+   align-items: end;
+}
+
+.ImagenMP {
+    border-radius: 20px;
+    background: #D9D9D9;;
+}
+
+.Pago{
+    width: 50%;
+    height: 35%;
+    margin: -5% 5% 0 0;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    border: 0.5px solid #D8DBFB;
+    box-shadow: 18px 23px 22px rgba(57, 36, 124, 0.05);
+    border-radius: 4px;
+}
+
+.BotonPago {
+    background: #1C1934;
+    border-radius: 4px;
+    border: 0;
+    color: white;
+    margin: 0.5em 5% 1em 5%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    width: 90%;
+}
+
+.TextoPago{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #1C1934;
+    flex-basis: 70%;
+}
+
+.PagoImg {
+    max-width: 8%;
+    margin: 0.5em 0 0.5em 5%;
+}
+
+.DivEnd {
+    margin: 5em 2em -5em 2em;
+    background: #6F47EB;
+    border-radius: 20px;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 9em 2em 9em ;
+}
+
+.TitleEnd {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 58px;
+    color: white;
+    text-align: center;
+}
+
+.TextoEnd {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: white;
+    text-align: center;
+}
+
+.BotonEnd {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 6px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6F47EB;
+    border: 0;
 }
