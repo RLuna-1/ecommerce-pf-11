@@ -3,6 +3,7 @@ import LandingPage from './LandingPage'
 import Login from './Login'
 import Detail from './Detail';
 import Home from './Home';
-import FormNewProduc from './FormNewProduc';
+import Footer from "./Footer";
 
-export { Nav, LandingPage, Login, Detail, Home, FormNewProduc };
+
+export {Nav, LandingPage, Login, Detail, Home, Footer};
