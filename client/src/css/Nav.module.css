@@ -9,6 +9,7 @@
 .DivLogo {
     display: flex;
     justify-content: left;
+    margin-left: 2em;
 }
 
 .Logo {
