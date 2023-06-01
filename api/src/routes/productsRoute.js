@@ -1,4 +1,5 @@
 const { Router } = require("express");
+
 const {
   getProducts,
   createProduct,
@@ -83,4 +84,5 @@ productsRouter.delete("/:id", async (req, res) => {
     res.status(400).json(error.message);
   }
 });
+
 module.exports = productsRouter;
