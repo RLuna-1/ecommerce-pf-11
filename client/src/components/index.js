@@ -2,5 +2,6 @@ import Nav from "./Nav"
 import LandingPage from './LandingPage'
 import Login from './Login'
 import Detail from './Detail';
+import FormNewProduc from './FormNewProduc';
 
-export {Nav, LandingPage, Login, Detail};
+export {Nav, LandingPage, Login, Detail, FormNewProduc};
