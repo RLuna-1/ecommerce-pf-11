@@ -1,6 +1,7 @@
 .General {
     display: flex;
     flex-direction: column;
+    margin-top: 3%;
 }
 
 .CarouselContainer {
@@ -67,7 +68,7 @@
     border: #1C1934 1px solid;
 }
 
-.Producto h1 {
+h1 {
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
@@ -84,6 +85,11 @@
     font-size: 48px;
     line-height: 58px;
     color: #6F47EB;
+}
+
+.Producto:hover {
+  transform: scale(1.02);
+  backdrop-filter: none;
 }
 
 .BotonAgregar {

@@ -27,8 +27,8 @@ const Home = () => {
 	}, [currentImageIndex, images.length]);
   return (
     <div className={styles.General}>
+      <h1>Destacados de la semana</h1>
       <div className={styles.CarouselContainer}>
-      <h1 className={styles.Producto}>Destacados de la semana</h1>
 				<div className={styles.Carousel}>
 					<img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
 				</div>
@@ -40,12 +40,6 @@ const Home = () => {
 			</div>
       <div className={styles.Productos}>
         <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src={require('../img/img01.png')} alt='Imagen del producto'/></button></Link>
-          <h1>Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado</h1>
-          <h2>$ 5,99</h2>
-          <button className={styles.BotonAgregar}>Agregar</button>
-        </div>
-        <div className={styles.Producto}>
           <Link to={'/detail'}><button><img src={require('../img/img02.jpg')} alt='Imagen del producto'/></button></Link>
           <h1>C#- RJ Code Modern UI-M1</h1>
           <h2>$ 22,50</h2>
@@ -55,6 +49,12 @@ const Home = () => {
           <Link to={'/detail'}><button><img src={require('../img/img03.jpg')} alt='Imagen del producto'/></button></Link>
           <h1>VB.NET- RJ Code Modern UI-M1</h1>
           <h2>$ 22,50</h2>
+          <button className={styles.BotonAgregar}>Agregar</button>
+        </div>
+        <div className={styles.Producto}>
+          <Link to={'/detail'}><button><img src={require('../img/img01.png')} alt='Imagen del producto'/></button></Link>
+          <h1>Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado</h1>
+          <h2>$ 5,99</h2>
           <button className={styles.BotonAgregar}>Agregar</button>
         </div>
         <div className={styles.Producto}>
