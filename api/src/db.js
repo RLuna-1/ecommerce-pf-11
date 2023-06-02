@@ -34,7 +34,10 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const {} = sequelize.models;
+const {Product, Category} = sequelize.models;
+
+Product.belongsToMany(Category, {through: "products_categories"})
+Category.belongsToMany(Product, {through: "products_categories"})
 
 module.exports = {
   ...sequelize.models,
