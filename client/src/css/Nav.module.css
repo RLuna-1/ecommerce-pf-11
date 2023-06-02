@@ -1,15 +1,14 @@
 .Nav{
     display: flex;
-    flex-wrap: wrap;
-    padding: 1em;
+    padding: 0.5% 2% 1% 2%;
     align-items: end;
     justify-content: space-between;
+    background: #eff0fcbe;
 }
 
 .DivLogo {
     display: flex;
     justify-content: left;
-    margin-left: 2em;
 }
 
 .Logo {
@@ -17,7 +16,7 @@
 }
 
 .DivCentral {
-    width: 60%;
+    width: 50%;
     display: flex;
     justify-content: center;
 }
@@ -29,7 +28,8 @@
     font-size: 20px;
     line-height: 30px; 
     color: #5E5D6D;
-    margin-right: 1.5em;
+    margin-right: 1em;
+    margin-top: 0.2em;
 }
 
 .DivLogin{
@@ -49,6 +49,7 @@
     font-size: 20px;
     line-height: 30px;
     color: #6F47EB;
+    padding: 0.2em 0.5em;
 }
 
 .Cerrar {

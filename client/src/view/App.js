@@ -20,7 +20,7 @@ function App() {
 				<Route path='/login' element={<Login />} />
 				<Route path='/vender' element={<FormNewProduc />} />
 			</Routes>
-			{pathname !== '/login' && <Footer />}
+			<Footer/>
 		</>
   );
 }

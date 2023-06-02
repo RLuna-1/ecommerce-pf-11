@@ -58,7 +58,7 @@ export default function LandingPage() {
 						</p>
 						<h2 className={styles.SubTitle2}>Estar al Tanto</h2>
 						<ul>
-							<li>Quié compra?</li>
+							<li>Quién compra?</li>
 							<li>Qué compra?</li>
 							<li>Dónde compra?</li>
 						</ul>
