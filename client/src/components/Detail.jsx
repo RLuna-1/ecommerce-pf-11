@@ -13,7 +13,7 @@ export default function Detail() {
 				<div className='w-1/2 overflow-hidden'>
 					<div className='h-full w-full'>
 						<img
-							src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg'
+							src={require('../img/img03.jpg')}
 							alt='Imagen del producto'
 							className='object-contain h-full w-full ml-3'
 						/>
@@ -28,39 +28,33 @@ export default function Detail() {
 						</header>
 						<section className='mb-4'>
 							<h2 className='text-xl font-semibold mb-2'>
-								Nombre del producto
+							VB.NET- RJ Code Modern UI-M1
 							</h2>
 						</section>
 						<section className='mb-4'>
 							<h2 className='text-xl font-semibold mb-2'>
 								Precio
 							</h2>
-							<p>$ 12</p>
+							<p>$ 22,50</p>
 						</section>
 						<section className='mb-4'>
 							<h2 className='text-xl font-semibold mb-2'>
 								Descripción
 							</h2>
 							<p className='mb-4'>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Dolores debitis vitae nobis
-								ducimus laboriosam reiciendis amet aliquid
-								accusantium in dolore! Repellat perferendis
-								voluptatibus quis officia veritatis est
-								explicabo debitis doloribus? Ad inventore in
-								impedit provident. Eum porro delectus odit
-								officia minima asperiores soluta qui numquam
-								possimus, sint aliquam repudiandae molestiae at?
-								Dolore voluptate ipsam recusandae repellat ab,
-								cumque distinctio debitis. Neque dolore nam
-								perspiciatis amet sit
+							Se implementa una gran variedad de características 
+							de apariencia y funcionalidades de formulario, sus principales características son: 
+							Integra múltiples temas y estilos de apariencia, permite abrir múltiples formularios secundarios en el 
+							escritorio de la aplicación (Los formularios se almacenan en una lista genérica, no en el control panel como 
+							se hizo en los tutoriales), poder moverlo a una nueva ventana, realizar captura de pantalla, impresión, ayuda, 
+							función snap window, redimensionamiento, tamaño de borde y entre otros.
 							</p>
 						</section>
 						<section className='mb-4'>
 							<h2 className='text-xl font-semibold mb-2'>
 								Categoría
 							</h2>
-							<p>nombre de la categoría</p>
+							<p>Windows Forms</p>
 						</section>
 						<section>
 							<Link to={'/home'}>

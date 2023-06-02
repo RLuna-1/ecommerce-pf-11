@@ -25,58 +25,73 @@ const Home = () => {
 	
 		return () => clearInterval(interval);
 	}, [currentImageIndex, images.length]);
+
+  const productos = [
+    {
+      id: 1,
+      image: require('../img/img02.jpg'),
+      title: 'C#- RJ Code Modern UI-M1',
+      price: '$ 22,50'
+    },
+    {
+      id: 2,
+      image: require('../img/img03.jpg'),
+      title: 'VB.NET- RJ Code Modern UI-M1',
+      price: '$ 22,50'
+    },
+    {
+      id: 3,
+      image: require('../img/img01.png'),
+      title: 'Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado',
+      price: '$ 5,99'
+    },
+    {
+      id: 4,
+      image: require('../img/img04.png'),
+      title: 'Full Login+CRUD. C#, SQL Server- Nivel Avanzado',
+      price: '$ 5,99'
+    },
+    {
+      id: 5,
+      image: require('../img/img05.png'),
+      title: 'Full Login+CRUD -C#, SQL, Capas, POO. Nivel Intermedio',
+      price: '$ 1,99'
+    },
+    {
+      id: 6,
+      image: require('../img/img06.png'),
+      title: 'Full Login+CRUD -VB.NET, SQL, Capas, POO-Nivel Intermedio',
+      price: '$ 1,99'
+    }
+  ];
+
   return (
     <div className={styles.General}>
       <h1>Destacados de la semana</h1>
       <div className={styles.CarouselContainer}>
-				<div className={styles.Carousel}>
-					<img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
-				</div>
-				<div>
-				<button id="btnImage1" onClick={() => handleImageChange(0)} className={activeButtonIndex === 0 ? styles.ActiveButton : styles.BotonCarousel}/>
-				<button id="btnImage2" onClick={() => handleImageChange(1)} className={activeButtonIndex === 1 ? styles.ActiveButton : styles.BotonCarousel}/>
-				<button id="btnImage3" onClick={() => handleImageChange(2)} className={activeButtonIndex === 2 ? styles.ActiveButton : styles.BotonCarousel}/>
-				</div>
-			</div>
-      <div className={styles.Productos}>
-        <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src={require('../img/img02.jpg')} alt='Imagen del producto'/></button></Link>
-          <h1>C#- RJ Code Modern UI-M1</h1>
-          <h2>$ 22,50</h2>
-          <button className={styles.BotonAgregar}>Agregar</button>
+        <div className={styles.Carousel}>
+          <img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
         </div>
-        <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src={require('../img/img03.jpg')} alt='Imagen del producto'/></button></Link>
-          <h1>VB.NET- RJ Code Modern UI-M1</h1>
-          <h2>$ 22,50</h2>
-          <button className={styles.BotonAgregar}>Agregar</button>
-        </div>
-        <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src={require('../img/img01.png')} alt='Imagen del producto'/></button></Link>
-          <h1>Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado</h1>
-          <h2>$ 5,99</h2>
-          <button className={styles.BotonAgregar}>Agregar</button>
-        </div>
-        <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src={require('../img/img04.png')} alt='Imagen del producto'/></button></Link>
-          <h1>Full Login+CRUD. C#, SQL Server- Nivel Avanzado</h1>
-          <h2>$ 5,99</h2>
-          <button className={styles.BotonAgregar}>Agregar</button>
-        </div>
-        <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src={require('../img/img05.png')} alt='Imagen del producto'/></button></Link>
-          <h1>Full Login+CRUD -C#, SQL, Capas, POO. Nivel Intermedio</h1>
-          <h2>$ 1,99</h2>
-          <button className={styles.BotonAgregar}>Agregar</button>
-        </div>
-        <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src={require('../img/img06.png')} alt='Imagen del producto'/></button></Link>
-          <h1>Full Login+CRUD -VB.NET, SQL, Capas, POO-Nivel Intermedio</h1>
-          <h2>$ 1,99</h2>
-          <button className={styles.BotonAgregar}>Agregar</button>
+        <div>
+          <button id="btnImage1" onClick={() => handleImageChange(0)} className={activeButtonIndex === 0 ? styles.ActiveButton : styles.BotonCarousel}/>
+          <button id="btnImage2" onClick={() => handleImageChange(1)} className={activeButtonIndex === 1 ? styles.ActiveButton : styles.BotonCarousel}/>
+          <button id="btnImage3" onClick={() => handleImageChange(2)} className={activeButtonIndex === 2 ? styles.ActiveButton : styles.BotonCarousel}/>
         </div>
       </div>
-      {/*<Productos /> */}
+      <div className={styles.Productos}>
+        {productos.map((producto) => (
+          <div className={styles.Producto} key={producto.id}>
+            <Link to="/detail">
+              <button>
+                <img src={producto.image} alt="Imagen del producto"/>
+              </button>
+            </Link>
+            <h1>{producto.title}</h1>
+            <h2>{producto.price}</h2>
+            <button className={styles.BotonAgregar}>Agregar</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
