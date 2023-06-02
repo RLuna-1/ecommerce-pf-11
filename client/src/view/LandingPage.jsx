@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from "react-router-dom"
 import styles from '../css/LandingPage.module.css';
 import rayo from '../img/rayo-landing.png';
 import cubo from '../img/cubo-landing.png'
@@ -50,12 +51,12 @@ export default function LandingPage() {
 				</p>
 				<section className={styles.DivSection}>
 					<div className={styles.Soluciones}>
-						<h2>Encuentre soluciones </h2>
+						<h2 className={styles.SubTitle}>Encuentre soluciones </h2>
 						<p className={styles.Texto}>
 							Ajuste sus productos segun las necesidades de sus
 							clientes.
 						</p>
-						<h2>Estar al Tanto</h2>
+						<h2 className={styles.SubTitle2}>Estar al Tanto</h2>
 						<ul>
 							<li>Quié compra?</li>
 							<li>Qué compra?</li>
@@ -83,10 +84,14 @@ export default function LandingPage() {
 				</section>
 			</header>
 			<div className={styles.CarouselContainer}>
-				<img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
+				<div className={styles.Carousel}>
+					<img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
+				</div>
+				<div>
 				<button id="btnImage1" onClick={() => handleImageChange(0)} className={activeButtonIndex === 0 ? styles.ActiveButton : styles.BotonCarousel}/>
 				<button id="btnImage2" onClick={() => handleImageChange(1)} className={activeButtonIndex === 1 ? styles.ActiveButton : styles.BotonCarousel}/>
 				<button id="btnImage3" onClick={() => handleImageChange(2)} className={activeButtonIndex === 2 ? styles.ActiveButton : styles.BotonCarousel}/>
+				</div>
 			</div>
 			<section className={styles.Div1}>
 				<h1 className={styles.Title}>Impulsa su crecimiento impulsado sus productos</h1>
@@ -102,7 +107,7 @@ export default function LandingPage() {
 			</section>
 			<section className={styles.DivSection}>
 				<div className={styles.Soluciones}>
-					<h1>Realiza tus pagos facilmente con Mercado Pago</h1>
+					<h1 className={styles.SubTitleMP}>Realiza tus pagos facilmente con Mercado Pago</h1>
 					<p className={styles.Texto}>
 						Integre Mercado pago una vez para impulsar el éxito de
 						sus pagos para siempre. Cree su propia experiencia de
@@ -131,7 +136,7 @@ export default function LandingPage() {
 					solucionar necesidades y automatizar el flujo de
 					trabajo.
 				</p>
-				<button className={styles.BotonEnd}> Ingrese Ahora </button>
+				<Link to="/home"> <button className={styles.BotonEnd}> Ingrese Ahora </button></Link>
 			</section>
 			
 		</main>

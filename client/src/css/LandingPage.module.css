@@ -1,11 +1,11 @@
 .Main {
     display: flex;
     flex-wrap: wrap;
-    padding: 0.5em 5em 1em 5em;
+    padding: 2% 10% 4% 10%;
 }
 
 .Div1 {
-    padding: 1.5em 7em 1em 7em;
+    padding: 4% 14% 8% 14%;
     background: #EFF0FC;;
     border-radius: 16px;
 }
@@ -18,6 +18,16 @@
     line-height: 48px;
     text-align: center;
     color: #1C1934;
+}
+
+.SubTitle{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: left;
+    color: #1C1934;  
 }
 
 .TextoCentrado {
@@ -50,6 +60,15 @@
 
 h2{
     flex-basis: 100%;
+}
+
+.SubTitle2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #5E5D6D;
 }
 
 .Soluciones {
@@ -89,7 +108,7 @@ li {
     background: white;
     display: flex;
     flex-wrap: wrap;
-    width: 40%;
+    width: 45%;
     height: 25%;
     border: 0.5px solid #5E5D6D;
     padding: 0em 0em 0.8em 1.2em;
@@ -113,6 +132,7 @@ li {
     display: flex;
     background: white;
     display: flex;
+    flex-wrap: wrap;
     width: 40%;
     height: 25%;
     border: 0.5px solid #5E5D6D;
@@ -120,7 +140,15 @@ li {
 }
 
 h3{
-    flex-basis: 80%;
+    flex-basis: 70%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    color: #1C1934;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .ImgCamino {
@@ -183,18 +211,23 @@ h3{
     padding: 3%;
 }
 
-
 .CarouselContainer {
-    max-width: 1072px; /* Establece el ancho máximo del contenedor */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
-    margin: 3% 0 1% 5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 100%;
+    margin: 0 auto;
+    margin: 3% 0 1% 0;
+}
+
+.Carousel {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
 }
   
 .CarouselImage {
-    max-width: 90%;
+    max-width: 80%;
     border-radius: 10%;
     flex-basis: 100%;
 }
@@ -215,11 +248,23 @@ h3{
     border: 0;
 }
 
+.SubTitleMP {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 58px;
+    color: #1C1934;
+    line-height: 1;
+    margin-top: 1em;
+}
+
 .DivMP {
    display: flex;
    flex-direction: column;
    justify-content: end;
    align-items: end;
+   margin-top: -10%;
 }
 
 .ImagenMP {
@@ -229,7 +274,7 @@ h3{
 
 .Pago{
     width: 50%;
-    height: 35%;
+    height: 45%;
     margin: -5% 5% 0 0;
     background: white;
     display: flex;
@@ -237,6 +282,7 @@ h3{
     border: 0.5px solid #D8DBFB;
     box-shadow: 18px 23px 22px rgba(57, 36, 124, 0.05);
     border-radius: 4px;
+    padding: 5%;
 }
 
 .BotonPago {
@@ -244,7 +290,7 @@ h3{
     border-radius: 4px;
     border: 0;
     color: white;
-    margin: 0.5em 5% 1em 5%;
+    margin: 0 5% 5% 5%;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -258,20 +304,21 @@ h3{
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 18px;
     text-align: center;
     color: #1C1934;
-    flex-basis: 70%;
+    flex-basis: 65%;
+    margin-top: 5%;
 }
 
 .PagoImg {
-    max-width: 8%;
-    margin: 0.5em 0 0.5em 5%;
+    max-width: 15%;
+    margin: 2% 0% 2% 0%;
 }
 
 .DivEnd {
-    margin: 5em 2em -5em 2em;
+    margin: 5em 2em -7em 2em;
     background: #6F47EB;
     border-radius: 20px;
     border: 0;
@@ -318,4 +365,5 @@ h3{
     line-height: 24px;
     color: #6F47EB;
     border: 0;
+    margin-top: 1em;
 }
