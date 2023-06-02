@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div className={styles.General}>
       <div className={styles.CarouselContainer}>
-      <h1>Destacados de la semana</h1>
+      <h1 className={styles.Producto}>Destacados de la semana</h1>
 				<div className={styles.Carousel}>
 					<img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
 				</div>
