@@ -15,6 +15,11 @@
     max-width: 50%;
 }
 
+.Logo:hover {
+    transform: scale(1.04);
+    backdrop-filter: none;
+}
+
 .DivCentral {
     width: 50%;
     display: flex;
@@ -32,8 +37,18 @@
     margin-top: 0.2em;
 }
 
+.ButtonNav:hover {
+    transform: scale(1.02);
+    backdrop-filter: none;
+}
+
 .Carrito {
     max-width: 30%;
+}
+
+.Carrito:hover {
+    transform: scale(1.04);
+    backdrop-filter: none;
 }
 
 .DivLogin{
@@ -57,6 +72,11 @@
     white-space: nowrap;
 }
 
+.Iniciar:hover {
+    transform: scale(1.04);
+    backdrop-filter: none;
+}
+
 .Cerrar {
     gap: 10px;
     background: #6F47EB;
@@ -69,6 +89,11 @@
     line-height: 30px;
     padding: 0.2em 0.5em;
     white-space: nowrap;
+}
+
+.Cerrar:hover {
+    transform: scale(1.04);
+    backdrop-filter: none;
 }
 
 .SearchBar {
