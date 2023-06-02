@@ -6,6 +6,7 @@ import {
 	Footer,
 	FormNewProduc,
     Detail,
+	Carrito,
 } from '../components/index';
 import {Routes, Route, useLocation} from 'react-router-dom';
 import '../css/App.css';
@@ -22,6 +23,7 @@ function App() {
 				<Route path='/vender' element={<FormNewProduc />} />
                 {/* '/detail/:id' */}
                 <Route path='/detail' element={<Detail />} />
+				<Route path='/carrito' element={<Carrito />} />
 			</Routes>
 			<Footer/>
 		</>
