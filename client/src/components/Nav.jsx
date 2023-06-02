@@ -24,7 +24,7 @@ const Nav = () => {
             {pathname !== "/" && <div className={styles.DivCentral}>
                 <Link to="/home"> <button className={styles.ButtonNav}>Productos</button> </Link>
                 <Link to="/vender"> <button className={styles.ButtonNav}>Vender</button> </Link>
-                <Link to="/filtrar"> <button className={styles.ButtonNav}>Filtrar</button> </Link> {/*luego lo tranformo en desplegable*/}
+                <button className={styles.ButtonNav}>Filtrar</button> {/*luego lo tranformo en desplegable*/}
                 <input className={styles.SearchBar} placeholder="Buscar Software" type="text"/>
                 {/*luego agrego el seacrh*/}
             </div>}
