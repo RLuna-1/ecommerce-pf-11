@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import style from "../css/Login.module.css";
@@ -9,6 +9,8 @@ import Apple from "../img/AppleLogin.png";
 import Microsoft from "../img/Microsoft.png";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
@@ -23,7 +25,14 @@ const Login = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     // Aquí puedes realizar la lógica de inicio de sesión, como enviar una solicitud al servidor, validar las credenciales, etc.
-    console.log(values);
+    // Verificamos si el usuario y la contraseña coinciden
+    if (values.email === "lucas@soyhenry.com" && values.password === "123abc") {
+      // Inicio de sesión exitoso, redireccionar a la ruta "home"
+      navigate("/home");
+    } else {
+      // Inicio de sesión fallido, puedes mostrar un mensaje de error o realizar alguna otra acción
+      console.log("Inicio de sesión fallido");
+    }
     setSubmitting(false);
   };
 
