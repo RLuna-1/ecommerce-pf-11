@@ -5,25 +5,26 @@ const Carrito = () => {
     return (
         <div className={styles.General}>
             <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
+                <img src={require('../img/img01.png')} alt='Imagen del producto'/>
+                <h1>Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado</h1> <h1>$ 5,99</h1>
                 <button className={styles.BotonEliminar}>Eliminar</button>
             </div>
             <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
+                <img src={require('../img/img02.jpg')} alt='Imagen del producto'/>
+                <h1>C#- RJ Code Modern UI-M1</h1> <h1>$ 22,50</h1>
                 <button className={styles.BotonEliminar}>Eliminar</button>
             </div>
             <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
+                <img src={require('../img/img03.jpg')} alt='Imagen del producto'/>
+                <h1>VB.NET- RJ Code Modern UI-M1</h1> <h1>$ 22,50</h1>
                 <button className={styles.BotonEliminar}>Eliminar</button>
             </div>
             <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
+                <img src={require('../img/img04.png')} alt='Imagen del producto'/>
+                <h1>Full Login+CRUD. C#, SQL Server- Nivel Avanzado</h1> <h1>$ 5,99</h1>
                 <button className={styles.BotonEliminar}>Eliminar</button>
             </div>
+            <button className={styles.Comprar}>Comprar</button>
         </div>
     )
 }

@@ -49,3 +49,16 @@
     text-align: center;
     width: 100%;
 }
+.Comprar {
+    max-width: 35%;
+    max-height: 50%;
+    background: #dcdef0;
+    border-radius: 6px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5em;
+    box-shadow: -5px 4px 5px 3px black;
+}
