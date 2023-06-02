@@ -32,7 +32,7 @@ export default function FormNewProduc() {
 				<Form className='max-w-md mx-auto mt-10 mb-10'>
 					<div className='mb-4'>
 						<label htmlFor='title' className='block mb-2 font-sans'>
-							Title
+							Titulo
 						</label>
 						<Field
 							type='text'
@@ -72,7 +72,7 @@ export default function FormNewProduc() {
 								<img
 									src={values.image}
 									alt='Product'
-									className='w-32 h-32 object-cover mx-auto mt-4'
+									className='w-full object-cover mx-auto mt-4'
 								/>
 							)}
 						</div>
@@ -146,7 +146,7 @@ export default function FormNewProduc() {
 						/>
 					</div>
 
-					<div>
+					<div className='flex justify-center'>
 						<button
 							type='submit'
 							disabled={!isValid}
