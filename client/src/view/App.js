@@ -6,7 +6,7 @@ import {
 	Footer,
 	FormNewProduc,
     Detail,
-	Carrito
+	Carrito,
 } from '../components/index';
 import {Routes, Route, useLocation} from 'react-router-dom';
 import '../css/App.css';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import validateFormULR from '../utils/validateFormULR';
-import validationSchemaForm from '../utils/validationsShemaForm';
+import FormULRValidate from '../utils/FormULRValidate';
+import FormValidationsShema from '../utils/FormValidationsShema';
 
 export default function FormNewProduc() {
 	const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function FormNewProduc() {
 		<Formik
 			initialValues={initialValues}
 			onSubmit={onSubmit}
-			validationSchema={validationSchemaForm}>
+			validationSchema={FormValidationsShema}>
 			{({ values, setFieldValue, isValid }) => (
 				<Form className='max-w-md mx-auto mt-10 mb-10'>
 					<div className='mb-4'>
@@ -64,7 +64,7 @@ export default function FormNewProduc() {
 					</div>
 					{values.image.trim() && (
 						<div>
-							{validateFormULR(values).image ? (
+							{FormULRValidate(values).image ? (
 								<div className='text-red-500'>
 									URL de imagen inválida
 								</div>
