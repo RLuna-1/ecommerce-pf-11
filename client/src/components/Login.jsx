@@ -176,15 +176,15 @@ const Login = () => {
 				{showDivCuentas && (
 					<div className={style.DivCuentas}>
 						<button>
-							<img src={Google} className={style.Iconos} />{' '}
+							<img src={Google} className={style.Iconos} alt='Google'/>{' '}
 							Continuar con Google
 						</button>
 						<button>
-							<img src={Apple} className={style.Iconos} />{' '}
+							<img src={Apple} className={style.Iconos} alt='Apple'/>{' '}
 							Continuar con Apple
 						</button>
 						<button>
-							<img src={Microsoft} className={style.Iconos} />{' '}
+							<img src={Microsoft} className={style.Iconos} alt='Microsoft'/>{' '}
 							Continuar con Microsoft
 						</button>
 					</div>

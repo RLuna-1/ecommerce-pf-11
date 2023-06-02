@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Productos from '../components/productos.jsx';
+//import Productos from '../components/productos.jsx';
 import styles from '../css/Home.module.css';
 import Carousel1 from '../img/Carousel-4.png';
 import Carousel2 from '../img/Carousel-5.png';

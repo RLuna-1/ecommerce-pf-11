@@ -18,7 +18,7 @@ const Nav = () => {
     return (
         <div className={styles.Nav}> 
             <div className={styles.DivLogo}>
-                <a href="/"><img className={styles.Logo} src={LogoClaro}/></a>
+                <a href="/"><img className={styles.Logo} src={LogoClaro} alt="Logo"/></a>
                 {/*<a href="/"><img src={LogoClaro}/></a>*/}
             </div>
             {pathname !== "/" && <div className={styles.DivCentral}>
