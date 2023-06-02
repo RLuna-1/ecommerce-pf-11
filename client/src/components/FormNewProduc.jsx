@@ -1,8 +1,12 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import validateFormULR from '../utils/validateFormULR';
+import validationSchemaForm from '../utils/validationsShemaForm';
 
 export default function FormNewProduc() {
+	const navigate = useNavigate();
+
 	const initialValues = {
 		title: '',
 		description: '',
@@ -12,57 +16,18 @@ export default function FormNewProduc() {
 		price: '',
 	};
 
-	const navigate = useNavigate();
-
 	const onSubmit = (values, { resetForm }) => {
 		// Redireccionar a la ruta "detail"
 		navigate('/detail');
-
 		// Borrar los datos del formulario
 		resetForm();
-	};
-
-	const validateForm = (values) => {
-		const errors = {};
-		const regexLettersAndSpaces = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-
-		// Validar campos obligatorios
-		if (!values.title.trim()) {
-			errors.title = 'Este campo es obligatorio';
-		} else if (!regexLettersAndSpaces.test(values.title.trim())) {
-			errors.title = 'El título solo puede contener letras y espacios';
-		}
-		if (!values.description) {
-			errors.description = 'Este campo es obligatorio';
-		}
-		if (!values.image.trim()) {
-			errors.image = 'Este campo es obligatorio';
-		} else if (
-			!/^https?:\/\/[\w-]+(\.[\w-]+)+[/#?]?.*$/.test(values.image.trim())
-		) {
-			errors.image =
-				'La URL de la imagen debe comenzar con http:// o https://';
-		}
-		if (!values.marca) {
-			errors.marca = 'Este campo es obligatorio';
-		}
-		if (!values.category) {
-			errors.category = 'Este campo es obligatorio';
-		}
-		if (!values.price) {
-			errors.price = 'Este campo es obligatorio';
-		} else if (isNaN(values.price) || values.price <= 0) {
-			errors.price = 'Ingrese un número positivo mayor a cero';
-		}
-
-		return errors;
 	};
 
 	return (
 		<Formik
 			initialValues={initialValues}
 			onSubmit={onSubmit}
-			validate={validateForm}>
+			validationSchema={validationSchemaForm}>
 			{({ values, setFieldValue, isValid }) => (
 				<Form className='max-w-md mx-auto mt-10 mb-10'>
 					<div className='mb-4'>
@@ -99,7 +64,7 @@ export default function FormNewProduc() {
 					</div>
 					{values.image.trim() && (
 						<div>
-							{validateForm(values).image ? (
+							{validateFormULR(values).image ? (
 								<div className='text-red-500'>
 									URL de imagen inválida
 								</div>
@@ -107,7 +72,7 @@ export default function FormNewProduc() {
 								<img
 									src={values.image}
 									alt='Product'
-									className='w-32 h-32 mx-auto mt-4'
+									className='w-32 h-32 object-cover mx-auto mt-4'
 								/>
 							)}
 						</div>
