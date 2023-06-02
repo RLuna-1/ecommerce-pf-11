@@ -62,6 +62,11 @@
     box-shadow: -5px 4px 5px 3px black;
 }
 
+.Producto:hover {
+    transform: scale(1.02);
+    backdrop-filter: none;
+  }
+
 .Producto img {
     max-width: 100%;
     max-height: 80%;
@@ -85,11 +90,6 @@ h1 {
     font-size: 48px;
     line-height: 58px;
     color: #6F47EB;
-}
-
-.Producto:hover {
-  transform: scale(1.02);
-  backdrop-filter: none;
 }
 
 .BotonAgregar {
