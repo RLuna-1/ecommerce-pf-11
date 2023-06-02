@@ -1,9 +1,9 @@
 const { Router } = require("express");
-const usersRouter = require("./usersRoute");
-const productsRouter = require("./productsRoute");
-const salesRouter = require("./sales");
+const usersRouter = require("./usersRouter");
+const productsRouter = require("./productsRouter");
+const salesRouter = require("./salesRouter");
 const wishlistsRouter = require("./wishlistsRouter");
-const saledetailsRouter = require("./saledetailsRouter");
+const saledetailsRouter = require("./saleDetailsRouter");
 const categoriesRouter = require("./categoriesRouter");
 const paymentsRouter = require("./paymentsRouter");
 const transactionsRouter = require("./transactionsRouter");
@@ -11,17 +11,6 @@ const ratingsRouter = require("./ratingsRouter");
 
 
 const mainRouter = Router();
-
-//const { videogamesRouter } = require("./videogameRoute");
-//const { genresRouter } = require("./genresRoute");
-
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-//router.use("/videogames", videogamesRouter);
-//router.use("/genres", genresRouter);
 
 mainRouter.use("/users", usersRouter);
 mainRouter.use("/products", productsRouter);
