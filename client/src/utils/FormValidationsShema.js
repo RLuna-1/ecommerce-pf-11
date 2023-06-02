@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const validationSchemaForm = Yup.object().shape({
+ const validationSchemaForm = Yup.object().shape({
 	title: Yup.string()
 		.trim()
 		.required('Este campo es obligatorio')
@@ -24,3 +24,4 @@ export const validationSchemaForm = Yup.object().shape({
 });
 
 export default validationSchemaForm;
+
