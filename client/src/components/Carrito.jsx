@@ -1,32 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../css/Carrito.module.css";
 
 const Carrito = () => {
+    const [productos, setProductos] = useState([
+        {
+            id: 1,
+            imagen: require('../img/img01.png'),
+            titulo: 'Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado',
+            precio: 5.99
+        },
+        {
+            id: 2,
+            imagen: require('../img/img02.jpg'),
+            titulo: 'C#- RJ Code Modern UI-M1',
+            precio: 22.50
+        },
+        {
+            id: 3,
+            imagen: require('../img/img03.jpg'),
+            titulo: 'VB.NET- RJ Code Modern UI-M1',
+            precio: 22.50
+        },
+        {
+            id: 4,
+            imagen: require('../img/img04.png'),
+            titulo: 'Full Login+CRUD. C#, SQL Server- Nivel Avanzado',
+            precio: 5.99
+        }
+    ]);
+
+    const eliminarProducto = (id) => {
+        const nuevosProductos = productos.filter(producto => producto.id !== id);
+        setProductos(nuevosProductos);
+    };
+
     return (
         <div className={styles.General}>
-            <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
-                <button className={styles.BotonEliminar}>Eliminar</button>
-            </div>
-            <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
-                <button className={styles.BotonEliminar}>Eliminar</button>
-            </div>
-            <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
-                <button className={styles.BotonEliminar}>Eliminar</button>
-            </div>
-            <div className={styles.Elemento}>
-                <img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/>
-                <h1>Software 1</h1> <h1>$ 30</h1>
-                <button className={styles.BotonEliminar}>Eliminar</button>
-            </div>
+            {productos.map(producto => (
+                <div key={producto.id} className={styles.Elemento}>
+                    <img src={producto.imagen} alt='Imagen del producto' />
+                    <h1>{producto.titulo}</h1>
+                    <h1>$ {producto.precio}</h1>
+                    <button className={styles.BotonEliminar} onClick={() => eliminarProducto(producto.id)}>Eliminar</button>
+                </div>
+            ))}
+            <button className={styles.Comprar}>Comprar</button>
         </div>
-    )
-}
+    );
+};
 
 export default Carrito;
 
