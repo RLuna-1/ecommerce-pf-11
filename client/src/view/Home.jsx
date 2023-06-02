@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Productos from '../components/productos.jsx';
 import styles from '../css/Home.module.css';
-import Carousel1 from '../img/Carousel-1.jpg';
-import Carousel2 from '../img/Carousel-2.png';
-import Carousel3 from '../img/Carousel-3.png';
+import Carousel1 from '../img/Carousel-4.png';
+import Carousel2 from '../img/Carousel-5.png';
+import Carousel3 from '../img/Carousel-6.png';
 
 const Home = () => {
   const images = [Carousel1, Carousel2, Carousel3];
@@ -28,6 +28,7 @@ const Home = () => {
   return (
     <div className={styles.General}>
       <div className={styles.CarouselContainer}>
+      <h1>Destacados de la semana</h1>
 				<div className={styles.Carousel}>
 					<img src={images[currentImageIndex]} alt="Carousel" className={styles.CarouselImage}/>
 				</div>
@@ -39,39 +40,39 @@ const Home = () => {
 			</div>
       <div className={styles.Productos}>
         <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/></button></Link>
-          <h1>Software 1</h1>
-          <h2>$ 10</h2>
+          <Link to={'/detail'}><button><img src={require('../img/img01.png')} alt='Imagen del producto'/></button></Link>
+          <h1>Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado</h1>
+          <h2>$ 5,99</h2>
           <button className={styles.BotonAgregar}>Agregar</button>
         </div>
         <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/></button></Link>
-          <h1>Software 2</h1>
-          <h2>$ 30</h2>
+          <Link to={'/detail'}><button><img src={require('../img/img02.jpg')} alt='Imagen del producto'/></button></Link>
+          <h1>C#- RJ Code Modern UI-M1</h1>
+          <h2>$ 22,50</h2>
           <button className={styles.BotonAgregar}>Agregar</button>
         </div>
         <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/></button></Link>
-          <h1>Software 3</h1>
-          <h2>$ 20</h2>
+          <Link to={'/detail'}><button><img src={require('../img/img03.jpg')} alt='Imagen del producto'/></button></Link>
+          <h1>VB.NET- RJ Code Modern UI-M1</h1>
+          <h2>$ 22,50</h2>
           <button className={styles.BotonAgregar}>Agregar</button>
         </div>
         <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/></button></Link>
-          <h1>Software 4</h1>
-          <h2>$ 15</h2>
+          <Link to={'/detail'}><button><img src={require('../img/img04.png')} alt='Imagen del producto'/></button></Link>
+          <h1>Full Login+CRUD. C#, SQL Server- Nivel Avanzado</h1>
+          <h2>$ 5,99</h2>
           <button className={styles.BotonAgregar}>Agregar</button>
         </div>
         <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/></button></Link>
-          <h1>Software 5</h1>
-          <h2>$ 5</h2>
+          <Link to={'/detail'}><button><img src={require('../img/img05.png')} alt='Imagen del producto'/></button></Link>
+          <h1>Full Login+CRUD -C#, SQL, Capas, POO. Nivel Intermedio</h1>
+          <h2>$ 1,99</h2>
           <button className={styles.BotonAgregar}>Agregar</button>
         </div>
         <div className={styles.Producto}>
-          <Link to={'/detail'}><button><img src='https://codersfree.nyc3.cdn.digitaloceanspaces.com/posts/que-es-javascript-descubre-sus-5-principales-usos.jpg' alt='Imagen del producto'/></button></Link>
-          <h1>Software 6</h1>
-          <h2>$ 30</h2>
+          <Link to={'/detail'}><button><img src={require('../img/img06.png')} alt='Imagen del producto'/></button></Link>
+          <h1>Full Login+CRUD -VB.NET, SQL, Capas, POO-Nivel Intermedio</h1>
+          <h2>$ 1,99</h2>
           <button className={styles.BotonAgregar}>Agregar</button>
         </div>
       </div>
