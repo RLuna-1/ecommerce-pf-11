@@ -1,24 +1,15 @@
 const { Router } = require("express");
+const { getAllCategoryHandlres, createCategoryHandlres, getCategoryByIdHandlres, updateCategoryHandlres, deleteCategoryHandlres } = require("../handlers/catergoryHandlers");
 const categoriesRouter = Router();
 
-categoriesRouter.get("/", (req, res) => {
-  res.status(200).send("aqui vamos GET");
-});
+categoriesRouter.get("/", getAllCategoryHandlres);
 
-categoriesRouter.get("/:id", (req, res) => {
-  res.status(200).send("aqui vamos GET ID");
-});
+categoriesRouter.get("/:id", getCategoryByIdHandlres);
 
-categoriesRouter.post("/", (req, res) => {
-  res.status(200).send("aqui vamos POST");
-});
+categoriesRouter.post("/", createCategoryHandlres);
 
-categoriesRouter.put("/:id", (req, res) => {
-  res.status(200).send("aqui vamos PUT");
-});
+categoriesRouter.put("/:id", updateCategoryHandlres);
 
-categoriesRouter.delete("/:id", (req, res) => {
-  res.status(200).send("aqui vamos DELETE");
-});
+categoriesRouter.delete("/:id", deleteCategoryHandlres);
 
 module.exports = categoriesRouter;
