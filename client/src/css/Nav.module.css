@@ -32,11 +32,15 @@
     margin-top: 0.2em;
 }
 
+.Carrito {
+    max-width: 30%;
+}
+
 .DivLogin{
     width: 20%;
     display: flex;
     justify-content: right;
-    right: 0;
+    align-items: center;
 }
 
 .Iniciar {
@@ -50,6 +54,7 @@
     line-height: 30px;
     color: #6F47EB;
     padding: 0.2em 0.5em;
+    white-space: nowrap;
 }
 
 .Cerrar {

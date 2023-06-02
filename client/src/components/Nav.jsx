@@ -2,6 +2,7 @@ import React from "react";
 import {Link, useLocation} from "react-router-dom"
 import styles from "../css/Nav.module.css"
 import LogoClaro from "../img/LogoClaro.png"
+import Carrito from "../img/Carrito.png"
 //import LogoOscuro from "../img/LogoOscuro.png"
 
 const Nav = () => {
@@ -22,7 +23,7 @@ const Nav = () => {
             
             <div className={styles.DivLogin}>
                 {pathname === "/" && <Link to="/home"><button className={styles.ButtonNav}>Ingresar</button> </Link>}
-                {(pathname !== "/" && pathname !== "/carrito") && <Link to="/carrito"> <button className={styles.ButtonNav}>Carrito</button> </Link>}
+                {(pathname !== "/" && pathname !== "/carrito") && <Link to="/carrito"> <button className={styles.Carrito}><img src={Carrito} alt="Carrito"/></button> </Link>}
                 <Link to="/login"> <button className={styles.Iniciar}>Iniciar Sesion</button> </Link>
                 {/*<Link to="/"> <button className={styles.Cerrar}>Cerrar Sesion</button> </Link>*/}
             </div>
