@@ -8,16 +8,18 @@ const {
   deleteProduct,
 } = require("../controllers/productController.js");
 
+const { validationGetProducts } = require ("../utils/validations.js")
+
 const productsRouter = Router();
 
-productsRouter.get("/", async (req, res) => {
+productsRouter.get("/", validationGetProducts ,async (req, res) => {
   try {
     const showProducts = await getProducts(
       req.query.name,
       req.query.quantity,
       req.query.quantitygte,
       req.query.quantitylte,
-      req.query.price,
+      Number(req.query.price),
       req.query.pricegte,
       req.query.pricelte,
       req.query.category,

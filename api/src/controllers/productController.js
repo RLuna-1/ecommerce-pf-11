@@ -72,6 +72,8 @@ const getProducts = async (
       orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
     } else if (order === "quantity") {
       orderClause.push(["quantity", direction === "DESC" ? "DESC" : "ASC"]);
+    } else if (order === "alphabetical") {
+      orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"])
     }
   }
 
@@ -117,6 +119,7 @@ const getProductDetail = async (id) => {
   console.log(productDetail);
 
   if (!productDetail) throw new Error(`No existe ${id}`);
+  if (productDetail.deleted === true) throw new Error(`${id} fue anteriormente desactivado`)
 
   return productDetail;
 };
@@ -149,7 +152,7 @@ const deleteProduct = async (id) => {
 
   await product.softDelete()
 
-  return product
+  return (product, `${id} fue desactivado correctamente`)
 
 }
 
