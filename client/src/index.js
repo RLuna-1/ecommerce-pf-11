@@ -18,7 +18,7 @@ root.render(
 let previousTitle = document.title;
 window.addEventListener('blur', () => {
 	previousTitle = document.title;
-	document.title = 'No te vayas!! Vuelve';
+	document.title = 'CodeXpress - Vuelve pronto';
 });
 
 //devuelve el titulo original

@@ -88,7 +88,7 @@ const Carrito = () => {
       )}
 
       {mostrarFormulario && (
-        <div className={styles.Elemento}>
+        <div className={styles.ElementoCompra}>
           <h2>Formulario de Compra</h2>
           <input
             type="text"
