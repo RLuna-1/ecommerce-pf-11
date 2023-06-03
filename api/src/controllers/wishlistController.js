@@ -64,7 +64,55 @@ async function getWishlist(req, res) {
   }
 }
 
+
+async function removeProductFromWishlist(req, res) {
+  const { userId, productId } = req.params;
+
+  try {
+    const wishlist = await Wishlist.findOne({
+      where: { userId },
+    });
+
+    if (!wishlist) {
+      return res.status(404).json({ error: 'Wishlist not found' });
+    }
+
+    await wishlist.removeProduct(productId);
+
+    return res.status(200).json({ message: 'Product removed from wishlist' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+
+async function editWishlist(req, res) {
+  const { userId } = req.params;
+  const { productIds } = req.body;
+
+  try {
+    const wishlist = await Wishlist.findOne({
+      where: { userId },
+    });
+
+    if (!wishlist) {
+      return res.status(404).json({ error: 'Wishlist not found' });
+    }
+
+    
+    await wishlist.setProducts(productIds);
+
+    return res.status(200).json({ message: 'Wishlist updated successfully' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 module.exports = {
   addToWishlist,
   getWishlist,
+  removeProductFromWishlist,
+  editWishlist,
 };
