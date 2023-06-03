@@ -34,13 +34,14 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const {Product, Category, Wishlist} = sequelize.models;
+const {Product, Category, Wishlist, User} = sequelize.models;
 
+User.hasOne(Wishlist);
+Wishlist.belongsTo(User);
+Wishlist.belongsToMany(Product, { through: 'WishlistProduct' });
+Product.belongsToMany(Wishlist, { through: 'WishlistProduct' });
 Product.belongsToMany(Category, {through: "products_categories"})
 Category.belongsToMany(Product, {through: "products_categories"})
-Wishlist.belongsTo(User);
-Wishlist.belongsTo(Product);
-
 
 module.exports = {
   ...sequelize.models,
