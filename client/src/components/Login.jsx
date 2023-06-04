@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
+import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import style from '../css/Login.module.css';
 import LogoClaro from '../img/LogoClaro.png';
 import Google from '../img/Google.png';
@@ -10,13 +14,34 @@ import {
 	validationSchema,
 	createAccountValidationSchema,
 } from '../utils/LoginValidationSchema';
+//
+// @ts-check
 
+/**
+ * @typedef {Object} IFormData
+ * @property {string} username
+ * @property {string} password
+ */
+
+// interface IFormData {
+//   username: string;
+//   password: string;
+// }
+//
+const schema = yup
+  .object({
+    username: yup.string().default("a").required("Este campo es obligatorio"),
+    // .email("Debe ser un mail valido"),
+    password: yup.string().required("Este campo es obligatorio"),
+  })
+  .required();
+//
 const Login = () => {
 	const navigate = useNavigate();
 	const [showCreateAccountForm, setShowCreateAccountForm] = useState(false);
 	const [showLoginForm, setShowLoginForm] = useState(true);
 	const [showDivCuentas, setShowDivCuentas] = useState(true);
-	const [createAccountValues, setCreateAccountValues] = useState({
+	const [createAccountValues] = useState({
 		email: '',
 		password: '',
 		confirmPassword: '',
@@ -26,18 +51,29 @@ const Login = () => {
 		email: '',
 		password: '',
 	};
-
-	const handleSubmit = (values, { setSubmitting, setFieldError }) => {
+  //
+  const {
+    register,
+    handleSubmit,
+  } = useForm <IFormData> ({
+    resolver: yupResolver(schema),
+  });
+  //
+	const handlerSubmit = handleSubmit((values) => {
 		if (
-			values.email === 'lucas@soyhenry.com' &&
-			values.password === '123abc'
+      axios
+      .post<IFormData>(`http://localhost:3001/auth/login`, values)
+      .then(({ data }) => {
+        localStorage.setItem("userSession", JSON.stringify(data));
+        navigate("/");
+      })
 		) {
 			navigate('/home');
 		} else {
 			setFieldError('password', 'Inicio de sesión fallido');
 		}
 		setSubmitting(false);
-	};
+	});
 
 	const handleCreateAccountSubmit = (values) => {
 		// Aquí puedes manejar el envío del formulario de creación de cuenta
@@ -66,11 +102,15 @@ const Login = () => {
 					<Formik
 						initialValues={initialValues}
 						validationSchema={validationSchema}
-						onSubmit={handleSubmit}>
+						onSubmit={handlerSubmit}>
 						{({ isSubmitting }) => (
 							<Form>
 								<div>
-									<label htmlFor='email'>Email: </label>
+									<label
+                    type={"text"}
+                    placeholder="Nombre de Usuario"
+                    {...register("username")}
+                   htmlFor='email'>Email: </label>
 									<Field type='email' name='email' />
 									<ErrorMessage
 										name='email'
@@ -78,7 +118,11 @@ const Login = () => {
 									/>
 								</div>
 								<div>
-									<label htmlFor='password'>
+									<label 
+                  type={"password"}
+                  placeholder="Contraseña"
+                  {...register("password")}
+                  htmlFor='password'>
 										Contraseña:{' '}
 									</label>
 									<Field type='password' name='password' />
