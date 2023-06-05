@@ -26,6 +26,8 @@ function App() {
         <Route path="/vender" element={<FormNewProduc />} />
         {/* '/detail/:id' */}
         <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" component={<Detail />} />
+
         <Route path="/carrito" element={<Carrito />} />
         {/* prueba */}
         <Route path="/producto" element={<Producto/>} />
