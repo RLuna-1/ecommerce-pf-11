@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import FormNewProduc from './FormNewProduc';
 import Carrito from "./Carrito";
 import Producto from "./producto";
+import Productos from "./productos";
 
 export {
 	Nav,
@@ -18,4 +19,5 @@ export {
 	FormNewProduc,
 	Carrito,
 	Producto,
+	Productos,
 }

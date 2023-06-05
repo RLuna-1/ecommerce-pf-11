@@ -1,34 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../redux/actions/actions';
-
-const Producto = () => {
-	const products = useSelector((state) => state.allProducts);
+import React from "react";
+import styles from "../css/Producto.module.css";
 
 
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(actions.getAllProducts());
-	}, [dispatch]);
-	return (
-		<div>
-			<div>
-				{products &&
-					products.map((p) => {
-						return (
-							<div key={p.id}>
-								<p>{p.id}</p>
-								<p>{p.name}</p>
-								<p>{p.description}</p>
-								<p>{p.quantity}</p>
-								<p>{p.price}</p>
-							</div>
-						);
-					})}
-			</div>
-		</div>
-	);
+const Producto = ({ id, name, image, price }) => {
+  return (
+    <div>
+      <div className={styles.Producto} key={id}>
+        <a href="/detail">
+          <button>
+            <img src={image} alt="Imagen del producto" />
+          </button>
+        </a>
+        <h1>{name}</h1>
+        <h2>$ {price}</h2>
+        <button className={styles.BotonAgregar}>Agregar</button>
+      </div>
+    </div>
+  );
 };
 
 export default Producto;

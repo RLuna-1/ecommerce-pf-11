@@ -1,201 +1,173 @@
 import {
-	GET_CARTG,
-	GET_PRODUCT,
-	USER_LOGIN,
-	// LOGIN_USER,
-	// GET_ALL_PRODUCTS,
+  GET_CARTG,
+  GET_PRODUCT,
+  USER_LOGIN,
+  GET_ALL_PRODUCTS,
 } from '../consts';
 import axios from 'axios'
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 export const ADD_USER = 'ADD_USER';
-export const DELETE_USER = 'DELETE_USER';
-export const SIGN_IN = 'SIGN_IN';
-export const USER_TO_ADMIN = 'USER_TO_ADMIN';
-export const GET_USER = 'GET_USER';
-export const RESET_PASSWORD = 'RESET_PASSWORD';
-export const UPDATE_USER = 'UPDATE_USER';
-export const VERIFY_PASSWORD= 'VERIFY_PASSWORD';
 export const ALL_PRODUCTS = 'ALL_PRODUCTS';
 
 
 export function getAllProducts() {
-    return function (dispatch) {
-        return fetch(`http://localhost:3001/products`)
-            .then(response => response.json())
-            .then(json => {
-                dispatch({
-                    type: 'ALL_PRODUCTS',
-                    payload: json
-                });
-            });
-    }
-}
-export default function agregarAlCarrito(newData,id) {
-    return function (dispatch) {
-        return  axios({
-            method: 'POST',
-            url: `/users/${id}/cart`,
-            data: {
-                product: newData
-            }
-        }).then(res => {
-            dispatch({
-                type: GET_CARTG,
-                payload: res.data
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-}
-
-
-export function getProduct(id) {
-    return function (dispatch) {
-        return axios.get(`/products/${id}`)
-            .then(res => {
-                dispatch({
-                    type: GET_PRODUCT,
-                    payload: res.data
-                })
-            })
-
-    };
-
-}
-
-export function postProduct(bodyFormData) {
-    return function (dispatch) {
-        return axios({
-            method: 'post',
-            url: '/products',
-            data: bodyFormData,
-            config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        })
-            .then(function (response) {
-                //handle success
-                return (response)
-            })
-            .then((res) => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Se creo el producto',
-                    text: `${res.data.name}`,
-                })
-                getProduct(res.data.id)
-
-
-            })
-            .catch(err => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: `${err}`,
-                })
-            })
-
-    };
-}
-
-export function editProduct(bodyFormData, id) {
-    return function (dispatch) {
-        return axios({
-            method: 'put',
-            url: `/products/${id}`,
-            data: bodyFormData,
-            config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        })
-            .then(function (response) {
-                //handle success
-                return (response)
-            })
-            .then((res) => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Modificación',
-                    text: `Se modificó el producto correctamente`,
-                })
-                getProduct(res.data.id)
-
-            })
-            .catch(function (response) {
-                //handle error
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: `Completa todos los datos obligatorios`,
-                })
-            });
-
-    };
-
-}
-
-export function addUser(payload, email) {
-  var url = 'http://localhost:3001/auth/signup';
   return function (dispatch) {
-    axios.post(url, payload, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
+    return fetch('http://localhost:3001/products')
+      .then((response) => response.json())
+      .then((json) => {
         dispatch({
-          type: 'ADD_USER',
-          payload: response.data
-        });
-        if (response.data === "ya existe un usuario con este email") {
-          Swal({
-            text: "Ya existe un usuario con este email",
-            icon: "error",
-            timer: "2000",
-          });
-        } else {
-          Swal({
-            text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de CodeXpress",
-            icon: "success",
-            timer: "2000",
-          });
-        }
-      })
-      .catch(error => {
-        Swal({
-          text: "Ocurrió un error al registrar el usuario",
-          icon: "error",
-          timer: "2000",
+          type: GET_ALL_PRODUCTS,
+          payload: json.rows,
         });
       });
   };
 }
 
-  
-export function deleteUsers(payload) {
-    var id = payload
-    var url = `http://localhost:3001/users/${id}`
-    return function (dispatch) {
-                    fetch(url, {
-                        method: 'DELETE'
-                    })
-                        // .then(response => response.json())
-                        .then(json => {
-                            dispatch({
-                                type: 'DELETE_USER',
-                            });
-                        });
-                    return Swal({
-                        text: "Usuario eliminado",
-                        icon: "success",
-                        timer: "2000",
-                    });;
-                }
-            }
+export function agregarAlCarrito(newData, id) {
+  return function (dispatch) {
+    return axios({
+      method: 'POST',
+      url: `/users/${id}/cart`,
+      data: {
+        product: newData,
+      },
+    })
+      .then((res) => {
+        dispatch({
+          type: GET_CARTG,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
 
+export function getProduct(id) {
+  return function (dispatch) {
+    return axios.get(`/products/${id}`).then((res) => {
+      dispatch({
+        type: GET_PRODUCT,
+        payload: res.data,
+      });
+    });
+  };
+}
+
+export function postProduct(bodyFormData) {
+  return function (dispatch) {
+    return axios({
+      method: 'post',
+      url: '/products',
+      data: bodyFormData,
+      config: { headers: { 'Content-Type': 'multipart/form-data' } },
+    })
+      .then(function (response) {
+        return response;
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Se creó el producto',
+          text: `${res.data.name}`,
+        });
+        getProduct(res.data.id);
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${err}`,
+        });
+      });
+  };
+}
+
+export function editProduct(bodyFormData, id) {
+  return function (dispatch) {
+    return axios({
+      method: 'put',
+      url: `/products/${id}`,
+      data: bodyFormData,
+      config: { headers: { 'Content-Type': 'multipart/form-data' } },
+    })
+      .then(function (response) {
+        return response;
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Modificación',
+          text: 'Se modificó el producto correctamente',
+        });
+        getProduct(res.data.id);
+      })
+      .catch(function (response) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Completa todos los datos obligatorios',
+        });
+      });
+  };
+}
+export function postLogin (data) {
+    return function(dispatch) {
+        return axios({
+            method: 'POST',
+            url: `/auth/login`,
+            data: data
+
+        })
+            .then(res => {
+                console.log('ESTOY EN EL .THEN edit', res)
+                dispatch({
+                    type: USER_LOGIN,
+                    payload: res.data.token
+                })
+            }
+            );
+
+    };
+}
+// export function loginUser(loginData) {
+//     // console.log("esta es la data que llega al actions", loginData)
+//     return function (dispatch) {
+//         axios({
+//             method: 'POST',
+//             url: `/auth/login`,
+//             data: {
+//                 email: loginData.email,
+//                 password: loginData.password,
+//             }
+//         })
+//             .then(res => {
+//                 dispatch({
+//                     type: LOGIN_USER,
+//                     payload: res.data
+//                 })
+//                 return res;
+//             })
+//             .then(res => {
+//                 localStorage.setItem('token', res.data.token)
+//                 localStorage.setItem('statusToken', 'Usted está autorizado correctamente!')
+//                 window.location.assign("http://localhost:3001/auth/login")
+//             })
+//             .catch(() => {
+//                 Swal.fire({
+//                     icon: 'error',
+//                     title: 'Oops...',
+//                     text: 'Los datos ingresados son erroneos',
+//                 })
+//             })
+//     }
+// }
 
 export const loginUser = (payload) => {
     const pet = axios({
         method: 'post',
-        url: 'http://localhost:3001/auth/login',
+        url: 'http://localhost:3000/auth/login',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -212,145 +184,59 @@ export const loginUser = (payload) => {
             timer: "2000",
         });
 
-    })
-    pet.catch(error => {
-        Swal({
-            text: "Usuario no encontrado",
-            icon: "warning",
-            timer: "2000",
-        });
-        return;
+  pet.catch((error) => {
+    Swal({
+      text: 'Usuario no encontrado',
+      icon: 'warning',
+      timer: '2000',
     });
+    return;
+  });
+};
 
-}
+export function addUser(payload, email) {
 
-export const logoutUser = () => {
-    const pet = axios({
-        method: 'get',
-        url: 'http://localhost:3001/auth/logout',
-    })
-    pet.then(json => {
-        localStorage.removeItem('user')
-        Swal({
-            text: "Se ha cerrado la sesion",
-            icon: "success",
-            timer: "2000",
-        });
-
-    })
-    pet.catch(error => {
-        Swal({
-            text: "Error",
-            icon: "warning",
-            timer: "2000",
-        });
-        return;
-    });
-
-}
-
-export function Usertoadmin(id) {
-    var payload
-
-    var url = `http://localhost:3001/Admin/promote/${id}`;
-
+    var url2 = `http://localhost:3000/users/${payload.email}`
 
     return function (dispatch) {
-        return fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(json => {
+        fetch(url2).then(response => response.json())
+            .then(response => {
                 dispatch({
-                    type: 'USER_TO_ADMIN',
-
-                })
-            });
-            
-    }
-}
-
-export function getAllUser(id) {
-    if (typeof idUser !== "object") {
-        return function (dispatch) {
-            return fetch(`http://localhost:3001/Admin/search/${id}`)
-                .then(response => response.json())
-                .then(json => {
-                    dispatch({
-                        type: 'GET_USER',
-                        payload: json
+                    type: 'ADD_USER',
+                    payload: response
+                });
+                if (response === "ya existe un usuario con este email") {
+                    return Swal({
+                        text: "Ya existe un usuario con este email",
+                        icon: "error",
+                        timer: "2000",
                     });
-                });
-        }
+                } else {
+                    var url = 'http://localhost:3000/users';
+                    fetch(url, {
+                        method: 'POST', // or 'PUT'
+                        body: JSON.stringify(payload),
+                        // data can be `string` or {object}!
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(json => {
+                            dispatch({
+                                type: 'ADD_USER',
+                                payload: json
+                            });
+                        });
+                    return Swal({
+                        text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de HenrySport",
+                        icon: "success",
+                        timer: "2000",
+                    });;
+
+                }
+            })
     }
-}
 
 
-export function verifyPass(payload){
-    var id = payload.id
-
-    var url = `http://localhost:3001/users/${id}/passVerify`
-    return function (dispatch){
-        return fetch(`http://localhost:3001/users/${id}/passVerify`)
-        .then(response => response.json())
-        .then(json => {
-            dispatch({
-                type: 'VERIFY_PASS',
-                payload: json
-            });
-        });
-        }
-}
-
-export function ResetPassword(payload) {
-    var id = payload.id
-    var url = `http://localhost:3001/users/${id}/passwordReset`;
-    return function (dispatch) {
-        return fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(json => {
-                dispatch({
-                    type: 'RESET_PASSWORD',
-                    payload: json
-                });
-                Swal({
-                    text: "Se cambio la contraseña exitosamente",
-                    icon: "success",
-                    timer: "2000",
-                });
-            });
-    }
-}
-
-
-
-export function UpdateUser(payload) {
-    var id = payload.id
-    var url = `http://localhost:3001/users/${id}`;
-    return function (dispatch) {
-        return fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(json => {
-                dispatch({
-                    type: 'UPDATE_USER',
-
-                });
-            });
-    }
 }
