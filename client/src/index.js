@@ -4,14 +4,21 @@ import './css/index.css';
 import App from './view/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
+import { Provider } from 'react-redux';
+import store from './redux/Store';
+
+axios.defaults.baseURL = 'http://localhost:3001';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
-   
-  </React.StrictMode>
+	<Provider store={store}>
+		<React.StrictMode>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</React.StrictMode>
+	</Provider>,
 );
 
 //cambia el nombre de la pestaña

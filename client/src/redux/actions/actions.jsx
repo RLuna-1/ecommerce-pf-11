@@ -1,12 +1,34 @@
-import { GET_CARTG, GET_PRODUCT, USER_LOGIN, LOGIN_USER  } from '../consts/actionTypes'
+import {
+	GET_CARTG,
+	GET_PRODUCT,
+	USER_LOGIN,
+	LOGIN_USER,
+	GET_ALL_PRODUCTS,
+} from '../consts';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
+
+export function getAllProducts() {
+	return function (dispatch) {
+		return axios
+			.get('/products')
+			.then((res) => {
+				dispatch({
+					type: GET_ALL_PRODUCTS,
+					payload: res.data,
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+}
 export default function agregarAlCarrito(newData,id) {
     return function (dispatch) {
         return  axios({
             method: 'POST',
-            url: `http://localhost:3001/users/${id}/cart`,
+            url: `/users/${id}/cart`,
             data: {
                 product: newData
             }
@@ -15,7 +37,7 @@ export default function agregarAlCarrito(newData,id) {
                 type: GET_CARTG,
                 payload: res.data
             })
-        })      
+        })
         .catch((err) => {
             console.log(err)
         })
@@ -25,7 +47,7 @@ export default function agregarAlCarrito(newData,id) {
 
 export function getProduct(id) {
     return function (dispatch) {
-        return axios.get(`http://localhost:3001/products/${id}`)
+        return axios.get(`/products/${id}`)
             .then(res => {
                 dispatch({
                     type: GET_PRODUCT,
@@ -41,7 +63,7 @@ export function postProduct(bodyFormData) {
     return function (dispatch) {
         return axios({
             method: 'post',
-            url: 'http://localhost:3001/products',
+            url: '/products',
             data: bodyFormData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
@@ -74,7 +96,7 @@ export function editProduct(bodyFormData, id) {
     return function (dispatch) {
         return axios({
             method: 'put',
-            url: `http://localhost:3001/products/${id}`,
+            url: `/products/${id}`,
             data: bodyFormData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
@@ -107,7 +129,7 @@ export function postLogin (data) {
     return function(dispatch) {
         return axios({
             method: 'POST',
-            url: `http://localhost:3001/auth/login`,
+            url: `/auth/login`,
             data: data
 
         })
@@ -119,7 +141,7 @@ export function postLogin (data) {
                 })
             }
             );
-          
+
     };
 }
 export function loginUser(loginData) {
@@ -127,7 +149,7 @@ export function loginUser(loginData) {
     return function (dispatch) {
         axios({
             method: 'POST',
-            url: `http://localhost:3001/auth/login`,
+            url: `/auth/login`,
             data: {
                 email: loginData.email,
                 password: loginData.password,
