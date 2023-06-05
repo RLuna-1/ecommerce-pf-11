@@ -7,7 +7,7 @@ import {
 } from '../consts';
 import axios from 'axios'
 import Swal from 'sweetalert2'
-
+export const ADD_USER = 'ADD_USER';
 
 export function getAllProducts() {
 	return function (dispatch) {
@@ -175,4 +175,50 @@ export function loginUser(loginData) {
                 })
             })
     }
+}
+export function addUser(payload, email) {
+
+    var url2 = `http://localhost:3000/users/${payload.email}`
+
+    return function (dispatch) {
+        fetch(url2).then(response => response.json())
+            .then(response => {
+                dispatch({
+                    type: 'ADD_USER',
+                    payload: response
+                });
+                if (response === "ya existe un usuario con este email") {
+                    return swal({
+                        text: "Ya existe un usuario con este email",
+                        icon: "error",
+                        timer: "2000",
+                    });
+                } else {
+                    var url = 'http://localhost:3000/users';
+                    fetch(url, {
+                        method: 'POST', // or 'PUT'
+                        body: JSON.stringify(payload),
+                        // data can be `string` or {object}!
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(json => {
+                            dispatch({
+                                type: 'ADD_USER',
+                                payload: json
+                            });
+                        });
+                    return swal({
+                        text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de HenrySport",
+                        icon: "success",
+                        timer: "2000",
+                    });;
+
+                }
+            })
+    }
+
+
 }

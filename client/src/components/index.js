@@ -1,6 +1,6 @@
 import Nav from "./Nav"
 import LandingPage from '../view/LandingPage'
-import Login from './Login'
+import SingUp from './SingUp'
 import Detail from './Detail';
 import Home from '../view/Home';
 import Footer from "./Footer";
@@ -13,7 +13,7 @@ import Producto from "./Producto";
 export {
 	Nav,
 	LandingPage,
-	Login,
+	SingUp,
 	Detail,
 	Home,
 	Footer,
