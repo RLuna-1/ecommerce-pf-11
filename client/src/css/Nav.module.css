@@ -17,12 +17,12 @@
 
 .Logo:hover {
     transform: scale(1.04);
-    backdrop-filter: none;
 }
 
 .DivCentral {
     width: 50%;
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
 }
 
@@ -39,16 +39,23 @@
 
 .ButtonNav:hover {
     transform: scale(1.02);
-    backdrop-filter: none;
 }
 
 .Carrito {
-    max-width: 30%;
+    width: 60%;
+    height: 60%;
+    border: 0;
+    background: none;
+}
+
+.Carrito img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .Carrito:hover {
     transform: scale(1.04);
-    backdrop-filter: none;
 }
 
 .DivLogin{
@@ -74,7 +81,6 @@
 
 .Iniciar:hover {
     transform: scale(1.04);
-    backdrop-filter: none;
 }
 
 .Cerrar {
@@ -93,7 +99,6 @@
 
 .Cerrar:hover {
     transform: scale(1.04);
-    backdrop-filter: none;
 }
 
 .SearchBar {
@@ -103,7 +108,6 @@
     font-size: 16px;
     line-height: 24px;
     background: #D9D9D9;
-    margin-right: 3em;
     padding: 0.3em;
 }
 

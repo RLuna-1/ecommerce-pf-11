@@ -23,7 +23,7 @@ const Nav = () => {
   };
 
   const handleRefrescar = () => {
-    window.location.reload();
+    pathname === "/home" && window.location.reload();
   };
 
   return (
@@ -57,7 +57,7 @@ const Nav = () => {
             </div>
             <input className={styles.SearchBar} placeholder="Buscar Software" type="text" />
           </div> )}
-          </div>
+        </div>
       )}
 
       <div className={styles.DivLogin}>

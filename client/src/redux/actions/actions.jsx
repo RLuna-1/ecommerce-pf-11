@@ -188,7 +188,7 @@ export function addUser(payload, email) {
                     payload: response
                 });
                 if (response === "ya existe un usuario con este email") {
-                    return swal({
+                    return Swal({
                         text: "Ya existe un usuario con este email",
                         icon: "error",
                         timer: "2000",
@@ -210,7 +210,7 @@ export function addUser(payload, email) {
                                 payload: json
                             });
                         });
-                    return swal({
+                    return Swal({
                         text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de HenrySport",
                         icon: "success",
                         timer: "2000",
