@@ -1,0 +1,142 @@
+.Nav{
+    display: flex;
+    padding: 0.5% 2% 1% 2%;
+    align-items: end;
+    justify-content: space-between;
+    background: #eff0fcbe;
+}
+
+.DivLogo {
+    display: flex;
+    justify-content: left;
+}
+
+.Logo {
+    max-width: 50%;
+}
+
+.Logo:hover {
+    transform: scale(1.04);
+}
+
+.DivCentral {
+    width: 50%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.ButtonNav {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px; 
+    color: #5E5D6D;
+    margin-right: 1em;
+    margin-top: 0.2em;
+}
+
+.ButtonNav:hover {
+    transform: scale(1.02);
+}
+
+.Carrito {
+    width: 60%;
+    height: 60%;
+    border: 0;
+    background: none;
+}
+
+.Carrito img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.Carrito:hover {
+    transform: scale(1.04);
+}
+
+.DivLogin{
+    width: 20%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.Iniciar {
+    gap: 10px;
+    background: #D8DBFB;
+    color: #6F47EB;
+    border-radius: 6px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 0.2em 0.5em;
+    white-space: nowrap;
+}
+
+.Iniciar:hover {
+    transform: scale(1.04);
+}
+
+.Cerrar {
+    gap: 10px;
+    background: #6F47EB;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 0.2em 0.5em;
+    white-space: nowrap;
+}
+
+.Cerrar:hover {
+    transform: scale(1.04);
+}
+
+.SearchBar {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    background: #D9D9D9;
+    padding: 0.3em;
+}
+
+a{
+    text-decoration: none;
+}
+
+.FiltroDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.FiltroContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.FiltroDropdown:hover .FiltroContent {
+  display: block;
+}
+
+.FiltroContent label {
+    white-space: nowrap;
+}
+
+
+  

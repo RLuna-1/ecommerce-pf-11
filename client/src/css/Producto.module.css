@@ -1,0 +1,57 @@
+.Producto {
+    max-width: 80%;
+    background: #dcdef0;
+    border-radius: 6px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5em;
+    box-shadow: -5px 4px 5px 3px black;
+    width: 100%;
+  }
+
+.Producto:hover {
+    transform: scale(1.02);
+  }
+
+  .Producto img {
+    max-width: 100%;
+    max-height: 200px; /* Ajusta el valor según tus necesidades */
+    border: #1C1934 1px solid;
+  }
+
+h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    color: #1C1934;
+}
+
+.Producto h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 58px;
+    color: #160e2e;
+}
+
+.BotonAgregar {
+    background: #1C1934;
+    border-radius: 4px;
+    border: 0;
+    color: white;
+    margin: 0 5%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    width: 90%;
+  }
