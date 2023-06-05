@@ -1,0 +1,202 @@
+[
+    {
+      "name": "Editor de Imágenes",
+      "description": "Potente software para edición de imágenes",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 10,
+      "price": 150,
+      "categories": ["Diseño gráfico"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Desarrollo de Sitios Web Responsivos",
+      "description": "Framework para crear sitios web responsivos",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 8,
+      "price": 200,
+      "categories": ["Desarrollo web"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Gestión de Tareas y Proyectos",
+      "description": "Software para gestionar tareas y proyectos",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 15,
+      "price": 100,
+      "categories": ["Administración de proyectos"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Automatización de Marketing",
+      "description": "Automatiza tus campañas de marketing",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 12,
+      "price": 120,
+      "categories": ["Marketing y publicidad"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Contabilidad y Facturación",
+      "description": "Software de contabilidad y facturación",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 20,
+      "price": 180,
+      "categories": ["Contabilidad y finanzas"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Gestión de Recursos Humanos",
+      "description": "Software para gestionar recursos humanos",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 10,
+      "price": 150,
+      "categories": ["Recursos humanos"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Protección contra Malware",
+      "description": "Protege tu sistema contra malware",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 18,
+      "price": 100,
+      "categories": ["Seguridad y antivirus"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Herramientas de SEO",
+      "description": "Herramientas para mejorar tu posicionamiento en buscadores",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 10,
+      "price": 120,
+      "categories": ["Marketing y publicidad"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Gestión de Proyectos Ágiles",
+      "description": "Software para la gestión ágil de proyectos",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 15,
+      "price": 200,
+      "categories": ["Administración de proyectos"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Diseño de Interfaz de Usuario",
+      "description": "Herramientas para diseñar interfaces de usuario",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 8,
+      "price": 150,
+      "categories": ["Diseño gráfico"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Análisis de Datos",
+      "description": "Software para el análisis de datos",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 10,
+      "price": 180,
+      "categories": ["Análisis de datos"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Plataforma de Aprendizaje en Línea",
+      "description": "Plataforma para cursos en línea",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 20,
+      "price": 120,
+      "categories": ["Educación en línea"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Web"]
+    },
+    {
+      "name": "Sistema de Gestión de Ventas",
+      "description": "Software para gestionar las ventas de tu negocio",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 12,
+      "price": 150,
+      "categories": ["Ventas y CRM"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Herramientas de Productividad",
+      "description": "Herramientas para aumentar la productividad",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 10,
+      "price": 100,
+      "categories": ["Productividad"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Gestión de Proyectos de Construcción",
+      "description": "Software para gestionar proyectos de construcción",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 18,
+      "price": 200,
+      "categories": ["Arquitectura e ingeniería"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Herramientas de Email Marketing",
+      "description": "Herramientas para realizar email marketing",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 15,
+      "price": 120,
+      "categories": ["Marketing y publicidad"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Web"]
+    },
+    {
+      "name": "Gestión de Inventarios",
+      "description": "Software para gestionar inventarios",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 12,
+      "price": 180,
+      "categories": ["Gestión de inventarios"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS"]
+    },
+    {
+      "name": "Herramientas de Diseño de Moda",
+      "description": "Herramientas para diseñar moda",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 10,
+      "price": 150,
+      "categories": ["Diseño gráfico"],
+      "licenses": ["Licencia de por vida", "Suscripción mensual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Herramientas de Big Data",
+      "description": "Herramientas para trabajar con big data",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 8,
+      "price": 200,
+      "categories": ["Análisis de datos"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    {
+      "name": "Gestión de Proyectos de Software",
+      "description": "Software para gestionar proyectos de software",
+      "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg",
+      "quantity": 15,
+      "price": 150,
+      "categories": ["Administración de proyectos"],
+      "licenses": ["Suscripción mensual", "Suscripción anual"],
+      "platforms": ["Windows", "macOS"]
+    }
+  ]
