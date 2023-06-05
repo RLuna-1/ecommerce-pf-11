@@ -1,16 +1,19 @@
 const { Router } = require("express");
-const { getAllPaymentsHandlres, getPaymentsByIdHandlres, createPaymentsHandlres, updatePaymentsHandlres, deletePaymentsHandlres } = require("../handlers/paymentshandlers");
-
+const {  getAllPaymentHandlres,
+  getPaymentByIdHandlres,
+  createPaymentHandlres,
+  updatePaymentHandlres,
+  deletePaymentHandlres, } = require("../handlers/paymentHandlers");
 const paymentsRouter = Router();
 
-paymentsRouter.get("/",getAllPaymentsHandlres);
+paymentsRouter.get("/",getAllPaymentHandlres);
 
-paymentsRouter.get("/:id", getPaymentsByIdHandlres);
+paymentsRouter.get("/:id", getPaymentByIdHandlres);
 
-paymentsRouter.post("/", createPaymentsHandlres);
+paymentsRouter.post("/", createPaymentHandlres);
 
-paymentsRouter.put("/:id", updatePaymentsHandlres);
+paymentsRouter.put("/:id", updatePaymentHandlres);
 
-paymentsRouter.delete("/:id", deletePaymentsHandlres);
+paymentsRouter.delete("/:id", deletePaymentHandlres);
 
 module.exports = paymentsRouter;

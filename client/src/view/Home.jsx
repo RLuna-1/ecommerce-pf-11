@@ -5,7 +5,7 @@ import styles from '../css/Home.module.css';
 import Carousel1 from '../img/Carousel-4.png';
 import Carousel2 from '../img/Carousel-5.png';
 import Carousel3 from '../img/Carousel-6.png';
-import { Productos } from '../components/index';
+//import { Productos } from '../components/index';
 
 const Home = () => {
   const images = [Carousel1, Carousel2, Carousel3];
@@ -95,7 +95,7 @@ const Home = () => {
           </div>
         ))}
         <h1>_________________________________________Aca terminan_________________________________________</h1>
-        <Productos />
+        {/* <Productos /> */}
       </div>
     </div>
   );
