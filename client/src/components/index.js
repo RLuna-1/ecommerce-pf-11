@@ -6,7 +6,7 @@ import Home from '../view/Home';
 import Footer from "./Footer";
 import FormNewProduc from './FormNewProduc';
 import Carrito from "./Carrito";
-
+import Producto from "./producto";
 
 export {
 	Nav,
@@ -17,4 +17,5 @@ export {
 	Footer,
 	FormNewProduc,
 	Carrito,
+	Producto,
 }

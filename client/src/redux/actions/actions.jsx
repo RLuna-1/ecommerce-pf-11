@@ -3,26 +3,25 @@ import {
 	GET_PRODUCT,
 	USER_LOGIN,
 	LOGIN_USER,
-	GET_ALL_PRODUCTS,
+	// GET_ALL_PRODUCTS,
 } from '../consts';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 export const ADD_USER = 'ADD_USER';
+export const ALL_PRODUCTS = 'ALL_PRODUCTS';
+
 
 export function getAllProducts() {
-	return function (dispatch) {
-		return axios
-			.get('/products')
-			.then((res) => {
-				dispatch({
-					type: GET_ALL_PRODUCTS,
-					payload: res.data,
-				});
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+    return function (dispatch) {
+        return fetch(`http://localhost:3001/products`)
+            .then(response => response.json())
+            .then(json => {
+                dispatch({
+                    type: 'ALL_PRODUCTS',
+                    payload: json
+                });
+            });
+    }
 }
 export default function agregarAlCarrito(newData,id) {
     return function (dispatch) {

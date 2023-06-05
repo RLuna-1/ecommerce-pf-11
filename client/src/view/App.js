@@ -7,6 +7,7 @@ import {
 	Detail,
 	Carrito,
 	SingUp,
+	Producto,
 } from '../components/index';
 import {Routes, Route, useLocation} from 'react-router-dom';
 import '../css/App.css';
@@ -26,7 +27,7 @@ function App() {
                 <Route path='/detail' element={<Detail />} />
 				<Route path='/carrito' element={<Carrito />} />
                 {/* prueba */}
-                {/* <Route path='/producto' element={<Producto />} /> */}
+                <Route path='/producto' element={<Producto />} /> 
 			</Routes>
 			<Footer/>
 		</>

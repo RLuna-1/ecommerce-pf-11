@@ -11,8 +11,9 @@ import {
 	DELETE_USER,
 	PROMOTE_USER,
 	LOGIN_USER,
-	GET_ALL_PRODUCTS,
+	// GET_ALL_PRODUCTS,
 } from '../consts';
+import ALL_PRODUCTS from '../actions/actions';
 
 const initialState = {
 	allProducts: [],
@@ -36,10 +37,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				data: action.payload,
 			};
-		case GET_ALL_PRODUCTS:
+		case ALL_PRODUCTS:
 			return {
 				...state,
-				allProducts: action.payload,
+				// allProducts: action.payload,
+				product: action.payload,
 			};
 
 		case GET_PRODUCT:
