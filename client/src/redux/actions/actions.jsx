@@ -2,7 +2,7 @@ import {
 	GET_CARTG,
 	GET_PRODUCT,
 	USER_LOGIN,
-	LOGIN_USER,
+	// LOGIN_USER,
 	// GET_ALL_PRODUCTS,
 } from '../consts';
 import axios from 'axios'
@@ -143,38 +143,71 @@ export function postLogin (data) {
 
     };
 }
-export function loginUser(loginData) {
-    // console.log("esta es la data que llega al actions", loginData)
-    return function (dispatch) {
-        axios({
-            method: 'POST',
-            url: `/auth/login`,
-            data: {
-                email: loginData.email,
-                password: loginData.password,
-            }
-        })
-            .then(res => {
-                dispatch({
-                    type: LOGIN_USER,
-                    payload: res.data
-                })
-                return res;
-            })
-            .then(res => {
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('statusToken', 'Usted está autorizado correctamente!')
-                window.location.assign("http://localhost:3000/checkuser/auth/login")
-            })
-            .catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Los datos ingresados son erroneos',
-                })
-            })
-    }
+// export function loginUser(loginData) {
+//     // console.log("esta es la data que llega al actions", loginData)
+//     return function (dispatch) {
+//         axios({
+//             method: 'POST',
+//             url: `/auth/login`,
+//             data: {
+//                 email: loginData.email,
+//                 password: loginData.password,
+//             }
+//         })
+//             .then(res => {
+//                 dispatch({
+//                     type: LOGIN_USER,
+//                     payload: res.data
+//                 })
+//                 return res;
+//             })
+//             .then(res => {
+//                 localStorage.setItem('token', res.data.token)
+//                 localStorage.setItem('statusToken', 'Usted está autorizado correctamente!')
+//                 window.location.assign("http://localhost:3001/auth/login")
+//             })
+//             .catch(() => {
+//                 Swal.fire({
+//                     icon: 'error',
+//                     title: 'Oops...',
+//                     text: 'Los datos ingresados son erroneos',
+//                 })
+//             })
+//     }
+// }
+
+export const loginUser = (payload) => {
+    const pet = axios({
+        method: 'post',
+        url: 'http://localhost:3000/auth/login',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: {
+            email: payload.email,
+            password: payload.password,
+        },
+    })
+    pet.then(json => {
+        localStorage.setItem('user', JSON.stringify(json.data));
+        Swal({
+            text: "Ha iniciado sesión correctamente",
+            icon: "success",
+            timer: "2000",
+        });
+
+    })
+    pet.catch(error => {
+        Swal({
+            text: "Usuario no encontrado",
+            icon: "warning",
+            timer: "2000",
+        });
+        return;
+    });
+
 }
+
 export function addUser(payload, email) {
 
     var url2 = `http://localhost:3000/users/${payload.email}`
