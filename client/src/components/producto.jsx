@@ -13,6 +13,7 @@ const Producto = () => {
 	}, [dispatch]);
 	return (
 		<div>
+			{console.log('esto es products',products)}
 			<div>
 				{products &&
 					products.map((p) => {
