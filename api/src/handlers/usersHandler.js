@@ -29,7 +29,7 @@ async function getUsers(req, res) {
         return res.json(filteredUsers);
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ error: 'Error al obtener los usuarios' }) 
+        return res.status(500).json({ error: 'Error al obtener los usuarios' });
     }
 }
 
