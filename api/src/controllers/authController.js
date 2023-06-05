@@ -14,7 +14,7 @@ const getLogIn = () => {};
 
 const postSignUp = async ( email, password) => {
   const newSignUp = await User.create({
-    // user_name: user_name,
+
     email: email,
     password: password,
     createdInBd: false,
@@ -25,6 +25,7 @@ const postSignUp = async ( email, password) => {
 
 const postLogIn = async (email, password) => {
   const newLogIn = await User.login(email, password);
+
   const token = createToken(newLogIn._id);
 
   return { newLogIn, token };
