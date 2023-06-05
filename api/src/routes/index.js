@@ -8,6 +8,7 @@ const categoriesRouter = require("./categoriesRouter");
 const paymentsRouter = require("./paymentsRouter");
 const transactionsRouter = require("./transactionsRouter");
 const ratingsRouter = require("./ratingsRouter");
+const authRouter = require("./authRouter")
 
 
 const mainRouter = Router();
@@ -21,6 +22,6 @@ mainRouter.use("/categories", categoriesRouter);
 mainRouter.use("/payments", paymentsRouter);
 mainRouter.use("/transactions", transactionsRouter);
 mainRouter.use("/ratings", ratingsRouter);
-
+mainRouter.use("/auth", authRouter)
 
 module.exports = mainRouter;

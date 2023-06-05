@@ -1,94 +1,113 @@
-const { Product, Category } = require("../db.js");
+const { Product, Category, User, License, Platform } = require("../db.js");
+const fs = require("fs");
+const jwt = require("jsonwebtoken");
 
-const dummyProductData = [
-  {
-    name: "mobile app expensive",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    quantity: 99,
-    price: 129,
-    categories: ["mobile", "web", "desktop"],
-  },
-  {
-    name: "mobile app affordable",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    quantity: 69,
-    price: 99,
-    categories: ["mobile", "web", "desktop"],
-  },
-  {
-    name: "desktop app expensive",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    quantity: 140,
-    price: 119,
-    categories: ["desktop"],
-  },
-  {
-    name: "desktop app affordable",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    quantity: 30,
-    price: 89,
-    categories: ["desktop"],
-  },
-  {
-    name: "web app expensive",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    quantity: 100,
-    price: 99,
-    categories: ["web"],
-  },
-  {
-    name: "web app affordable",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    quantity: 102,
-    price: 59,
-    categories: ["web"],
-  },
-];
 
-const dummyCategoryData = [
-  {
-    name: "mobile",
-  },
-  {
-    name: "desktop",
-  },
-  {
-    name: "web",
-  },
-];
 
 const seedDB = async () => {
-  const seedProduct = dummyProductData.map((data) => {
+  try {
+    // Leer el archivo JSON
+    const rawData = fs.readFileSync(`${__dirname}/products.json`);
+    const products = JSON.parse(rawData);
 
-    return {
-      name: data.name,
-      description: data.description,
-      image: data.img,
-      quantity: data.quantity,
-      price: data.price,
-    };
-  });
+    // Crear los productos en la base de datos
+    for (const product of products) {
+      // Crear el producto en la base de datos
+      const createdProduct = await Product.create({
+        name: product.name,
+        description: product.description,
+        image: product.image,
+        quantity: product.quantity,
+        price: product.price,
+      });
 
-  const seedCategory = dummyCategoryData.map((data) => {
-    return {
-      name: data.name,
-    };
-  });
+      // Obtener o crear las licencias correspondientes
+      const productLicenses = await Promise.all(
+        product.licenses.map(async (license) => {
+          let existingLicense = await License.findOne({ where: { name: license } });
+          if (!existingLicense) {
+            existingLicense = await License.create({ name: license });
+          }
+          return existingLicense;
+        })
+      );
 
-  await Product.bulkCreate(seedProduct);
-  await Category.bulkCreate(seedCategory);
+      // Obtener o crear las categorías correspondientes
+      const productCategories = await Promise.all(
+        product.categories.map(async (category) => {
+          let existingCategory = await Category.findOne({ where: { name: category } });
+          if (!existingCategory) {
+            existingCategory = await Category.create({ name: category });
+          }
+          return existingCategory;
+        })
+      );
+
+      // Obtener o crear las plataformas correspondientes
+      const productPlatforms = await Promise.all(
+        product.platforms.map(async (platform) => {
+          let existingPlatform = await Platform.findOne({ where: { name: platform } });
+          if (!existingPlatform) {
+            existingPlatform = await Platform.create({ name: platform });
+          }
+          return existingPlatform;
+        })
+      );
+
+      // Asociar el producto con las categorías, plataformas y licencias correspondientes
+      await createdProduct.addCategories(productCategories, { through: { timestamps: false } });
+      await createdProduct.addPlatforms(productPlatforms, { through: { timestamps: false } });
+      await createdProduct.addLicenses(productLicenses, { through: { timestamps: false } });
+    }
+
+    console.log("Products uploaded successfully.");
+  } catch (error) {
+    console.error("Failed to upload dummy products:", error);
+  }
 };
 
-module.exports = { seedDB };
+
+const requireAuth = (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (token) {
+    jwt.verify(
+      token,
+      "shnawg is not paying the bills",
+      (error, decodedToken) => {
+        if (error) {
+          console.log(error.message);
+          return res.status(400).json(`Must be logged in to perform this action`);
+        } else {
+          console.log(decodedToken);
+          next();
+        }
+      }
+    );
+  }
+};
+
+const checkUser = (req, res, next) => {
+  if (token) {
+    jwt.verify(
+      token,
+      "shnawg is not paying the bills",
+      async (error, decodedToken) => {
+        if (error) {
+          console.log(error.message);
+          next();
+        } else {
+          console.log(decodedToken);
+          let user = await User.findByPk(decodedToken.id);
+          res.locals.user = user;
+          next();
+        }
+      }
+    );
+  } else {
+    res.locals.user = null;
+    next();
+  }
+};
+
+module.exports = { seedDB, requireAuth };

@@ -74,7 +74,7 @@ const validationGetProducts = async (req, res, next) => {
     validationErrors.push("Direction must be either ASC or DESC");
   }
 
-  if (page && (page <= 0 || typeof page !== "number")) {
+  if (page && page <= 0) {
     validationErrors.push("Page must be a number greater than zero");
   }
 

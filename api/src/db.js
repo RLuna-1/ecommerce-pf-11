@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
@@ -34,10 +34,14 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const {Product, Category} = sequelize.models;
+const { Product, Category, Platform, License } = sequelize.models;
 
-Product.belongsToMany(Category, {through: "products_categories"})
-Category.belongsToMany(Product, {through: "products_categories"})
+Product.belongsToMany(Category, { through: "products_categories" });
+Category.belongsToMany(Product, { through: "products_categories" });
+Product.belongsToMany(Platform, { through: "products_platforms" });
+Platform.belongsToMany(Product, { through: "products_platforms" });
+Product.belongsToMany(License, { through: "products_licenses" });
+License.belongsToMany(Product, { through: "products_licenses" });
 
 module.exports = {
   ...sequelize.models,

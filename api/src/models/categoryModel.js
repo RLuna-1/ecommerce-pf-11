@@ -17,13 +17,10 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
-    }
+    },
   });
   Category.prototype.softDelete = async function () {
     this.deleted = true;
     await this.save();
   };
-
 };
-
-

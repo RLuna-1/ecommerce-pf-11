@@ -8,31 +8,36 @@ const {
   deleteProduct,
 } = require("../controllers/productController.js");
 
-const { validationGetProducts } = require ("../utils/validations.js")
+const { validationGetProducts } = require("../utils/validations.js");
+const { requireAuth } = require("../utils/index.js");
 
 const productsRouter = Router();
 
-productsRouter.get("/", validationGetProducts ,async (req, res) => {
-  try {
-    const showProducts = await getProducts(
-      req.query.name,
-      req.query.quantity,
-      req.query.quantitygte,
-      req.query.quantitylte,
-      Number(req.query.price),
-      req.query.pricegte,
-      req.query.pricelte,
-      req.query.category,
-      req.query.order,
-      req.query.direction,
-      req.query.page
-    );
-    res.status(200).json(await showProducts);
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error.message);
+productsRouter.get(
+  "/",
+  validationGetProducts,
+  async (req, res) => {
+    try {
+      const showProducts = await getProducts(
+        req.query.name,
+        req.query.quantity,
+        req.query.quantitygte,
+        req.query.quantitylte,
+        Number(req.query.price),
+        req.query.pricegte,
+        req.query.pricelte,
+        req.query.categories,
+        req.query.order,
+        req.query.direction,
+        req.query.page,req.query.platform, req.query.license
+      );
+      res.status(200).json(await showProducts);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error.message);
+    }
   }
-});
+);
 
 productsRouter.get("/:id", async (req, res) => {
   try {
