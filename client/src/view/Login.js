@@ -97,9 +97,9 @@ export function Login() {
             >
               Ingresar
             </button>
-			<Link to='/register'>
-            <button className={style.BotonIniciar}>Crear Cuenta</button>
-			</Link>
+			      <Link to='/register'>
+              <button className={style.BotonIniciar}>Crear Cuenta</button>
+			      </Link>
           </div>
         </form>
         <div className={style.DivCuentas}>
