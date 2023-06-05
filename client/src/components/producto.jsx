@@ -4,7 +4,7 @@ import * as actions from '../redux/actions/actions';
 
 const Producto = () => {
 	const products = useSelector((state) => state.allProducts);
-	console.log(products);
+
 
 	const dispatch = useDispatch();
 
