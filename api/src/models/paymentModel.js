@@ -11,18 +11,18 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    monto: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    fecha: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    estado: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // monto: {
+    //   type: DataTypes.DECIMAL(10, 2),
+    //   allowNull: false,
+    // },
+    // fecha: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    //   defaultValue: DataTypes.NOW,
+    // },
+    // estado: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
   });
 };

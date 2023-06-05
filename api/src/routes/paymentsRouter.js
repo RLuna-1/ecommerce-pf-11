@@ -1,24 +1,19 @@
 const { Router } = require("express");
+const {  getAllPaymentHandlres,
+  getPaymentByIdHandlres,
+  createPaymentHandlres,
+  updatePaymentHandlres,
+  deletePaymentHandlres, } = require("../handlers/paymentHandlers");
 const paymentsRouter = Router();
 
-paymentsRouter.get("/", (req, res) => {
-  res.status(200).send("aqui vamos GET");
-});
+paymentsRouter.get("/",getAllPaymentHandlres);
 
-paymentsRouter.get("/:id", (req, res) => {
-  res.status(200).send("aqui vamos GET ID");
-});
+paymentsRouter.get("/:id", getPaymentByIdHandlres);
 
-paymentsRouter.post("/", (req, res) => {
-  res.status(200).send("aqui vamos POST");
-});
+paymentsRouter.post("/", createPaymentHandlres);
 
-paymentsRouter.put("/:id", (req, res) => {
-  res.status(200).send("aqui vamos PUT");
-});
+paymentsRouter.put("/:id", updatePaymentHandlres);
 
-paymentsRouter.delete("/:id", (req, res) => {
-  res.status(200).send("aqui vamos DELETE");
-});
+paymentsRouter.delete("/:id", deletePaymentHandlres);
 
 module.exports = paymentsRouter;
