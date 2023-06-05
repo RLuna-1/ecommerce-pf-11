@@ -12,9 +12,9 @@ const getSignUp = () => {};
 
 const getLogIn = () => {};
 
-const postSignUp = async (user_name, email, password) => {
+const postSignUp = async ( email, password) => {
   const newSignUp = await User.create({
-    user_name: user_name,
+    // user_name: user_name,
     email: email,
     password: password,
     createdInBd: false,
@@ -23,8 +23,8 @@ const postSignUp = async (user_name, email, password) => {
   return { newSignUp, token };
 };
 
-const postLogIn = async (user_name, password) => {
-  const newLogIn = await User.login(user_name, password);
+const postLogIn = async (email, password) => {
+  const newLogIn = await User.login(email, password);
   const token = createToken(newLogIn._id);
 
   return { newLogIn, token };

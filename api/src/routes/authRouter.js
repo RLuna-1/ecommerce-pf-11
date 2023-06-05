@@ -10,31 +10,31 @@ const {
 const authRouter = Router();
 
 authRouter.post("/signup", async (req, res) => {
-  const { user_name, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const { newSignUp, token } = await postSignUp(user_name, email, password);
+    const { newSignUp, token } = await postSignUp( email, password);
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 1000 * 3 * 24 * 60 * 60,
     });
-    res.status(201).json(`User ${newSignUp.user_name} created succesfully`);
+    res.status(201).json(`User ${newSignUp.email} created succesfully`);
   } catch (error) {
     res.status(400).json(`Failed to create user: ${error.message}`);
   }
 });
 
 authRouter.post("/login", async (req, res) => {
-  const { user_name, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const { newLogIn, token } = await postLogIn(user_name, password);
+    const { newLogIn, token } = await postLogIn(email, password);
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 1000 * 3 * 24 * 60 * 60,
     });
 
-    res.status(201).json(`User ${newLogIn.user_name} logged in succesfully`);
+    res.status(201).json(`User ${newLogIn.email} logged in succesfully`);
   } catch (error) {
     res.status(400).json(`Failed to log in the user: ${error.message}`);
   }

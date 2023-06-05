@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import reducer from "./reducer/reducer";
-import thunkMiddleware from "redux-thunk";
+import rootReducer from "../redux/reducer/reducer";
+import thunk from "redux-thunk";
 
-// esta linea es para conectar con la extension del navegador => REDUX DEVTOOLS
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)))
 
-const store = createStore(
-    reducer,
-    composeEnhancers(applyMiddleware(thunkMiddleware)) /* esta línea es para poder hacer peticiones a un server */
-);
-
-
-export default store;
+ const store = createStore(
+    rootReducer,
+    /* window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), */
+    applyMiddleware(thunk)
+  );
+  
+  export default store; 
