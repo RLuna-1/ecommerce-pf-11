@@ -29,11 +29,12 @@ const updateCategory = async (id,name) => {
 };
 
 const deleteCategory = async (id) => {
-  const deleteCategory = await Category.destroy({
-  where :{id}
-  });
 
-return deleteCategory
+  let category = await Category.findByPk(id)
+
+  await category.softDelete()
+
+  return (category, `${id} fue desactivado correctamente`)
 
 }
   module.exports = {

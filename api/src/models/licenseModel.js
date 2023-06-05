@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const Category = sequelize.define("category", {
+  const License = sequelize.define("license", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -11,16 +11,9 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-
-    deleted: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+      
     },
   });
-  Category.prototype.softDelete = async function () {
-    this.deleted = true;
-    await this.save();
-  };
+
+  return License;
 };
