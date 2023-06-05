@@ -1,4 +1,4 @@
-const { Product, Category } = require("../db.js");
+const { Product, Category, Platform, License } = require("../db.js");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -13,7 +13,8 @@ const getProducts = async (
   categories,
   order,
   direction,
-  page = 1
+  page = 1,
+  platform,license
 ) => {
   const pageSize = 10;
   const offset = (page - 1) * pageSize;
@@ -64,14 +65,13 @@ const getProducts = async (
     }
   }
 
-  if (categories) {
-  }
-
   {
     if (order === "price") {
       orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
     } else if (order === "quantity") {
       orderClause.push(["quantity", direction === "DESC" ? "DESC" : "ASC"]);
+    } else if (order === "alphabetical") {
+      orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
     }
   }
 
@@ -80,7 +80,32 @@ const getProducts = async (
     order: orderClause,
     limit: pageSize,
     offset: offset,
-    include: includeClause,
+    include: [
+      {
+        model: Category,
+        attributes: ["name"],
+        through: { attributes: [] },
+        where: categories
+          ? { name: { [Op.iLike]: `%${categories}%` } }
+          : {},
+      },
+      {
+        model: Platform,
+        attributes: ["name"],
+        through: { attributes: [] },
+        where: platform
+          ? { name: { [Op.iLike]: `%${platform}%` } }
+          : {},
+      },
+      {
+        model: License,
+        attributes: ["name"],
+        through: { attributes: [] },
+        where: license
+          ? { name: { [Op.iLike]: `%${license}%` } }
+          : {},
+      },
+    ],
   });
 
   if (!responseProducts.rows.length) {
@@ -117,6 +142,8 @@ const getProductDetail = async (id) => {
   console.log(productDetail);
 
   if (!productDetail) throw new Error(`No existe ${id}`);
+  if (productDetail.deleted === true)
+    throw new Error(`${id} fue anteriormente desactivado`);
 
   return productDetail;
 };
@@ -141,16 +168,21 @@ const updateProduct = async (
     categories: categories,
   });
 
-  return updatedProduct
+  return updatedProduct;
 };
 
 const deleteProduct = async (id) => {
   let product = await Product.findByPk(id);
 
-  await product.softDelete()
+  await product.softDelete();
 
-  return product
+  return product, `${id} fue desactivado correctamente`;
+};
 
-}
-
-module.exports = { getProducts, createProduct, getProductDetail, updateProduct, deleteProduct };
+module.exports = {
+  getProducts,
+  createProduct,
+  getProductDetail,
+  updateProduct,
+  deleteProduct,
+};
