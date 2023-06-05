@@ -4,11 +4,24 @@ import {
   USER_LOGIN,
   GET_ALL_PRODUCTS,
 } from '../consts';
+<<<<<<< HEAD
 import axios from 'axios'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert'
 export const ADD_USER = 'ADD_USER';
+export const DELETE_USER = 'DELETE_USER';
+export const SIGN_IN = 'SIGN_IN';
+export const USER_TO_ADMIN = 'USER_TO_ADMIN';
+export const GET_USER = 'GET_USER';
+export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const UPDATE_USER = 'UPDATE_USER';
+export const VERIFY_PASSWORD= 'VERIFY_PASSWORD';
 export const ALL_PRODUCTS = 'ALL_PRODUCTS';
+=======
+import axios from 'axios';
+import Swal from 'sweetalert2';
+>>>>>>> 4d9a105d9855b6c70dd39ff0bce5776e3fc1c889
 
+export const ADD_USER = 'ADD_USER';
 
 export function getAllProducts() {
   return function (dispatch) {
@@ -112,62 +125,71 @@ export function editProduct(bodyFormData, id) {
       });
   };
 }
-export function postLogin (data) {
-    return function(dispatch) {
-        return axios({
-            method: 'POST',
-            url: `/auth/login`,
-            data: data
 
-        })
-            .then(res => {
-                console.log('ESTOY EN EL .THEN edit', res)
-                dispatch({
-                    type: USER_LOGIN,
-                    payload: res.data.token
-                })
-            }
-            );
-
-    };
+export function addUser(payload, email) {
+  var url = 'http://localhost:3001/auth/signup';
+  return function (dispatch) {
+    axios.post(url, payload, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        dispatch({
+          type: 'ADD_USER',
+          payload: response.data
+        });
+        if (response.data === "ya existe un usuario con este email") {
+          Swal({
+            text: "Ya existe un usuario con este email",
+            icon: "error",
+            timer: "2000",
+          });
+        } else {
+          Swal({
+            text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de CodeXpress",
+            icon: "success",
+            timer: "2000",
+          });
+        }
+      })
+      .catch(error => {
+        Swal({
+          text: "Ocurrió un error al registrar el usuario",
+          icon: "error",
+          timer: "2000",
+        });
+      });
+  };
 }
-// export function loginUser(loginData) {
-//     // console.log("esta es la data que llega al actions", loginData)
-//     return function (dispatch) {
-//         axios({
-//             method: 'POST',
-//             url: `/auth/login`,
-//             data: {
-//                 email: loginData.email,
-//                 password: loginData.password,
-//             }
-//         })
-//             .then(res => {
-//                 dispatch({
-//                     type: LOGIN_USER,
-//                     payload: res.data
-//                 })
-//                 return res;
-//             })
-//             .then(res => {
-//                 localStorage.setItem('token', res.data.token)
-//                 localStorage.setItem('statusToken', 'Usted está autorizado correctamente!')
-//                 window.location.assign("http://localhost:3001/auth/login")
-//             })
-//             .catch(() => {
-//                 Swal.fire({
-//                     icon: 'error',
-//                     title: 'Oops...',
-//                     text: 'Los datos ingresados son erroneos',
-//                 })
-//             })
-//     }
-// }
+
+  
+export function deleteUsers(payload) {
+    var id = payload
+    var url = `http://localhost:3001/users/${id}`
+    return function (dispatch) {
+                    fetch(url, {
+                        method: 'DELETE'
+                    })
+                        // .then(response => response.json())
+                        .then(json => {
+                            dispatch({
+                                type: 'DELETE_USER',
+                            });
+                        });
+                    return Swal({
+                        text: "Usuario eliminado",
+                        icon: "success",
+                        timer: "2000",
+                    });;
+                }
+            }
+
 
 export const loginUser = (payload) => {
     const pet = axios({
         method: 'post',
-        url: 'http://localhost:3000/auth/login',
+        url: 'http://localhost:3001/auth/login',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -184,6 +206,15 @@ export const loginUser = (payload) => {
             timer: "2000",
         });
 
+  pet.then((json) => {
+    localStorage.setItem('user', JSON.stringify(json.data));
+    Swal({
+      text: 'Ha iniciado sesión correctamente',
+      icon: 'success',
+      timer: '2000',
+    });
+  });
+
   pet.catch((error) => {
     Swal({
       text: 'Usuario no encontrado',
@@ -194,49 +225,185 @@ export const loginUser = (payload) => {
   });
 };
 
-export function addUser(payload, email) {
+<<<<<<< HEAD
+export const logoutUser = () => {
+    const pet = axios({
+        method: 'get',
+        url: 'http://localhost:3001/auth/logout',
+    })
+    pet.then(json => {
+        localStorage.removeItem('user')
+        Swal({
+            text: "Se ha cerrado la sesion",
+            icon: "success",
+            timer: "2000",
+        });
 
-    var url2 = `http://localhost:3000/users/${payload.email}`
-
-    return function (dispatch) {
-        fetch(url2).then(response => response.json())
-            .then(response => {
-                dispatch({
-                    type: 'ADD_USER',
-                    payload: response
-                });
-                if (response === "ya existe un usuario con este email") {
-                    return Swal({
-                        text: "Ya existe un usuario con este email",
-                        icon: "error",
-                        timer: "2000",
-                    });
-                } else {
-                    var url = 'http://localhost:3000/users';
-                    fetch(url, {
-                        method: 'POST', // or 'PUT'
-                        body: JSON.stringify(payload),
-                        // data can be `string` or {object}!
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                        .then(response => response.json())
-                        .then(json => {
-                            dispatch({
-                                type: 'ADD_USER',
-                                payload: json
-                            });
-                        });
-                    return Swal({
-                        text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de HenrySport",
-                        icon: "success",
-                        timer: "2000",
-                    });;
-
-                }
-            })
-    }
-
+    })
+    pet.catch(error => {
+        Swal({
+            text: "Error",
+            icon: "warning",
+            timer: "2000",
+        });
+        return;
+    });
 
 }
+
+export function Usertoadmin(id) {
+    var payload
+
+    var url = `http://localhost:3001/Admin/promote/${id}`;
+
+
+    return function (dispatch) {
+        return fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                dispatch({
+                    type: 'USER_TO_ADMIN',
+
+                })
+            });
+            
+    }
+}
+
+export function getAllUser(id) {
+    if (typeof idUser !== "object") {
+        return function (dispatch) {
+            return fetch(`http://localhost:3001/Admin/search/${id}`)
+                .then(response => response.json())
+                .then(json => {
+                    dispatch({
+                        type: 'GET_USER',
+                        payload: json
+                    });
+                });
+        }
+    }
+}
+
+
+export function verifyPass(payload){
+    var id = payload.id
+
+    var url = `http://localhost:3001/users/${id}/passVerify`
+    return function (dispatch){
+        return fetch(`http://localhost:3001/users/${id}/passVerify`)
+        .then(response => response.json())
+        .then(json => {
+            dispatch({
+                type: 'VERIFY_PASS',
+                payload: json
+            });
+        });
+        }
+}
+
+export function ResetPassword(payload) {
+    var id = payload.id
+    var url = `http://localhost:3001/users/${id}/passwordReset`;
+    return function (dispatch) {
+        return fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                dispatch({
+                    type: 'RESET_PASSWORD',
+                    payload: json
+                });
+                Swal({
+                    text: "Se cambio la contraseña exitosamente",
+                    icon: "success",
+                    timer: "2000",
+                });
+            });
+    }
+}
+
+
+
+export function UpdateUser(payload) {
+    var id = payload.id
+    var url = `http://localhost:3001/users/${id}`;
+    return function (dispatch) {
+        return fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                dispatch({
+                    type: 'UPDATE_USER',
+
+                });
+            });
+    }
+}
+=======
+export function addUser(payload, email) {
+  var url2 = `http://localhost:3000/users/${payload.email}`;
+
+  return function (dispatch) {
+    fetch(url2)
+      .then((response) => response.json())
+      .then((response) => {
+        dispatch({
+          type: ADD_USER,
+          payload: response,
+        });
+        if (response === 'ya existe un usuario con este email') {
+          return Swal({
+            text: 'Ya existe un usuario con este email',
+            icon: 'error',
+            timer: '2000',
+          });
+        } else {
+          var url = 'http://localhost:3000/users';
+          fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              dispatch({
+                type: ADD_USER,
+                payload: json,
+              });
+            });
+          return Swal({
+            text: 'Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de HenrySport',
+            icon: 'success',
+            timer: '2000',
+          });
+        }
+      });
+  };
+}
+
+
+
+
+
+
+
+>>>>>>> 4d9a105d9855b6c70dd39ff0bce5776e3fc1c889
