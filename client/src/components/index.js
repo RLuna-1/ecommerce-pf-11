@@ -6,6 +6,7 @@ import Home from '../view/Home';
 import Footer from "./Footer";
 import FormNewProduc from './FormNewProduc';
 import Carrito from "./Carrito";
+import Productos from "./Productos";
 
 
-export { Nav, LandingPage, Login, Detail, Home, Footer, FormNewProduc, Carrito};
+export { Nav, LandingPage, Login, Detail, Home, Footer, FormNewProduc, Carrito, Productos};

@@ -64,7 +64,6 @@
 
 .Producto:hover {
     transform: scale(1.02);
-    backdrop-filter: none;
   }
 
 .Producto img {

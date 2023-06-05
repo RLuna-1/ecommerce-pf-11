@@ -121,10 +121,10 @@ export default function LandingPage() {
 						<button className={styles.BotonPago}> + Nuevo metodo de pagos </button>
 						<img src={Appel} alt='Appel' className={styles.PagoImg}/>
 						<p className={styles.TextoPago}> Appel pay </p>
-						<img src={CheckOn} className={styles.PagoImg}/>
+						<img src={CheckOn} className={styles.PagoImg} alt='*'/>
 						<img src={MasterCard} alt='MasterCard' className={styles.PagoImg}/>
 						<p className={styles.TextoPago}> Master Card </p>
-						<img src={CheckOff} className={styles.PagoImg}/>
+						<img src={CheckOff} className={styles.PagoImg} alt='*'/>
 					</div>
 				</div>
 			</section>
