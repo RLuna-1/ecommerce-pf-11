@@ -1,4 +1,4 @@
-import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS } from "../consts";
+import { GET_CARTG,  GET_ALL_PRODUCTS } from "../consts";
 import axios from "axios";
 import Swal from "sweetalert";
 export const ADD_USER = "ADD_USER";
@@ -10,6 +10,7 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
+export const GET_PRODUCT = 'GET_PRODUCT';
 
 export function getAllProducts() {
   return function (dispatch) {
@@ -45,16 +46,24 @@ export function agregarAlCarrito(newData, id) {
   };
 }
 
+
 export function getProduct(id) {
   return function (dispatch) {
-    return axios.get(`/products/${id}`).then((res) => {
-      dispatch({
-        type: GET_PRODUCT,
-        payload: res.data,
+    return axios
+      .get(`http://localhost:3001/products/${id}`)
+      .then((res) => {
+        dispatch({
+          type: GET_PRODUCT,
+          payload: res.data,
+        });
+      })
+      .catch((error) => {
+        // Manejo de errores
+        console.error('Error fetching product:', error);
       });
-    });
   };
 }
+
 
 export function postProduct(bodyFormData) {
   return function (dispatch) {

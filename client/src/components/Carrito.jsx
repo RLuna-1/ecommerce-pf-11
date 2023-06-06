@@ -3,30 +3,7 @@ import styles from "../css/Carrito.module.css";
 
 const Carrito = () => {
   const [productos, setProductos] = useState([
-    {
-        id: 1,
-        imagen: require('../img/img01.png'),
-        titulo: 'Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado',
-        precio: 5.99
-    },
-    {
-        id: 2,
-        imagen: require('../img/img02.jpg'),
-        titulo: 'C#- RJ Code Modern UI-M1',
-        precio: 22.50
-    },
-    {
-        id: 3,
-        imagen: require('../img/img03.jpg'),
-        titulo: 'VB.NET- RJ Code Modern UI-M1',
-        precio: 22.50
-    },
-    {
-        id: 4,
-        imagen: require('../img/img04.png'),
-        titulo: 'Full Login+CRUD. C#, SQL Server- Nivel Avanzado',
-        precio: 5.99
-    }
+    
   ]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [nombre, setNombre] = useState("");

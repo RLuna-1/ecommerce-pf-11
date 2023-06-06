@@ -24,12 +24,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/vender" element={<FormNewProduc />} />
-        {/* '/detail/:id' */}
-        <Route path="/detail" element={<Detail />} />
-        <Route path="/detail/:id" component={<Detail />} />
-
+        <Route path="/detail/:id" element={<Detail/>} />
         <Route path="/carrito" element={<Carrito />} />
-        {/* prueba */}
         <Route path="/producto" element={<Producto/>} />
       </Routes>
       <Footer />

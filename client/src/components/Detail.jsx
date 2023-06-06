@@ -5,8 +5,9 @@ import axios from 'axios';
 export default function Detail() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-  console.log(id);
+  
   const url = `http://localhost:3001/products/${id}`;
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -20,7 +21,7 @@ export default function Detail() {
 
     fetchProduct();
   }, [id]);
-
+ 
   return (
     <main className='flex justify-center items-start min-h-screen bg-gray-100 py-16'>
       <div className='max-w-5xl mx-auto bg-white shadow-md rounded-lg overflow-hidden flex'>
