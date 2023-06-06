@@ -13,9 +13,10 @@ import {
 	LOGIN_USER,
 	GET_ALL_PRODUCTS,
 	FILTER_PRODUCTS,
+	UPDATE_PRODUCT_LIST,
 } from '../consts';
 
-  const initialState = {
+const initialState = {
 	allProducts: [],
 	product: {},
 	user: {},
@@ -23,11 +24,11 @@ import {
 	data: [],
 	userLogin: {},
 	userLoginData: {},
-    filter: null,
-    filteredProducts: [],
-  };
+	filter: [],
+	filteredProducts: [],
+};
 
-  const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case PUT_PASSWORD:
 			return {
@@ -42,13 +43,20 @@ import {
 		case GET_ALL_PRODUCTS:
 			return {
 				...state,
-				filteredProducts: action.payload,
+				allProducts: action.payload,
 			};
 		case FILTER_PRODUCTS:
-			  return {
-					...state,
-					filter: action.payload,
-				};
+			console.log('action.payload (Filtro):', action.payload);
+			return {
+				...state,
+				filter: action.payload,
+			};
+		case UPDATE_PRODUCT_LIST:
+            console.log('action.payload list:', action.payload);
+			return {
+				...state,
+				products: action.payload,
+			};
 		case GET_PRODUCT:
 		case GET_PRODUCTS:
 		case DELETE_PRODUCT:
@@ -80,7 +88,6 @@ import {
 		default:
 			return state;
 	}
-  };
+};
 
-  export default rootReducer;
-
+export default rootReducer;

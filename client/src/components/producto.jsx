@@ -19,20 +19,22 @@ const Producto = () => {
         {products &&
           products.map((p) => {
             return (
-              <div className={styles.General}>
-				<div className={styles.Producto} key={p.id}>
-					<Link to="/detail">
-					<button>
-						<img src={p.image} alt="Imagen del producto" />
-					</button>
-					</Link>
-					<h1>{p.name}</h1>
-					<h2>$ {p.price}</h2>
+				<div className={styles.General}>
+					<div className={styles.Producto} key={p.id}>
+						<Link to='/detail'>
+							<button>
+								<img src={p.image} alt='Imagen del producto' />
+							</button>
+						</Link>
+						<h1>{p.name}</h1>
+						<h2>$ {p.price}</h2>
+						<p>categotia: {p.categories[0].name}</p>
+						<p>{p.description}</p>
 
-					<button className={styles.BotonAgregar}>Agregar</button>
+						<button className={styles.BotonAgregar}>Agregar</button>
+					</div>
 				</div>
-			  </div>
-            );
+			);
           })}
       </div>
     </div>

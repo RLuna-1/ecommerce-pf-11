@@ -4,6 +4,7 @@ import {
 	USER_LOGIN,
 	GET_ALL_PRODUCTS,
 	FILTER_PRODUCTS,
+	UPDATE_PRODUCT_LIST,
 } from '../consts';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -15,7 +16,6 @@ export function getAllProducts() {
 		return fetch('http://localhost:3001/products')
 			.then((response) => response.json())
 			.then((json) => {
-				console.log(json);
 				dispatch({
 					type: GET_ALL_PRODUCTS,
 					payload: json.rows,
@@ -29,9 +29,10 @@ export function filterProducts() {
 		return fetch('http://localhost:3001/products')
 			.then((response) => response.json())
 			.then((json) => {
-				const categories = json.rows.map(
-					(product) => product.categories[0].name,
+				const categoriesSet = new Set(
+					json.rows.map((product) => product.categories[0].name),
 				);
+				const categories = [...categoriesSet];
 				console.log('filter', categories);
 				dispatch({
 					type: FILTER_PRODUCTS,
@@ -40,6 +41,39 @@ export function filterProducts() {
 			});
 	};
 }
+
+export const updateProductList = (products) => {
+	return {
+		type: UPDATE_PRODUCT_LIST,
+		payload: products,
+	};
+};
+
+// export function filterProducts(filters) {
+// 	return function (dispatch) {
+// 		return fetch('http://localhost:3001/products')
+// 			.then((response) => response.json())
+// 			.then((json) => {
+// 				let filtered = json.rows;
+
+// 				if (filters.categories.length > 0) {
+// 					filtered = filtered.filter((product) =>
+// 						filters.categories.includes(product.categories[0].name),
+// 					);
+// 				}
+
+// 				// Repita para otros filtros si es necesario
+
+// 				console.log('filtered', filters.categories);
+
+// 				dispatch({
+// 					type: FILTER_PRODUCTS,
+// 					payload: filtered,
+// 				});
+// 			});
+// 	};
+// }
+
 
 export function agregarAlCarrito(newData, id) {
 	return function (dispatch) {
