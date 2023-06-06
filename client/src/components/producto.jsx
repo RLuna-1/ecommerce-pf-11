@@ -28,6 +28,7 @@ const Producto = () => {
 					</Link>
 					<h1>{p.name}</h1>
 					<h2>$ {p.price}</h2>
+
 					<button className={styles.BotonAgregar}>Agregar</button>
 				</div>
 			  </div>
