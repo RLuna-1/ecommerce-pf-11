@@ -12,6 +12,10 @@ import {
 import { Routes, Route, useLocation } from "react-router-dom";
 import "../css/App.css";
 import Login from "./Login";
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:3001/';
+
 function App() {
   const { pathname } = useLocation();
 
