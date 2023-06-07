@@ -9,6 +9,7 @@ import Carrito from "./Carrito";
 import Producto from "./producto";
 import FilterByCategorie from './FilterByCategorie';
 import Productos from './productos';
+import Carousel from "./Carousel";
 
 
 export {
@@ -23,3 +24,7 @@ export {
 	Producto,
 	FilterByCategorie,
 	Productos,
+  render-filtros
+	Carousel,
+}
+
