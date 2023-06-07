@@ -1,0 +1,36 @@
+.CarouselContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    margin: 0 auto;
+    margin: 3% 0 1% 0;
+}
+
+.Carousel {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
+}
+  
+.CarouselImage {
+    max-width: 80%;
+    border-radius: 10%;
+    flex-basis: 100%;
+}
+
+.BotonCarousel {
+    background: rgba(111, 71, 235, 0.3);
+    margin: 5em 2em 3em 2em;
+    width: 5em;
+    height: 1em;
+    border: 0;
+}
+
+.ActiveButton {
+    background: #160e2e;;
+    margin: 5em 2em 0 2em;
+    width: 5em;
+    height: 1em;
+    border: 0;
+}
