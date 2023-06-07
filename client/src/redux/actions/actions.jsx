@@ -1,16 +1,9 @@
-import {
-	GET_CARTG,
-	GET_PRODUCT,
-	USER_LOGIN,
-	GET_ALL_PRODUCTS,
-	FILTER_PRODUCTS,
-	UPDATE_PRODUCT_LIST,
-	RESET_FILTER,
-} from '../consts';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS } from "../consts";
+import axios from "axios";
 
-import Swal from 'sweetalert2';
+
+import Swal from "sweetalert2";
+
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
 export const SIGN_IN = "SIGN_IN";
@@ -21,47 +14,32 @@ export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
+export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 
-return function (dispatch) {
-   return axios.get("/products").then((response) => {
-      dispatch({
-        type: GET_ALL_PRODUCTS,
-        payload: response.data.rows,
+export function getAllProducts() {
+  return function (dispatch) {
+    return fetch("http://localhost:3001/products")
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch({
+          type: GET_ALL_PRODUCTS,
+          payload: json.rows,
+        });
       });
-    });
   };
-
-
-export function filterProducts(category) {
-	return {
-		type: FILTER_PRODUCTS,
-		payload: {
-			category: category,
-		},
-	};
 }
-
-export const resetFilter = () => {
-	return {
-		type: RESET_FILTER,
-	};
-};
-
-export const updateProductList = (products) => {
-	return {
-		type: UPDATE_PRODUCT_LIST,
-		payload: products,
-	};
-};
-
-
 
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
-    return axios
-      .post(`/users/${id}/cart`, {
+    return axios({
+      method: "POST",
+      url: `/users/${id}/cart`,
+      data: {
         product: newData,
-      })
+      },
+    })
       .then((res) => {
         dispatch({
           type: GET_CARTG,
@@ -69,32 +47,32 @@ export function agregarAlCarrito(newData, id) {
         });
       })
       .catch((err) => {
-        console.error("Error adding to cart:", err);
+        console.log(err);
       });
   };
 }
 
 export function getProduct(id) {
   return function (dispatch) {
-    return axios
-      .get(`/products/${id}`)
-      .then((res) => {
-        dispatch({
-          type: GET_PRODUCT,
-          payload: res.data,
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching product:", error);
+    return axios.get(`/products/${id}`).then((res) => {
+      dispatch({
+        type: GET_PRODUCT,
+        payload: res.data,
       });
+    });
   };
 }
 
 export function postProduct(bodyFormData) {
   return function (dispatch) {
-    return axios
-      .post("/products", bodyFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
+    return axios({
+      method: "post",
+      url: "/products",
+      data: bodyFormData,
+      config: { headers: { "Content-Type": "multipart/form-data" } },
+    })
+      .then(function (response) {
+        return response;
       })
       .then((res) => {
         Swal.fire({
@@ -102,7 +80,7 @@ export function postProduct(bodyFormData) {
           title: "Se creó el producto",
           text: `${res.data.name}`,
         });
-        getProduct(res.data.id)(dispatch);
+        getProduct(res.data.id);
       })
       .catch((err) => {
         Swal.fire({
@@ -116,9 +94,14 @@ export function postProduct(bodyFormData) {
 
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
-    return axios
-      .put(`/products/${id}`, bodyFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
+    return axios({
+      method: "put",
+      url: `/products/${id}`,
+      data: bodyFormData,
+      config: { headers: { "Content-Type": "multipart/form-data" } },
+    })
+      .then(function (response) {
+        return response;
       })
       .then((res) => {
         Swal.fire({
@@ -126,9 +109,9 @@ export function editProduct(bodyFormData, id) {
           title: "Modificación",
           text: "Se modificó el producto correctamente",
         });
-        getProduct(res.data.id)(dispatch);
+        getProduct(res.data.id);
       })
-      .catch((error) => {
+      .catch(function (response) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -139,7 +122,7 @@ export function editProduct(bodyFormData, id) {
 }
 
 export function addUser(payload, email) {
-  var url = "/auth/signup";
+  var url = "http://localhost:3001/auth/signup";
   return function (dispatch) {
     axios
       .post(url, payload, {
@@ -149,17 +132,17 @@ export function addUser(payload, email) {
       })
       .then((response) => {
         dispatch({
-          type: ADD_USER,
+          type: "ADD_USER",
           payload: response.data,
         });
         if (response.data === "ya existe un usuario con este email") {
-          Swal.fire({
+          Swal({
             text: "Ya existe un usuario con este email",
             icon: "error",
             timer: "2000",
           });
         } else {
-          Swal.fire({
+          Swal({
             text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de CodeXpress",
             icon: "success",
             timer: "2000",
@@ -167,7 +150,7 @@ export function addUser(payload, email) {
         }
       })
       .catch((error) => {
-        Swal.fire({
+        Swal({
           text: "Ocurrió un error al registrar el usuario",
           icon: "error",
           timer: "2000",
@@ -178,94 +161,97 @@ export function addUser(payload, email) {
 
 export function deleteUsers(payload) {
   var id = payload;
-  var url = `/users/${id}`;
+  var url = `http://localhost:3001/users/${id}`;
   return function (dispatch) {
-    axios
-      .delete(url)
-      .then((response) => {
+    fetch(url, {
+      method: "DELETE",
+    })
+      // .then(response => response.json())
+      .then((json) => {
         dispatch({
-          type: DELETE_USER,
+          type: "DELETE_USER",
         });
-      })
-      .then(() => {
-        Swal.fire({
-          text: "Usuario eliminado",
-          icon: "success",
-          timer: "2000",
-        });
-      })
-      .catch((error) => {
-        console.error("Error deleting user:", error);
       });
+    return Swal({
+      text: "Usuario eliminado",
+      icon: "success",
+      timer: "2000",
+    });
   };
 }
 
 export const loginUser = async (payload) => {
   try {
-    const response = await axios.post('/auth/login', {
-      email: payload.email,
-      password: payload.password,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      "/auth/login",
+      {
+        email: payload.email,
+        password: payload.password,
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    localStorage.setItem('user', JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
 
     Swal.fire({
-      text: 'Ha iniciado sesión correctamente',
-      icon: 'success',
-      timer: '2000',
+      text: "Ha iniciado sesión correctamente",
+      icon: "success",
+      timer: "2000",
     });
   } catch (error) {
     Swal.fire({
-      text: 'Usuario no encontrado',
-      icon: 'warning',
-      timer: '2000',
+      text: "Usuario no encontrado",
+      icon: "warning",
+      timer: "2000",
     });
   }
 };
 
 export const logoutUser = () => {
-  return function (dispatch) {
-    axios
-      .get("/auth/logout")
-      .then((response) => {
-        localStorage.removeItem("user");
-        Swal.fire({
-          text: "Se ha cerrado la sesión",
-          icon: "success",
-          timer: "2000",
-        });
-      })
-      .catch((error) => {
-        Swal.fire({
-          text: "Error",
-          icon: "warning",
-          timer: "2000",
-        });
-      });
-  };
+  const pet = axios({
+    method: "get",
+    url: "http://localhost:3001/auth/logout",
+  });
+  pet.then((json) => {
+    localStorage.removeItem("user");
+    Swal({
+      text: "Se ha cerrado la sesion",
+      icon: "success",
+      timer: "2000",
+    });
+  });
+  pet.catch((error) => {
+    Swal({
+      text: "Error",
+      icon: "warning",
+      timer: "2000",
+    });
+    return;
+  });
 };
 
 export function Usertoadmin(id) {
   var payload;
-  var url = `/Admin/promote/${id}`;
+
+  var url = `http://localhost:3001/Admin/promote/${id}`;
+
   return function (dispatch) {
-    axios
-      .put(url, payload, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
+    return fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
         dispatch({
-          type: USER_TO_ADMIN,
+          type: "USER_TO_ADMIN",
         });
-      })
-      .catch((error) => {
-        console.error("Error promoting user to admin:", error);
       });
   };
 }
@@ -273,16 +259,13 @@ export function Usertoadmin(id) {
 export function getAllUser(id) {
   if (typeof idUser !== "object") {
     return function (dispatch) {
-      axios
-        .get(`/Admin/search/${id}`)
-        .then((response) => {
+      return fetch(`http://localhost:3001/Admin/search/${id}`)
+        .then((response) => response.json())
+        .then((json) => {
           dispatch({
-            type: GET_USER,
-            payload: response.data,
+            type: "GET_USER",
+            payload: json,
           });
-        })
-        .catch((error) => {
-          console.error("Error fetching user:", error);
         });
     };
   }
@@ -290,62 +273,82 @@ export function getAllUser(id) {
 
 export function verifyPass(payload) {
   var id = payload.id;
+
+  var url = `http://localhost:3001/users/${id}/passVerify`;
   return function (dispatch) {
-    axios
-      .get(`/users/${id}/passVerify`)
-      .then((response) => {
+    return fetch(`http://localhost:3001/users/${id}/passVerify`)
+      .then((response) => response.json())
+      .then((json) => {
         dispatch({
-          type: VERIFY_PASSWORD,
-          payload: response.data,
+          type: "VERIFY_PASS",
+          payload: json,
         });
-      })
-      .catch((error) => {
-        console.error("Error verifying password:", error);
       });
   };
 }
 
 export function ResetPassword(payload) {
   var id = payload.id;
-  var url = `/users/${id}/passwordReset`;
+  var url = `http://localhost:3001/users/${id}/passwordReset`;
   return function (dispatch) {
-    axios
-      .put(url, payload, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
+    return fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
         dispatch({
-          type: RESET_PASSWORD,
-          payload: response.data,
+          type: "RESET_PASSWORD",
+          payload: json,
         });
-      })
-      .catch((error) => {
-        console.error("Error resetting password:", error);
+        Swal({
+          text: "Se cambio la contraseña exitosamente",
+          icon: "success",
+          timer: "2000",
+        });
       });
   };
 }
 
-export function updateUser(payload) {
+export function UpdateUser(payload) {
   var id = payload.id;
-  var url = `/users/${id}`;
+  var url = `http://localhost:3001/users/${id}`;
   return function (dispatch) {
-    axios
-      .put(url, payload, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
+    return fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
         dispatch({
-          type: UPDATE_USER,
-          payload: response.data,
+          type: "UPDATE_USER",
         });
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
       });
   };
 }
 
+export function addToCarta(payload) {
+  return {
+    type: ADD_TO_CART,
+    payload,
+  };
+}
+
+export function remove1FromCart(payload) {
+  return {
+    type: REMOVE_ONE_FROM_CART,
+    payload,
+  };
+}
+export function removeFromCart(payload) {
+  return {
+    type: REMOVE_ALL_FROM_CART,
+    payload,
+  };
+}
