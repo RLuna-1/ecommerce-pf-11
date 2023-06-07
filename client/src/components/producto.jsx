@@ -2,18 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../css/Producto.module.css";
 
-const Producto = ({ id, name, image, price }) => {
+const Producto = ({ products,addToCart }) => {
+  console.log();
   return (
     <div>
-      <div className={styles.Producto} key={id}>
-        <Link to={`/detail/${id}`}>
-          <button>
-            <img src={image} alt="Imagen del producto" />
+      <div className={styles.Producto} key={products.id}>
+        <Link 
+        
+        to={`/detail/${products.id}`}>
+          <button
+          
+          >
+            <img src={products.image} alt="Imagen del producto" />
           </button>
         </Link>
-        <h1>{name}</h1>
-        <h2>$ {price}</h2>
-        <button className={styles.BotonAgregar}>Agregar</button>
+        <h1>{products.name}</h1>
+        <h2>$ {products.price}</h2>
+        <button className={styles.BotonAgregar}
+        onClick={()=>addToCart(products.id)}
+        >Agregar</button>
       </div>
     </div>
   );
