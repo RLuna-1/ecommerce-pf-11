@@ -24,7 +24,6 @@ export {
 	Producto,
 	FilterByCategorie,
 	Productos,
-  render-filtros
 	Carousel,
 }
 

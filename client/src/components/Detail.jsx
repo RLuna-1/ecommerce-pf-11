@@ -1,60 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-
-import * as actions from "../redux/actions/actions";
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Detail() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-
   
-  const url = `http://localhost:3001/products/${id}`;
-
-
-
-  const dispatch = useDispatch();
-
-
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`/products/${id}`);
         setProduct(response.data);
       } catch (error) {
-        console.log("Error fetching product:", error);
+        console.log('Error fetching product:', error);
       }
     };
 
     fetchProduct();
   }, [id]);
-
-  const addToCart = () => {
-    console.log(product.id);
-    dispatch(actions.addToCarta(id));
-  };
-
+ 
   return (
-
     <main>
       <div style={{ display: "flex" }}>
-        <div
-          style={{ Width: "100%", border: "1px solid #000", padding: "10px" }}
-        >
+
+        <div style={{ Width:"100%", border: "1px solid #000", padding: "10px" }}>
           <div>
             <div>
               <img
                 src={product?.image}
-                alt="Imagen del producto"
+                alt='Imagen del producto'
                 style={{ maxWidth: "50%", maxHeight: "100%" }}
               />
             </div>
           </div>
         </div>
-
+        
         <div style={{ flex: "60%" }}>
-
           {product ? (
             <article>
               <header>
@@ -76,18 +57,14 @@ export default function Detail() {
                 <p>{product.categoria}</p>
               </section>
               <section>
-
-                <Link to={"/home"}>
+                <Link to={'/home'}>
                   <button>
-
                     <span>Regresar a inicio</span>
                   </button>
                 </Link>
               </section>
-
-              <Link to={"/carrito"}>
-                <button onClick={addToCart}>
-
+              <Link to={'/carrito'}>
+                <button>
                   <span>Agregar al Carrito</span>
                 </button>
               </Link>
@@ -99,6 +76,6 @@ export default function Detail() {
       </div>
     </main>
   );
-
+  
+  
 }
-
