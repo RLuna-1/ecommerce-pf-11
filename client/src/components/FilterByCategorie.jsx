@@ -3,7 +3,7 @@ import '../css/FilterComponent.css';
 import { useDispatch } from 'react-redux';
 import { filterProducts, resetFilter } from '../redux/actions/actions';
 
-function FilterComponent() {
+function FilterByCategorie() {
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const dispatch = useDispatch();
 
@@ -131,4 +131,4 @@ function FilterComponent() {
 	);
 }
 
-export default FilterComponent;
+export default FilterByCategorie;

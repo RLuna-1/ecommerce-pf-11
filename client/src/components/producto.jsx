@@ -23,6 +23,7 @@ const Producto = ({ products }) => {
 									<h1>{p.name}</h1>
 									<h2>$ {p.price}</h2>
 									<p>categotia: {p.categories[0].name}</p>
+									<p>plataforma: {p.platforms[0].name}</p>
 									<p>{p.description}</p>
 
 									<button className={styles.BotonAgregar}>

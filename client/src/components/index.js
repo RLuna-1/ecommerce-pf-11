@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import FormNewProduc from './FormNewProduc';
 import Carrito from "./Carrito";
 import Producto from "./producto";
-import FilterComponent from './FilterComponent';
+import FilterByCategorie from './FilterByCategorie';
 import Productos from './productos';
 
 export {
@@ -20,6 +20,6 @@ export {
 	FormNewProduc,
 	Carrito,
 	Producto,
-	FilterComponent,
+	FilterByCategorie,
 	Productos,
 };
