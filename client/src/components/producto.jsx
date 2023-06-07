@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../css/Producto.module.css";
 
 const Producto = ({ products,addToCart }) => {
-  console.log();
+ 
   return (
     <div>
       <div className={styles.Producto} key={products.id}>
