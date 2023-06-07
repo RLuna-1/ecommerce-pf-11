@@ -3,8 +3,6 @@ import { Productos, Carousel } from '../components/index';
 import styles from '../css/Home.module.css'
 
 const Home = () => {
-		return () => clearInterval(interval);
-	}, [currentImageIndex, images.length]);
 
 	return (
 		<div>

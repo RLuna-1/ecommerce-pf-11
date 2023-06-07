@@ -1,4 +1,10 @@
-import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS } from "../consts";
+import {
+	GET_CARTG,
+	GET_PRODUCT,
+	GET_ALL_PRODUCTS,
+	RESET_FILTER,
+	FILTER_PRODUCTS,
+} from '../consts';
 import axios from "axios";
 
 
@@ -18,19 +24,17 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 
-export function getAllProducts() {
-  return function (dispatch) {
-    return fetch("http://localhost:3001/products")
-      .then((response) => response.json())
-      .then((json) => {
-        dispatch({
-          type: GET_ALL_PRODUCTS,
-          payload: json.rows,
-        });
-      });
-  };
-}
 
+export function getAllProducts() {
+     return (dispatch) => {
+	return axios.get('/products').then((response) => {
+		dispatch({
+			type: GET_ALL_PRODUCTS,
+			payload: response.data.rows,
+		});
+	});
+};
+}
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
     return axios({
@@ -352,3 +356,18 @@ export function removeFromCart(payload) {
     payload,
   };
 }
+
+export function filterProducts(category) {
+	return {
+		type: FILTER_PRODUCTS,
+		payload: {
+			category: category,
+		},
+	};
+}
+
+export const resetFilter = () => {
+	return {
+		type: RESET_FILTER,
+	};
+};
