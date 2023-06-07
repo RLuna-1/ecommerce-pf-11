@@ -13,30 +13,36 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING,
+
+        type: DataTypes.TEXT,
         validate: {
-          len: {
-            args: [6, 40],
+          is: {
+            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
+
             msg: "name must be between 2 and 40 characters",
           },
         },
       },
       last_name: {
-        type: DataTypes.STRING,
+
+        type: DataTypes.TEXT,
         validate: {
-          len: {
-            args: [2, 40],
+          is: {
+            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
+
             msg: "last_name must be between 2 and 40 characters",
           },
         },
       },
       user_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+
+        type: DataTypes.TEXT,
+
         unique: true,
         validate: {
-          len: {
-            args: [2, 40],
+          is: {
+            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
+
             msg: "user_name must be between 2 and 40 characters",
           },
           noSpaces(value) {
@@ -95,8 +101,7 @@ module.exports = (sequelize) => {
       timestamps: false,
       hooks: {
         beforeCreate: async (user) => {
-          user.email = user.email.toLowerCase();
-          user.user_name = user.user_name.toLowerCase();
+          user.email = user.email.toLowerCase();    
           const hashedPassword = await bcrypt.hash(user.password, 10);
           user.password = hashedPassword;
         },
@@ -104,8 +109,10 @@ module.exports = (sequelize) => {
     }
   );
 
-  User.login = async (user_name, password) => {
-    const user = await User.findOne({ where: { user_name: user_name.toLowerCase() } });
+
+  User.login = async (email, password) => {
+    const user = await User.findOne({ where: { email: email.toLowerCase() } });
+
   
     if (!user) {
       throw new Error("Invalid user_name");

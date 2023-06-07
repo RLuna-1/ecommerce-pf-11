@@ -9,12 +9,8 @@ export function Register(props) {
   //Crear state de Producto
 
   const [state, setState] = useState({
-    name: "",
-    lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    mobilephone: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -33,6 +29,7 @@ export function Register(props) {
   };
   console.log(state);
   const submitUser = (e) => {
+    console.log(submitUser);
     actualizarEstado({
       name: "",
       lastName: "",
@@ -195,6 +192,7 @@ export function Register(props) {
   );
 }
 
+
 function mapStateToProps(state) {
   return {
     usuarioGuardado: state.usuarios,
@@ -227,10 +225,10 @@ export function validate(state) {
   } else if (state.password !== state.confirmPassword) {
     errors.password = "Passwords don't match";
   }
-  if (!/(\([0-9]{3}\) [0-9]{4}[0-9]{4})/.test(state.mobilephone)) {
-    errors.mobilephone =
-      "A valid telephone number consist of a 3 digits code area between brackets, a space, and 8 more digits";
+  if (!/^\d{11}$/.test(state.mobilephone)) {
+    errors.mobilephone = "A valid telephone number should consist of 8 digits";
   }
+  
   return errors;
 }
 

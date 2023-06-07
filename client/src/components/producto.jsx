@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const Producto = ({ products }) => {
 	return (
 		<div>
-			{console.log('esto es products', products)}
 			<div>
 				{products &&
 					products.map((p) => {

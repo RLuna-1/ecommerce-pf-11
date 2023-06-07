@@ -10,6 +10,7 @@ import Producto from "./producto";
 import FilterByCategorie from './FilterByCategorie';
 import Productos from './productos';
 
+
 export {
 	Nav,
 	LandingPage,
@@ -22,4 +23,3 @@ export {
 	Producto,
 	FilterByCategorie,
 	Productos,
-};

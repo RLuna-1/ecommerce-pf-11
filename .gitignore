@@ -1,10 +1,5 @@
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# package-lock.json
-package-lock.json
 
 # dotenv environment variables file
 .env
 .env.test
+node_modules/
