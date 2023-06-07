@@ -9,18 +9,12 @@ export default function Detail() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
 
-  
-  const url = `http://localhost:3001/products/${id}`;
-
-
-
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(`/products/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.log("Error fetching product:", error);
@@ -101,4 +95,3 @@ export default function Detail() {
   );
 
 }
-

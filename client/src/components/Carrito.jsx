@@ -72,8 +72,9 @@ const Carrito = () => {
           >
             Eliminar 1 Producto
           </button>
-          <button onClick={() => eliminarProducto(producto.id)}>
-            Eliminar Producto
+          <button
+           className={styles.BotonEliminar} onClick={() => eliminarProducto(producto.id)}>
+            Eliminar Productos
           </button>
         </div>
       ))}
