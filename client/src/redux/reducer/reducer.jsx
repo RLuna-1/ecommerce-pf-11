@@ -21,6 +21,7 @@ import {
 } from "../consts";
 
 const initialState = {
+  cart: [],
   allProducts: [],
   product: {},
   user: {},
