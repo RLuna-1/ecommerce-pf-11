@@ -1,14 +1,6 @@
-import {
-  GET_CARTG,
-  GET_PRODUCT,
-  USER_LOGIN,
-  GET_ALL_PRODUCTS,
-  FILTER_PRODUCTS,
-  UPDATE_PRODUCT_LIST,
-  RESET_FILTER,
-} from "../consts";
+import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS, FILTER_PRODUCTS, RESET_FILTER, ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART } from "../consts";
 import axios from "axios";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
 export const SIGN_IN = "SIGN_IN";
@@ -29,28 +21,6 @@ export function getAllProducts() {
     });
   };
 }
-
-export function filterProducts(category) {
-  return {
-    type: FILTER_PRODUCTS,
-    payload: {
-      category: category,
-    },
-  };
-}
-
-export const resetFilter = () => {
-  return {
-    type: RESET_FILTER,
-  };
-};
-
-export const updateProductList = (products) => {
-  return {
-    type: UPDATE_PRODUCT_LIST,
-    payload: products,
-  };
-};
 
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
@@ -198,31 +168,27 @@ export function deleteUsers(payload) {
 
 export const loginUser = async (payload) => {
   try {
-    const response = await axios.post(
-      "/auth/login",
-      {
-        email: payload.email,
-        password: payload.password,
+    const response = await axios.post('/auth/login', {
+      email: payload.email,
+      password: payload.password,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    });
 
-    localStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem('user', JSON.stringify(response.data));
 
     Swal.fire({
-      text: "Ha iniciado sesión correctamente",
-      icon: "success",
-      timer: "2000",
+      text: 'Ha iniciado sesión correctamente',
+      icon: 'success',
+      timer: '2000',
     });
   } catch (error) {
     Swal.fire({
-      text: "Usuario no encontrado",
-      icon: "warning",
-      timer: "2000",
+      text: 'Usuario no encontrado',
+      icon: 'warning',
+      timer: '2000',
     });
   }
 };
@@ -346,5 +312,40 @@ export function updateUser(payload) {
       .catch((error) => {
         console.error("Error updating user:", error);
       });
+  };
+}
+
+export function filterProducts(category) {
+  return {
+      type: FILTER_PRODUCTS,
+      payload: {
+          category: category,
+      },
+  };
+}
+
+export const resetFilter = () => {
+  return {
+      type: RESET_FILTER,
+  };
+};
+
+export function addToCarta(payload) {
+  return {
+    type: ADD_TO_CART,
+    payload,
+  };
+}
+
+export function remove1FromCart(payload) {
+  return {
+    type: REMOVE_ONE_FROM_CART,
+    payload,
+  };
+}
+export function removeFromCart(payload) {
+  return {
+    type: REMOVE_ALL_FROM_CART,
+    payload,
   };
 }
