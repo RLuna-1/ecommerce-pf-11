@@ -7,7 +7,10 @@ import Footer from "./Footer";
 import FormNewProduc from './FormNewProduc';
 import Carrito from "./Carrito";
 import Producto from "./producto";
-import Productos from "./productos";
+import FilterByCategorie from './FilterByCategorie';
+import Productos from './productos';
+import Carousel from "./Carousel";
+
 
 export {
 	Nav,
@@ -19,5 +22,9 @@ export {
 	FormNewProduc,
 	Carrito,
 	Producto,
+	FilterByCategorie,
 	Productos,
+  render-filtros
+	Carousel,
 }
+

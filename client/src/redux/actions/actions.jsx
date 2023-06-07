@@ -12,6 +12,10 @@ export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
+export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
+
 export function getAllProducts() {
   return function (dispatch) {
     return axios.get("/products").then((response) => {
@@ -169,27 +173,31 @@ export function deleteUsers(payload) {
 
 export const loginUser = async (payload) => {
   try {
-    const response = await axios.post('/auth/login', {
-      email: payload.email,
-      password: payload.password,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      "/auth/login",
+      {
+        email: payload.email,
+        password: payload.password,
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    localStorage.setItem('user', JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
 
     Swal.fire({
-      text: 'Ha iniciado sesión correctamente',
-      icon: 'success',
-      timer: '2000',
+      text: "Ha iniciado sesión correctamente",
+      icon: "success",
+      timer: "2000",
     });
   } catch (error) {
     Swal.fire({
-      text: 'Usuario no encontrado',
-      icon: 'warning',
-      timer: '2000',
+      text: "Usuario no encontrado",
+      icon: "warning",
+      timer: "2000",
     });
   }
 };
@@ -313,5 +321,25 @@ export function updateUser(payload) {
       .catch((error) => {
         console.error("Error updating user:", error);
       });
+  };
+}
+
+export function addToCarta(payload) {
+  return {
+    type: ADD_TO_CART,
+    payload,
+  };
+}
+
+export function remove1FromCart(payload) {
+  return {
+    type: REMOVE_ONE_FROM_CART,
+    payload,
+  };
+}
+export function removeFromCart(payload) {
+  return {
+    type: REMOVE_ALL_FROM_CART,
+    payload,
   };
 }
