@@ -347,19 +347,3 @@ export function removeFromCart(payload) {
     payload,
   };
 }
-
-export function filterProducts(category) {
-	return {
-		type: FILTER_PRODUCTS,
-		payload: {
-			category: category,
-		},
-	};
-}
-
-export const resetFilter = () => {
-	return {
-		type: RESET_FILTER,
-	};
-};
-
