@@ -6,8 +6,15 @@ import styles from '../css/Productos.module.css';
 
 function Productos() {
   const products = useSelector((state) => state.allProducts);
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
 
   const dispatch = useDispatch();
+
+  const addToCart = (id)=>{
+  dispatch(actions.addToCarta(id))
+  }
+  
 
   useEffect(() => {
     dispatch(actions.getAllProducts());
@@ -17,11 +24,9 @@ function Productos() {
       {products && products.map((p) => {
         return (
           <Producto 
-            key={p.id}
-            id={p.id}
-            name={p.name}
-            image={p.image}
-            price={p.price}
+          key={p.id}
+            products={p}
+            addToCart={addToCart}
           />
         )
       })}
