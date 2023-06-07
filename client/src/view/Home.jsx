@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import styles from '../css/Home.module.css';
 import Carousel1 from '../img/Carousel-4.png';
 import Carousel2 from '../img/Carousel-5.png';
 import Carousel3 from '../img/Carousel-6.png';
-import { Producto } from '../components/index';
+import { Productos} from '../components/index';
+
 
 const Home = () => {
 	const images = [Carousel1, Carousel2, Carousel3];
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [activeButtonIndex, setActiveButtonIndex] = useState(0);
-
-	const filteredProducts = useSelector((state) => state.filter);
 
 	const handleImageChange = (index) => {
 		setCurrentImageIndex(index);
@@ -69,15 +67,7 @@ const Home = () => {
 					/>
 				</div>
 			</div>
-			<div className={styles.Productos}>
-				<h1>
-					_________________________________________Aca
-					terminan_________________________________________
-				</h1>
-				{filteredProducts.map((product) => (
-					<Producto key={product.id} product={product} />
-				))}
-			</div>
+            <Productos/>
 		</div>
 	);
 };

@@ -5,6 +5,7 @@ import {
 	GET_ALL_PRODUCTS,
 	FILTER_PRODUCTS,
 	UPDATE_PRODUCT_LIST,
+	RESET_FILTER,
 } from '../consts';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -24,23 +25,20 @@ export function getAllProducts() {
 	};
 }
 
-export function filterProducts() {
-	return function (dispatch) {
-		return fetch('http://localhost:3001/products')
-			.then((response) => response.json())
-			.then((json) => {
-				const categoriesSet = new Set(
-					json.rows.map((product) => product.categories[0].name),
-				);
-				const categories = [...categoriesSet];
-				console.log('filter', categories);
-				dispatch({
-					type: FILTER_PRODUCTS,
-					payload: categories,
-				});
-			});
+export function filterProducts(category) {
+	return {
+		type: FILTER_PRODUCTS,
+		payload: {
+			category: category,
+		},
 	};
 }
+
+export const resetFilter = () => {
+	return {
+		type: RESET_FILTER,
+	};
+};
 
 export const updateProductList = (products) => {
 	return {
@@ -49,30 +47,6 @@ export const updateProductList = (products) => {
 	};
 };
 
-// export function filterProducts(filters) {
-// 	return function (dispatch) {
-// 		return fetch('http://localhost:3001/products')
-// 			.then((response) => response.json())
-// 			.then((json) => {
-// 				let filtered = json.rows;
-
-// 				if (filters.categories.length > 0) {
-// 					filtered = filtered.filter((product) =>
-// 						filters.categories.includes(product.categories[0].name),
-// 					);
-// 				}
-
-// 				// Repita para otros filtros si es necesario
-
-// 				console.log('filtered', filters.categories);
-
-// 				dispatch({
-// 					type: FILTER_PRODUCTS,
-// 					payload: filtered,
-// 				});
-// 			});
-// 	};
-// }
 
 
 export function agregarAlCarrito(newData, id) {

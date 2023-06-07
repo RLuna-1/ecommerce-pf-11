@@ -1,32 +1,30 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../redux/actions/actions";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../redux/actions/actions';
 import { Producto } from '../components/index';
 import styles from '../css/Productos.module.css';
 
 function Productos() {
-  const products = useSelector((state) => state.allProducts);
+	const products = useSelector((state) => state.allProducts);
+	const filteredProducts = useSelector((state) => state.filteredProducts);
 
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(actions.getAllProducts());
-  }, [dispatch]);
-  return (
-    <div className={styles.Productos}>
-      {products && products.map((p) => {
-        return (
-          <Producto 
-            key={p.id}
-            id={p.id}
-            name={p.name}
-            image={p.image}
-            price={p.price}
-          />
-        )
-      })}
-    </div>
-  );
+	useEffect(() => {
+		dispatch(actions.getAllProducts());
+	}, [dispatch]);
+
+	return (
+		<div>
+			<div className={styles.Productos}>
+				{filteredProducts.length > 0 ? (
+					<Producto products={filteredProducts} />
+				) : (
+					<Producto products={products} />
+				)}
+			</div>
+		</div>
+	);
 }
 
 export default Productos;

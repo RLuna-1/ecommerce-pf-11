@@ -14,6 +14,7 @@ import {
 	GET_ALL_PRODUCTS,
 	FILTER_PRODUCTS,
 	UPDATE_PRODUCT_LIST,
+	RESET_FILTER,
 } from '../consts';
 
 const initialState = {
@@ -24,7 +25,6 @@ const initialState = {
 	data: [],
 	userLogin: {},
 	userLoginData: {},
-	filter: [],
 	filteredProducts: [],
 };
 
@@ -46,13 +46,27 @@ const rootReducer = (state = initialState, action) => {
 				allProducts: action.payload,
 			};
 		case FILTER_PRODUCTS:
-			console.log('action.payload (Filtro):', action.payload);
+			const { category } = action.payload;
+			let filterProduct;
+			if (category.length > 0) {
+				filterProduct = state.allProducts.filter((product) =>
+					category.includes(product.categories[0].name),
+				);
+			} else {
+				filterProduct = state.allProducts;
+			}
 			return {
 				...state,
-				filter: action.payload,
+				filteredProducts: filterProduct,
 			};
+   case RESET_FILTER:
+            return {
+                ...state,
+                filteredProducts: [],
+            };
+
 		case UPDATE_PRODUCT_LIST:
-            console.log('action.payload list:', action.payload);
+			console.log('action.payload list:', action.payload);
 			return {
 				...state,
 				products: action.payload,

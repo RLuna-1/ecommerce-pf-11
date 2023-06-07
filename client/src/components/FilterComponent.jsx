@@ -1,65 +1,131 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import '../css/FilterComponent.css';
-import { filterProducts } from '../redux/actions/actions';
+import { useDispatch } from 'react-redux';
+import { filterProducts, resetFilter } from '../redux/actions/actions';
 
 function FilterComponent() {
+	const [selectedCategories, setSelectedCategories] = useState([]);
 	const dispatch = useDispatch();
-	const filteredProducts = useSelector((state) => state.filter);
-	console.log(filteredProducts);
 
-	const handleCheckboxChange = (product) => {
-		const {
-			id,
-			name,
-			description,
-			image,
-			quantity,
-			price,
-			deleted,
-			categories,
-			platforms,
-			licenses,
-			selected,
-		} = product;
+	const handleOptionChange = (e) => {
+		const selectedCategory = e.target.value;
+		const isChecked = e.target.checked;
 
-		dispatch(
-			filterProducts({
-				selectedProductId: id,
-				selectedProductName: name,
-				selectedProductDescription: description,
-				selectedProductImage: image,
-				selectedProductQuantity: quantity,
-				selectedProductPrice: price,
-				selectedProductDeleted: deleted,
-				selectedProductCategories: categories,
-				selectedProductPlatforms: platforms,
-				selectedProductLicenses: licenses,
-				selectedProductSelected: selected,
-			}),
-		);
+		setSelectedCategories((prevSelectedCategories) => {
+			let updatedCategories;
+			if (isChecked) {
+				updatedCategories = [
+					...prevSelectedCategories,
+					selectedCategory,
+				];
+			} else {
+				updatedCategories = prevSelectedCategories.filter(
+					(category) => category !== selectedCategory,
+				);
+			}
+
+			if (updatedCategories.length === 0) {
+				dispatch(resetFilter());
+			} else {
+				dispatch(filterProducts(updatedCategories));
+			}
+
+			return updatedCategories;
+		});
 	};
-
-	useEffect(() => {
-		dispatch(filterProducts());
-	}, [dispatch]);
 
 	return (
 		<div className='filter-container'>
-            <h1>Categorias</h1>
-			<div className='products-container'>
-				{filteredProducts.map((product) => (
-					<div key={product.id} className='product'>
-						<label>
-							<input
-								type='checkbox'
-								checked={product.selected}
-								onChange={() => handleCheckboxChange(product)}
-							/>
-							{product}
-						</label>
-					</div>
-				))}
+			<div className='option'>
+				<h2 className='option-title'>Categorías</h2>
+				<div className='suboptions'>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes(
+								'Diseño gráfico',
+							)}
+							value='Diseño gráfico'
+							onChange={handleOptionChange}
+						/>
+						Diseño gráfico
+					</label>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes(
+								'Desarrollo web',
+							)}
+							value='Desarrollo web'
+							onChange={handleOptionChange}
+						/>
+						Desarrollo web
+					</label>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes(
+								'Administración de proyectos',
+							)}
+							value='Administración de proyectos'
+							onChange={handleOptionChange}
+						/>
+						Administración de proyectos
+					</label>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes(
+								'Marketing y publicidad',
+							)}
+							value='Marketing y publicidad'
+							onChange={handleOptionChange}
+						/>
+						Marketing y publicidad
+					</label>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes(
+								'Contabilidad y finanzas',
+							)}
+							value='Contabilidad y finanzas'
+							onChange={handleOptionChange}
+						/>
+						Contabilidad y finanzas
+					</label>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes(
+								'Recursos humanos',
+							)}
+							value='Recursos humanos'
+							onChange={handleOptionChange}
+						/>
+						Recursos humanos
+					</label>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes(
+								'Seguridad y antivirus',
+							)}
+							value='Seguridad y antivirus'
+							onChange={handleOptionChange}
+						/>
+						Seguridad y antivirus
+					</label>
+					<label>
+						<input
+							type='checkbox'
+							checked={selectedCategories.includes('Multimedia')}
+							value='Multimedia'
+							onChange={handleOptionChange}
+						/>
+						Multimedia
+					</label>
+				</div>
 			</div>
 		</div>
 	);
