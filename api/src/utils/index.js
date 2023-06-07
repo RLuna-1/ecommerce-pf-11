@@ -110,4 +110,30 @@ const checkUser = (req, res, next) => {
   }
 };
 
-module.exports = { seedDB, requireAuth };
+
+const authMiddleware = async (req, res, next) => {
+  try {
+
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(401).json({ error: 'Acceso no autorizado' });
+    }
+    const decoded = jwt.verify(token, 'secreto'); 
+    const userId = decoded.userId;
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(401).json({ error: 'Acceso no autorizado' });
+    }
+    req.user = user;
+
+    next();
+  } catch (error) {
+    res.status(500).json({ error: 'Error de autenticación' });
+  }
+};
+
+
+
+
+module.exports = { seedDB, requireAuth, authMiddleware };
