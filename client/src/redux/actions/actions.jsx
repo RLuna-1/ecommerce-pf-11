@@ -1,6 +1,9 @@
 import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS } from "../consts";
 import axios from "axios";
-import Swal from "sweetalert";
+
+
+import Swal from "sweetalert2";
+
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
 export const SIGN_IN = "SIGN_IN";
@@ -10,6 +13,10 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
+
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
+export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 
 export function getAllProducts() {
   return function (dispatch) {
@@ -173,36 +180,35 @@ export function deleteUsers(payload) {
   };
 }
 
-export const loginUser = (payload) => {
-  const pet = axios({
-    method: "post",
-    url: "http://localhost:3001/auth/login",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: {
-      email: payload.email,
-      password: payload.password,
-    },
-  });
+export const loginUser = async (payload) => {
+  try {
+    const response = await axios.post(
+      "/auth/login",
+      {
+        email: payload.email,
+        password: payload.password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  pet.then((json) => {
-    localStorage.setItem("user", JSON.stringify(json.data));
-    Swal({
+    localStorage.setItem("user", JSON.stringify(response.data));
+
+    Swal.fire({
       text: "Ha iniciado sesión correctamente",
       icon: "success",
       timer: "2000",
     });
-  });
-
-  pet.catch((error) => {
-    Swal({
+  } catch (error) {
+    Swal.fire({
       text: "Usuario no encontrado",
       icon: "warning",
       timer: "2000",
     });
-    return;
-  });
+  }
 };
 
 export const logoutUser = () => {
@@ -324,5 +330,25 @@ export function UpdateUser(payload) {
           type: "UPDATE_USER",
         });
       });
+  };
+}
+
+export function addToCarta(payload) {
+  return {
+    type: ADD_TO_CART,
+    payload,
+  };
+}
+
+export function remove1FromCart(payload) {
+  return {
+    type: REMOVE_ONE_FROM_CART,
+    payload,
+  };
+}
+export function removeFromCart(payload) {
+  return {
+    type: REMOVE_ALL_FROM_CART,
+    payload,
   };
 }
