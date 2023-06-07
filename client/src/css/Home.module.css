@@ -4,3 +4,9 @@
     margin-top: 3%;
 }
 
+.Productos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
