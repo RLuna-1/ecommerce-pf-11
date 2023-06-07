@@ -8,6 +8,7 @@ import FormNewProduc from './FormNewProduc';
 import Carrito from "./Carrito";
 import Producto from "./producto";
 import Productos from "./productos";
+import Carousel from "./Carousel";
 
 export {
 	Nav,
@@ -20,4 +21,5 @@ export {
 	Carrito,
 	Producto,
 	Productos,
+	Carousel,
 }
