@@ -10,7 +10,6 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
-
 export function getAllProducts() {
   return function (dispatch) {
     return axios.get("/products").then((response) => {
@@ -21,7 +20,6 @@ export function getAllProducts() {
     });
   };
 }
-
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
     return axios
@@ -349,3 +347,19 @@ export function removeFromCart(payload) {
     payload,
   };
 }
+
+export function filterProducts(category) {
+	return {
+		type: FILTER_PRODUCTS,
+		payload: {
+			category: category,
+		},
+	};
+}
+
+export const resetFilter = () => {
+	return {
+		type: RESET_FILTER,
+	};
+};
+

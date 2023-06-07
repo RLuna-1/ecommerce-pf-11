@@ -21,7 +21,6 @@ import {
 } from "../consts";
 
 const initialState = {
-  cart: [],
   allProducts: [],
   product: {},
   user: {},
@@ -30,6 +29,7 @@ const initialState = {
   userLogin: {},
   userLoginData: {},
   filteredProducts: [],
+	cart: [],
 };
 
 const rootReducer = (state = initialState, action) => {
