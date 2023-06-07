@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-//import { Link } from 'react-router-dom';
-//import Productos from '../components/productos.jsx';
 import styles from '../css/Home.module.css';
 import Carousel1 from '../img/Carousel-4.png';
 import Carousel2 from '../img/Carousel-5.png';
@@ -26,47 +24,6 @@ const Home = () => {
 	
 		return () => clearInterval(interval);
 	}, [currentImageIndex, images.length]);
-
-  
-
-  // const productos = [
-  //   {
-  //     id: 1,
-  //     image: require('../img/img02.jpg'),
-  //     title: 'C#- RJ Code Modern UI-M1',
-  //     price: '$ 22,50'
-  //   },
-  //   {
-  //     id: 2,
-  //     image: require('../img/img03.jpg'),
-  //     title: 'VB.NET- RJ Code Modern UI-M1',
-  //     price: '$ 22,50'
-  //   },
-  //   {
-  //     id: 3,
-  //     image: require('../img/img01.png'),
-  //     title: 'Full Login+CRUD. VB.NET, MySQL- Nivel Avanzado',
-  //     price: '$ 5,99'
-  //   },
-  //   {
-  //     id: 4,
-  //     image: require('../img/img04.png'),
-  //     title: 'Full Login+CRUD. C#, SQL Server- Nivel Avanzado',
-  //     price: '$ 5,99'
-  //   },
-  //   {
-  //     id: 5,
-  //     image: require('../img/img05.png'),
-  //     title: 'Full Login+CRUD -C#, SQL, Capas, POO. Nivel Intermedio',
-  //     price: '$ 1,99'
-  //   },
-  //   {
-  //     id: 6,
-  //     image: require('../img/img06.png'),
-  //     title: 'Full Login+CRUD -VB.NET, SQL, Capas, POO-Nivel Intermedio',
-  //     price: '$ 1,99'
-  //   }
-  // ];
 
   return (
     <div>
