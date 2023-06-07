@@ -28,12 +28,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/vender" element={<FormNewProduc />} />
-       
-        {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/detail/:id" element={<Detail/>} />
-
         <Route path="/carrito" element={<Carrito />} />
-     
         <Route path="/producto" element={<Producto/>} />
       </Routes>
       <Footer />
