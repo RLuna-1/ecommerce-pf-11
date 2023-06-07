@@ -1,6 +1,6 @@
-import { GET_CARTG, GET_ALL_PRODUCTS } from "../consts";
+import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS, FILTER_PRODUCTS, RESET_FILTER, ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART } from "../consts";
 import axios from "axios";
-import Swal from "sweetalert";
+import Swal from 'sweetalert2';
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
 export const SIGN_IN = "SIGN_IN";
@@ -10,23 +10,19 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
-export const GET_PRODUCT = "GET_PRODUCT";
+export const SET_CART = "SET_CART";
 
 export function getAllProducts() {
   return function (dispatch) {
-    return axios
-      .get("/products")
-      .then((response) => {
-        dispatch({
-          type: GET_ALL_PRODUCTS,
-          payload: response.data.rows,
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
+    return axios.get("/products").then((response) => {
+      dispatch({
+        type: GET_ALL_PRODUCTS,
+        payload: response.data.rows,
       });
+    });
   };
 }
+
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
     return axios
@@ -44,6 +40,7 @@ export function agregarAlCarrito(newData, id) {
       });
   };
 }
+
 export function getProduct(id) {
   return function (dispatch) {
     return axios
@@ -55,19 +52,16 @@ export function getProduct(id) {
         });
       })
       .catch((error) => {
-        // Manejo de errores
         console.error("Error fetching product:", error);
       });
   };
 }
+
 export function postProduct(bodyFormData) {
   return function (dispatch) {
     return axios
       .post("/products", bodyFormData, {
         headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(function (response) {
-        return response;
       })
       .then((res) => {
         Swal.fire({
@@ -75,7 +69,7 @@ export function postProduct(bodyFormData) {
           title: "Se creó el producto",
           text: `${res.data.name}`,
         });
-        getProduct(res.data.id);
+        getProduct(res.data.id)(dispatch);
       })
       .catch((err) => {
         Swal.fire({
@@ -86,16 +80,12 @@ export function postProduct(bodyFormData) {
       });
   };
 }
+
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
-    return axios({
-      method: "put",
-      url: `/products/${id}`,
-      data: bodyFormData,
-      config: { headers: { "Content-Type": "multipart/form-data" } },
-    })
-      .then(function (response) {
-        return response;
+    return axios
+      .put(`/products/${id}`, bodyFormData, {
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
         Swal.fire({
@@ -103,9 +93,9 @@ export function editProduct(bodyFormData, id) {
           title: "Modificación",
           text: "Se modificó el producto correctamente",
         });
-        getProduct(res.data.id);
+        getProduct(res.data.id)(dispatch);
       })
-      .catch(function (response) {
+      .catch((error) => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -116,26 +106,27 @@ export function editProduct(bodyFormData, id) {
 }
 
 export function addUser(payload, email) {
+  var url = "/auth/signup";
   return function (dispatch) {
     axios
-      .post("/auth/signup", payload, {
+      .post(url, payload, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
         dispatch({
-          type: "ADD_USER",
+          type: ADD_USER,
           payload: response.data,
         });
         if (response.data === "ya existe un usuario con este email") {
-          Swal({
+          Swal.fire({
             text: "Ya existe un usuario con este email",
             icon: "error",
             timer: "2000",
           });
         } else {
-          Swal({
+          Swal.fire({
             text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de CodeXpress",
             icon: "success",
             timer: "2000",
@@ -143,7 +134,7 @@ export function addUser(payload, email) {
         }
       })
       .catch((error) => {
-        Swal({
+        Swal.fire({
           text: "Ocurrió un error al registrar el usuario",
           icon: "error",
           timer: "2000",
@@ -154,9 +145,10 @@ export function addUser(payload, email) {
 
 export function deleteUsers(payload) {
   var id = payload;
+  var url = `/users/${id}`;
   return function (dispatch) {
     axios
-      .delete(`/users/${id}`)
+      .delete(url)
       .then((response) => {
         dispatch({
           type: DELETE_USER,
@@ -174,37 +166,34 @@ export function deleteUsers(payload) {
       });
   };
 }
-export const loginUser = (payload) => {
-  const pet = axios({
-    method: "post",
-    url: "/auth/login",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: {
+
+export const loginUser = async (payload) => {
+  try {
+    const response = await axios.post('/auth/login', {
       email: payload.email,
       password: payload.password,
-    },
-  });
-
-  pet.then((json) => {
-    localStorage.setItem("user", JSON.stringify(json.data));
-    Swal({
-      text: "Ha iniciado sesión correctamente",
-      icon: "success",
-      timer: "2000",
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-  });
 
-  pet.catch((error) => {
-    Swal({
-      text: "Usuario no encontrado",
-      icon: "warning",
-      timer: "2000",
+    localStorage.setItem('user', JSON.stringify(response.data));
+
+    Swal.fire({
+      text: 'Ha iniciado sesión correctamente',
+      icon: 'success',
+      timer: '2000',
     });
-    return;
-  });
+  } catch (error) {
+    Swal.fire({
+      text: 'Usuario no encontrado',
+      icon: 'warning',
+      timer: '2000',
+    });
+  }
 };
+
 export const logoutUser = () => {
   return function (dispatch) {
     axios
@@ -229,9 +218,10 @@ export const logoutUser = () => {
 
 export function Usertoadmin(id) {
   var payload;
+  var url = `/Admin/promote/${id}`;
   return function (dispatch) {
     axios
-      .put(`/Admin/promote/${id}`, payload, {
+      .put(url, payload, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -306,9 +296,10 @@ export function ResetPassword(payload) {
 
 export function updateUser(payload) {
   var id = payload.id;
+  var url = `/users/${id}`;
   return function (dispatch) {
     axios
-      .put(`/users/${id}`, payload, {
+      .put(url, payload, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -324,3 +315,44 @@ export function updateUser(payload) {
       });
   };
 }
+
+export function filterProducts(category) {
+  return {
+      type: FILTER_PRODUCTS,
+      payload: {
+          category: category,
+      },
+  };
+}
+
+export const resetFilter = () => {
+  return {
+      type: RESET_FILTER,
+  };
+};
+
+export function addToCarta(payload) {
+  return {
+    type: ADD_TO_CART,
+    payload,
+  };
+}
+
+export function remove1FromCart(payload) {
+  return {
+    type: REMOVE_ONE_FROM_CART,
+    payload,
+  };
+}
+export function removeFromCart(payload) {
+  return {
+    type: REMOVE_ALL_FROM_CART,
+    payload,
+  };
+}
+export const setCart = (cart) => {
+  return {
+    type: 'SET_CART',
+    payload: cart,
+  };
+};

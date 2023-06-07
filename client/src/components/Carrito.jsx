@@ -4,6 +4,7 @@ import styles from "../css/Carrito.module.css";
 const Carrito = () => {
   const [productos, setProductos] = useState([
     
+
   ]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [nombre, setNombre] = useState("");
