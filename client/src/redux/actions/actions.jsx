@@ -1,6 +1,16 @@
-import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS, FILTER_PRODUCTS, RESET_FILTER, ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART } from "../consts";
+import {
+  GET_CARTG,
+  GET_PRODUCT,
+  GET_ALL_PRODUCTS,
+  FILTER_PRODUCTS,
+  RESET_FILTER,
+  ADD_TO_CART,
+  REMOVE_ONE_FROM_CART,
+  REMOVE_ALL_FROM_CART,
+  SET_CART,
+} from "../consts";
 import axios from "axios";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
 export const SIGN_IN = "SIGN_IN";
@@ -10,6 +20,7 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
+
 export function getAllProducts() {
   return function (dispatch) {
     return axios.get("/products").then((response) => {
@@ -166,27 +177,31 @@ export function deleteUsers(payload) {
 
 export const loginUser = async (payload) => {
   try {
-    const response = await axios.post('/auth/login', {
-      email: payload.email,
-      password: payload.password,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      "/auth/login",
+      {
+        email: payload.email,
+        password: payload.password,
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    localStorage.setItem('user', JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
 
     Swal.fire({
-      text: 'Ha iniciado sesión correctamente',
-      icon: 'success',
-      timer: '2000',
+      text: "Ha iniciado sesión correctamente",
+      icon: "success",
+      timer: "2000",
     });
   } catch (error) {
     Swal.fire({
-      text: 'Usuario no encontrado',
-      icon: 'warning',
-      timer: '2000',
+      text: "Usuario no encontrado",
+      icon: "warning",
+      timer: "2000",
     });
   }
 };
@@ -315,16 +330,16 @@ export function updateUser(payload) {
 
 export function filterProducts(category) {
   return {
-      type: FILTER_PRODUCTS,
-      payload: {
-          category: category,
-      },
+    type: FILTER_PRODUCTS,
+    payload: {
+      category: category,
+    },
   };
 }
 
 export const resetFilter = () => {
   return {
-      type: RESET_FILTER,
+    type: RESET_FILTER,
   };
 };
 
@@ -347,3 +362,10 @@ export function removeFromCart(payload) {
     payload,
   };
 }
+
+export const setCart = (cart) => {
+  return {
+    type: SET_CART,
+    payload: cart,
+  };
+};
