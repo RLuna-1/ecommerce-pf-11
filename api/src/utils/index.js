@@ -15,7 +15,6 @@ const seedDB = async () => {
       // Verificar si el producto ya existe por nombre
       const existingProduct = await Product.findOne({ where: { name: product.name } });
       if (existingProduct) {
-        console.log(`Skipping duplicate product: ${product.name}`);
         continue;
       }
 
