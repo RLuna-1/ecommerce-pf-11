@@ -22,58 +22,77 @@ const getProducts = async (
 
   const orderClause = [];
   const whereClause = {};
-  let includeClause = [];
+  const includeClause = [];
 
-  {
-    if (name) {
-      whereClause.name = { [Op.iLike]: `%${name}%` };
-    }
+  if (name) {
+    whereClause.name = { [Op.iLike]: `%${name}%` };
   }
 
-  {
-    if (quantitygte && quantitylte) {
-      whereClause.quantity = {
-        [Op.between]: [quantitygte, quantitylte],
-      };
-    } else if (quantitygte) {
-      whereClause.quantity = {
-        [Op.gte]: quantitygte,
-      };
-    } else if (quantitylte) {
-      whereClause.quantity = { [Op.lte]: quantitylte };
-    } else if (quantity) {
-      whereClause.quantity = { [Op.eq]: quantity };
-    }
+  if (quantitygte && quantitylte) {
+    whereClause.quantity = {
+      [Op.between]: [quantitygte, quantitylte],
+    };
+  } else if (quantitygte) {
+    whereClause.quantity = {
+      [Op.gte]: quantitygte,
+    };
+  } else if (quantitylte) {
+    whereClause.quantity = { [Op.lte]: quantitylte };
+  } else if (quantity) {
+    whereClause.quantity = { [Op.eq]: quantity };
   }
 
-  {
-    if (pricegte && pricelte) {
-      whereClause.price = {
-        [Op.between]: [pricegte, pricelte],
-      };
-    } else if (pricegte) {
-      whereClause.price = {
-        [Op.gte]: pricegte,
-      };
-    } else if (pricelte) {
-      whereClause.price = {
-        [Op.lte]: pricelte,
-      };
-    } else if (price) {
-      whereClause.price = {
-        [Op.eq]: price,
-      };
-    }
+  if (pricegte && pricelte) {
+    whereClause.price = {
+      [Op.between]: [pricegte, pricelte],
+    };
+  } else if (pricegte) {
+    whereClause.price = {
+      [Op.gte]: pricegte,
+    };
+  } else if (pricelte) {
+    whereClause.price = {
+      [Op.lte]: pricelte,
+    };
+  } else if (price) {
+    whereClause.price = {
+      [Op.eq]: price,
+    };
   }
 
-  {
-    if (order === "price") {
-      orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
-    } else if (order === "quantity") {
-      orderClause.push(["quantity", direction === "DESC" ? "DESC" : "ASC"]);
-    } else if (order === "alphabetical") {
-      orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
-    }
+  if (order === "price") {
+    orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
+  } else if (order === "quantity") {
+    orderClause.push(["quantity", direction === "DESC" ? "DESC" : "ASC"]);
+  } else if (order === "alphabetical") {
+    orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
+  }
+
+  if (categories) {
+    includeClause.push({
+      model: Category,
+      attributes: ["id", "name", "deleted"],
+      through: { attributes: [] },
+      where: { name: { [Op.iLike]: `%${categories}%` } },
+    });
+  }
+
+  if (platform) {
+    includeClause.push({
+      model: Platform,
+      attributes: ["id", "name"],
+      through: { attributes: [] },
+      where: { name: { [Op.iLike]: `%${platform}%` } },
+    });
+  }
+
+  if (license) {
+    includeClause.push({
+      model: License,
+      attributes: ["id", "name"],
+      through: { attributes: [] },
+      where: { name: { [Op.iLike]: `%${license}%` } },
+    });
   }
 
   const responseProducts = await Product.findAndCountAll({
@@ -81,31 +100,8 @@ const getProducts = async (
     order: orderClause,
     limit: pageSize,
     offset: offset,
-    include: [
-      {
-        model: Category,
-        attributes: ["id","name", "deleted"],
-        through: { attributes: [] },
-        where: categories ? { name: { [Op.iLike]: `%${categories}%` } } : {},
-      },
-      {
-        model: Platform,
-        attributes: ["id","name"],
-        through: { attributes: [] },
-        where: platform ? { name: { [Op.iLike]: `%${platform}%` } } : {},
-      },
-      {
-        model: License,
-        attributes: ["id","name"],
-        through: { attributes: [] },
-        where: license ? { name: { [Op.iLike]: `%${license}%` } } : {},
-      },
-    ],
+    include: includeClause,
   });
-
-  console.log(
-    responseProducts.rows.map((product) => product.categories[0].name)
-  );
 
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
@@ -113,6 +109,7 @@ const getProducts = async (
 
   return responseProducts;
 };
+
 
 const createProduct = async (
   name,
