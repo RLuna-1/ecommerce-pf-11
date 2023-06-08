@@ -21,7 +21,6 @@ import {
   SET_CART,
   SET_CURRENT_PAGE,
   SET_PRODUCTS_PER_PAGE,
-  ADD_ONE_FROM_CART,
 } from "../consts";
 
 const initialState = {
@@ -148,23 +147,7 @@ const rootReducer = (state = initialState, action) => {
             cart: state.cart.filter((item) => item.id !== action.payload),
           };
     }
-    case ADD_ONE_FROM_CART: {
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
 
-      return itemToDelete.quantity = 1
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-          }
-        : {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-          };
-    }
     case REMOVE_ALL_FROM_CART: {
       const updatedCartItems = state.cart.filter(
         (item) => item.id !== action.payload

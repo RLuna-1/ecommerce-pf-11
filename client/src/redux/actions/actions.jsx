@@ -22,7 +22,7 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
-export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
+
 const URL = 'http://localhost:3001'
 
 export function getAllProducts(page) {
@@ -374,12 +374,6 @@ export function addToCarta(payload) {
 export function remove1FromCart(payload) {
   return {
     type: REMOVE_ONE_FROM_CART,
-    payload,
-  };
-}
-export function sume1FromCart(payload) {
-  return {
-    type: ADD_ONE_FROM_CART,
     payload,
   };
 }

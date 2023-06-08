@@ -75,7 +75,7 @@ const Nav = () => {
         )}
         {isLoggedIn ? (
           <Link to="/login">
-            <button onClick={handleLogout} className={styles.Iniciar}>Iniciar Sesión</button>
+            <button className={styles.Iniciar}>Iniciar Sesión</button>
           </Link>
         ) : (
           <Link to="/">
