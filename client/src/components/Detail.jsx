@@ -1,13 +1,15 @@
-
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import * as actions from "../redux/actions/actions";
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 export default function Detail() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-  
-  
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -15,26 +17,35 @@ export default function Detail() {
         const response = await axios.get(`/products/${id}`);
         setProduct(response.data);
       } catch (error) {
-        console.log('Error fetching product:', error);
       }
     };
 
     fetchProduct();
   }, [id]);
- 
+
+  const addToCart = () => {
+    dispatch(actions.addToCarta(id));
+  };
+
   return (
-    <main className='flex justify-center items-start min-h-screen bg-gray-100 py-16'>
-      <div className='max-w-5xl mx-auto bg-white shadow-md rounded-lg overflow-hidden flex'>
-        <div className='w-1/2 overflow-hidden'>
-          <div className='h-full w-full'>
-            <img
-              src={product?.image}
-              alt='Imagen del producto'
-              className='object-contain h-full w-full ml-3'
-            />
+
+    <main>
+      <div style={{ display: "flex" }}>
+        <div
+          style={{ Width: "100%", border: "1px solid #000", padding: "10px" }}
+        >
+          <div>
+            <div>
+              <img
+                src={product?.image}
+                alt="Imagen del producto"
+                style={{ maxWidth: "50%", maxHeight: "100%" }}
+              />
+            </div>
           </div>
         </div>
-        <div className='w-1/2 p-8'>
+
+        <div style={{ flex: "60%" }}>
           {product ? (
             <article>
               <header>
@@ -56,14 +67,14 @@ export default function Detail() {
                 <p>{product.categoria}</p>
               </section>
               <section>
-                <Link to={'/home'}>
-                  <button className='bg-[#6F47EB] hover:bg-[#4c1d95] text-white font-bold py-2 px-4 rounded mt-2'>
+                <Link to={"/home"}>
+                  <button>
                     <span>Regresar a inicio</span>
                   </button>
                 </Link>
               </section>
-              <Link to={'/carrito'}>
-                <button className='bg-[#6F47EB] hover:bg-[#4c1d95] text-white font-bold py-2 px-4 rounded mt-2'>
+              <Link to={"/carrito"}>
+                <button onClick={addToCart}>
                   <span>Agregar al Carrito</span>
                 </button>
               </Link>
@@ -76,5 +87,3 @@ export default function Detail() {
     </main>
   );
 }
-
-
