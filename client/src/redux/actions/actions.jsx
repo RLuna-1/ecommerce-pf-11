@@ -333,14 +333,7 @@ export function updateUser(payload) {
   };
 }
 
-export function filterProducts(category) {
-  return {
-    type: FILTER_PRODUCTS,
-    payload: {
-      category: category,
-    },
-  };
-}
+
 
 export const resetFilter = () => {
   return {
@@ -349,24 +342,51 @@ export const resetFilter = () => {
 };
 
 export function addToCarta(payload) {
-  return {
-    type: ADD_TO_CART,
-    payload,
-  };
+	return {
+		type: ADD_TO_CART,
+		payload,
+	};
 }
 
 export function remove1FromCart(payload) {
-  return {
-    type: REMOVE_ONE_FROM_CART,
-    payload,
-  };
+	return {
+		type: REMOVE_ONE_FROM_CART,
+		payload,
+	};
 }
 export function removeFromCart(payload) {
-  return {
-    type: REMOVE_ALL_FROM_CART,
-    payload,
-  };
+	return {
+		type: REMOVE_ALL_FROM_CART,
+		payload,
+	};
 }
+
+
+
+export function filterProducts(categories, platform, price, license) {
+	return function (dispatch) {
+		return axios
+			.get(
+				`${URL}/products?categories=${categories}&platform=${platform}&price=${price}&license=${license}`,
+			)
+			.then((response) => {
+				dispatch({
+					type: FILTER_PRODUCTS,
+					payload: response.data.rows,
+				});
+			})
+			.catch((error) => {
+				console.error('Error en la solicitud:', error);
+			});
+	};
+}
+
+export const setCombinedFilters = (filters) => {
+	return {
+		type: SET_COMBINED_FILTERS,
+		payload: filters,
+	};
+};
 
 export const setCart = (cart) => {
   return {
@@ -388,3 +408,4 @@ export function setProductsPerPage(count) {
     payload: count,
   };
 }
+
