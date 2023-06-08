@@ -1,43 +1,41 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../redux/actions/actions';
-import { Producto } from '../components/index';
-import styles from '../css/Productos.module.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../redux/actions/actions";
+import { Producto } from "../components/index";
+import styles from "../css/Productos.module.css";
 
 function Productos() {
-	const products = useSelector((state) => state.allProducts);
-	const cart = useSelector((state) => state.cart);
-	console.log(cart);
-	const filteredProducts = useSelector((state) => state.filteredProducts);
+  const products = useSelector((state) => state.allProducts);
+  const cart = useSelector((state) => state.cart);
 
-	const dispatch = useDispatch();
+  const filteredProducts = useSelector((state) => state.filteredProducts);
 
-	const addToCart = (id) => {
-		dispatch(actions.addToCarta(id));
-	};
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(actions.getAllProducts());
-	}, [dispatch]);
-	return (
-		<div className={styles.Productos}>
-			{filteredProducts.length > 0
-				? filteredProducts.map((p) => (
-						<Producto
-							key={p.id}
-							products={p}
-							addToCart={addToCart}
-						/>
-				  ))
-				: products.map((p) => (
-						<Producto
-							key={p.id}
-							products={p}
-							addToCart={addToCart}
-						/>
-				  ))}
-		</div>
-	);
+  const addToCart = (id) => {
+    dispatch(actions.addToCarta(id));
+    alert("Se Ha Agregado el Producto");
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    dispatch(actions.getAllProducts());
+  }, [dispatch]);
+
+  return (
+    <div className={styles.Productos}>
+      {filteredProducts.length > 0
+        ? filteredProducts.map((p) => (
+            <Producto key={p.id} products={p} addToCart={addToCart} />
+          ))
+        : products.map((p) => (
+            <Producto key={p.id} products={p} addToCart={addToCart} />
+          ))}
+    </div>
+  );
 }
 
 export default Productos;
