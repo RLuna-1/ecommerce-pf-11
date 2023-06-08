@@ -1,24 +1,25 @@
 import {
-  PUT_PASSWORD,
-  CREATE_USER,
-  GET_PRODUCT,
-  GET_PRODUCTS,
-  DELETE_PRODUCT,
-  EDIT_PRODUCT,
-  GET_PRODUCT_CATEGORY,
-  USER_LOGIN,
-  GET_USERS,
-  DELETE_USER,
-  PROMOTE_USER,
-  LOGIN_USER,
-  GET_ALL_PRODUCTS,
-  FILTER_PRODUCTS,
-  UPDATE_PRODUCT_LIST,
-  RESET_FILTER,
-  ADD_TO_CART,
-  REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
-} from "../consts";
+	PUT_PASSWORD,
+	CREATE_USER,
+	GET_PRODUCT,
+	GET_PRODUCTS,
+	DELETE_PRODUCT,
+	EDIT_PRODUCT,
+	GET_PRODUCT_CATEGORY,
+	USER_LOGIN,
+	GET_USERS,
+	DELETE_USER,
+	PROMOTE_USER,
+	LOGIN_USER,
+	GET_ALL_PRODUCTS,
+	FILTER_PRODUCTS,
+	UPDATE_PRODUCT_LIST,
+	RESET_FILTER,
+	ADD_TO_CART,
+	REMOVE_ONE_FROM_CART,
+	REMOVE_ALL_FROM_CART,
+	FILTER_PRODUCTS_PLATAFORM,
+} from '../consts';
 
 const initialState = {
   allProducts: [],
@@ -29,6 +30,7 @@ const initialState = {
   userLogin: {},
   userLoginData: {},
   filteredProducts: [],
+  filteredProductsPlataform:[],
 	cart: [],
 };
 
@@ -49,25 +51,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allProducts: action.payload,
       };
+    case FILTER_PRODUCTS_PLATAFORM:
+        return{
+            ...state,
+            filteredProductsPlataform: action.payload,
+        }
     case FILTER_PRODUCTS:
-      const { category } = action.payload;
-      let filterProduct;
-      if (category.length > 0) {
-        filterProduct = state.allProducts.filter((product) =>
-          category.includes(product.categories[0].name)
-        );
-      } else {
-        filterProduct = state.allProducts;
-      }
       return {
-        ...state,
-        filteredProducts: filterProduct,
-      };
+			...state,
+			filteredProducts: action.payload,
+		};
     case RESET_FILTER:
       return {
-        ...state,
-        filteredProducts: [],
-      };
+			...state,
+			filteredProductsPlataform: [],
+		};
 
     case UPDATE_PRODUCT_LIST:
       console.log("action.payload list:", action.payload);
@@ -107,9 +105,9 @@ const rootReducer = (state = initialState, action) => {
         let newItem = state.allProducts.find(
           (product) => product.id === action.payload
         );
-  
+
         let itemInCart = state.cart.find((item) => item.id === newItem.id);
-  
+
         return itemInCart
           ? {
               ...state,
@@ -124,10 +122,10 @@ const rootReducer = (state = initialState, action) => {
               cart: [...state.cart, { ...newItem, quantity: 1 }],
             };
       }
-  
+
       case REMOVE_ONE_FROM_CART: {
         let itemToDelete = state.cart.find((item) => item.id === action.payload);
-  
+
         return itemToDelete.quantity > 1
           ? {
               ...state,
@@ -142,7 +140,7 @@ const rootReducer = (state = initialState, action) => {
               cart: state.cart.filter((item) => item.id !== action.payload),
             };
       }
-  
+
       case REMOVE_ALL_FROM_CART: {
         const updatedCartItems = state.cart.filter(
           (item) => item.id !== action.payload

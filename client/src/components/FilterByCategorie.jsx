@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import '../css/FilterComponent.css';
 import { useDispatch } from 'react-redux';
-import { filterProducts, resetFilter } from '../redux/actions/actions';
+import {
+	filterProductsByCategorie,
+	resetFilter,
+} from '../redux/actions/actions';
 
 function FilterByCategorie() {
 	const [selectedCategories, setSelectedCategories] = useState([]);
@@ -28,7 +31,7 @@ function FilterByCategorie() {
 			if (updatedCategories.length === 0) {
 				dispatch(resetFilter());
 			} else {
-				dispatch(filterProducts(updatedCategories));
+				dispatch(filterProductsByCategorie(updatedCategories));
 			}
 
 			return updatedCategories;

@@ -1,4 +1,14 @@
-import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS, FILTER_PRODUCTS, RESET_FILTER, ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART } from "../consts";
+import {
+	GET_CARTG,
+	GET_PRODUCT,
+	GET_ALL_PRODUCTS,
+	FILTER_PRODUCTS,
+	RESET_FILTER,
+	ADD_TO_CART,
+	REMOVE_ONE_FROM_CART,
+	REMOVE_ALL_FROM_CART,
+	FILTER_PRODUCTS_PLATAFORM,
+} from '../consts';
 import axios from "axios";
 import Swal from 'sweetalert2';
 export const ADD_USER = "ADD_USER";
@@ -313,15 +323,6 @@ export function updateUser(payload) {
   };
 }
 
-export function filterProducts(category) {
-  return {
-      type: FILTER_PRODUCTS,
-      payload: {
-          category: category,
-      },
-  };
-}
-
 export const resetFilter = () => {
   return {
       type: RESET_FILTER,
@@ -346,4 +347,28 @@ export function removeFromCart(payload) {
     type: REMOVE_ALL_FROM_CART,
     payload,
   };
+}
+
+export function filterProductsByPlatform(platform) {
+	return function (dispatch) {
+		return axios.get(`/products?platform=${platform}`).then((response) => {
+			dispatch({
+				type: FILTER_PRODUCTS_PLATAFORM,
+				payload: response.data.rows,
+			});
+		});
+	};
+}
+
+export function filterProductsByCategorie(categories) {
+	return function (dispatch) {
+		return axios
+			.get(`/products?categories=${categories}`)
+			.then((response) => {
+				dispatch({
+					type: FILTER_PRODUCTS_PLATAFORM,
+					payload: response.data.rows,
+				});
+			});
+	};
 }
