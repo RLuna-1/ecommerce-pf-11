@@ -64,7 +64,7 @@ export function Register(props) {
             props.addUser(state);
           }}
         >
-          <div className="Name" className={`${errors.name && "danger"}`}>
+          <div className="Name" class={`${errors.name && "danger"}`}>
             <span className="material-icons"> Nombre </span>
             <input
               type="text"
@@ -86,7 +86,7 @@ export function Register(props) {
 
           <div
             className="Lastname"
-            className={`${errors.lastName && "danger"}`}
+            class={`${errors.lastName && "danger"}`}
           >
             <span className="material-icons"> </span>
             <input
