@@ -29,7 +29,6 @@ const URL = 'http://localhost:3001'
 export function getAllProducts(page) {
   return function (dispatch) {
     return axios.get(`${URL}/products?page=${page}`).then((response) => {
-      console.log('Response.data', response.data.rows)
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response.data.rows,
@@ -355,7 +354,7 @@ export function addToCarta(payload) {
     Swal.fire({
       text: "Se ha agregado el producto",
       icon: "success",
-      timer: 1500,
+      timer: 1100,
     });
 
     return {
@@ -366,7 +365,7 @@ export function addToCarta(payload) {
     Swal.fire({
       text: "Error al agregar el producto",
       icon: "warning",
-      timer: 1500,
+      timer: 2000,
     });
   }
 }

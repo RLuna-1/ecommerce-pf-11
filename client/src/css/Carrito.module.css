@@ -18,6 +18,11 @@
     justify-content:space-between;
     align-items: center;
     margin-top: 1.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5em;
 }
 
 .Elemento img {
@@ -33,6 +38,11 @@
     text-align: center;
     font-family: 'Plus Jakarta Sans';
     color: #1C1934;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5em;
 }
 
 .BotonEliminar {
@@ -48,7 +58,14 @@
     line-height: 30px;
     text-align: center;
     width: 100%;
+    order: 1;
+    
 }
+.BotonEliminar.pequeno {
+    font-size: 10px;
+    line-height: 20px;
+    padding: 0.5em 0.8em;
+  }
 .Comprar {
     max-width: 35%;
     max-height: 50%;
@@ -82,3 +99,8 @@
 .ElementoCompra input{
     margin-right: 0.5em;
 }
+.ImagenPequena {
+    width: 60px;
+    height: 60px;
+    align-items: center;
+  }
