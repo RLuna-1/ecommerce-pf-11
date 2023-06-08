@@ -125,6 +125,7 @@ export function addUser(payload, email) {
             icon: "error",
             timer: "2000",
           });
+          
         } else {
           Swal.fire({
             text: "Se ha creado el usuario exitosamente, ahora haga click en el boton iniciar sesion para disfrutar de CodeXpress",
@@ -172,6 +173,9 @@ export const loginUser = async (payload) => {
     const response = await axios.post('/auth/login', {
       email: payload.email,
       password: payload.password,
+      name: payload.name,
+      last_name: payload.last_name,
+      phone: payload.phone
     }, {
       headers: {
         'Content-Type': 'application/json',

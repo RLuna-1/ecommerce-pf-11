@@ -12,12 +12,17 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
+      googleId: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: true,
+      },
       name: {
 
         type: DataTypes.TEXT,
         validate: {
-          is: {
-            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
+          len: {
+            args: [2,40],
 
             msg: "name must be between 2 and 40 characters",
           },
@@ -27,8 +32,8 @@ module.exports = (sequelize) => {
 
         type: DataTypes.TEXT,
         validate: {
-          is: {
-            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
+          len: {
+            args: [2,40],
 
             msg: "last_name must be between 2 and 40 characters",
           },
@@ -77,12 +82,6 @@ module.exports = (sequelize) => {
       },
       phone: {
         type: DataTypes.STRING,
-        validate: {
-          len: {
-            args: [2, 40],
-            msg: "phone must be between 2 and 40 characters",
-          },
-        },
       },
       admin: {
         type: DataTypes.BOOLEAN,
@@ -101,31 +100,46 @@ module.exports = (sequelize) => {
       timestamps: false,
       hooks: {
         beforeCreate: async (user) => {
-          user.email = user.email.toLowerCase();    
+          user.email = user.email.toLowerCase();
           const hashedPassword = await bcrypt.hash(user.password, 10);
           user.password = hashedPassword;
+      
+          // Generate a UUID and assign it to the user if no UUID is provided
+          if (!user.id) {
+            user.id = DataTypes.UUIDV4;
+          }
         },
       },
     }
   );
 
 
-  User.login = async (email, password) => {
-    const user = await User.findOne({ where: { email: email.toLowerCase() } });
-
+  User.login = async (emailOrGoogleId, password) => {
+    const user = await User.findOne({
+      where: {
+        [sequelize.Op.or]: [
+          { email: emailOrGoogleId.toLowerCase() },
+          { googleId: emailOrGoogleId },
+        ],
+      },
+    });
   
     if (!user) {
-      throw new Error("Invalid user_name");
+      throw new Error("Invalid user");
     }
   
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (user.googleId) {
+      // Handle Google ID-based authentication
+      // Add your logic here
+    } else {
+      // Handle UUID-based authentication
+      const isPasswordValid = await bcrypt.compare(password, user.password);
   
-    if (!isPasswordValid) {
-      throw new Error("Invalid password");
+      if (!isPasswordValid) {
+        throw new Error("Invalid password");
+      }
     }
   
     return user;
   };
-
-  return User;
 };

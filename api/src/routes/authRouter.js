@@ -6,15 +6,16 @@ const {
   postLogIn,
   getLogOut,
 } = require("../controllers/authController");
+const passport = require("passport")
 
 const authRouter = Router();
 
 authRouter.post("/signup", async (req, res) => {
 
-  const { email, password } = req.body;
+  const {name, last_name,email, password,phone} = req.body;
 
   try {
-    const { newSignUp, token } = await postSignUp( email, password);
+    const { newSignUp, token } = await postSignUp(name, last_name, email, password, phone);
 
     res.cookie("jwt", token, {
       httpOnly: true,
@@ -55,5 +56,15 @@ authRouter.get("/logout", async (req, res) => {
     res.status(400).json(`Error while logging out the user: ${error.message}`);
   }
 });
+
+authRouter.get("/google", passport.authenticate("google", {scope: ["profile", "email"]}))
+
+authRouter.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/success", // Replace with your actual success redirect URL
+    failureRedirect: "/failure", // Replace with your actual failure redirect URL
+  })
+);
 
 module.exports = authRouter;

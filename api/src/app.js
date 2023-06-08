@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mainRouter = require("./routes/index.js");
 const cors = require("cors");
+const passport = require("passport")
 
 
 require("./db.js");
@@ -17,6 +18,7 @@ server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
+server.use(passport.initialize());
 
 // Configurar opciones de CORS
 const corsOptions = {

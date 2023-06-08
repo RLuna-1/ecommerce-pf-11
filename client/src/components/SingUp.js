@@ -9,8 +9,11 @@ export function Register(props) {
   //Crear state de Producto
 
   const [state, setState] = useState({
+    name: "",
+    last_name: "",
     email: "",
     password: "",
+    phone:"",
   });
   const [errors, setErrors] = useState({});
 
@@ -32,12 +35,13 @@ export function Register(props) {
     console.log(submitUser);
     actualizarEstado({
       name: "",
-      lastName: "",
+      last_name: "",
       email: "",
       password: "",
       confirmPassword: "",
-      mobilephone: "",
+      phone: "",
     });
+    
   };
 
   return (
@@ -91,7 +95,7 @@ export function Register(props) {
             <span className="material-icons"> </span>
             <input
               type="text"
-              name="lastName"
+              name="last_name"
               //className="inputs"
               placeholder="Ingrese su apellido"
               onChange={actualizarEstado}
@@ -158,20 +162,20 @@ export function Register(props) {
           <div>
             <span class="material-icons">Contact Phone</span>
             <input
-              className={`${errors.mobilephone && "danger"}`}
+              className={`${errors.phone && "danger"}`}
               type="tel"
-              name="mobilephone"
+              name="phone"
               //className="inputs"
               placeholder="Ingrese su numero de Telefono, Ej.:(011)18234460"
               onChange={actualizarEstado}
-              value={state.mobilephone}
+              value={state.phone}
               maxlength="16"
               minlength="11"
               required
             />
-            {errors.mobilephone && (
+            {errors.phone && (
               <p id="error" className="danger">
-                {errors.mobilephone}
+                {errors.phone}
               </p>
             )}
           </div>
@@ -225,8 +229,8 @@ export function validate(state) {
   } else if (state.password !== state.confirmPassword) {
     errors.password = "Passwords don't match";
   }
-  if (!/^\d{11}$/.test(state.mobilephone)) {
-    errors.mobilephone = "A valid telephone number should consist of 8 digits";
+  if (!/^\d{11}$/.test(state.phone)) {
+    errors.phone = "A valid telephone number should consist of 8 digits";
   }
   
   return errors;

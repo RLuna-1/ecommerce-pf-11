@@ -3,9 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import * as actions from "../redux/actions/actions";
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
 export default function Detail() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();

@@ -7,7 +7,9 @@ import Google from "../img/Google.png";
 import Apple from "../img/AppleLogin.png";
 import Microsoft from "../img/Microsoft.png";
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import axios from "axios"
+
+axios.defaults.withCredentials = true
 
 export function Login() {
   const navigate = useNavigate();
@@ -32,12 +34,12 @@ export function Login() {
 
   const handleSubmit = async (event, state) => {
     event.preventDefault();
-
-    loginUser(state);
-
-    Cookies.set("usuario", state.email);
-
-    navigate("/Home");
+  
+    const success = await loginUser(state);
+  
+    if (success) {
+      navigate("/Home");
+    }
   };
 
   return (
