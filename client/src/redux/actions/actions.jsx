@@ -194,22 +194,23 @@ export const loginUser = async (payload) => {
         },
       }
     );
-
     localStorage.setItem("user", JSON.stringify(response.data));
-
     Swal.fire({
       text: "Ha iniciado sesión correctamente",
       icon: "success",
       timer: "2000",
     });
+    return true;
   } catch (error) {
     Swal.fire({
       text: "Usuario no encontrado",
       icon: "warning",
       timer: "2000",
     });
+    return false;
   }
 };
+
 
 export const logoutUser = () => {
   return function (dispatch) {
@@ -342,11 +343,26 @@ export const resetFilter = () => {
 };
 
 export function addToCarta(payload) {
-	return {
-		type: ADD_TO_CART,
-		payload,
-	};
+  try {
+    Swal.fire({
+      text: "Se ha agregado el producto",
+      icon: "success",
+      timer: 1500,
+    });
+
+    return {
+      type: ADD_TO_CART,
+      payload,
+    };
+  } catch {
+    Swal.fire({
+      text: "Error al agregar el producto",
+      icon: "warning",
+      timer: 1500,
+    });
+  }
 }
+
 
 export function remove1FromCart(payload) {
 	return {

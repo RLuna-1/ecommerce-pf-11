@@ -13,7 +13,7 @@ function Productos() {
 
   const addToCart = (id) => {
     dispatch(actions.addToCarta(id));
-    alert("Se Ha Agregado el Producto");
+    // alert("Se Ha Agregado el Producto");
   };
 
   useEffect(() => {
