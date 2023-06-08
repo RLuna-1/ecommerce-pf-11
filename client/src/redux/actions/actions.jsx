@@ -10,6 +10,7 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
+export const SET_CART = "SET_CART";
 
 export function getAllProducts() {
   return function (dispatch) {

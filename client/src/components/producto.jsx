@@ -66,5 +66,4 @@ const Producto = ({ products,addToCart }) => {
     </div>
   );
 };
-
 export default Producto;
