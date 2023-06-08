@@ -19,8 +19,9 @@ import {
 	REMOVE_ONE_FROM_CART,
 	REMOVE_ALL_FROM_CART,
 	SET_COMBINED_FILTERS,
-  SET_CURRENT_PAGE,
-  SET_PRODUCTS_PER_PAGE,
+	SET_CURRENT_PAGE,
+	SET_PRODUCTS_PER_PAGE,
+	SET_CART,
 } from '../consts';
 
 const initialState = {
@@ -39,7 +40,7 @@ const initialState = {
 		prices: [],
 		licenses: [],
 	},
-
+}
 
 
 const rootReducer = (state = initialState, action) => {
@@ -168,101 +169,14 @@ const rootReducer = (state = initialState, action) => {
 				cart: updatedCartItems,
 			};
 		}
-		default:
-			return state;
-	}
-=======
-    case UPDATE_PRODUCT_LIST:
-      console.log("action.payload list:", action.payload);
-      return {
-        ...state,
-        products: action.payload,
-      };
-    case GET_PRODUCT:
-    case GET_PRODUCTS:
-    case DELETE_PRODUCT:
-    case EDIT_PRODUCT:
-    case GET_PRODUCT_CATEGORY:
-    case USER_LOGIN:
-    case LOGIN_USER:
-    case GET_USERS:
-      return {
-        ...state,
-        data: action.payload,
-      };
-    case DELETE_USER:
-      return {
-        ...state,
-        data: state.data.filter((user) => user.id !== action.payload),
-      };
-    case PROMOTE_USER:
-      return {
-        ...state,
-        data: state.data.map((user) => {
-          if (user.id === action.payload.id) {
-            return (user = action.payload);
-          } else {
-            return user;
-          }
-        }),
-      };
-    case ADD_TO_CART: {
-      let newItem = state.allProducts.find(
-        (product) => product.id === action.payload
-      );
 
-      let itemInCart = state.cart.find((item) => item.id === newItem.id);
-
-      return itemInCart
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-          }
-        : {
-            ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
-          };
-    }
-
-    case REMOVE_ONE_FROM_CART: {
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
-
-      return itemToDelete.quantity > 1
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          }
-        : {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-          };
-    }
-
-    case REMOVE_ALL_FROM_CART: {
-      const updatedCartItems = state.cart.filter(
-        (item) => item.id !== action.payload
-      );
-      return {
-        ...state,
-        cart: updatedCartItems,
-      };
-    }
 
     case SET_CART:
       return {
         ...state,
         cart: action.payload,
       };
-    default:
-      return state;
+
 
     case SET_CURRENT_PAGE:
       return {
@@ -275,6 +189,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productsPerPage: action.payload,
       };
+       default:
+      return state;
   }
 };
 
