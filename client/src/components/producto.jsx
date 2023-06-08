@@ -15,6 +15,7 @@ const Producto = ({ products, addToCart }) => {
 				<h2>$ {products.price}</h2>
 				<p>categoria: {products.categories.map((c) => c.name)}</p>
 				<p>plataforma: {products.platforms.map((p) => p.name)}</p>
+				<p>Licencia: {products.licenses.map((l) => l.name)}</p>
 				<p>{products.description}</p>
 				<button
 					className={styles.BotonAgregar}

@@ -6,9 +6,7 @@ import styles from '../css/Productos.module.css';
 
 function Productos() {
 	const products = useSelector((state) => state.allProducts);
-  const filteredProductsPlataform = useSelector(
-		(state) => state.filteredProductsPlataform,
-  );
+  const filteredProducts = useSelector((state) => state.filteredProducts);
 
 
 	const dispatch = useDispatch();
@@ -22,8 +20,8 @@ function Productos() {
 	}, [dispatch]);
 	return (
 		<div className={styles.Productos}>
-			{filteredProductsPlataform.length > 0
-				? filteredProductsPlataform.map((p) => (
+			{filteredProducts.length > 0
+				? filteredProducts.map((p) => (
 						<Producto
 							key={p.id}
 							products={p}

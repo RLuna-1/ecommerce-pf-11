@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import LogoClaro from "../img/LogoClaro.png";
 import Carrito from "../img/Carrito.png";
-import { FilterByCategorie, FilterByPlataforms } from './index';
+import { FilterProducts } from './index';
 import Ordenar from './Ordenar';
 
 const Nav = () => {
@@ -53,8 +53,7 @@ const Nav = () => {
 									Filtrar
 								</button>
 								<div className={styles.FiltroContent}>
-									<FilterByCategorie />
-									<FilterByPlataforms />
+									<FilterProducts />
 								</div>
 							</div>
 							<div className={styles.FiltroDropdown}>
