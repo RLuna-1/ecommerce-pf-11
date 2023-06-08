@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../css/Carrito.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { remove1FromCart, removeFromCart } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
+import * as actions from "../redux/actions/actions";
 
 const Carrito = () => {
   const cart = useSelector((state) => state.cart);
@@ -14,6 +15,13 @@ const Carrito = () => {
     }, 0);
   console.log(price);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      dispatch(actions.setCart(JSON.parse(savedCart)));
+    }
+  }, [dispatch]);
 
   console.log(cart);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
@@ -31,7 +39,10 @@ const Carrito = () => {
   const eliminarProducto = (id) => {
     dispatch(removeFromCart(id));
   };
-
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+  
   const mostrarFormularioEmergente = () => {
     setMostrarFormulario(true);
     setMostrarBotonComprar(false); // Oculta el primer botón "Comprar"
@@ -73,7 +84,9 @@ const Carrito = () => {
             Eliminar 1 Producto
           </button>
           <button
-           className={styles.BotonEliminar} onClick={() => eliminarProducto(producto.id)}>
+            className={styles.BotonEliminar}
+            onClick={() => eliminarProducto(producto.id)}
+          >
             Eliminar Productos
           </button>
         </div>
