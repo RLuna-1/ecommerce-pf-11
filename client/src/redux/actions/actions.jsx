@@ -1,6 +1,5 @@
-import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS } from "../consts";
+import { GET_CARTG, GET_PRODUCT, GET_ALL_PRODUCTS, SET_CURRENT_PAGE, SET_PRODUCTS_PER_PAGE } from "../consts";
 import axios from "axios";
-
 import Swal from 'sweetalert2';
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
@@ -12,9 +11,10 @@ export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 
-export function getAllProducts() {
+export function getAllProducts(page) {
   return function (dispatch) {
-    return axios.get("/products").then((response) => {
+    return axios.get(`/products?page=${page}`).then((response) => {
+      console.log('Response.data', response.data.rows)
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response.data.rows,
@@ -22,6 +22,7 @@ export function getAllProducts() {
     });
   };
 }
+
 
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
@@ -313,5 +314,19 @@ export function updateUser(payload) {
       .catch((error) => {
         console.error("Error updating user:", error);
       });
+  };
+}
+
+export function setCurrentPage(page) {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: parseInt(page),
+  };
+}
+
+export function setProductsPerPage(count) {
+  return {
+    type: SET_PRODUCTS_PER_PAGE,
+    payload: count,
   };
 }

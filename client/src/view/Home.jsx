@@ -8,8 +8,9 @@ const Home = () => {
       <div className={styles.General}>
         <h1>Destacados de la semana</h1>
         <Carousel />
+        <Productos />
       </div>
-      <Productos />
+      
     </div>
   );
 }
