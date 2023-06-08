@@ -30,7 +30,6 @@ function App() {
         <Route path="/vender" element={<FormNewProduc />} />
         <Route path="/detail/:id" element={<Detail/>} />
         <Route path="/carrito" element={<Carrito />} />
-        <Route path="/producto" element={<Producto/>} />
       </Routes>
       <Footer />
     </>
