@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "../redux/actions/actions";
 
 export default function Detail() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,9 @@ export default function Detail() {
 
     fetchProduct();
   }, [id]);
-
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
   const addToCart = () => {
     console.log(product.id);
     dispatch(actions.addToCarta(id));
