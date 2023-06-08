@@ -65,29 +65,29 @@ export function getProduct(id) {
   };
 }
 
-export function postProduct(bodyFormData) {
-  return function (dispatch) {
-    return axios
-      .post("/products", bodyFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((res) => {
-        Swal.fire({
-          icon: "success",
-          title: "Se creó el producto",
-          text: `${res.data.name}`,
-        });
-        getProduct(res.data.id)(dispatch);
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${err}`,
-        });
-      });
-  };
-}
+// export function postProduct(bodyFormData) {
+//   return function (dispatch) {
+//     return axios
+//       .post("/products", bodyFormData, {
+//         headers: { "Content-Type": "multipart/form-data" },
+//       })
+//       .then((res) => {
+//         Swal.fire({
+//           icon: "success",
+//           title: "Se creó el producto",
+//           text: `${res.data.name}`,
+//         });
+//         getProduct(res.data.id)(dispatch);
+//       })
+//       .catch((err) => {
+//         Swal.fire({
+//           icon: "error",
+//           title: "Oops...",
+//           text: `${err}`,
+//         });
+//       });
+//   };
+// }
 
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
@@ -369,3 +369,41 @@ export const setCart = (cart) => {
     payload: cart,
   };
 };
+
+export const postProduct = (payload) => {
+  console.log(payload);
+  return async (dispatch) => {
+    const response = await axios.post(`http://localhost:3001/products/`,payload,{
+      headers:{
+      "Content-Type": "multipart/form-data"
+      },
+    });
+    console.log(response);
+    return response;
+  };
+};
+
+
+// export function postProduct(bodyFormData) {
+//   return function (dispatch) {
+//     return axios
+//       .post("http://localhost:3001/products/", bodyFormData, {
+//         headers: { "Content-Type": "multipart/form-data" },
+//       })
+//       .then((res) => {
+//         Swal.fire({
+//           icon: "success",
+//           title: "Se creó el producto",
+//           text: `${res.data.name}`,
+//         });
+//         getProduct(res.data.id)(dispatch);
+//       })
+//       .catch((err) => {
+//         Swal.fire({
+//           icon: "error",
+//           title: "Oops...",
+//           text: `${err}`,
+//         });
+//       });
+//   };
+// }

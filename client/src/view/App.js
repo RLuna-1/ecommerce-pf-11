@@ -13,6 +13,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import "../css/App.css";
 import Login from "./Login";
 import axios from "axios";
+import NewForm from "../components/NewForm";
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -27,7 +28,7 @@ function App() {
         <Route path="/register" element={<SingUp />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/vender" element={<FormNewProduc />} />
+        <Route path="/vender" element={<NewForm/>} />
        
         {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/detail/:id" element={<Detail/>} />
