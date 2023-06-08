@@ -19,6 +19,8 @@ import {
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
   SET_CART,
+  SET_CURRENT_PAGE,
+  SET_PRODUCTS_PER_PAGE,
 } from "../consts";
 
 const initialState = {
@@ -31,6 +33,8 @@ const initialState = {
   userLoginData: {},
   filteredProducts: [],
   cart: [],
+  currentPage: 1,
+  productsPerPage: 10,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -161,6 +165,18 @@ const rootReducer = (state = initialState, action) => {
       };
     default:
       return state;
+
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+
+    case SET_PRODUCTS_PER_PAGE:
+      return {
+        ...state,
+        productsPerPage: action.payload,
+      };
   }
 };
 

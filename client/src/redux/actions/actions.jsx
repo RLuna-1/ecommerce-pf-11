@@ -8,6 +8,8 @@ import {
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
   SET_CART,
+  SET_CURRENT_PAGE,
+  SET_PRODUCTS_PER_PAGE,
 } from "../consts";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -21,9 +23,12 @@ export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 
-export function getAllProducts() {
+const URL = 'http://localhost:3001'
+
+export function getAllProducts(page) {
   return function (dispatch) {
-    return axios.get("/products").then((response) => {
+    return axios.get(`${URL}/products?page=${page}`).then((response) => {
+      console.log('Response.data', response.data.rows)
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response.data.rows,
@@ -34,7 +39,7 @@ export function getAllProducts() {
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
     return axios
-      .post(`/users/${id}/cart`, {
+      .post(`${URL}/users/${id}/cart`, {
         product: newData,
       })
       .then((res) => {
@@ -52,7 +57,7 @@ export function agregarAlCarrito(newData, id) {
 export function getProduct(id) {
   return function (dispatch) {
     return axios
-      .get(`/products/${id}`)
+      .get(`${URL}/products/${id}`)
       .then((res) => {
         dispatch({
           type: GET_PRODUCT,
@@ -68,7 +73,7 @@ export function getProduct(id) {
 export function postProduct(bodyFormData) {
   return function (dispatch) {
     return axios
-      .post("/products", bodyFormData, {
+      .post(`${URL}/products`, bodyFormData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -92,7 +97,7 @@ export function postProduct(bodyFormData) {
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
     return axios
-      .put(`/products/${id}`, bodyFormData, {
+      .put(`${URL}/products/${id}`, bodyFormData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -114,7 +119,7 @@ export function editProduct(bodyFormData, id) {
 }
 
 export function addUser(payload, email) {
-  var url = "/auth/signup";
+  var url = URL + "/auth/signup";
   return function (dispatch) {
     axios
       .post(url, payload, {
@@ -153,7 +158,7 @@ export function addUser(payload, email) {
 
 export function deleteUsers(payload) {
   var id = payload;
-  var url = `/users/${id}`;
+  var url = `${URL}/users/${id}`;
   return function (dispatch) {
     axios
       .delete(url)
@@ -178,7 +183,7 @@ export function deleteUsers(payload) {
 export const loginUser = async (payload) => {
   try {
     const response = await axios.post(
-      "/auth/login",
+      `${URL}/auth/login`,
       {
         email: payload.email,
         password: payload.password,
@@ -209,7 +214,7 @@ export const loginUser = async (payload) => {
 export const logoutUser = () => {
   return function (dispatch) {
     axios
-      .get("/auth/logout")
+      .get(`${URL}/auth/logout`)
       .then((response) => {
         localStorage.removeItem("user");
         Swal.fire({
@@ -230,7 +235,7 @@ export const logoutUser = () => {
 
 export function Usertoadmin(id) {
   var payload;
-  var url = `/Admin/promote/${id}`;
+  var url = `${URL}/Admin/promote/${id}`;
   return function (dispatch) {
     axios
       .put(url, payload, {
@@ -253,7 +258,7 @@ export function getAllUser(id) {
   if (typeof idUser !== "object") {
     return function (dispatch) {
       axios
-        .get(`/Admin/search/${id}`)
+        .get(`${URL}/Admin/search/${id}`)
         .then((response) => {
           dispatch({
             type: GET_USER,
@@ -271,7 +276,7 @@ export function verifyPass(payload) {
   var id = payload.id;
   return function (dispatch) {
     axios
-      .get(`/users/${id}/passVerify`)
+      .get(`${URL}/users/${id}/passVerify`)
       .then((response) => {
         dispatch({
           type: VERIFY_PASSWORD,
@@ -286,7 +291,7 @@ export function verifyPass(payload) {
 
 export function ResetPassword(payload) {
   var id = payload.id;
-  var url = `/users/${id}/passwordReset`;
+  var url = `${URL}/users/${id}/passwordReset`;
   return function (dispatch) {
     axios
       .put(url, payload, {
@@ -308,7 +313,7 @@ export function ResetPassword(payload) {
 
 export function updateUser(payload) {
   var id = payload.id;
-  var url = `/users/${id}`;
+  var url = `${URL}/users/${id}`;
   return function (dispatch) {
     axios
       .put(url, payload, {
@@ -369,3 +374,17 @@ export const setCart = (cart) => {
     payload: cart,
   };
 };
+
+export function setCurrentPage(page) {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: parseInt(page),
+  };
+}
+
+export function setProductsPerPage(count) {
+  return {
+    type: SET_PRODUCTS_PER_PAGE,
+    payload: count,
+  };
+}

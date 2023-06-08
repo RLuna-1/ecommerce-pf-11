@@ -12,9 +12,6 @@ import {
 import { Routes, Route, useLocation } from "react-router-dom";
 import "../css/App.css";
 import Login from "./Login";
-import axios from "axios";
-
-axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   const { pathname } = useLocation();
@@ -28,12 +25,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/vender" element={<FormNewProduc />} />
-       
-        {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/detail/:id" element={<Detail/>} />
-
-        <Route path="/carrito" element={<Carrito />} />
-     
+        <Route path="/carrito" element={<Carrito />} />     
         <Route path="/producto" element={<Producto/>} />
       </Routes>
       <Footer />
