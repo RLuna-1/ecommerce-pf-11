@@ -29,13 +29,13 @@ const URL = 'http://localhost:3001'
 
 export function getAllProducts(page) {
   return function (dispatch) {
-    return axios.get(`${URL}/products`).then((response) => {
-      console.log('Response.data', response.data.rows)
-      dispatch({
-        type: GET_ALL_PRODUCTS,
-        payload: response.data.rows,
-      });
-    });
+    return axios.get(`${URL}/products?page=${page}`).then((response) => {
+		console.log('Response.data', response.data.rows);
+		dispatch({
+			type: GET_ALL_PRODUCTS,
+			payload: response.data.rows,
+		});
+	});
   };
 }
 export function agregarAlCarrito(newData, id) {
