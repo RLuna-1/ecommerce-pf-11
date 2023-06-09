@@ -1,6 +1,6 @@
 const { User } = require("../db");
 const jwt = require("jsonwebtoken");
-const {revokeAllTokens} = require("passport-google-oauth20")
+const {revokeAllTokens} = require("passport-google-oauth2")
 const passport = require("passport");
 
 

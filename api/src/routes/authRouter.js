@@ -81,7 +81,11 @@ authRouter.get(
   async (req, res) => {
     try {
       const token = await googleAuthToken(req.user);
-      return res.status(200).json({ token: token });
+      res.cookie("GoogleOauthToken"), token, {
+        httpOnly: true,
+        maxAge: 1000 * 3 * 24 * 60 * 60,
+      };
+      return res.status(200).json({ success: "Authentication succesfull" });
     } catch (error) {
       return res.status(500).json({ error: "Authentication failed" });
     }

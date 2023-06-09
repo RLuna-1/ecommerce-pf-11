@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const mainRouter = require("./routes/index.js");
 const cors = require("cors");
 const passport = require("passport");
-const { Strategy: GoogleStrategy } = require('passport-google-oauth20');
+const { Strategy: GoogleStrategy } = require('passport-google-oauth2');
 const{User} = require("./db")
 const session = require("express-session");
 
