@@ -33,9 +33,17 @@ export function getAllProducts(page) {
         type: GET_ALL_PRODUCTS,
         payload: response.data.rows,
       });
+    }).catch((err) => {
+      Swal.fire({
+        icon: "error",
+          title: "Oops...",
+          text: "Ya no quedan mas productos",
+          timer: "2000",
+      });
     });
   };
 }
+
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
     return axios
