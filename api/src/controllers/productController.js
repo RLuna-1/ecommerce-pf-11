@@ -81,6 +81,7 @@ const getProducts = async (
     order: orderClause,
     limit: pageSize,
     offset: offset,
+    distinct: true,
     include: [
       {
         model: Category,
