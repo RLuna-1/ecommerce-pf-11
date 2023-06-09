@@ -13,7 +13,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import "../css/App.css";
 import Login from "./Login";
 import axios from "axios";
-import NewForm from "../components/NewForm";
+
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -22,20 +22,20 @@ function App() {
   const { pathname } = useLocation();
 
   return (
-    <>
-      {pathname !== "/login" && <Nav />}
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<SingUp />} />
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/vender" element={<NewForm/>} />
-        <Route path="/detail/:id" element={<Detail/>} />
-        <Route path="/carrito" element={<Carrito />} />     
-        <Route path="/producto" element={<Producto/>} />
-      </Routes>
-      <Footer />
-    </>
+		<>
+			{pathname !== '/login' && <Nav />}
+			<Routes>
+				<Route path='/home' element={<Home />} />
+				<Route path='/register' element={<SingUp />} />
+				<Route path='/' element={<LandingPage />} />
+				<Route path='/login' element={<Login />} />
+				<Route path='/vender' element={<FormNewProduc />} />
+				<Route path='/detail/:id' element={<Detail />} />
+				<Route path='/carrito' element={<Carrito />} />
+				<Route path='/producto' element={<Producto />} />
+			</Routes>
+			<Footer />
+		</>
   );
 }
 

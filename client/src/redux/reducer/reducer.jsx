@@ -23,6 +23,7 @@ import {
 	SET_PRODUCTS_PER_PAGE,
 	SET_CART,
 	GET_CATEGORY_ROUTE,
+	ADD_PRODUCT,
 } from '../consts';
 
 const initialState = {
@@ -36,6 +37,7 @@ const initialState = {
 	filteredProducts: [],
 	cart: [],
     categoryRoute: [],
+    newProduct: []
 }
 
 
@@ -184,6 +186,12 @@ const rootReducer = (state = initialState, action) => {
         return{
             ...state,
             categoryRoute: action.payload
+        }
+    case ADD_PRODUCT:
+        return {
+            ...state,
+            allProducts: [...state.allProducts, action.payload],
+            newProduct: action.payload
         }
        default:
       return state;
