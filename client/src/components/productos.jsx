@@ -36,7 +36,8 @@ function Productos() {
   };
 
   return (
-    <div className={styles.Productos}>
+    <div >
+      <div className={styles.Productos}>
       {filteredProducts.length > 0
         ? filteredProducts.map((p) => (
             <Producto key={p.id} products={p} addToCart={addToCart} />
@@ -44,11 +45,14 @@ function Productos() {
         : products.map((p) => (
             <Producto key={p.id} products={p} addToCart={addToCart} />
           ))}
-      {currentPage > 1 && (
-          <button onClick={goToPreviousPage}>Atrás</button>
-        )}
-      <button onClick={goToNextPage}>Siguiente</button>
     </div>
+     <div>
+     {currentPage > 1 && (
+         <button className={styles.BotonNavegacion} onClick={goToPreviousPage}>Atrás</button>
+       )}
+     <button className={styles.BotonNavegacion} onClick={goToNextPage}>Siguiente</button>
+     </div>
+     </div>
   );
 }
 
