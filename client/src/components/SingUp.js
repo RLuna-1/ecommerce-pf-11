@@ -64,12 +64,11 @@ export function Register(props) {
             props.addUser(state);
           }}
         >
-          <div className="Name" class={`${errors.name && "danger"}`}>
-            <span className="material-icons"> Nombre </span>
+          <div class={`${errors.name && "danger"}`}>
+    
             <input
               type="text"
               name="name"
-              //className="inputs"
               placeholder="Ingrese su nombre"
               onChange={actualizarEstado}
               value={state.name}
@@ -83,16 +82,12 @@ export function Register(props) {
           </div>
           <br />
           <br />
-
           <div
-            className="Lastname"
             class={`${errors.lastName && "danger"}`}
           >
-            <span className="material-icons"> </span>
             <input
               type="text"
               name="lastName"
-              //className="inputs"
               placeholder="Ingrese su apellido"
               onChange={actualizarEstado}
               value={state.lastName}
@@ -104,14 +99,12 @@ export function Register(props) {
               </p>
             )}
           </div>
-
           <div>
-            <span class="material-icons">email</span>
             <input
               className={`${errors.email && "danger"}`}
               type="text"
               name="email"
-              // className="inputs"
+          
               placeholder="Ingrese su email"
               onChange={actualizarEstado}
               value={state.email}
@@ -125,12 +118,10 @@ export function Register(props) {
           </div>
 
           <div>
-            <span class="material-icons">Password</span>
             <input
               className={`${errors.password && "danger"}`}
               type="password"
               name="password"
-              //className="inputs"
               placeholder="Ingrese su contraseña"
               onChange={actualizarEstado}
               value={state.password}
@@ -142,26 +133,21 @@ export function Register(props) {
               </p>
             )}
           </div>
-
           <div>
             <input
               type="password"
               name="confirmPassword"
-              //className="inputs"
               placeholder="Introduzca su contraseña nuevamente"
               onChange={actualizarEstado}
               value={state.confirmPassword}
               required
             />
           </div>
-
           <div>
-            <span class="material-icons">Contact Phone</span>
             <input
               className={`${errors.mobilephone && "danger"}`}
               type="tel"
               name="mobilephone"
-              //className="inputs"
               placeholder="Ingrese su numero de Telefono, Ej.:(011)18234460"
               onChange={actualizarEstado}
               value={state.mobilephone}
@@ -207,26 +193,26 @@ function mapDispatchToProps(dispatch) {
 export function validate(state) {
   let errors = {};
   if (!state.name) {
-    errors.name = "Name is required";
+    errors.name = "Nombre es requerido";
   }
   if (!state.lastName) {
-    errors.lastName = "Lastname is required";
+    errors.lastName = "Apellido es requerido";
   }
   if (!state.email) {
-    errors.email = "Email is required";
+    errors.email = "Email es requerido";
   } else if (!/\S+@\S+\.\S+/.test(state.email)) {
-    errors.email = "Email is invalid";
+    errors.email = "Email es invalido";
   }
   if (!state.password) {
-    errors.password = "Password is required";
+    errors.password = "Contraseña requerida";
   } else if (!/([A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9])/.test(state.password)) {
     errors.password =
-      "password must have at least one upper case and two numbers";
+      "la contraseña debe tener al menos una mayúscula y dos números";
   } else if (state.password !== state.confirmPassword) {
-    errors.password = "Passwords don't match";
+    errors.password = "Contraseña no coincide";
   }
   if (!/^\d{11}$/.test(state.mobilephone)) {
-    errors.mobilephone = "A valid telephone number should consist of 8 digits";
+    errors.mobilephone = "Un número de teléfono válido debe constar de 8 dígitos";
   }
   
   return errors;
