@@ -7,6 +7,9 @@ import Google from "../img/Google.png";
 import Apple from "../img/AppleLogin.png";
 import Microsoft from "../img/Microsoft.png";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+
+axios.defaults.withCredentials = true
 
 export function Login() {
   const navigate = useNavigate();
@@ -31,10 +34,12 @@ export function Login() {
 
   const handleSubmit = async (event, state) => {
     event.preventDefault();
-
-    loginUser(state);
-
-    navigate("/Home");
+  
+    const success = await loginUser(state);
+  
+    if (success) {
+      navigate("/Home");
+    }
   };
 
   return (
@@ -82,12 +87,12 @@ export function Login() {
               Contraseña:{" "}
             </label>
             <input
-          type="password"
-          name="password"
-          required
-          onChange={iniciarSesion}
-          value={state.password}
-        />
+              type="password"
+              name="password"
+              required
+              onChange={iniciarSesion}
+              value={state.password}
+            />
           </div>
           <div className={style.DivBotones}>
             <button
@@ -97,9 +102,9 @@ export function Login() {
             >
               Ingresar
             </button>
-			      <Link to='/register'>
+            <Link to="/register">
               <button className={style.BotonIniciar}>Crear Cuenta</button>
-			      </Link>
+            </Link>
           </div>
         </form>
         <div className={style.DivCuentas}>

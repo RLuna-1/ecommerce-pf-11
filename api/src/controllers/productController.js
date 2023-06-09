@@ -107,6 +107,8 @@ const getProducts = async (
     responseProducts.rows.map((product) => product.categories[0].name)
   );
 
+  console.log(responseProducts.rows.length)
+
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
   }

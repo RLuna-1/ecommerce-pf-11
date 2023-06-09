@@ -1,32 +1,69 @@
-import React from "react";
+// import React from 'react';
+// import styles from '../css/Producto.module.css';
+// import { Link } from 'react-router-dom';
 
+// const Producto = ({ products }) => {
+// 	return (
+// 		<div>
+// 			<div>
+// 				{products &&
+// 					products.map((p) => {
+// 						return (
+// 							<div className={styles.General}>
+// 								<div className={styles.Producto} key={p.id}>
+// 									<Link to={`/detail/${p.id}`}>
+// 										<button>
+// 											<img
+// 												src={p.image}
+// 												alt='Imagen del producto'
+// 											/>
+// 										</button>
+// 									</Link>
+// 									<h1>{p.name}</h1>
+// 									<h2>$ {p.price}</h2>
+// 									<p>categotia: {p.categories[0].name}</p>
+// 									<p>plataforma: {p.platforms[0].name}</p>
+// 									<p>{p.description}</p>
+
+// 									<button className={styles.BotonAgregar}>
+// 										Agregar
+// 									</button>
+// 								</div>
+// 							</div>
+// 						);
+// 					})}
+// 			</div>
+// 		</div>
+// 	);
+// };
+
+// export default Producto;
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../css/Producto.module.css";
 
-const Producto = ({ id, name, image, price }) => {
-
-  
+const Producto = ({ products,addToCart }) => {
+ 
   return (
     <div>
-      <div className={styles.Producto} key={id}>
-        <Link to={`/detail/${id}`}>
-          <button>
-            <img src={image} alt="Imagen del producto" />
+		
+      <div className={styles.Producto} key={products.id}>
+        <Link 
+        
+        to={`/detail/${products.id}`}>
+          <button
+          
+          >
+            <img src={products.image} alt="Imagen del producto" />
           </button>
         </Link>
-        <h1>{name}</h1>
-        <h2>$ {price}</h2>
-        <button
-        onClick={(e)=>{
-          Producto(id, name, image, price);
-        }}
-        className={styles.BotonAgregar}>Agregar</button>
-
+        <h1>{products.name}</h1>
+        <h2>$ {products.price}</h2>
+        <button className={styles.BotonAgregar}
+        onClick={()=>addToCart(products.id)}
+        >Agregar</button>
       </div>
     </div>
   );
 };
-
-
 export default Producto;
-

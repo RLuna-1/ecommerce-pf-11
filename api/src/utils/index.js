@@ -133,7 +133,15 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
+const getSuccess = (req, res) => {
+  try {
+    res.status(200).json("Sucess!")
+  } catch (error) {
+    res.status(500).json({error: "An error ocurred "})
+  }
+}
 
 
 
-module.exports = { seedDB, requireAuth, authMiddleware };
+
+module.exports = { seedDB, requireAuth, authMiddleware, getSuccess };
