@@ -50,12 +50,12 @@ const Nav = () => {
                 <FilterComponent />
               </div>
             </div>
-            <div className={styles.FiltroDropdown}>
+            {/* <div className={styles.FiltroDropdown}>
               <button className={styles.ButtonNav}>Ordenar</button>
               <div className={styles.FiltroContent}>
                 <Ordenar onOrdenarChange={handleOrdenarChange} />
               </div>
-            </div>
+            </div> */}
             <input className={styles.SearchBar} placeholder="Buscar Software" type="text" />
           </div> )}
         </div>
