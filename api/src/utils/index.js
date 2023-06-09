@@ -12,9 +12,11 @@ const seedDB = async () => {
 
     // Crear los productos en la base de datos
     for (const product of products) {
+
       // Verificar si el producto ya existe en la base de datos
       const existingProduct = await Product.findOne({ where: { name: product.name } });
       if (existingProduct) {
+
 
         continue;
       }
@@ -31,10 +33,7 @@ const seedDB = async () => {
       // Obtener o crear las licencias correspondientes
       const productLicenses = await Promise.all(
         product.licenses.map(async (license) => {
-          let existingLicense = await License.findOne({ where: { name: license } });
-          if (!existingLicense) {
-            existingLicense = await License.create({ name: license });
-          }
+          const [existingLicense] = await License.findOrCreate({ where: { name: license } });
           return existingLicense;
         })
       );
@@ -42,10 +41,7 @@ const seedDB = async () => {
       // Obtener o crear las categorías correspondientes
       const productCategories = await Promise.all(
         product.categories.map(async (category) => {
-          let existingCategory = await Category.findOne({ where: { name: category } });
-          if (!existingCategory) {
-            existingCategory = await Category.create({ name: category });
-          }
+          const [existingCategory] = await Category.findOrCreate({ where: { name: category } });
           return existingCategory;
         })
       );
@@ -53,10 +49,7 @@ const seedDB = async () => {
       // Obtener o crear las plataformas correspondientes
       const productPlatforms = await Promise.all(
         product.platforms.map(async (platform) => {
-          let existingPlatform = await Platform.findOne({ where: { name: platform } });
-          if (!existingPlatform) {
-            existingPlatform = await Platform.create({ name: platform });
-          }
+          const [existingPlatform] = await Platform.findOrCreate({ where: { name: platform } });
           return existingPlatform;
         })
       );
