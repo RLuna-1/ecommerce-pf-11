@@ -11,6 +11,7 @@ import {
 	SET_CURRENT_PAGE,
 	SET_PRODUCTS_PER_PAGE,
 	SET_COMBINED_FILTERS,
+	GET_CATEGORY_ROUTE,
 } from '../consts';
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -29,12 +30,12 @@ const URL = 'http://localhost:3001'
 export function getAllProducts(page) {
   return function (dispatch) {
     return axios.get(`${URL}/products?page=${page}`).then((response) => {
-      console.log('Response.data', response.data.rows)
-      dispatch({
-        type: GET_ALL_PRODUCTS,
-        payload: response.data.rows,
-      });
-    });
+		console.log('Response.data', response.data.rows);
+		dispatch({
+			type: GET_ALL_PRODUCTS,
+			payload: response.data.rows,
+		});
+	});
   };
 }
 export function agregarAlCarrito(newData, id) {
@@ -425,4 +426,24 @@ export function setProductsPerPage(count) {
     payload: count,
   };
 }
+
+export function getCategoryRoute() {
+	return function (dispatch) {
+		return axios
+			.get(`${URL}/categories`)
+			.then((response) => {
+				const categories = response.data.map(
+					(category) => category.name,
+				);
+				dispatch({
+					type: GET_CATEGORY_ROUTE,
+					payload: categories,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+}
+
 

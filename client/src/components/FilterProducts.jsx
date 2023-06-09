@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterProducts, resetFilter } from '../redux/actions/actions';
+import {
+	filterProducts,
+	resetFilter,
+	getCategoryRoute,
+} from '../redux/actions/actions';
 
 function Filter() {
 	const [selectedCategories, setSelectedCategories] = useState([]);
@@ -10,32 +14,8 @@ function Filter() {
 
 	const dispatch = useDispatch();
 	const allProducts = useSelector((state) => state.allProducts);
+	const categoryRoute = useSelector((state) => state.categoryRoute);
 
-	useEffect(() => {
-		dispatch(
-			filterProducts(
-				selectedCategories,
-				selectedPlatforms,
-				selectedPrices,
-				selectedLicenses,
-			),
-		);
-	}, [
-		selectedCategories,
-		selectedPlatforms,
-		selectedPrices,
-		selectedLicenses,
-		dispatch,
-	]);
-
-	// Extraer opciones únicas de las propiedades de los productos
-	const categories = Array.from(
-		new Set(
-			allProducts.flatMap((product) =>
-				product.categories.map((category) => category.name),
-			),
-		),
-	);
 	const platforms = Array.from(
 		new Set(
 			allProducts.flatMap((product) =>
@@ -119,7 +99,8 @@ function Filter() {
 			return updatedLicenses;
 		});
 	};
-	const handleDeletFilters = (e) => {
+
+	const handleDeleteFilters = (e) => {
 		e.preventDefault();
 		setSelectedCategories([]);
 		setSelectedPlatforms([]);
@@ -127,10 +108,29 @@ function Filter() {
 		setSelectedLicenses([]);
 		dispatch(resetFilter());
 	};
+
+	useEffect(() => {
+		dispatch(
+			filterProducts(
+				selectedCategories,
+				selectedPlatforms,
+				selectedPrices,
+				selectedLicenses,
+			),
+		);
+		dispatch(getCategoryRoute());
+	}, [
+		selectedCategories,
+		selectedPlatforms,
+		selectedPrices,
+		selectedLicenses,
+		dispatch,
+	]);
+
 	return (
 		<div>
 			<h2>Categorias</h2>
-			{categories.map((category) => (
+			{categoryRoute.map((category) => (
 				<label key={category}>
 					<input
 						type='checkbox'
@@ -178,7 +178,7 @@ function Filter() {
 				</label>
 			))}
 			<div>
-				<button type='button' onClick={handleDeletFilters}>
+				<button type='button' onClick={handleDeleteFilters}>
 					Eliminar Filtros
 				</button>
 			</div>

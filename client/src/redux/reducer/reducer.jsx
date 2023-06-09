@@ -22,6 +22,7 @@ import {
 	SET_CURRENT_PAGE,
 	SET_PRODUCTS_PER_PAGE,
 	SET_CART,
+	GET_CATEGORY_ROUTE,
 } from '../consts';
 
 const initialState = {
@@ -34,12 +35,7 @@ const initialState = {
 	userLoginData: {},
 	filteredProducts: [],
 	cart: [],
-	combinedFilters: {
-		categories: [],
-		platforms: [],
-		prices: [],
-		licenses: [],
-	},
+    categoryRoute: [],
 }
 
 
@@ -68,12 +64,7 @@ const rootReducer = (state = initialState, action) => {
 		case RESET_FILTER:
 			return {
 				...state,
-				combinedFilters: {
-					categories: [],
-					platforms: [],
-					prices: [],
-					licenses: [],
-				},
+				filteredProducts: [],
 			};
 		case SET_COMBINED_FILTERS:
 			return {
@@ -189,6 +180,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productsPerPage: action.payload,
       };
+    case GET_CATEGORY_ROUTE:
+        return{
+            ...state,
+            categoryRoute: action.payload
+        }
        default:
       return state;
   }
