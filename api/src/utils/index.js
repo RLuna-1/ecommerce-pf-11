@@ -12,9 +12,12 @@ const seedDB = async () => {
 
     // Crear los productos en la base de datos
     for (const product of products) {
-      // Verificar si el producto ya existe por nombre
+
+      // Verificar si el producto ya existe en la base de datos
       const existingProduct = await Product.findOne({ where: { name: product.name } });
       if (existingProduct) {
+
+
         continue;
       }
 
@@ -55,9 +58,11 @@ const seedDB = async () => {
       await createdProduct.addCategories(productCategories, { through: { timestamps: false } });
       await createdProduct.addPlatforms(productPlatforms, { through: { timestamps: false } });
       await createdProduct.addLicenses(productLicenses, { through: { timestamps: false } });
+
+
     }
 
-    console.log("Products uploaded successfully.");
+    console.log("Products upload completed.");
   } catch (error) {
     console.error("Failed to upload dummy products:", error);
   }
@@ -130,7 +135,15 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
+const getSuccess = (req, res) => {
+  try {
+    res.status(200).json("Sucess!")
+  } catch (error) {
+    res.status(500).json({error: "An error ocurred "})
+  }
+}
 
 
 
-module.exports = { seedDB, requireAuth, authMiddleware };
+
+module.exports = { seedDB, requireAuth, authMiddleware, getSuccess };

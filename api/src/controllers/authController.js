@@ -1,5 +1,8 @@
 const { User } = require("../db");
 const jwt = require("jsonwebtoken");
+const {revokeAllTokens} = require("passport-google-oauth2")
+const passport = require("passport");
+
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
@@ -12,13 +15,16 @@ const getSignUp = () => {};
 
 const getLogIn = () => {};
 
-const postSignUp = async ( email, password) => {
+const postSignUp = async (name, last_name, email, password, phone) => {
   const newSignUp = await User.create({
-
+    name: name,
+    last_name: last_name,
     email: email,
     password: password,
     createdInBd: false,
+    phone: phone,
   });
+
   const token = createToken(newSignUp._id);
   return { newSignUp, token };
 };
@@ -31,8 +37,17 @@ const postLogIn = async (email, password) => {
   return { newLogIn, token };
 };
 
-const getLogOut = () => {
-    
+const googleAuthToken = async (user, revoke) => {
+
+  if(revoke) {
+    await user.revokeAllTokens(user.googleId)
+    return null;
+  }
+
+  const token = createToken(user._id);
+  return token;
 };
 
-module.exports = { getSignUp, getLogIn, postSignUp, postLogIn, getLogOut };
+const getLogOut = () => {};
+
+module.exports = { getSignUp, getLogIn, postSignUp, postLogIn, getLogOut, googleAuthToken };

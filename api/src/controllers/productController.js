@@ -100,8 +100,31 @@ const getProducts = async (
     order: orderClause,
     limit: pageSize,
     offset: offset,
-    include: includeClause,
+    distinct:true,
+    include: [
+      {
+        model: Category,
+        attributes: ["id","name", "deleted"],
+        through: { attributes: [] },
+        where: categories ? { name: { [Op.iLike]: `%${categories}%` } } : {},
+      },
+      {
+        model: Platform,
+        attributes: ["id","name"],
+        through: { attributes: [] },
+        where: platform ? { name: { [Op.iLike]: `%${platform}%` } } : {},
+      },
+      {
+        model: License,
+        attributes: ["id","name"],
+        through: { attributes: [] },
+        where: license ? { name: { [Op.iLike]: `%${license}%` } } : {},
+      },
+    ],
   });
+
+  console.log(responseProducts.count)
+
 
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
