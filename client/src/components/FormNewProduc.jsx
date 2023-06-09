@@ -5,6 +5,7 @@ import FormValidationsShema from '../utils/FormValidationsShema';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, getCategoryRoute } from '../redux/actions/actions';
 import Swal from 'sweetalert2';
+import '../css/index.css';
 
 export default function FormNewProduc() {
 	const dispatch = useDispatch();
