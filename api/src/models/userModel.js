@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 module.exports = (sequelize) => {
   const User = sequelize.define(
     "user",
-
     {
       id: {
         type: DataTypes.UUID,
@@ -18,36 +17,29 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       name: {
-
         type: DataTypes.TEXT,
         validate: {
           len: {
-            args: [2,40],
-
+            args: [2, 40],
             msg: "name must be between 2 and 40 characters",
           },
         },
       },
       last_name: {
-
         type: DataTypes.TEXT,
         validate: {
           len: {
-            args: [2,40],
-
+            args: [2, 40],
             msg: "last_name must be between 2 and 40 characters",
           },
         },
       },
       user_name: {
-
         type: DataTypes.TEXT,
-
         unique: true,
         validate: {
           is: {
-            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
-
+            args: ["^[a-zA-Z-,]+(\\s{0,1}[a-zA-Z-, ])*$"],
             msg: "user_name must be between 2 and 40 characters",
           },
           noSpaces(value) {
@@ -72,13 +64,7 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: {
-            args: [6, 40],
-            msg: "password must be between 6 and 40 characters",
-          },
-        },
+        allowNull: true,
       },
       phone: {
         type: DataTypes.STRING,
@@ -103,43 +89,46 @@ module.exports = (sequelize) => {
           user.email = user.email.toLowerCase();
           const hashedPassword = await bcrypt.hash(user.password, 10);
           user.password = hashedPassword;
-      
-          // Generate a UUID and assign it to the user if no UUID is provided
-          if (!user.id) {
-            user.id = DataTypes.UUIDV4;
-          }
+
+          
         },
       },
     }
   );
 
-
   User.login = async (emailOrGoogleId, password) => {
-    const user = await User.findOne({
-      where: {
-        [sequelize.Op.or]: [
-          { email: emailOrGoogleId.toLowerCase() },
-          { googleId: emailOrGoogleId },
-        ],
-      },
-    });
-  
+    let user;
+    
+    if (emailOrGoogleId.includes("@")) {
+      user = await User.findOne({
+        where: {
+          email: emailOrGoogleId.toLowerCase(),
+        },
+      });
+    } else {
+      user = await User.findOne({
+        where: {
+          googleId: emailOrGoogleId,
+        },
+      });
+    }
+
     if (!user) {
       throw new Error("Invalid user");
     }
-  
+
     if (user.googleId) {
-      // Handle Google ID-based authentication
-      // Add your logic here
+      // mmm creo que no sirve de nada esto
     } else {
-      // Handle UUID-based authentication
       const isPasswordValid = await bcrypt.compare(password, user.password);
-  
+
       if (!isPasswordValid) {
         throw new Error("Invalid password");
       }
     }
-  
+
     return user;
   };
+
+  return User;
 };
