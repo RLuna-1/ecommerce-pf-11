@@ -120,15 +120,48 @@ const Carrito = () => {
       )}
       <Link></Link>
       <button className={styles.Comprar}>
-        <Link to={`/home`}>Mas Productos</Link>
+        <Link to={`/home`}>
+          Mas Productos
+          </Link>
       </button>
 
       {mostrarFormulario && (
-        <div className={styles.ElementoCompra}>
-          <h2>Formulario de Compra</h2>
-          {/* Resto del código del formulario */}
-        </div>
-      )}
+  <div className={styles.ElementoCompra}>
+    <h2>Formulario de Compra</h2>
+    <input
+      type="text"
+      value={nombre}
+      onChange={(e) => setNombre(e.target.value)}
+      placeholder="Nombre"
+    />
+    <input
+      type="text"
+      value={dni}
+      onChange={(e) => setDni(e.target.value)}
+      placeholder="DNI"
+    />
+    <input
+      type="text"
+      value={telefono}
+      onChange={(e) => setTelefono(e.target.value)}
+      placeholder="Teléfono"
+    />
+    <input
+      type="text"
+      value={direccion}
+      onChange={(e) => setDireccion(e.target.value)}
+      placeholder="Dirección"
+    />
+    <input
+      type="text"
+      value={codigoPostal}
+      onChange={(e) => setCodigoPostal(e.target.value)}
+      placeholder="Código Postal"
+    />
+    <button onClick={realizarCompra}>Realizar Compra</button>
+    <button onClick={ocultarFormularioEmergente}>Cancelar</button>
+  </div>
+)}
 
       {mensajeCompra && (
         <div className={styles.MensajeEmergente}>
