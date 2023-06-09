@@ -1,14 +1,18 @@
 import {
-  GET_CARTG,
-  GET_PRODUCT,
-  GET_ALL_PRODUCTS,
-  FILTER_PRODUCTS,
-  RESET_FILTER,
-  ADD_TO_CART,
-  REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
-  SET_CART,
-} from "../consts";
+	GET_CARTG,
+	GET_PRODUCT,
+	GET_ALL_PRODUCTS,
+	FILTER_PRODUCTS,
+	RESET_FILTER,
+	ADD_TO_CART,
+	REMOVE_ONE_FROM_CART,
+	REMOVE_ALL_FROM_CART,
+	SET_CART,
+	SET_CURRENT_PAGE,
+	SET_PRODUCTS_PER_PAGE,
+	SET_COMBINED_FILTERS,
+	GET_CATEGORY_ROUTE,
+} from '../consts';
 import axios from "axios";
 import Swal from "sweetalert2";
 export const ADD_USER = "ADD_USER";
@@ -21,20 +25,23 @@ export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 
-export function getAllProducts() {
+const URL = 'http://localhost:3001'
+
+export function getAllProducts(page) {
   return function (dispatch) {
-    return axios.get("/products").then((response) => {
-      dispatch({
-        type: GET_ALL_PRODUCTS,
-        payload: response.data.rows,
-      });
-    });
+    return axios.get(`${URL}/products?page=${page}`).then((response) => {
+		console.log('Response.data', response.data.rows);
+		dispatch({
+			type: GET_ALL_PRODUCTS,
+			payload: response.data.rows,
+		});
+	});
   };
 }
 export function agregarAlCarrito(newData, id) {
   return function (dispatch) {
     return axios
-      .post(`/users/${id}/cart`, {
+      .post(`${URL}/users/${id}/cart`, {
         product: newData,
       })
       .then((res) => {
@@ -52,7 +59,7 @@ export function agregarAlCarrito(newData, id) {
 export function getProduct(id) {
   return function (dispatch) {
     return axios
-      .get(`/products/${id}`)
+      .get(`${URL}/products/${id}`)
       .then((res) => {
         dispatch({
           type: GET_PRODUCT,
@@ -68,7 +75,7 @@ export function getProduct(id) {
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
     return axios
-      .put(`/products/${id}`, bodyFormData, {
+      .put(`${URL}/products/${id}`, bodyFormData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -90,7 +97,7 @@ export function editProduct(bodyFormData, id) {
 }
 
 export function addUser(payload, email) {
-  var url = "/auth/signup";
+  var url = URL + "/auth/signup";
   return function (dispatch) {
     axios
       .post(url, payload, {
@@ -129,7 +136,7 @@ export function addUser(payload, email) {
 
 export function deleteUsers(payload) {
   var id = payload;
-  var url = `/users/${id}`;
+  var url = `${URL}/users/${id}`;
   return function (dispatch) {
     axios
       .delete(url)
@@ -154,7 +161,7 @@ export function deleteUsers(payload) {
 export const loginUser = async (payload) => {
   try {
     const response = await axios.post(
-      "/auth/login",
+      `${URL}/auth/login`,
       {
         email: payload.email,
         password: payload.password,
@@ -165,27 +172,28 @@ export const loginUser = async (payload) => {
         },
       }
     );
-
     localStorage.setItem("user", JSON.stringify(response.data));
-
     Swal.fire({
       text: "Ha iniciado sesión correctamente",
       icon: "success",
       timer: "2000",
     });
+    return true;
   } catch (error) {
     Swal.fire({
       text: "Usuario no encontrado",
       icon: "warning",
       timer: "2000",
     });
+    return false;
   }
 };
+
 
 export const logoutUser = () => {
   return function (dispatch) {
     axios
-      .get("/auth/logout")
+      .get(`${URL}/auth/logout`)
       .then((response) => {
         localStorage.removeItem("user");
         Swal.fire({
@@ -206,7 +214,7 @@ export const logoutUser = () => {
 
 export function Usertoadmin(id) {
   var payload;
-  var url = `/Admin/promote/${id}`;
+  var url = `${URL}/Admin/promote/${id}`;
   return function (dispatch) {
     axios
       .put(url, payload, {
@@ -229,7 +237,7 @@ export function getAllUser(id) {
   if (typeof idUser !== "object") {
     return function (dispatch) {
       axios
-        .get(`/Admin/search/${id}`)
+        .get(`${URL}/Admin/search/${id}`)
         .then((response) => {
           dispatch({
             type: GET_USER,
@@ -247,7 +255,7 @@ export function verifyPass(payload) {
   var id = payload.id;
   return function (dispatch) {
     axios
-      .get(`/users/${id}/passVerify`)
+      .get(`${URL}/users/${id}/passVerify`)
       .then((response) => {
         dispatch({
           type: VERIFY_PASSWORD,
@@ -262,7 +270,7 @@ export function verifyPass(payload) {
 
 export function ResetPassword(payload) {
   var id = payload.id;
-  var url = `/users/${id}/passwordReset`;
+  var url = `${URL}/users/${id}/passwordReset`;
   return function (dispatch) {
     axios
       .put(url, payload, {
@@ -284,7 +292,7 @@ export function ResetPassword(payload) {
 
 export function updateUser(payload) {
   var id = payload.id;
-  var url = `/users/${id}`;
+  var url = `${URL}/users/${id}`;
   return function (dispatch) {
     axios
       .put(url, payload, {
@@ -304,14 +312,7 @@ export function updateUser(payload) {
   };
 }
 
-export function filterProducts(category) {
-  return {
-    type: FILTER_PRODUCTS,
-    payload: {
-      category: category,
-    },
-  };
-}
+
 
 export const resetFilter = () => {
   return {
@@ -320,24 +321,66 @@ export const resetFilter = () => {
 };
 
 export function addToCarta(payload) {
-  return {
-    type: ADD_TO_CART,
-    payload,
-  };
+  try {
+    Swal.fire({
+      text: "Se ha agregado el producto",
+      icon: "success",
+      timer: 1500,
+    });
+
+    return {
+      type: ADD_TO_CART,
+      payload,
+    };
+  } catch {
+    Swal.fire({
+      text: "Error al agregar el producto",
+      icon: "warning",
+      timer: 1500,
+    });
+  }
 }
 
+
 export function remove1FromCart(payload) {
-  return {
-    type: REMOVE_ONE_FROM_CART,
-    payload,
-  };
+	return {
+		type: REMOVE_ONE_FROM_CART,
+		payload,
+	};
 }
 export function removeFromCart(payload) {
-  return {
-    type: REMOVE_ALL_FROM_CART,
-    payload,
-  };
+	return {
+		type: REMOVE_ALL_FROM_CART,
+		payload,
+	};
 }
+
+
+
+export function filterProducts(categories, platform, price, license) {
+	return function (dispatch) {
+		return axios
+			.get(
+				`${URL}/products?categories=${categories}&platform=${platform}&price=${price}&license=${license}`,
+			)
+			.then((response) => {
+				dispatch({
+					type: FILTER_PRODUCTS,
+					payload: response.data.rows,
+				});
+			})
+			.catch((error) => {
+				console.error('Error en la solicitud:', error);
+			});
+	};
+}
+
+export const setCombinedFilters = (filters) => {
+	return {
+		type: SET_COMBINED_FILTERS,
+		payload: filters,
+	};
+};
 
 export const setCart = (cart) => {
   return {
@@ -345,4 +388,41 @@ export const setCart = (cart) => {
     payload: cart,
   };
 };
+
+
+
+export function setCurrentPage(page) {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: parseInt(page),
+  };
+}
+
+export function setProductsPerPage(count) {
+  return {
+    type: SET_PRODUCTS_PER_PAGE,
+    payload: count,
+  };
+}
+
+export function getCategoryRoute() {
+	return function (dispatch) {
+		return axios
+			.get(`${URL}/categories`)
+			.then((response) => {
+				const categories = response.data.map(
+					(category) => category.name,
+				);
+				dispatch({
+					type: GET_CATEGORY_ROUTE,
+					payload: categories,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+}
+
+
 

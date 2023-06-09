@@ -31,10 +31,12 @@ export function Login() {
 
   const handleSubmit = async (event, state) => {
     event.preventDefault();
-
-    loginUser(state);
-
+    const loginExitoso = await loginUser(state);
+    if (loginExitoso) {
     navigate("/Home");
+  } else {
+   //nada XD
+  }
   };
 
   return (
