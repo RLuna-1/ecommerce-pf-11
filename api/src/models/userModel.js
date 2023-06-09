@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 module.exports = (sequelize) => {
   const User = sequelize.define(
     "user",
-
     {
       id: {
         type: DataTypes.UUID,
@@ -12,37 +11,35 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
+      googleId: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: true,
+      },
       name: {
-
         type: DataTypes.TEXT,
         validate: {
-          is: {
-            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
-
+          len: {
+            args: [2, 40],
             msg: "name must be between 2 and 40 characters",
           },
         },
       },
       last_name: {
-
         type: DataTypes.TEXT,
         validate: {
-          is: {
-            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
-
+          len: {
+            args: [2, 40],
             msg: "last_name must be between 2 and 40 characters",
           },
         },
       },
       user_name: {
-
         type: DataTypes.TEXT,
-
         unique: true,
         validate: {
           is: {
-            args: ["^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$"],
-
+            args: ["^[a-zA-Z-,]+(\\s{0,1}[a-zA-Z-, ])*$"],
             msg: "user_name must be between 2 and 40 characters",
           },
           noSpaces(value) {
@@ -67,22 +64,10 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: {
-            args: [6, 40],
-            msg: "password must be between 6 and 40 characters",
-          },
-        },
+        allowNull: true,
       },
       phone: {
         type: DataTypes.STRING,
-        validate: {
-          len: {
-            args: [2, 40],
-            msg: "phone must be between 2 and 40 characters",
-          },
-        },
       },
       admin: {
         type: DataTypes.BOOLEAN,
@@ -101,29 +86,47 @@ module.exports = (sequelize) => {
       timestamps: false,
       hooks: {
         beforeCreate: async (user) => {
-          user.email = user.email.toLowerCase();    
+          user.email = user.email.toLowerCase();
           const hashedPassword = await bcrypt.hash(user.password, 10);
           user.password = hashedPassword;
+
+          
         },
       },
     }
   );
 
+  User.login = async (emailOrGoogleId, password) => {
+    let user;
+    
+    if (emailOrGoogleId.includes("@")) {
+      user = await User.findOne({
+        where: {
+          email: emailOrGoogleId.toLowerCase(),
+        },
+      });
+    } else {
+      user = await User.findOne({
+        where: {
+          googleId: emailOrGoogleId,
+        },
+      });
+    }
 
-  User.login = async (email, password) => {
-    const user = await User.findOne({ where: { email: email.toLowerCase() } });
-
-  
     if (!user) {
-      throw new Error("Invalid user_name");
+      throw new Error("Invalid user");
     }
-  
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-  
-    if (!isPasswordValid) {
-      throw new Error("Invalid password");
+
+    if (user.googleId) {
+      // mmm creo que no sirve de nada esto
+    } else {
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+        throw new Error("Invalid password");
+      }
     }
-  
+
     return user;
   };
 

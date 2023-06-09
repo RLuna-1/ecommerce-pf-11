@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import LogoClaro from "../img/LogoClaro.png";
 import Carrito from "../img/Carrito.png";
-import FilterComponent from './FilterComponent';
+import FilterComponent from './FilterByCategorie';
 import Ordenar from './Ordenar';
 
 const Nav = () => {
