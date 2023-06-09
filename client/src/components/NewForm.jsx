@@ -2,31 +2,49 @@ import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../css/Formulario.module.css";
-import { postProduct } from "../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-//import "./Formulario.css";
+
 
 const NewForm = () => {
-
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const initialValues = {
     name: "",
     description: "",
-    // image: "",
-    //description: "",
-   // category: "",
+    image: "",
+    quantity: "",
+    category: "",
     price: "",
   };
 
+  const enviarForm = async (values) => {
+  
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/products",
+        values
+      );
+      console.log(response.data);
+      Swal.fire({
+        text: "Se ha agregado el producto",
+        icon: "success",
+        timer: 1100,
+      });
 
-  const enviarForm = (data) => {
-    // data.preventDefault()
-    dispatch(postProduct(data));
-    //console.log(data);
-//    axios.post(`http://localhost:3001/products`,data)
-//    .then(res=> alert(res))
+      
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        text: "No Se ha agregado el producto",
+        icon: "error",
+        title: "Oops...",
+       
+      });
+     
+    }
+    
   };
 
   const { handleSubmit, handleChange, values, setFieldValue, errors } =
@@ -35,7 +53,10 @@ const NewForm = () => {
       validationSchema: Yup.object({
         name: Yup.string().required("Debes ingresar un nombre"),
         description: Yup.string().required("Debes ingresar un email"),
-        price: Yup.string().required("Debes ingresar una contraseña"),
+        image: Yup.string().required("Debes ingresar un email"),
+        quantity: Yup.string().required("Debes ingresar un email"),
+        price: Yup.string().required("Debes ingresar un email"),
+        categories: Yup.string().required("Debes ingresar un email"),
       }),
 
       onSubmit: enviarForm,
@@ -100,20 +121,45 @@ const NewForm = () => {
             />
           </Grid>
 
-          {/* <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={7}>
             <TextField
               fullWidth
               id="filled-basic"
               label="image"
               variant="filled"
-              name="Imagen"
+              name="image"
               value={values.image}
               error={!!errors.image}
               helperText={errors.image}
               onChange={handleChange}
             />
-          </Grid> */}
-
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <TextField
+              fullWidth
+              id="filled-basic"
+              label="quantity"
+              variant="filled"
+              name="quantity"
+              value={values.quantity}
+              error={!!errors.quantity}
+              helperText={errors.quantity}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <TextField
+              fullWidth
+              id="filled-basic"
+              label="categories"
+              variant="filled"
+              name="categories"
+              value={values.categories}
+              error={!!errors.categories}
+              helperText={errors.categories}
+              onChange={handleChange}
+            />
+          </Grid>
         </Grid>
         <Button type="submit" variant="contained">
           Enviar
@@ -125,87 +171,3 @@ const NewForm = () => {
 
 export default NewForm;
 
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import TextField from "@mui/material/TextField";
-// import { useFormik } from "formik";
-// import { Button } from "@mui/material";
-// import * as Yup from 'yup'
-
-// export default function NewForm() {
-
-//   const initialValues = {
-//     name: "",
-//     description: "",
-//     image: "",
-//     description: "",
-//     category: "",
-//     price: "",
-//   };
-
-//   const enviarForm = (data) => {
-//     // data.preventDefault()
-//     console.log(data);
-//   };
-
-//   const {handleSubmit,handleChange,values,errors, setFieldValue} = useFormik({
-//     initialValues,
-//     validationSchema: Yup.object({
-//         name: Yup.string().required('Debes ingresar Nombre de Producto'),
-//         description: Yup.string().required('Debes ingresar description de Producto'),
-//         price: Yup.string().required('Debes ingresar Precio de Producto'),
-//     }),
-//     onSubmit: enviarForm,
-//   });
-
-//   return (
-//     //   <Box
-//     //     component="form"
-//     //     sx={{
-//     //       '& > :not(style)': { m: 1, width: '25ch' },
-//     //     }}
-//     //     noValidate
-//     //     autoComplete="off"
-//     //   >
-
-//     //       </Box>
-
-//     <form onSubmit={handleSubmit}>
-//       <TextField
-//         id="outlined-basic"
-//         label="Nombre"
-//         variant="outlined"
-//         name="name"
-//         value={values.name}
-//         error={!!errors.name}
-//         helperText={errors.name}
-//         // se utiliza muchas en checkbox
-//         onChange={(e)=>{setFieldValue("name", e.target.value)}}
-
-//       />
-//       <TextField
-//         id="filled-basic"
-//         label="description"
-//         variant="filled"
-//         name="description"
-//         value={values.description}
-//         error={!!errors.description}
-//         helperText={errors.description}
-//         onChange={handleChange}
-//       />
-//       <TextField
-//         id="standard-basic"
-//         label="Precio"
-//         variant="standard"
-//         name="price"
-//         value={values.price}
-//         error={!!errors.price}
-//         helperText={errors.price}
-//         onChange={handleChange}
-//       />
-//       <Button type="submit" variant="contained">
-//         enviar
-//       </Button>
-//     </form>
-//   );
-// }
