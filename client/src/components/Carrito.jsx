@@ -98,10 +98,10 @@ const Carrito = () => {
               sumar 1 Producto
             </button>
             <button
-              className={styles.ImagenPequena}
+              className={styles.BotonEliminar}
               onClick={() => eliminarProducto1(producto.id)}
             >
-              <img src={eliminarIcono} alt="Eliminar Producto" />
+              Eliminar Productos
             </button>
           </div>
         </div>

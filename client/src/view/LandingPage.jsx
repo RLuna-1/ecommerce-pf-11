@@ -144,10 +144,6 @@ function LandingPage() {
 	);
 }
 
-function mapStateToProps(state) {
-	return {
-	  isAuthenticated: state.auth.isAuthenticated,
-	};
-  }
 
-export default connect(mapStateToProps)(LandingPage);
+
+export default LandingPage;

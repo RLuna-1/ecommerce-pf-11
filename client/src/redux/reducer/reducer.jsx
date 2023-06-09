@@ -179,8 +179,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: action.payload,
       };
-    default:
-      return state;
 
     case SET_CURRENT_PAGE:
       return {
@@ -193,6 +191,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productsPerPage: action.payload,
       };
+
+    default:
+      return state;
   }
 };
 
