@@ -81,6 +81,7 @@ const getProducts = async (
     order: orderClause,
     limit: pageSize,
     offset: offset,
+    distinct:true,
     include: [
       {
         model: Category,
@@ -103,11 +104,7 @@ const getProducts = async (
     ],
   });
 
-  console.log(
-    responseProducts.rows.map((product) => product.categories[0].name)
-  );
-
-  console.log(responseProducts.rows.length)
+  console.log(responseProducts.count)
 
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
