@@ -9,8 +9,6 @@ const paymentsRouter = require("./paymentsRouter");
 const transactionsRouter = require("./transactionsRouter");
 const ratingsRouter = require("./ratingsRouter");
 const authRouter = require("./authRouter")
-const carritoRouter = require('./carritoRouter');
-const mercadopagoRouter = require("./mercadopagoRouter")
 
 
 const mainRouter = Router();
@@ -24,8 +22,6 @@ mainRouter.use("/categories", categoriesRouter);
 mainRouter.use("/payments", paymentsRouter);
 mainRouter.use("/transactions", transactionsRouter);
 mainRouter.use("/ratings", ratingsRouter);
-mainRouter.use("/auth", authRouter);
-mainRouter.use("/carrito", carritoRouter);
-mainRouter.use("/mercadopago", mercadopagoRouter);
+mainRouter.use("/auth", authRouter)
 
 module.exports = mainRouter;
