@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../components/AuthContext";
 import { loginUser } from "../redux/actions/actions";
 import { connect } from "react-redux";
 import style from "../css/Login.module.css";
@@ -7,9 +8,12 @@ import Google from "../img/Google.png";
 import Apple from "../img/AppleLogin.png";
 import Microsoft from "../img/Microsoft.png";
 import { Link, useNavigate } from "react-router-dom";
+import Nav from '../components/Nav';
 
 export function Login() {
   const navigate = useNavigate();
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
+
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -33,14 +37,16 @@ export function Login() {
     event.preventDefault();
     const loginExitoso = await loginUser(state);
     if (loginExitoso) {
-    navigate("/Home");
-  } else {
-   //nada XD
-  }
+      login(); 
+      navigate("/Home");
+    } else {
+      // nada XD
+    }
   };
 
   return (
     <div className={style.General}>
+      {isLoggedIn && <Nav />}
       <div className={style.DivBienvenido}>
         <h1>Bienvenidos a CodeXpress</h1>
         <p>
@@ -120,6 +126,7 @@ export function Login() {
         </div>
       </div>
     </div>
+    
   );
 }
 

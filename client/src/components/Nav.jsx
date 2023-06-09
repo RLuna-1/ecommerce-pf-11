@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import LogoClaro from "../img/LogoClaro.png";
 import Carrito from "../img/Carrito.png";
 import FilterComponent from './FilterByCategorie';
 import Ordenar from './Ordenar';
+import { AuthContext } from "./AuthContext";
 
 const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
     // Aquí puedes realizar la lógica de cierre de sesión, como limpiar las variables de sesión, etc.
-    setIsLoggedIn(true);
+    logout();
     navigate("/login"); // Redireccionar al usuario a la página de inicio de sesión
   };
 
@@ -73,15 +74,15 @@ const Nav = () => {
             </button>
           </Link>
         )}
-        {isLoggedIn ? (
-          <Link to="/login">
-            <button onClick={handleLogout} className={styles.Iniciar}>Iniciar Sesión</button>
-          </Link>
-        ) : (
+           {isLoggedIn ? (
           <Link to="/">
             <button onClick={handleLogout} className={styles.Cerrar}>
               Cerrar Sesión
             </button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button className={styles.Iniciar}>Iniciar Sesión</button>
           </Link>
         )}
       </div>

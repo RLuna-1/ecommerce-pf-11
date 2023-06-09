@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from "react-router-dom"
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import styles from '../css/LandingPage.module.css';
 import rayo from '../img/rayo-landing.png';
 import cubo from '../img/cubo-landing.png'
@@ -12,7 +13,7 @@ import MasterCard from '../img/MasterCard.png';
 import CheckOn from '../img/CheckOn.jpg';
 import CheckOff from '../img/CheckOff.jpg';
 
-export default function LandingPage() {
+function LandingPage() {
 	const images = [Carousel1, Carousel2, Carousel3];
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [activeButtonIndex, setActiveButtonIndex] = useState(0);
@@ -21,7 +22,7 @@ export default function LandingPage() {
 		setCurrentImageIndex(index);
 		setActiveButtonIndex(index);
 	};
-
+	
 	useEffect(() => {
 		const interval = setInterval(() => {
 		  const newIndex = (currentImageIndex + 1) % images.length;
@@ -142,3 +143,11 @@ export default function LandingPage() {
 		</main>
 	);
 }
+
+function mapStateToProps(state) {
+	return {
+	  isAuthenticated: state.auth.isAuthenticated,
+	};
+  }
+
+export default connect(mapStateToProps)(LandingPage);
