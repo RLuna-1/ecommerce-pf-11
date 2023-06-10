@@ -11,9 +11,18 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   });
+
+  License.prototype.softDelete = async function () {
+    this.deleted = true;
+    await this.save();
+  };
 
   return License;
 };

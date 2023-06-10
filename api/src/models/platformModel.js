@@ -13,7 +13,17 @@ module.exports = (sequelize) => {
       allowNull: false,
       
     },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    
   });
+  Platform.prototype.softDelete = async function () {
+    this.deleted = true;
+    await this.save();
+  };
 
   return Platform;
 };
