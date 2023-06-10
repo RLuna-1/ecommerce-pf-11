@@ -22,6 +22,8 @@ import {
   SET_CURRENT_PAGE,
   SET_PRODUCTS_PER_PAGE,
   ADD_ONE_FROM_CART,
+  ADD_TO_WISHLIST,
+  REMOVE_FROM_WISHLIST,
 } from "../consts";
 
 const initialState = {
@@ -36,6 +38,7 @@ const initialState = {
   cart: [],
   currentPage: 1,
   productsPerPage: 10,
+  wishlist: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -150,7 +153,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case ADD_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
-      return itemToDelete.quantity = 1
+      return (itemToDelete.quantity = 1
         ? {
             ...state,
             cart: state.cart.map((item) =>
@@ -162,7 +165,7 @@ const rootReducer = (state = initialState, action) => {
         : {
             ...state,
             cart: state.cart.filter((item) => item.id !== action.payload),
-          };
+          });
     }
     case REMOVE_ALL_FROM_CART: {
       const updatedCartItems = state.cart.filter(
@@ -194,6 +197,19 @@ const rootReducer = (state = initialState, action) => {
 
     default:
       return state;
+
+    case ADD_TO_WISHLIST:
+      return {
+        ...state,
+        wishlist: [...state.wishlist, action.payload],
+      };
+    case REMOVE_FROM_WISHLIST:
+      return {
+        ...state,
+        wishlist: state.wishlist.filter(
+          (product) => product.id !== action.payload
+        ),
+      };
   }
 };
 

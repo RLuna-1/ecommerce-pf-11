@@ -4,23 +4,23 @@ import axios from "axios";
 const Wishlist = ({ id }) => {
   const [wishlist, setWishlist] = useState(null);
 
-  useEffect(() => {
-    const fetchWishlist = async () => {
-      try {
-        const response = await axios.get(`/wishlist/${id}`);
-        setWishlist(response.data.wishlist);
-      } catch (error) {
-        console.error("Error fetching wishlist:", error);
-      }
-    };
+  const fetchWishlist = async () => {
+    try {
+      const response = await axios.get(`/wishlist/${id}`);
+      setWishlist(response.data.wishlist);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchWishlist();
   }, [id]);
 
   const removeProduct = async (productId) => {
     try {
       await axios.delete(`/wishlist/${id}/products/${productId}`);
-      fetchWishlist(); // Actualizar la wishlist después de eliminar el producto
+      fetchWishlist();
     } catch (error) {
       console.error("Error removing product from wishlist:", error);
     }

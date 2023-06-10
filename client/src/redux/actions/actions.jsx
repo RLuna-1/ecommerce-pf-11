@@ -10,7 +10,9 @@ import {
   SET_CART,
   SET_CURRENT_PAGE,
   SET_PRODUCTS_PER_PAGE,
+  
 } from "../consts";
+
 import axios from "axios";
 import Swal from "sweetalert2";
 export const ADD_USER = "ADD_USER";
@@ -23,8 +25,11 @@ export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
+export const ADD_TO_WISHLIST = 'ADD_TO_WISHLIST';
+export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
 
 const URL = 'http://localhost:3001'
+
 
 export function getAllProducts(page) {
   return function (dispatch) {
@@ -358,25 +363,30 @@ export const resetFilter = () => {
 };
 
 export function addToCarta(payload) {
-  try {
-    Swal.fire({
-      text: "Se ha agregado el producto",
-      icon: "success",
-      timer: 1100,
-    });
+  return (dispatch) => {
+    try {
+      dispatch({
+        type: ADD_TO_CART,
+        payload,
+      });
 
-    return {
-      type: ADD_TO_CART,
-      payload,
-    };
-  } catch {
-    Swal.fire({
-      text: "Error al agregar el producto",
-      icon: "warning",
-      timer: 2000,
-    });
-  }
+      Swal.fire({
+        text: "Se ha agregado el producto",
+        icon: "success",
+        timer: 1100,
+      });
+      
+    } catch (error) {
+      Swal.fire({
+        text: "Error al agregar el producto",
+        icon: "warning",
+        timer: 2000,
+      });
+      throw error;
+    }
+  };
 }
+
 
 
 export function remove1FromCart(payload) {
@@ -418,3 +428,17 @@ export function setProductsPerPage(count) {
     payload: count,
   };
 }
+
+export const addToWishlist = (id) => {
+  return {
+    type: ADD_TO_WISHLIST,
+    payload: id,
+  };
+};
+
+export const removeFromWishlist = (id) => {
+  return {
+    type: REMOVE_FROM_WISHLIST,
+    payload: id,
+  };
+};

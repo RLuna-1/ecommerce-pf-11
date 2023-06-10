@@ -1,29 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from '../css/Producto.module.css';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom"; 
+import * as actions from "../redux/actions/actions";
+import styles from "../css/Producto.module.css";
 
-const Producto = ({ products, addToCart }) => {
-	return (
-		<div>
-			<div className={styles.Producto} key={products.id}>
-				<Link to={`/detail/${products.id}`}>
-					<button>
-						<img src={products.image} alt='Imagen del producto' />
-					</button>
-				</Link>
-				<h1>{products.name}</h1>
-				<h2>$ {products.price}</h2>
-				<p>categotia: {products.categories[0].name}</p>
-				<p>plataforma: {products.platforms[0].name}</p>
-				<p>{products.description}</p>
-				<button
-					className={styles.BotonAgregar}
-					onClick={() => addToCart(products.id)}>
-					Agregar
-				</button>
-			</div>
-		</div>
-	);
-};
+function Producto({ product }) {
+  const dispatch = useDispatch();
+
+  const addToCart = (id) => {
+    dispatch(actions.addToCarta(id));
+  };
+
+  const addToWishlist = (id) => {
+    dispatch(actions.addToWishlist(id));
+  };
+
+  return (
+    <div className={styles.Producto}>
+      <div key={product.id}>
+        <Link to={`/detail/${product.id}`}>
+          <button>
+            <img src={product.image} alt='Imagen del producto' />
+          </button>
+        </Link>
+        <h1>{product.name}</h1>
+        <h2>$ {product.price}</h2>
+        <p>categotia: {product.categories[0].name}</p>
+        <p>plataforma: {product.platforms[0].name}</p>
+        <p>{product.description}</p>
+      </div>
+      <button onClick={() => addToCart(product.id)}>Agregar al carrito</button>
+      <button onClick={() => addToWishlist(product.id)}>Agregar a la lista de deseos</button>
+    </div>
+  );
+}
 
 export default Producto;
+
+

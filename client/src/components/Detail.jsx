@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
+import styles from "../css/Detail.css";
 import * as actions from "../redux/actions/actions";
 
 export default function Detail() {
@@ -10,6 +10,7 @@ export default function Detail() {
   const { id } = useParams();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -23,21 +24,20 @@ export default function Detail() {
 
     fetchProduct();
   }, [id]);
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
-  const addToCart = () => {
-    console.log(product.id);
-    dispatch(actions.addToCarta(id));
+
+  const addToCart = (productId) => {
+    dispatch(actions.addToCarta(productId));
   };
+  
 
   return (
-
     <main>
       <div style={{ display: "flex" }}>
-        <div
-          style={{ Width: "100%", border: "1px solid #000", padding: "10px" }}
-        >
+        <div style={{ width: "100%", border: "1px solid #000", padding: "10px" }}>
           <div>
             <div>
               <img
@@ -50,43 +50,38 @@ export default function Detail() {
         </div>
 
         <div style={{ flex: "60%" }}>
-
           {product ? (
             <article>
               <header>
-                <h1 className='text-2xl font-bold mb-4'>Detalles</h1>
+                <h1 className="text-2xl font-bold mb-4">Detalles</h1>
               </header>
-              <section className='mb-4'>
-                <h2 className='text-xl font-semibold mb-2'>{product.name}</h2>
+              <section className="mb-4">
+                <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
               </section>
-              <section className='mb-4'>
-                <h2 className='text-xl font-semibold mb-2'>Precio</h2>
+              <section className="mb-4">
+                <h2 className="text-xl font-semibold mb-2">Precio</h2>
                 <p>${product.price}</p>
               </section>
-              <section className='mb-4'>
-                <h2 className='text-xl font-semibold mb-2'>Descripción</h2>
-                <p className='mb-4'>{product.description}</p>
+              <section className="mb-4">
+                <h2 className="text-xl font-semibold mb-2">Descripción</h2>
+                <p className="mb-4">{product.description}</p>
               </section>
-              <section className='mb-4'>
-                <h2 className='text-xl font-semibold mb-2'>Categoría</h2>
+              <section className="mb-4">
+                <h2 className="text-xl font-semibold mb-2">Categoría</h2>
                 <p>{product.categoria}</p>
               </section>
               <section>
-
                 <Link to={"/home"}>
-                  <button>
-
-                    <span>Regresar a inicio</span>
+                  <button className={styles.Boton}>
+                    Regresar a inicio
                   </button>
                 </Link>
               </section>
-
-              <Link to={"/carrito"}>
-                <button onClick={addToCart}>
-
-                  <span>Agregar al Carrito</span>
-                </button>
-              </Link>
+              
+              <button className={styles.Boton} onClick={() => addToCart(product.id)}>
+                Agregar al Carrito
+              </button>
+             
             </article>
           ) : (
             <p>Loading...</p>
@@ -95,5 +90,5 @@ export default function Detail() {
       </div>
     </main>
   );
-
 }
+

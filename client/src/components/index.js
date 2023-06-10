@@ -10,7 +10,7 @@ import Producto from "./producto";
 import FilterByCategorie from './FilterByCategorie';
 import Productos from './productos';
 import Carousel from "./Carousel";
-
+import Wishlist from "./Wishlist";
 
 export {
 	Nav,
@@ -25,5 +25,6 @@ export {
 	FilterByCategorie,
 	Productos,
 	Carousel,
+	Wishlist,
 }
 

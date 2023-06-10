@@ -8,6 +8,7 @@ import {
   Carrito,
   SingUp,
   Producto,
+  Wishlist,
 } from "../components/index";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "../css/App.css";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/register" element={<SingUp />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/vender" element={<NewForm/>} />
+        <Route path="/wishlist" element={<Wishlist/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/vender" element={<FormNewProduc />} />
         <Route path="/detail/:id" element={<Detail/>} />
