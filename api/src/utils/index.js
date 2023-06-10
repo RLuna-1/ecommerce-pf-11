@@ -12,6 +12,13 @@ const seedDB = async () => {
 
     // Crear los productos en la base de datos
     for (const product of products) {
+      // Verificar si el producto ya existe en la base de datos
+      const existingProduct = await Product.findOne({ where: { name: product.name } });
+      if (existingProduct) {
+
+        continue;
+      }
+
       // Crear el producto en la base de datos
       const createdProduct = await Product.create({
         name: product.name,
@@ -58,9 +65,11 @@ const seedDB = async () => {
       await createdProduct.addCategories(productCategories, { through: { timestamps: false } });
       await createdProduct.addPlatforms(productPlatforms, { through: { timestamps: false } });
       await createdProduct.addLicenses(productLicenses, { through: { timestamps: false } });
+
+
     }
 
-    console.log("Products uploaded successfully.");
+    console.log("Products upload completed.");
   } catch (error) {
     console.error("Failed to upload dummy products:", error);
   }
@@ -110,4 +119,38 @@ const checkUser = (req, res, next) => {
   }
 };
 
-module.exports = { seedDB, requireAuth };
+
+const authMiddleware = async (req, res, next) => {
+  try {
+
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(401).json({ error: 'Acceso no autorizado' });
+    }
+    const decoded = jwt.verify(token, 'secreto'); 
+    const userId = decoded.userId;
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(401).json({ error: 'Acceso no autorizado' });
+    }
+    req.user = user;
+
+    next();
+  } catch (error) {
+    res.status(500).json({ error: 'Error de autenticación' });
+  }
+};
+
+const getSuccess = (req, res) => {
+  try {
+    res.status(200).json("Sucess!")
+  } catch (error) {
+    res.status(500).json({error: "An error ocurred "})
+  }
+}
+
+
+
+
+module.exports = { seedDB, requireAuth, authMiddleware, getSuccess };
