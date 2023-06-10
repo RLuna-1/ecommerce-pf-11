@@ -20,7 +20,17 @@ router.post("/", (req, res) => {
     binary_mode: true,
   };
 
-  prod?.forEach((prod) => {
+  if (Array.isArray(prod)) {
+    prod.forEach((item) => {
+      preference.items.push({
+        title: item.title,
+        currency_id: "USD",
+        quantity: item.quantity,
+        price: item.price,
+        unit_price: item.price,
+      });
+    });
+  } else {
     preference.items.push({
       title: prod.title,
       currency_id: "USD",
@@ -28,7 +38,7 @@ router.post("/", (req, res) => {
       price: prod.price,
       unit_price: prod.price,
     });
-  });
+  }
 
   mercadopago.preferences
     .create(preference)
