@@ -29,8 +29,8 @@ function Producto({ product }) {
         <p>plataforma: {product.platforms[0].name}</p>
         <p>{product.description}</p>
       </div>
-      <button onClick={() => addToCart(product.id)}>Agregar al carrito</button>
-      <button onClick={() => addToWishlist(product.id)}>Agregar a la lista de deseos</button>
+      <button className={styles.BotonAgregar} onClick={() => addToCart(product.id)}>Agregar al carrito</button>
+      <button className={styles.BotonAgregar} onClick={() => addToWishlist(product.id)}>Agregar a la lista de deseos</button>
     </div>
   );
 }
