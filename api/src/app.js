@@ -39,7 +39,7 @@ passport.use(
         done(null, user);
       } catch (error) {
         const redirectUrl = "http://localhost:3000/login"; 
-        done(error, false, { message: "Authentication failed", redirectUrl });
+        done(false, false, { message: "Authentication failed", redirectUrl });
       }
     }
   )
