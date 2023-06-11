@@ -23,6 +23,8 @@ import {
 	SET_PRODUCTS_PER_PAGE,
 	SET_CART,
 	GET_CATEGORY_ROUTE,
+	GET_PLATFORMS_ROUTE,
+	GET_LICENSES_ROUTE,
 } from '../consts';
 
 const initialState = {
@@ -36,6 +38,8 @@ const initialState = {
 	filteredProducts: [],
 	cart: [],
     categoryRoute: [],
+    platformsRoute: [],
+    licensesRoute: [],
 }
 
 
@@ -71,7 +75,6 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				combinedFilters: action.payload,
 			};
-
 
 		case UPDATE_PRODUCT_LIST:
 			console.log('action.payload list:', action.payload);
@@ -161,33 +164,41 @@ const rootReducer = (state = initialState, action) => {
 			};
 		}
 
+		case SET_CART:
+			return {
+				...state,
+				cart: action.payload,
+			};
 
-    case SET_CART:
-      return {
-        ...state,
-        cart: action.payload,
-      };
+		case SET_CURRENT_PAGE:
+			return {
+				...state,
+				currentPage: action.payload,
+			};
 
-
-    case SET_CURRENT_PAGE:
-      return {
-        ...state,
-        currentPage: action.payload,
-      };
-
-    case SET_PRODUCTS_PER_PAGE:
-      return {
-        ...state,
-        productsPerPage: action.payload,
-      };
-    case GET_CATEGORY_ROUTE:
-        return{
-            ...state,
-            categoryRoute: action.payload
-        }
-       default:
-      return state;
-  }
+		case SET_PRODUCTS_PER_PAGE:
+			return {
+				...state,
+				productsPerPage: action.payload,
+			};
+		case GET_CATEGORY_ROUTE:
+			return {
+				...state,
+				categoryRoute: action.payload,
+			};
+		case GET_PLATFORMS_ROUTE:
+			return {
+				...state,
+				platformsRoute: action.payload,
+			};
+		case GET_LICENSES_ROUTE:
+			return {
+				...state,
+				licensesRoute: action.payload,
+			};
+		default:
+			return state;
+	}
 };
 
 export default rootReducer;

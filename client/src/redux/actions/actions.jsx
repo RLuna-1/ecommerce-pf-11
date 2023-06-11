@@ -12,6 +12,8 @@ import {
 	SET_PRODUCTS_PER_PAGE,
 	SET_COMBINED_FILTERS,
 	GET_CATEGORY_ROUTE,
+	GET_PLATFORMS_ROUTE,
+	GET_LICENSES_ROUTE,
 } from '../consts';
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -424,5 +426,38 @@ export function getCategoryRoute() {
 	};
 }
 
+export function getPlatformsRoute() {
+	return function (dispatch) {
+		return axios
+			.get(`${URL}/platforms`)
+			.then((response) => {
+				const platforms = response.data.map(
+					(platforms) => platforms.name,
+				);
+				dispatch({
+					type: GET_PLATFORMS_ROUTE,
+					payload: platforms,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+}
 
-
+export function getLicensesRoute() {
+	return function (dispatch) {
+		return axios
+			.get(`${URL}/licenses`)
+			.then((response) => {
+				const licenses = response.data.map((licenses) => licenses.name);
+				dispatch({
+					type: GET_LICENSES_ROUTE,
+					payload: licenses,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+}

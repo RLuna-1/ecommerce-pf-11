@@ -4,6 +4,8 @@ import {
 	filterProducts,
 	resetFilter,
 	getCategoryRoute,
+	getPlatformsRoute,
+	getLicensesRoute,
 } from '../redux/actions/actions';
 
 function Filter() {
@@ -15,21 +17,10 @@ function Filter() {
 	const dispatch = useDispatch();
 	const allProducts = useSelector((state) => state.allProducts);
 	const categoryRoute = useSelector((state) => state.categoryRoute);
+	const platformsRoute = useSelector((state) => state.platformsRoute);
+	const licensesRoute = useSelector((state) => state.licensesRoute);
 
-	const platforms = Array.from(
-		new Set(
-			allProducts.flatMap((product) =>
-				product.platforms.map((platform) => platform.name),
-			),
-		),
-	);
-	const licenses = Array.from(
-		new Set(
-			allProducts.flatMap((product) =>
-				product.licenses.map((license) => license.name),
-			),
-		),
-	);
+
 	const prices = Array.from(
 		new Set(allProducts.map((product) => product.price)),
 	);
@@ -119,6 +110,8 @@ function Filter() {
 			),
 		);
 		dispatch(getCategoryRoute());
+        dispatch(getPlatformsRoute());
+        dispatch(getLicensesRoute());
 	}, [
 		selectedCategories,
 		selectedPlatforms,
@@ -142,7 +135,7 @@ function Filter() {
 				</label>
 			))}
 			<h2>Plataformas</h2>
-			{platforms.map((platform) => (
+			{platformsRoute.map((platform) => (
 				<label key={platform}>
 					<input
 						type='checkbox'
@@ -166,7 +159,7 @@ function Filter() {
 				</label>
 			))}
 			<h2>Licencias</h2>
-			{licenses.map((license) => (
+			{licensesRoute.map((license) => (
 				<label key={license}>
 					<input
 						type='checkbox'
