@@ -14,8 +14,8 @@ const getProducts = async (
   order,
   direction,
   page = 1,
-  platform,
-  license
+  platforms,
+  licenses
 ) => {
   const pageSize = 10;
   const offset = (page - 1) * pageSize;
@@ -23,6 +23,7 @@ const getProducts = async (
   const orderClause = [];
   const whereClause = {};
   const includeClause = [];
+  console.log("platforms:", platforms);
 
   if (name) {
     whereClause.name = { [Op.iLike]: `%${name}%` };
@@ -60,6 +61,12 @@ const getProducts = async (
     };
   }
 
+  if (platforms && platforms.length > 0) {
+    whereClause.platforms = {
+      [Op.contains]: platforms,
+    };
+  }
+
   if (order === "price") {
     orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
   } else if (order === "quantity") {
@@ -68,63 +75,23 @@ const getProducts = async (
     orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
   }
 
-  if (categories) {
-    includeClause.push({
-      model: Category,
-      attributes: ["id", "name", "deleted"],
-      through: { attributes: [] },
-      where: { name: { [Op.iLike]: `%${categories}%` } },
-    });
-  }
-
-  if (platform) {
-    includeClause.push({
-      model: Platform,
-      attributes: ["id", "name"],
-      through: { attributes: [] },
-      where: { name: { [Op.iLike]: `%${platform}%` } },
-    });
-  }
-
-  if (license) {
-    includeClause.push({
-      model: License,
-      attributes: ["id", "name"],
-      through: { attributes: [] },
-      where: { name: { [Op.iLike]: `%${license}%` } },
-    });
-  }
-
   const responseProducts = await Product.findAndCountAll({
     where: whereClause,
     order: orderClause,
     limit: pageSize,
     offset: offset,
-    distinct:true,
+    distinct: true,
     include: [
       {
         model: Category,
-        attributes: ["id","name", "deleted"],
+        attributes: ["id", "name", "deleted"],
         through: { attributes: [] },
         where: categories ? { name: { [Op.iLike]: `%${categories}%` } } : {},
-      },
-      {
-        model: Platform,
-        attributes: ["id","name"],
-        through: { attributes: [] },
-        where: platform ? { name: { [Op.iLike]: `%${platform}%` } } : {},
-      },
-      {
-        model: License,
-        attributes: ["id","name"],
-        through: { attributes: [] },
-        where: license ? { name: { [Op.iLike]: `%${license}%` } } : {},
       },
     ],
   });
 
-  console.log(responseProducts.count)
-
+  console.log(responseProducts.count);
 
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
@@ -133,14 +100,15 @@ const getProducts = async (
   return responseProducts;
 };
 
-
 const createProduct = async (
   name,
   description,
   image,
   quantity,
   price,
-  categories
+  categories,
+  platforms,
+  licenses
 ) => {
   const newProduct = await Product.create({
     name: name,
@@ -148,11 +116,32 @@ const createProduct = async (
     image: image,
     quantity: quantity,
     price: price,
-    categories: categories,
+    platforms: platforms,
+    licenses: licenses,
   });
 
-  console.log(newProduct);
-  return await newProduct;
+  const productCategories = await Promise.all(
+    categories.map(async (category) => {
+      const [existingCategory] = await Category.findOrCreate({
+        where: { name: category },
+      });
+      return existingCategory;
+    })
+  );
+
+  await newProduct.addCategories(productCategories, {
+    through: { timestamps: false },
+  });
+
+  const product = await Product.findByPk(newProduct.id, {
+    include: {
+      model: Category,
+      through: { attributes: [] },
+      attributes: ["id", "name"],
+    },
+  });
+
+  return product;
 };
 
 const getProductDetail = async (id) => {
@@ -160,18 +149,6 @@ const getProductDetail = async (id) => {
     include: [
       {
         model: Category,
-        through: {
-          attributes: [],
-        },
-      },
-      {
-        model: Platform,
-        through: {
-          attributes: [],
-        },
-      },
-      {
-        model: License,
         through: {
           attributes: [],
         },
@@ -195,9 +172,15 @@ const updateProduct = async (
   image,
   quantity,
   price,
-  categories
+  categories,
+  platforms,
+  licenses
 ) => {
   const existingProduct = await Product.findByPk(id);
+
+  if (!existingProduct) {
+    throw new Error("Product not found");
+  }
 
   const updatedProduct = await existingProduct.update({
     name: name,
@@ -205,10 +188,24 @@ const updateProduct = async (
     image: image,
     quantity: quantity,
     price: price,
-    categories: categories,
+    platforms: platforms,
+    licenses: licenses,
   });
 
-  return updatedProduct;
+  if (categories) {
+    const categoryIds = Array.isArray(categories) ? categories : [categories];
+    await updatedProduct.setCategories(categoryIds);
+  }
+
+  const product = await Product.findByPk(updatedProduct.id, {
+    include: {
+      model: Category,
+      through: { attributes: [] },
+      attributes: ["id", "name"],
+    },
+  });
+
+  return product;
 };
 
 const deleteProduct = async (id) => {

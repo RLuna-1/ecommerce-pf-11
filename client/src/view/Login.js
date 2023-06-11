@@ -8,6 +8,7 @@ import Apple from "../img/AppleLogin.png";
 import Microsoft from "../img/Microsoft.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
+import GoogleLoginButton from "../components/GoogleLoginButton";
 
 axios.defaults.withCredentials = true
 
@@ -108,10 +109,9 @@ export function Login() {
           </div>
         </form>
         <div className={style.DivCuentas}>
-          <button>
+          <GoogleLoginButton>
             <img src={Google} className={style.Iconos} alt="Google" /> Continuar
-            con Google
-          </button>
+            con Google</GoogleLoginButton>
           <button>
             <img src={Apple} className={style.Iconos} alt="Apple" /> Continuar
             con Apple
