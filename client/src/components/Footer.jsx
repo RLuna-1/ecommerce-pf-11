@@ -2,16 +2,22 @@ import React from "react";
 import styles from "../css/Footer.module.css"
 //import LogoClaro from "../img/LogoClaro.png"
 import LogoOscuro from "../img/LogoOscuro.png"
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
 		<footer className={styles.footer}>
 			<div className={styles.footerContent}>
 				<div className={styles.DivLogo}>
-					<a href='/'>
+					<a>
 						<img className={styles.Logo} src={LogoOscuro} alt="Logo"/>
 					</a>
 				</div>
+			</div>
+			<div>
+				<Link to="/landing">
+				<h2> Sobre nosotros </h2>
+				</Link>
 			</div>
 			<div className={styles.Contactos}>
 				<h2>Contactanos</h2>

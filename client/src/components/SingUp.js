@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { addUser } from "../redux/actions/actions";
 import style from "../css/SingUp.module.css";
@@ -7,7 +7,9 @@ import LogoClaro from "../img/LogoClaro.png";
 
 export function Register(props) {
   //Crear state de Producto
-
+  useEffect(() => {
+    window.scrollTo(2, 0);
+  }, []);
   const [state, setState] = useState({
     email: "",
     password: "",

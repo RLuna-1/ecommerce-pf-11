@@ -6,6 +6,9 @@ import styles from "../css/Detail.css";
 import * as actions from "../redux/actions/actions";
 
 export default function Detail() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const cart = useSelector((state) => state.cart);

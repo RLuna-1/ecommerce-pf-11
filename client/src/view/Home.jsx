@@ -1,8 +1,11 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 import { Productos, Carousel } from '../components/index';
 import styles from '../css/Home.module.css'
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 	return (
 		<div>
       <div className={styles.General}>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import styles from '../css/LandingPage.module.css';
 import rayo from '../img/rayo-landing.png';
 import cubo from '../img/cubo-landing.png'
@@ -14,6 +13,9 @@ import CheckOn from '../img/CheckOn.jpg';
 import CheckOff from '../img/CheckOff.jpg';
 
 function LandingPage() {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
 	const images = [Carousel1, Carousel2, Carousel3];
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [activeButtonIndex, setActiveButtonIndex] = useState(0);

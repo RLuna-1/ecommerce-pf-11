@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../components/AuthContext";
 import { loginUser } from "../redux/actions/actions";
 import { connect } from "react-redux";
@@ -11,6 +11,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Nav from '../components/Nav';
 
 export function Login() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
   const { isLoggedIn, login, logout } = useContext(AuthContext);
 

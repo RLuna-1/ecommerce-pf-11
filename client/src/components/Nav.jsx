@@ -30,7 +30,7 @@ const Nav = () => {
   return (
     <div className={styles.Nav}>
       <div className={styles.DivLogo}>
-        <a href="/">
+        <a href="/home">
           <img className={styles.Logo} src={LogoClaro} alt="Logo" />
         </a>
       </div>
