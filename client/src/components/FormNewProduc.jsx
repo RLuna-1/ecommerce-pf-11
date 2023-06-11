@@ -1,28 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useNavigate } from 'react-router-dom';
 import FormULRValidate from '../utils/FormULRValidate';
 import FormValidationsShema from '../utils/FormValidationsShema';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProduct, getCategoryRoute } from '../redux/actions/actions';
+import Swal from 'sweetalert2';
+import '../css/index.css';
 
+//copiar y pegar todo el codigo en el componente FormNewProduct y eliminar el componente NewForm.jsx y elimiar de app.js la importacion de componente.
 export default function FormNewProduc() {
-	const navigate = useNavigate();
-
+	const dispatch = useDispatch();
+	const categoryRoute = useSelector((state) => state.categoryRoute);
+	console.log(categoryRoute);
 	const initialValues = {
-		title: '',
+		name: '',
 		description: '',
 		image: '',
-		marca: '',
-		category: '',
+		quantity: '',
 		price: '',
+		category: '',
+		platforms: '',
+		licenses:'',
 	};
 
-	const onSubmit = (values, { resetForm }) => {
-		// Redireccionar a la ruta "detail"
-		navigate('/detail');
-		// Borrar los datos del formulario
-		resetForm();
+	const onSubmit = async (values, { resetForm }) => {
+		try {
+			await dispatch(addProduct(values));
+			resetForm({
+				values: { ...initialValues, category:'' },
+			});
+			Swal.fire({
+				text: 'Se ha agregado el producto',
+				icon: 'success',
+				timer: 1100,
+			});
+		} catch (error) {
+			console.error('Error al agregar el producto:', error);
+			Swal.fire({
+				text: 'No Se ha agregado el producto',
+				icon: 'error',
+				title: 'Oops...',
+			});
+		}
 	};
 
+	useEffect(() => {
+		dispatch(getCategoryRoute());
+	}, [dispatch]);
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -31,17 +55,17 @@ export default function FormNewProduc() {
 			{({ values, setFieldValue, isValid }) => (
 				<Form className='max-w-md mx-auto mt-10 mb-10'>
 					<div className='mb-4'>
-						<label htmlFor='title' className='block mb-2 font-sans'>
+						<label htmlFor='name' className='block mb-2 font-sans'>
 							Titulo
 						</label>
 						<Field
 							type='text'
-							id='title'
-							name='title'
+							id='name'
+							name='name'
 							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
 						<ErrorMessage
-							name='title'
+							name='name'
 							component='div'
 							className='text-red-500'
 						/>
@@ -95,13 +119,13 @@ export default function FormNewProduc() {
 					</div>
 
 					<div className='mb-4'>
-						<label htmlFor='marca' className='block mb-2'>
-							Marca
+						<label htmlFor='quantity' className='block mb-2'>
+							Cantidad
 						</label>
 						<Field
-							type='text'
-							id='marca'
-							name='marca'
+							type='number'
+							id='quantity'
+							name='quantity'
 							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
 						<ErrorMessage
@@ -116,11 +140,15 @@ export default function FormNewProduc() {
 							Categoria
 						</label>
 						<Field
-							type='text'
+							as='select'
 							id='category'
 							name='category'
-							className='w-full p-2 border rounded drop-shadow-lg'
-						/>
+							className='w-full p-2 border rounded drop-shadow-lg'>
+							<option value=''>Seleccione una categoría</option>
+							{categoryRoute.map((category) => (
+								<option key={category}>{category}</option>
+							))}
+						</Field>
 						<ErrorMessage
 							name='category'
 							component='div'
@@ -141,6 +169,38 @@ export default function FormNewProduc() {
 						/>
 						<ErrorMessage
 							name='price'
+							component='div'
+							className='text-red-500'
+						/>
+					</div>
+					<div className='mb-4'>
+						<label htmlFor='platforms' className='block mb-2'>
+							Plataformas
+						</label>
+						<Field
+							type='text'
+							id='platforms'
+							name='platforms'
+							className='w-full p-2 border rounded drop-shadow-lg'
+						/>
+						<ErrorMessage
+							name='platforms'
+							component='div'
+							className='text-red-500'
+						/>
+					</div>
+					<div className='mb-4'>
+						<label htmlFor='licenses' className='block mb-2'>
+							Licencias
+						</label>
+						<Field
+							type='text'
+							id='licenses'
+							name='licenses'
+							className='w-full p-2 border rounded drop-shadow-lg'
+						/>
+						<ErrorMessage
+							name='licenses'
 							component='div'
 							className='text-red-500'
 						/>

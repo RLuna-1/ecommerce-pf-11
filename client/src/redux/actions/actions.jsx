@@ -10,7 +10,10 @@ import {
   SET_CART,
   SET_CURRENT_PAGE,
   SET_PRODUCTS_PER_PAGE,
-  
+  GET_PLATFORMS_ROUTE,
+	GET_LICENSES_ROUTE,
+  ADD_PRODUCT,
+  GET_CATEGORY_ROUTE,
 } from "../consts";
 
 import axios from "axios";
@@ -25,7 +28,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const VERIFY_PASSWORD = "VERIFY_PASSWORD";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
-export const ADD_TO_WISHLIST = 'ADD_TO_WISHLIST';
+export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
 
 const URL = 'http://localhost:3001'
@@ -429,12 +432,31 @@ export function setProductsPerPage(count) {
   };
 }
 
-export const addToWishlist = (id) => {
-  return {
-    type: ADD_TO_WISHLIST,
-    payload: id,
+export function addToWishlist(payload) {
+  return (dispatch) => {
+    try {
+      dispatch({
+        type: ADD_TO_WISHLIST,
+        payload,
+      });
+
+      Swal.fire({
+        text: "Se ha agregado el producto",
+        icon: "success",
+        timer: 1100,
+      });
+      
+    } catch (error) {
+      Swal.fire({
+        text: "Error al agregar el producto",
+        icon: "warning",
+        timer: 2000,
+      });
+      throw error;
+    }
   };
-};
+}
+
 
 export const removeFromWishlist = (id) => {
   return {
@@ -442,3 +464,71 @@ export const removeFromWishlist = (id) => {
     payload: id,
   };
 };
+export function getPlatformsRoute() {
+	return function (dispatch) {
+		return axios
+			.get(`${URL}/platforms`)
+			.then((response) => {
+				const platforms = response.data.map(
+					(platforms) => platforms.name,
+				);
+				dispatch({
+					type: GET_PLATFORMS_ROUTE,
+					payload: platforms,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+}
+
+export function getLicensesRoute() {
+	return function (dispatch) {
+		return axios
+			.get(`${URL}/licenses`)
+			.then((response) => {
+				const licenses = response.data.map((licenses) => licenses.name);
+				dispatch({
+					type: GET_LICENSES_ROUTE,
+					payload: licenses,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+}
+export function addProduct(payload) {
+	return function (dispatch) {
+		return axios
+			.post(`${URL}/products`, payload)
+			.then((response) => {
+				dispatch({
+					type: ADD_PRODUCT,
+					payload: response.data,
+				});
+			})
+			.catch((error) => {
+				console.error('Error adding product:', error);
+			});
+	};
+}
+export function getCategoryRoute() {
+	return function (dispatch) {
+		return axios
+			.get(`${URL}/categories`)
+			.then((response) => {
+				const categories = response.data.map(
+					(category) => category.name,
+				);
+				dispatch({
+					type: GET_CATEGORY_ROUTE,
+					payload: categories,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+}

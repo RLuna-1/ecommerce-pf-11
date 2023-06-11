@@ -17,10 +17,10 @@ const Wishlist = ({ id }) => {
     fetchWishlist();
   }, [id]);
 
-  const removeProduct = async (productId) => {
+  const removeProduct = async (id) => {
     try {
-      await axios.delete(`/wishlist/${id}/products/${productId}`);
-      fetchWishlist();
+      await axios.delete(`/wishlist/${id}/products/${id}`);
+      fetchWishlist(); // Update the wishlist after removing the product
     } catch (error) {
       console.error("Error removing product from wishlist:", error);
     }

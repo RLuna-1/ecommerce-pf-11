@@ -8,7 +8,8 @@ import {
 } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
-import eliminarIcono from '../img/cesto_basura.png';
+// import eliminarIcono from '../img/cesto_basura.png';
+
 const Carrito = () => {
   const cart = useSelector((state) => state.cart);
 
@@ -17,7 +18,7 @@ const Carrito = () => {
     .reduce(function (acumulador, elemento) {
       return acumulador + elemento;
     }, 0);
-  console.log(price);
+    
   const dispatch = useDispatch();
 
   useEffect(() => {

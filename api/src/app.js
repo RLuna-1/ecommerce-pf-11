@@ -5,9 +5,10 @@ const morgan = require("morgan");
 const mainRouter = require("./routes/index.js");
 const cors = require("cors");
 const passport = require("passport");
-const { Strategy: GoogleStrategy } = require('passport-google-oauth2');
-const{User} = require("./db")
+const { Strategy: GoogleStrategy } = require("passport-google-oauth2");
+const { User } = require("./db");
 const session = require("express-session");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 require("./db.js");
 
@@ -27,43 +28,45 @@ passport.use(
     async (request, accessToken, refreshToken, profile, done) => {
       try {
         const [user] = await User.findOrCreate({
-          where: { googleId: profile.id }, // Use the id field instead of googleId
+          where: { googleId: profile.id },
           defaults: {
             name: profile.name.givenName,
             last_name: profile.name.familyName,
             email: profile.email,
-            password: "", // Set a default value or leave it empty if not required
+            password: "",
           },
         });
         done(null, user);
       } catch (error) {
-        done(error, null);
+        const redirectUrl = "http://localhost:3000/login"; 
+        done(false, false, { message: "Authentication failed", redirectUrl });
       }
     }
   )
 );
 
-server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-server.use(bodyParser.json({ limit: '50mb' }));
+server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
-server.use(morgan('dev'));
+server.use(morgan("dev"));
 
-server.use(session({
-  secret: "shnawg is not paying the bills",
-  resave: false,
-  saveUninitialized: false
-}));
+server.use(
+  session({
+    secret: "shnawg is not paying the bills",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Initialize Passport
 server.use(passport.initialize());
 
-
 // Configurar opciones de CORS
 const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with the exact origin of your application
+  origin: "http://localhost:3000", // Replace with the exact origin of your application
   credentials: true,
-  methods: 'GET, POST, OPTIONS, PUT, DELETE',
-  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  methods: "GET, POST, OPTIONS, PUT, DELETE",
+  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
 };
 
 server.use(cors(corsOptions));

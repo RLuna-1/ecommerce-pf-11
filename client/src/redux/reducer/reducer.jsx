@@ -24,6 +24,10 @@ import {
   ADD_ONE_FROM_CART,
   ADD_TO_WISHLIST,
   REMOVE_FROM_WISHLIST,
+  GET_CATEGORY_ROUTE,
+  GET_PLATFORMS_ROUTE,
+	GET_LICENSES_ROUTE,
+  ADD_PRODUCT,
 } from "../consts";
 
 const initialState = {
@@ -39,6 +43,10 @@ const initialState = {
   currentPage: 1,
   productsPerPage: 10,
   wishlist: [],
+  platformsRoute: [],
+	licensesRoute: [],
+  categoryRoute: [],
+  newProduct: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -153,7 +161,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case ADD_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
-      return (itemToDelete.quantity = 1
+      return itemToDelete.quantity === 1
         ? {
             ...state,
             cart: state.cart.map((item) =>
@@ -165,7 +173,7 @@ const rootReducer = (state = initialState, action) => {
         : {
             ...state,
             cart: state.cart.filter((item) => item.id !== action.payload),
-          });
+          };
     }
     case REMOVE_ALL_FROM_CART: {
       const updatedCartItems = state.cart.filter(
@@ -195,9 +203,6 @@ const rootReducer = (state = initialState, action) => {
         productsPerPage: action.payload,
       };
 
-    default:
-      return state;
-
     case ADD_TO_WISHLIST:
       return {
         ...state,
@@ -210,6 +215,29 @@ const rootReducer = (state = initialState, action) => {
           (product) => product.id !== action.payload
         ),
       };
+      case GET_CATEGORY_ROUTE:
+			return {
+				...state,
+				categoryRoute: action.payload,
+			};
+      case GET_PLATFORMS_ROUTE:
+			return {
+				...state,
+				platformsRoute: action.payload,
+			};
+		case GET_LICENSES_ROUTE:
+			return {
+				...state,
+				licensesRoute: action.payload,
+			};
+      case ADD_PRODUCT:
+			return {
+				...state,
+				allProducts: [...state.allProducts, action.payload],
+				newProduct: action.payload,
+			};
+		default:
+			return state;
   }
 };
 

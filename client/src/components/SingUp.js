@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { addUser } from "../redux/actions/actions";
 import style from "../css/SingUp.module.css";
@@ -6,10 +6,17 @@ import { Link } from "react-router-dom";
 import LogoClaro from "../img/LogoClaro.png";
 
 export function Register(props) {
-  //Crear state de Producto
-  useEffect(() => {
-    window.scrollTo(2, 0);
+  const centerRef = useRef(null);
+
+useEffect(() => {
+    if (centerRef.current) {
+      centerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   }, []);
+
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -43,7 +50,7 @@ export function Register(props) {
   };
 
   return (
-    <div className={style.General}>
+    <div ref={centerRef} className={style.General}>
       <div className={style.DivBienvenido}>
         <h1>Bienvenidos a CodeXpress</h1>
         <p>

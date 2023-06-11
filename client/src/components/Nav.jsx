@@ -16,6 +16,7 @@ const Nav = () => {
     // Aquí puedes realizar la lógica de cierre de sesión, como limpiar las variables de sesión, etc.
     logout();
     navigate("/login"); // Redireccionar al usuario a la página de inicio de sesión
+    // logoutUser();
   };
 
   const handleOrdenarChange = (opcion) => {
@@ -41,6 +42,9 @@ const Nav = () => {
           </Link>
           <Link to="/vender">
             <button className={styles.ButtonNav}>Vender</button>
+          </Link>
+          <Link to="/wishlist">
+            <button className={styles.ButtonNav}>Deseos</button>
           </Link>
           {pathname !== "/vender" && pathname !== "/carrito" && (
           <div>

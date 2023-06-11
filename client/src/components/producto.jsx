@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
 import styles from "../css/Producto.module.css";
+
 
 function Producto({ product }) {
   const dispatch = useDispatch();
@@ -11,8 +12,8 @@ function Producto({ product }) {
     dispatch(actions.addToCarta(id));
   };
 
-  const addToWishlist = (id) => {
-    dispatch(actions.addToWishlist(id));
+  const agregarAlWishlist = (id) => {
+      dispatch(actions.addToWishlist(id));
   };
 
   return (
@@ -30,11 +31,9 @@ function Producto({ product }) {
         <p>{product.description}</p>
       </div>
       <button className={styles.BotonAgregar} onClick={() => addToCart(product.id)}>Agregar al carrito</button>
-      <button className={styles.BotonAgregar} onClick={() => addToWishlist(product.id)}>Agregar a la lista de deseos</button>
+      <button className={styles.BotonAgregar} onClick={() => agregarAlWishlist(product.id)}>Agregar a la lista de deseos</button>
     </div>
   );
 }
 
 export default Producto;
-
-

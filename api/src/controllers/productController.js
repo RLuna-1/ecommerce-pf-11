@@ -14,66 +14,65 @@ const getProducts = async (
   order,
   direction,
   page = 1,
-  platform,
-  license
+  platforms,
+  licenses
 ) => {
   const pageSize = 8;
   const offset = (page - 1) * pageSize;
 
   const orderClause = [];
   const whereClause = {};
-  let includeClause = [];
+  const includeClause = [];
+  console.log("platforms:", platforms);
 
-  {
-    if (name) {
-      whereClause.name = { [Op.iLike]: `%${name}%` };
-    }
+  if (name) {
+    whereClause.name = { [Op.iLike]: `%${name}%` };
   }
 
-  {
-    if (quantitygte && quantitylte) {
-      whereClause.quantity = {
-        [Op.between]: [quantitygte, quantitylte],
-      };
-    } else if (quantitygte) {
-      whereClause.quantity = {
-        [Op.gte]: quantitygte,
-      };
-    } else if (quantitylte) {
-      whereClause.quantity = { [Op.lte]: quantitylte };
-    } else if (quantity) {
-      whereClause.quantity = { [Op.eq]: quantity };
-    }
+  if (quantitygte && quantitylte) {
+    whereClause.quantity = {
+      [Op.between]: [quantitygte, quantitylte],
+    };
+  } else if (quantitygte) {
+    whereClause.quantity = {
+      [Op.gte]: quantitygte,
+    };
+  } else if (quantitylte) {
+    whereClause.quantity = { [Op.lte]: quantitylte };
+  } else if (quantity) {
+    whereClause.quantity = { [Op.eq]: quantity };
   }
 
-  {
-    if (pricegte && pricelte) {
-      whereClause.price = {
-        [Op.between]: [pricegte, pricelte],
-      };
-    } else if (pricegte) {
-      whereClause.price = {
-        [Op.gte]: pricegte,
-      };
-    } else if (pricelte) {
-      whereClause.price = {
-        [Op.lte]: pricelte,
-      };
-    } else if (price) {
-      whereClause.price = {
-        [Op.eq]: price,
-      };
-    }
+  if (pricegte && pricelte) {
+    whereClause.price = {
+      [Op.between]: [pricegte, pricelte],
+    };
+  } else if (pricegte) {
+    whereClause.price = {
+      [Op.gte]: pricegte,
+    };
+  } else if (pricelte) {
+    whereClause.price = {
+      [Op.lte]: pricelte,
+    };
+  } else if (price) {
+    whereClause.price = {
+      [Op.eq]: price,
+    };
   }
 
-  {
-    if (order === "price") {
-      orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
-    } else if (order === "quantity") {
-      orderClause.push(["quantity", direction === "DESC" ? "DESC" : "ASC"]);
-    } else if (order === "alphabetical") {
-      orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
-    }
+  if (platforms && platforms.length > 0) {
+    whereClause.platforms = {
+      [Op.contains]: platforms,
+    };
+  }
+
+  if (order === "price") {
+    orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
+  } else if (order === "quantity") {
+    orderClause.push(["quantity", direction === "DESC" ? "DESC" : "ASC"]);
+  } else if (order === "alphabetical") {
+    orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
   }
 
   const responseProducts = await Product.findAndCountAll({
@@ -81,30 +80,18 @@ const getProducts = async (
     order: orderClause,
     limit: pageSize,
     offset: offset,
-    distinct:true,
+    distinct: true,
     include: [
       {
         model: Category,
-        attributes: ["id","name", "deleted"],
+        attributes: ["id", "name", "deleted"],
         through: { attributes: [] },
         where: categories ? { name: { [Op.iLike]: `%${categories}%` } } : {},
-      },
-      {
-        model: Platform,
-        attributes: ["id","name"],
-        through: { attributes: [] },
-        where: platform ? { name: { [Op.iLike]: `%${platform}%` } } : {},
-      },
-      {
-        model: License,
-        attributes: ["id","name"],
-        through: { attributes: [] },
-        where: license ? { name: { [Op.iLike]: `%${license}%` } } : {},
       },
     ],
   });
 
-  console.log(responseProducts.count)
+  console.log(responseProducts.count);
 
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
@@ -119,7 +106,9 @@ const createProduct = async (
   image,
   quantity,
   price,
-  categories
+  categories,
+  platforms,
+  licenses
 ) => {
   const newProduct = await Product.create({
     name: name,
@@ -127,11 +116,32 @@ const createProduct = async (
     image: image,
     quantity: quantity,
     price: price,
-    categories: categories,
+    platforms: platforms,
+    licenses: licenses,
   });
 
-  console.log(newProduct);
-  return await newProduct;
+  const productCategories = await Promise.all(
+    categories.map(async (category) => {
+      const [existingCategory] = await Category.findOrCreate({
+        where: { name: category },
+      });
+      return existingCategory;
+    })
+  );
+
+  await newProduct.addCategories(productCategories, {
+    through: { timestamps: false },
+  });
+
+  const product = await Product.findByPk(newProduct.id, {
+    include: {
+      model: Category,
+      through: { attributes: [] },
+      attributes: ["id", "name"],
+    },
+  });
+
+  return product;
 };
 
 const getProductDetail = async (id) => {
@@ -139,18 +149,6 @@ const getProductDetail = async (id) => {
     include: [
       {
         model: Category,
-        through: {
-          attributes: [],
-        },
-      },
-      {
-        model: Platform,
-        through: {
-          attributes: [],
-        },
-      },
-      {
-        model: License,
         through: {
           attributes: [],
         },
@@ -174,9 +172,15 @@ const updateProduct = async (
   image,
   quantity,
   price,
-  categories
+  categories,
+  platforms,
+  licenses
 ) => {
   const existingProduct = await Product.findByPk(id);
+
+  if (!existingProduct) {
+    throw new Error("Product not found");
+  }
 
   const updatedProduct = await existingProduct.update({
     name: name,
@@ -184,10 +188,24 @@ const updateProduct = async (
     image: image,
     quantity: quantity,
     price: price,
-    categories: categories,
+    platforms: platforms,
+    licenses: licenses,
   });
 
-  return updatedProduct;
+  if (categories) {
+    const categoryIds = Array.isArray(categories) ? categories : [categories];
+    await updatedProduct.setCategories(categoryIds);
+  }
+
+  const product = await Product.findByPk(updatedProduct.id, {
+    include: {
+      model: Category,
+      through: { attributes: [] },
+      attributes: ["id", "name"],
+    },
+  });
+
+  return product;
 };
 
 const deleteProduct = async (id) => {
