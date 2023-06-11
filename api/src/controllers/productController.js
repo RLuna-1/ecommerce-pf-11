@@ -17,7 +17,7 @@ const getProducts = async (
   platforms,
   licenses
 ) => {
-  const pageSize = 10;
+  const pageSize = 8;
   const offset = (page - 1) * pageSize;
 
   const orderClause = [];
@@ -64,6 +64,12 @@ const getProducts = async (
   if (platforms && platforms.length > 0) {
     whereClause.platforms = {
       [Op.contains]: platforms,
+    };
+  }
+
+  if (licenses && licenses.length > 0) {
+    whereClause.licenses = {
+      [Op.contains]: licenses,
     };
   }
 
