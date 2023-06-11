@@ -7,7 +7,7 @@
       "price": 150,
       "categories": ["Diseño gráfico"],
       "licenses": ["Licencia de por vida", "Suscripción mensual"],
-      "platforms": ["Windows", "macOS", "Linux"]
+      "platforms": ["Windows", "Linux"]
     },
     {
       "name": "Desarrollo de Sitios Web Responsivos",
@@ -27,7 +27,7 @@
       "price": 100,
       "categories": ["Administración de proyectos"],
       "licenses": ["Suscripción mensual", "Suscripción anual"],
-      "platforms": ["Windows", "macOS", "Linux"]
+      "platforms": ["Windows", "Linux"]
     },
     {
       "name": "Automatización de Marketing",
@@ -187,7 +187,7 @@
       "price": 200,
       "categories": ["Análisis de datos"],
       "licenses": ["Suscripción mensual", "Suscripción anual"],
-      "platforms": ["Windows", "macOS", "Linux"]
+      "platforms": ["Windows", "Linux"]
     },
     {
       "name": "Gestión de Proyectos de Software",
