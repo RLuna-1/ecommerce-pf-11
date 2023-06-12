@@ -55,9 +55,11 @@ const Producto = ({ id, name, description, image, price, deleted, platforms, lic
 
     return (
       <div className="w-full max-w-sm bg-#1F2937 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img className="p-8 rounded-t-lg" src={image} alt="product image" />
-          </a>
+          <Link to={`/detail/${id}`}>
+	 				<button>
+ 					<img className="p-8 rounded-t-lg" src={image} alt='Imagen del producto' />
+	 				</button>
+	 			</Link>
           <div className="px-5 pb-5">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{name}</h5>
