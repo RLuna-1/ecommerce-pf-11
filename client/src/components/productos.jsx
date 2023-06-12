@@ -11,6 +11,7 @@ function Productos() {
   const products = useSelector((state) => state.products);
   const filters = useSelector((state) => state.filters);
   const cart = useSelector((state) => state.cart);
+  const categories = useSelector((state => state.categories))
 
   const addToCart = (id) => {
     dispatch(actions.addToCarta(id));
@@ -29,6 +30,7 @@ function Productos() {
   const renderProducts =
     products &&
     products.map((card, index) => (
+      
       <Producto
         key={index}
         id={card.id}
@@ -39,8 +41,11 @@ function Productos() {
         categories={card.categories}
         price={card.price}
         addToCart={addToCart}
+        
       />
     ));
+
+    console.log(categories)
 
   return (
     <div>

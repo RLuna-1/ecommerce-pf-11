@@ -26,6 +26,7 @@ function Filters() {
     );
   };
 
+
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
 
   const handlePlatformChange = (e) => {

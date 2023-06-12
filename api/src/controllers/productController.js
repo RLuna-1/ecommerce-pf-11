@@ -22,9 +22,6 @@ const getProducts = async (
 
   const orderClause = [];
   const whereClause = {};
-  const includeClause = [];
-  console.log("platforms:", platforms);
-  console.log("categories:", categories)
 
   if (name) {
     whereClause.name = { [Op.iLike]: `%${name}%` };
@@ -82,30 +79,25 @@ const getProducts = async (
     orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
   }
 
-  if (categories && categories.length > 0) {
-    includeClause.push({
-      model: Category,
-      attributes: ['id', 'name', 'deleted'],
-      through: { attributes: [] },
-      where: { name: { [Op.iLike]: { [Op.any]: categories } } },
-    });
-  }
-
   const responseProducts = await Product.findAndCountAll({
     where: whereClause,
     order: orderClause,
     limit: pageSize,
     offset: offset,
     distinct: true,
-    include: includeClause
-    // include: [
-    //   {
-    //     model: Category,
-    //     attributes: ["id", "name", "deleted"],
-    //     through: { attributes: [] },
-    //     where: categories ? { name: { [Op.iLike]: `%${categories}%` } } : {},
-    //   },
-    // ],
+    include: [
+      {
+        model: Category,
+        attributes: ["id", "name", "deleted"],
+        through: { attributes: [] },
+        where: categories
+          ? {
+              name: { [Op.iLike]: { [Op.any]: categories } },
+              deleted: false,
+            }
+          : { deleted: false },
+      },
+    ],
   });
 
   console.log(responseProducts.count);
