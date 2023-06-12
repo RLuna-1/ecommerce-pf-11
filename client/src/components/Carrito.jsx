@@ -60,7 +60,7 @@ const Carrito = () => {
         }));
 
         // Realizar la solicitud POST a tu ruta de Mercado Pago
-        const response = await axios.post("/ruta-de-mercado-pago", productos);
+        const response = await axios.post("/mercadopago", productos);
 
         // Resto del código para manejar la respuesta de Mercado Pago
 
