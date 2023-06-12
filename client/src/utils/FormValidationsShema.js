@@ -16,7 +16,7 @@ const validationSchemaForm = Yup.object().shape({
 			/^https?:\/\/[\w-]+(\.[\w-]+)+[/#?]?.*$/,
 			'La URL de la imagen debe comenzar con http:// o https://',
 		),
-	category: Yup.string().required('Este campo es obligatorio'),
+	categories: Yup.string().required('Este campo es obligatorio'),
 	platforms: Yup.string().required('Este campo es obligatorio'),
 	licenses: Yup.string().required('Este campo es obligatorio'),
 	price: Yup.number()
