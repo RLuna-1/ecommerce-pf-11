@@ -13,9 +13,10 @@ import {
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import "../css/App.css";
 import Login from "./Login";
-import { AuthProvider } from "../components/AuthContext";
+
 import NewForm from "../components/NewForm";
 // import ProductCard from "../components/ProductCard";
+import { AuthProvider } from '../components/AuthContext';
 function App() {
   const { pathname } = useLocation();
 
@@ -37,7 +38,7 @@ function App() {
         {/* <Route path="/carta" element={<ProductCard/>} /> */}
       </Routes>
       <Footer />
-    </AuthProvider>
+      </AuthProvider>
   );
 }
 

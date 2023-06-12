@@ -15,7 +15,7 @@ export function Login() {
     window.scrollTo(0, 0);
   }, []);
   const navigate = useNavigate();
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, logout } = useContext(AuthContext);
 
   const [state, setState] = useState({
     email: "",
@@ -40,7 +40,7 @@ export function Login() {
     event.preventDefault();
     const loginExitoso = await loginUser(state);
     if (loginExitoso) {
-      login(); 
+      setIsLoggedIn(true); 
       navigate("/Home");
     } else {
       // nada XD

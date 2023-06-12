@@ -16,7 +16,7 @@ import {
   GET_CATEGORY_ROUTE,
   SEARCH_BY_NAME,
 } from "../consts";
-
+import { toast } from 'react-toastify';
 import axios from "axios";
 import Swal from "sweetalert2";
 export const ADD_USER = "ADD_USER";
@@ -229,23 +229,24 @@ export const loginUser = async (payload) => {
 };
 
 
+
+
+
 export const logoutUser = () => {
   return function (dispatch) {
-    axios
+    return axios
       .get(`${URL}/auth/logout`)
       .then((response) => {
         localStorage.removeItem("user");
-        Swal.fire({
-          text: "Se ha cerrado la sesión",
-          icon: "success",
-          timer: "2000",
+        toast.success('Se ha cerrado la sesión', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 2000,
         });
       })
       .catch((error) => {
-        Swal.fire({
-          text: "Error",
-          icon: "warning",
-          timer: "2000",
+        toast.error('Error al cerrar sesión', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 2000,
         });
       });
   };

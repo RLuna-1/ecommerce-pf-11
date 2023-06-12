@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './redux/Store';
 import axios from 'axios';
-import { AuthProvider } from "./components/AuthContext";
+import { AuthProvider } from './components/AuthContext';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 

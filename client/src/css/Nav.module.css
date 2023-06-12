@@ -1,3 +1,4 @@
+
 .Nav{
     display: flex;
     padding: 0.5% 2% 1% 2%;
@@ -12,7 +13,7 @@
 }
 
 .Logo {
-    max-width: 50% !important
+    max-width: 50%;
 }
 
 .Logo:hover {
@@ -41,28 +42,28 @@
     transform: scale(1.02);
 }
 
+.DivLogin{
+    max-width: 20%;
+    max-height: auto;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
 .Carrito {
-    width: 60%;
-    height: 60%;
-    border: 0;
     background: none;
+    max-width: 5em;   
+    border: 0;
 }
 
 .Carrito img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 50%;
+    height: 100%;
     object-fit: contain;
 }
 
 .Carrito:hover {
     transform: scale(1.04);
-}
-
-.DivLogin{
-    width: 20%;
-    display: flex;
-    justify-content: right;
-    align-items: center;
 }
 
 .Iniciar {
@@ -137,6 +138,3 @@ a{
 .FiltroContent label {
     white-space: nowrap;
 }
-
-
-  

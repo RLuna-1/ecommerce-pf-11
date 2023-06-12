@@ -5,4 +5,9 @@
     height: 300px;
     justify-content: space-evenly;
     align-items: center;
+    margin: 10% 0 10% 0;
+}
+
+.FormContainer button {
+    margin-top: 3%;
 }
