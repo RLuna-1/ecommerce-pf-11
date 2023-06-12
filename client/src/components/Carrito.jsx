@@ -3,6 +3,7 @@ import styles from "../css/Carrito.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { remove1FromCart, removeFromCart } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Carrito = () => {
   const cart = useSelector((state) => state.cart);
@@ -42,7 +43,7 @@ const Carrito = () => {
     setMostrarBotonComprar(true); // Muestra el primer botón "Comprar" nuevamente
   };
 
-  const realizarCompra = () => {
+  const realizarCompra = async () => {
     if (
       nombre !== "" &&
       dni !== "" &&
@@ -50,7 +51,26 @@ const Carrito = () => {
       direccion !== "" &&
       codigoPostal !== ""
     ) {
-      setMensajeCompra("¡La compra se ha realizado exitosamente!");
+      try {
+        // Crear un objeto con los detalles de los productos
+        const productos = cart.map((producto) => ({
+          title: producto.name,
+          quantity: producto.quantity,
+          price: producto.price,
+        }));
+
+        // Realizar la solicitud POST a tu ruta de Mercado Pago
+        const response = await axios.post("/ruta-de-mercado-pago", productos);
+
+        // Resto del código para manejar la respuesta de Mercado Pago
+
+        setMensajeCompra("¡La compra se ha realizado exitosamente!");
+      } catch (error) {
+        console.error("Error al realizar el pago:", error);
+        setMensajeCompra(
+          "Ha ocurrido un error al realizar el pago. Por favor, intenta nuevamente."
+        );
+      }
     } else {
       setMensajeCompra("Por favor, completa todos los campos del formulario.");
     }
@@ -73,7 +93,9 @@ const Carrito = () => {
             Eliminar 1 Producto
           </button>
           <button
-           className={styles.BotonEliminar} onClick={() => eliminarProducto(producto.id)}>
+            className={styles.BotonEliminar}
+            onClick={() => eliminarProducto(producto.id)}
+          >
             Eliminar Productos
           </button>
         </div>
@@ -151,4 +173,3 @@ const Carrito = () => {
 };
 
 export default Carrito;
-
