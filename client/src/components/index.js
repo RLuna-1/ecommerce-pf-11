@@ -11,6 +11,7 @@ import Productos from './productos';
 import Carousel from "./Carousel";
 import Pagination from "./Pagination"
 import FilterProducts from './FilterProducts';
+import SearchBar from "./SearchBar";
 
 
 export {
@@ -26,6 +27,7 @@ export {
 	Productos,
 	Carousel,
 	// FilterProducts,
-	Pagination
+	Pagination,
+	SearchBar
 };
 

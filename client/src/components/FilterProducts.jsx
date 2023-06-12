@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilters, fetchCategories } from "../redux/actions/actions";
+import SearchBar from "../components/SearchBar";
+import { SearchContext } from "../redux/context/SearchContext";
 
 function Filters() {
   const dispatch = useDispatch();
@@ -8,6 +10,8 @@ function Filters() {
   const { filters } = useSelector((state) => state);
   const { products } = useSelector((state) => state);
   const { categories } = useSelector((state) => state);
+
+  const { handleSearchInputReset } = useContext(SearchContext);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -45,7 +49,7 @@ function Filters() {
   const [selectedLicenses, setSelectedLicenses] = useState([]);
 
   const handleLicenseChange = (e) => {
-    const license= e.target.value;
+    const license = e.target.value;
     const isChecked = e.target.checked;
 
     setSelectedLicenses((prevSelectedLicenses) => {
@@ -55,17 +59,42 @@ function Filters() {
       } else {
         updatedLicenses = prevSelectedLicenses.filter((p) => p !== license);
       }
-      dispatch(
-        setFilters({ ...filters, licenses: updatedLicenses, page: 1 })
-      );
+      dispatch(setFilters({ ...filters, licenses: updatedLicenses, page: 1 }));
       return updatedLicenses;
     });
+  };
+
+  const handleOrderChange = (event) => {
+    dispatch(setFilters({ ...filters, order: event.target.value }));
+  };
+
+  const handleDirectionChange = (event) => {
+    dispatch(setFilters({ ...filters, direction: event.target.value }));
+  };
+
+  const handleResetClick = () => {
+    const resetFilters = {
+      name: "",
+      categories: [],
+      platforms: [],
+      licenses: [],
+      order: "",
+      direction: "",
+      page: 1,
+    };
+    dispatch(setFilters(resetFilters));
+    handleSearchInputReset();
+    document.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0;
+    });
+    setSelectedPlatforms([]);
+    setSelectedLicenses([])
   };
 
   return (
     <div>
       Filters
-      <h2>Categorias</h2>
+      <h2>Categorías</h2>
       <select value={filters.categories} onChange={handleCategoryChange}>
         <option value="" disabled>
           Categorías
@@ -123,7 +152,7 @@ function Filters() {
         />
         Web
       </label>
-	  <h2>Licencias</h2>
+      <h2>Licencias</h2>
       <label key={6}>
         <input
           type="checkbox"
@@ -167,8 +196,30 @@ function Filters() {
           checked={selectedLicenses.includes("código abierto")}
           onChange={handleLicenseChange}
         />
-       Código abierto
+        Código abierto
       </label>
+      <h2>Ordenar</h2>
+      <select value={filters.order} className={""} onChange={handleOrderChange}>
+        <option selected disabled value="">
+          Ordenar
+        </option>
+        <option value="alphabetical">Alphabetically</option>
+        <option value="price">Pricing</option>
+      </select>
+      <h3>Dirección</h3>
+      <select
+        value={filters.direction}
+        className={""}
+        onChange={handleDirectionChange}
+      >
+        <option value="" selected disabled>
+          Dirección
+        </option>
+        <option value="DESC">Descending</option>
+        <option value="ASC">Ascending</option>
+      </select>
+      <SearchBar />
+      <button onClick={handleResetClick}>Reset</button>
     </div>
   );
 }

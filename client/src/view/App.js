@@ -13,6 +13,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import "../css/App.css";
 import Login from "./Login";
 import axios from "axios";
+import { SearchContextProvider } from "../redux/context/SearchContext";
 
 
 axios.defaults.baseURL = 'http://localhost:3001/';
@@ -22,7 +23,7 @@ function App() {
   const { pathname } = useLocation();
 
   return (
-    <>
+    <><SearchContextProvider>
       {pathname !== "/login" && <Nav />}
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -35,6 +36,7 @@ function App() {
         <Route path="/producto" element={<Producto/>} />
       </Routes>
       <Footer />
+      </SearchContextProvider>
     </>
   );
 }
