@@ -1,15 +1,25 @@
-import React, { createContext, useState } from 'react';
+
+import React, { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, login, setIsLoggedIn] = useState(false);
+export function AuthProvider({ children }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // ...
+  const logout = () => {
+    setIsLoggedIn(false);
+    // otras acciones de cierre de sesión si es necesario
+  };
+
+  const authContextValue = {
+    isLoggedIn,
+    setIsLoggedIn,
+    logout,
+  };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, setIsLoggedIn }}>
+    <AuthContext.Provider value={authContextValue}>
       {children}
     </AuthContext.Provider>
   );
-};
+}

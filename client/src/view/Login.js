@@ -15,7 +15,7 @@ export function Login() {
     window.scrollTo(0, 0);
   }, []);
   const navigate = useNavigate();
-  const { isLoggedIn, setIsLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext); // Obtener isLoggedIn directamente desde el contexto
 
   const [state, setState] = useState({
     email: "",
@@ -46,6 +46,7 @@ export function Login() {
       // nada XD
     }
   };
+
 
   return (
     <div className={style.General}>
@@ -133,11 +134,9 @@ export function Login() {
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    loginUser: (title) => dispatch(loginUser(title)),
-  };
-}
+const mapDispatchToProps = {
+  loginUser,
+};
 
 function mapStateToProps(state) {
   return {
