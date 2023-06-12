@@ -25,32 +25,46 @@ export default function FormNewProduct() {
 		image: '',
 		quantity: '',
 		price: '',
-		category: [],
+		categories: [],
 		platforms: [],
 		licenses: [],
 	};
 
 	const onSubmit = async (values, { resetForm }) => {
 		try {
-			await dispatch(addProduct(values));
-			resetForm({
-				values: { ...initialValues, category: '' },
-			});
-			console.log(values);
-			Swal.fire({
-				text: 'Se ha agregado el producto',
-				icon: 'success',
-				timer: 1100,
-			});
+		  // Convert categories to an array if it's not already
+		  const updatedValues = {
+			...values,
+			categories: Array.isArray(values.categories)
+			  ? values.categories
+			  : [values.categories],
+			platforms: Array.isArray(values.platforms)
+			  ? values.platforms
+			  : [values.platforms],
+			licenses: Array.isArray(values.licenses)
+			  ? values.licenses
+			  : [values.licenses],
+		  };
+	  
+		  await dispatch(addProduct(updatedValues));
+		  resetForm({
+			values: { ...initialValues, categories: [], platforms: [], licenses: [] },
+		  });
+		  console.log(updatedValues);
+		  Swal.fire({
+			text: 'Se ha agregado el producto',
+			icon: 'success',
+			timer: 1100,
+		  });
 		} catch (error) {
-			console.error('Error al agregar el producto:', error);
-			Swal.fire({
-				text: 'No Se ha agregado el producto',
-				icon: 'error',
-				title: 'Oops...',
-			});
+		  console.error('Error al agregar el producto:', error);
+		  Swal.fire({
+			text: 'No Se ha agregado el producto',
+			icon: 'error',
+			title: 'Oops...',
+		  });
 		}
-	};
+	  };
 
 	useEffect(() => {
 		dispatch(setCategories());
@@ -165,8 +179,8 @@ export default function FormNewProduct() {
 						{categories.length > 0 ? (
 							<Field
 								as='select'
-								id='category'
-								name='category'
+								id='categories'
+								name='categories'
 								className='w-full p-2 border rounded drop-shadow-lg'>
 								<option value='' disabled>
 									Select a category

@@ -59,6 +59,7 @@ export const setCategories = (categories) => {
 export function addProduct(payload) {
 	return async function (dispatch) {
 		try {
+      
       const response = await axios
         .post(`${URL}/products`, payload);
       dispatch({

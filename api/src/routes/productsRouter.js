@@ -18,6 +18,9 @@ productsRouter.get(
   validationGetProducts,
   async (req, res) => {
     try {
+
+      console.log(req.body)
+
       const showProducts = await getProducts(
         req.query.name,
         req.query.quantity,
