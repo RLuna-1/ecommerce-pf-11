@@ -15,6 +15,7 @@ import "../css/App.css";
 import Login from "./Login";
 import { AuthProvider } from "../components/AuthContext";
 import NewForm from "../components/NewForm";
+import NewCarrito from "../jose/NewCarrito";
 // import ProductCard from "../components/ProductCard";
 function App() {
   const { pathname } = useLocation();
@@ -32,7 +33,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/vender" element={<FormNewProduc />} />
         <Route path="/detail/:id" element={<Detail/>} />
-        <Route path="/carrito" element={<Carrito />} />     
+        {/* <Route path="/carrito" element={<Carrito />} />    */}
+        <Route path="/carrito" element={<NewCarrito />} />   
         <Route path="/producto" element={<Producto/>} />
         {/* <Route path="/carta" element={<ProductCard/>} /> */}
       </Routes>
