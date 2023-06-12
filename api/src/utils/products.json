@@ -208,7 +208,7 @@
         "image": "https://blog.hootsuite.com/wp-content/uploads/2022/10/free-video-editing-software-09.jpg",
         "quantity": 10,
         "price": 299,
-        "categories": ["edición de video"],
+        "categories": ["Edición de Video"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -218,7 +218,7 @@
         "image": "https://assets-global.website-files.com/5fa0baa5ea5c262586cf8fd0/608c9323a5220bdba8e72d53_Best%20Filmmaking%20Software%20%26%20Tools%20-%20Featured%20Image%20-%20Wrapbook.jpg",
         "quantity": 10,
         "price": 399,
-        "categories": ["edición de video"],
+        "categories": ["Edición de Video"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -228,7 +228,7 @@
         "image": "https://i.pcmag.com/imagery/roundups/07zK5ZMCRXxdm3S7ZnlT3Xw-7..v1650989183.png",
         "quantity": 10,
         "price": 99,
-        "categories": ["edición de video"],
+        "categories": ["Edición de Video"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Windows", "macOS", "Linux"]
       },
@@ -238,7 +238,7 @@
         "image": "https://digitalfilms.files.wordpress.com/2012/12/df_4k_wkflw_11.jpg",
         "quantity": 10,
         "price": 499,
-        "categories": ["edición de video"],
+        "categories": ["Edición de Video"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS", "Android", "iOS"]
       },
@@ -248,7 +248,7 @@
         "image": "https://www.munianim.com/wp-content/uploads/2020/08/ShowTraj-1024x584.png",
         "quantity": 10,
         "price": 349,
-        "categories": ["edición de video"],
+        "categories": ["Edición de Video"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -258,7 +258,7 @@
         "image": "https://i.pcmag.com/imagery/roundups/07zK5ZMCRXxdm3S7ZnlT3Xw-10..v1650989183.jpg",
         "quantity": 10,
         "price": 199,
-        "categories": ["edición de video"],
+        "categories": ["Edición de Video"],
         "licenses": ["Licencia de por vida", "Suscripción anual", "Prueba gratuita"],
         "platforms": ["Windows", "macOS", "Linux"]
       },
@@ -268,7 +268,7 @@
         "image": "https://d29rinwu2hi5i3.cloudfront.net/article_media/520b26cd-64e4-43d9-98b4-59877e45639c/2.jpg",
         "quantity": 10,
         "price": 299,
-        "categories": ["Estación de trabajo de audio digital"],
+        "categories": ["Producción de Audio"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS", "Android", "iOS"]
       },
@@ -278,7 +278,7 @@
         "image": "https://www.image-line.com/wp-content/uploads/2021/09/FLStudioFeaturedImageSquare.jpg",
         "quantity": 10,
         "price": 199,
-        "categories": ["Estación de trabajo de audio digital"],
+        "categories": ["Producción de Audio"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Windows", "macOS", "Linux"]
       },
@@ -288,7 +288,7 @@
         "image": "https://guidady.com/wp-content/uploads/2023/06/Audiocraft-768x432.png",
         "quantity": 10,
         "price": 399,
-        "categories": ["Estación de trabajo de audio digital"],
+        "categories": ["Producción de Audio"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -298,7 +298,7 @@
         "image": "https://media.wavescdn.com/images/products/mixers-racks/max/tracks-live.png",
         "quantity": 10,
         "price": 99,
-        "categories": ["Estación de trabajo de audio digital"],
+        "categories": ["Producción de Audio"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Windows", "macOS", "Linux", "Android", "iOS"]
       },
@@ -308,7 +308,7 @@
         "image": "https://i1.sndcdn.com/avatars-pammdWGjPKCdyQ0A-zSBsLA-t500x500.jpg",
         "quantity": 10,
         "price": 249,
-        "categories": ["Estación de trabajo de audio digital"],
+        "categories": ["Producción de Audio"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -318,7 +318,7 @@
         "image": "https://manual.mixxx.org/2.2/en/_images/overview.png",
         "quantity": 10,
         "price": 349,
-        "categories": ["Estación de trabajo de audio digital"],
+        "categories": ["Producción de Audio"],
         "licenses": ["Licencia de por vida", "Suscripción anual", "Prueba gratuita"],
         "platforms": ["Windows", "macOS", "Android", "iOS"]
       },
@@ -328,7 +328,7 @@
         "image": "https://cdn-cashy-static-assets.lucidchart.com/marketing/pages/consideration-page/workflow-software/_new_visualize-your-business-process.png",
         "quantity": 10,
         "price": 99,
-        "categories": ["gestión de proyectos"],
+        "categories": ["Gestión de Proyectos"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Web", "Windows", "macOS", "Android", "iOS"]
       },
@@ -338,7 +338,7 @@
         "image": "https://powerslides.com/wp-content/uploads/2022/09/Agile-Project-Plan-Template-4.png",
         "quantity": 10,
         "price": 199,
-        "categories": ["gestión de proyectos"],
+        "categories": ["Gestión de Proyectos"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Web", "Windows", "macOS"]
       },
@@ -348,7 +348,7 @@
         "image": "https://www.softwaretestinghelp.com/wp-content/qa/uploads/2020/04/task-management-monday.com_.png",
         "quantity": 10,
         "price": 149,
-        "categories": ["gestión de proyectos"],
+        "categories": ["Gestión de Proyectos"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Web", "Windows", "macOS"]
       },
@@ -358,7 +358,7 @@
         "image": "https://toggl.com/blog/wp-content/uploads/2020/11/tp-1-p-1080-1.png",
         "quantity": 10,
         "price": 299,
-        "categories": ["gestión de proyectos"],
+        "categories": ["Gestión de Proyectos"],
         "licenses": ["Licencia de por vida", "Suscripción anual", "Prueba gratuita"],
         "platforms": ["Web", "Windows", "macOS", "Android", "iOS"]
       },
@@ -368,7 +368,7 @@
         "image": "https://ganardineroenlinea.pro/wp-content/uploads/2022/12/que-es-y-como-funciona-paypro-global.png",
         "quantity": 10,
         "price": 199,
-        "categories": ["procesamiento de pagos"],
+        "categories": ["Procesamiento de Pagos"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Web"]
       },
@@ -378,7 +378,7 @@
         "image": "https://www.checkalt.com/hs-fs/hubfs/virtualcard.png?width=1204&name=virtualcard.png",
         "quantity": 10,
         "price": 149,
-        "categories": ["procesamiento de pagos"],
+        "categories": ["Procesamiento de Pagos"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Web"]
       },
@@ -388,7 +388,7 @@
         "image": "https://epay.de/wp-content/uploads/epay_pressemitteilung_revolut.jpg",
         "quantity": 10,
         "price": 249,
-        "categories": ["procesamiento de pagos"],
+        "categories": ["Procesamiento de Pagos"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Web"]
       },
@@ -398,7 +398,7 @@
         "image": "https://blog.guitar-pro.com/wp-content/uploads/2022/09/GuitarPro8-new-features-audio-track.png",
         "quantity": 10,
         "price": 149,
-        "categories": ["notación musical"],
+        "categories": ["Notación Musical"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Windows", "macOS", "Android", "iOS"]
       },
@@ -408,7 +408,7 @@
         "image": "https://imag.malavida.com/mvimgbig/download-fs/songsterr-guitar-tabs-and-chords-17449-1.jpg",
         "quantity": 10,
         "price": 249,
-        "categories": ["notación musical"],
+        "categories": ["Notación Musical"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -418,7 +418,7 @@
         "image": "https://guitargearfinder.com/wp-content/uploads/2021/12/bass-tab-numbers.jpg",
         "quantity": 10,
         "price": 99,
-        "categories": ["notacion musical"],
+        "categories": ["Notación Musical"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Windows", "macOS", "Android"]
       },
@@ -428,7 +428,7 @@
         "image": "https://tomtommag.com/wp-content/uploads/2017/02/Screen-Shot-2018-04-09-at-9.24.16-PM-1024x489.png",
         "quantity": 10,
         "price": 199,
-        "categories": ["notacion musical"],
+        "categories": ["Notación Musical"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS", "Android"]
       },
@@ -438,7 +438,7 @@
         "image": "https://cdn.windowsreport.com/wp-content/uploads/2023/02/music-arranger-software.jpg",
         "quantity": 10,
         "price": 149,
-        "categories": ["notación musical"],
+        "categories": ["Notación Musical"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Windows", "macOS", "iOS"]
       },
@@ -448,7 +448,7 @@
         "image": "https://3.bp.blogspot.com/-NF5TP1jT-IA/WVMK-m_ZwjI/AAAAAAAACGw/_B93OsQ7sakXJjCxXypVipwCoTTtAdz0ACLcBGAs/s1600/01.jpg",
         "quantity": 10,
         "price": 199,
-        "categories": ["Logistica"],
+        "categories": ["Logística"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -458,7 +458,7 @@
         "image": "https://1.bp.blogspot.com/-_3Zwu4DwHFs/VvH8M-nxblI/AAAAAAAAAVY/XQ7mRV5G9skyxzK_KqNOdO8meLDqeDeSA/s1600/destiny%2Bspaceship.jpg",
         "quantity": 10,
         "price": 149,
-        "categories": ["Nueva Republica"],
+        "categories": ["Nueva República"],
         "licenses": ["Licencia de por vida", "Suscripción mensual"],
         "platforms": ["Windows", "macOS", "Android", "iOS"]
       },
@@ -468,7 +468,7 @@
         "image": "https://i.ytimg.com/vi/t6mmJX5Hmbw/maxresdefault.jpg",
         "quantity": 10,
         "price": 249,
-        "categories": ["Logistica"],
+        "categories": ["Logística"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS"]
       },
@@ -478,7 +478,7 @@
         "image": "https://lumiere-a.akamaihd.net/v1/images/01_194dfed7.jpeg",
         "quantity": 10,
         "price": 299,
-        "categories": ["Nueva Republica"],
+        "categories": ["Nueva República"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Android", "macOS"]
       },
@@ -488,7 +488,7 @@
         "image": "https://cdna.artstation.com/p/assets/covers/images/030/066/310/large/clark-coots-clark-coots-avatarsymbolsthumbnail.jpg",
         "quantity": 10,
         "price": 399,
-        "categories": ["manipulación de elementos"],
+        "categories": ["Manipulación de Elementos"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Android", "iOS"]
       },
@@ -498,7 +498,7 @@
         "image": "https://cdn.vox-cdn.com/thumbor/EjG2LGud7dJtiQ5TjM5OppGruC8=/96x232:547x533/1200x800/filters:focal(96x232:547x533)/cdn.vox-cdn.com/uploads/chorus_image/image/50607251/c2-b5.0.jpg",
         "quantity": 10,
         "price": 299,
-        "categories": ["Interfaz de droides"],
+        "categories": ["Interfaz de Droides"],
         "licenses": ["Licencia de por vida"],
         "platforms": ["Windows", "macOS", "Android", "iOS"]
       },
