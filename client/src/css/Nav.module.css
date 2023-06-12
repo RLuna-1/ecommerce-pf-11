@@ -12,7 +12,7 @@
 }
 
 .Logo {
-    max-width: 50%;
+    max-width: 50% !important
 }
 
 .Logo:hover {

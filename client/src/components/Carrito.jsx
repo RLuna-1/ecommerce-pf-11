@@ -43,6 +43,7 @@ const Carrito = () => {
   };
   const sumarProducto1 = (id) => {
     dispatch(sume1FromCart(id));
+    console.log(sume1FromCart)
   };
   const eliminarProducto = (id) => {
     dispatch(removeFromCart(id));
@@ -84,7 +85,7 @@ const Carrito = () => {
           <h1>
             $ {producto.price}.00 Cantidad: {producto.quantity}{" "}
           </h1>
-          <h4>Subtotal: {producto.price * producto.quantity}</h4>
+          <h4>Subtotal: ${producto.price * producto.quantity}</h4>
           <div >
             <button
               className={styles.BotonEliminar}

@@ -162,7 +162,7 @@ const rootReducer = (state = initialState, action) => {
     }
     case ADD_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
-      return itemToDelete.quantity === 1
+      return itemToDelete.quantity >= 1
         ? {
             ...state,
             cart: state.cart.map((item) =>

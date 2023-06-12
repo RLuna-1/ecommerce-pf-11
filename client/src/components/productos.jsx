@@ -44,7 +44,7 @@ function Productos() {
               <Producto key={p.id} product={p} addToCart={addToCart} />
             ))}
       </div>
-      <div>
+      <div className={styles.Botones}>
         {currentPage > 1 && (
           <button className={styles.BotonNavegacion} onClick={goToPreviousPage}>
             Atrás

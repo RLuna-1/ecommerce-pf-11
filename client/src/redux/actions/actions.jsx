@@ -541,15 +541,17 @@ export const searchByName = (searchTerm) => {
         type: SEARCH_BY_NAME,
         payload: filteredProducts,
       });
-
-      console.log(response.data)
-    } catch (error) {
-      Swal.fire({
-        text: 'Error al agregar el producto',
-        icon: 'warning',
-        timer: 2000,
-      });
-      throw error;
+    } catch (err) {
+      if (err.response && err.response.status === 400) {
+        Swal.fire({
+          text: 'Producto no encontrado',
+          icon: 'warning',
+          timer: 2000,
+        });
+      } else {
+        throw err;
+      }
     }
   };
 };
+
