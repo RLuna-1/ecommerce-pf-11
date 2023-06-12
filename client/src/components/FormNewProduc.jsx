@@ -29,42 +29,47 @@ export default function FormNewProduct() {
 		platforms: [],
 		licenses: [],
 	};
-
+	//se cambia initialValues por categories
 	const onSubmit = async (values, { resetForm }) => {
 		try {
-		  // Convert categories to an array if it's not already
-		  const updatedValues = {
-			...values,
-			categories: Array.isArray(values.categories)
-			  ? values.categories
-			  : [values.categories],
-			platforms: Array.isArray(values.platforms)
-			  ? values.platforms
-			  : [values.platforms],
-			licenses: Array.isArray(values.licenses)
-			  ? values.licenses
-			  : [values.licenses],
-		  };
+			// Convert categories to an array if it's not already
+			const updatedValues = {
+				...values,
+				categories: Array.isArray(values.categories)
+					? values.categories
+					: [values.categories],
+				platforms: Array.isArray(values.platforms)
+					? values.platforms
+					: [values.platforms],
+				licenses: Array.isArray(values.licenses)
+					? values.licenses
+					: [values.licenses],
+			};
 
-		  await dispatch(addProduct(updatedValues));
-		  resetForm({
-			values: { ...initialValues, categories: [], platforms: [], licenses: [] },
-		  });
-		  console.log(updatedValues);
-		  Swal.fire({
-			text: 'Se ha agregado el producto',
-			icon: 'success',
-			timer: 1100,
-		  });
+			await dispatch(addProduct(updatedValues));
+			resetForm({
+				values: {
+					...initialValues,
+					categories: [],
+					platforms: [],
+					licenses: [],
+				},
+			});
+			console.log(updatedValues);
+			Swal.fire({
+				text: 'Se ha agregado el producto',
+				icon: 'success',
+				timer: 1100,
+			});
 		} catch (error) {
-		  console.error('Error al agregar el producto:', error);
-		  Swal.fire({
-			text: 'No Se ha agregado el producto',
-			icon: 'error',
-			title: 'Oops...',
-		  });
+			console.error('Error al agregar el producto:', error);
+			Swal.fire({
+				text: 'No Se ha agregado el producto',
+				icon: 'error',
+				title: 'Oops...',
+			});
 		}
-	  };
+	};
 
 	useEffect(() => {
 		dispatch(setCategories());
