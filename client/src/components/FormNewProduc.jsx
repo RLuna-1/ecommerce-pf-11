@@ -45,7 +45,7 @@ export default function FormNewProduct() {
 			  ? values.licenses
 			  : [values.licenses],
 		  };
-	  
+
 		  await dispatch(addProduct(updatedValues));
 		  resetForm({
 			values: { ...initialValues, categories: [], platforms: [], licenses: [] },
@@ -197,7 +197,7 @@ export default function FormNewProduct() {
 							<div>Loading categories...</div>
 						)}
 						<ErrorMessage
-							name='Categorias'
+							name='categories'
 							component='div'
 							className='text-red-500'
 						/>
