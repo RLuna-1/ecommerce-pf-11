@@ -6,6 +6,7 @@ import { SearchContext } from '../redux/context/SearchContext';
 import '../css/index.css';
 
 function Filters() {
+
 	const dispatch = useDispatch();
 	const [showFilters, setShowFilters] = useState(false);
 	const { filters } = useSelector((state) => state);
