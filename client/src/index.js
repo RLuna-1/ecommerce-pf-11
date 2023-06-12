@@ -5,6 +5,9 @@ import App from './view/App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './redux/Store';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:3001';
 
 const rootElement = document.getElementById('root');
 

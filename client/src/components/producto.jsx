@@ -1,69 +1,69 @@
 // import React from 'react';
-// import styles from '../css/Producto.module.css';
 // import { Link } from 'react-router-dom';
+// import styles from '../css/Producto.module.css';
 
-// const Producto = ({ products }) => {
+// const Producto = ({ products, addToCart }) => {
 // 	return (
 // 		<div>
-// 			<div>
-// 				{products &&
-// 					products.map((p) => {
-// 						return (
-// 							<div className={styles.General}>
-// 								<div className={styles.Producto} key={p.id}>
-// 									<Link to={`/detail/${p.id}`}>
-// 										<button>
-// 											<img
-// 												src={p.image}
-// 												alt='Imagen del producto'
-// 											/>
-// 										</button>
-// 									</Link>
-// 									<h1>{p.name}</h1>
-// 									<h2>$ {p.price}</h2>
-// 									<p>categotia: {p.categories[0].name}</p>
-// 									<p>plataforma: {p.platforms[0].name}</p>
-// 									<p>{p.description}</p>
-
-// 									<button className={styles.BotonAgregar}>
-// 										Agregar
-// 									</button>
-// 								</div>
-// 							</div>
-// 						);
-// 					})}
+// 			<div className={styles.Producto} key={products.id}>
+// 				<Link to={`/detail/${products.id}`}>
+// 					<button>
+// 						<img src={products.image} alt='Imagen del producto' />
+// 					</button>
+// 				</Link>
+// 				<h1>{products.name}</h1>
+// 				<h2>$ {products.price}</h2>
+// 				<p>categoria: {products.categories.map((c) => c.name)}</p>
+// 				<p>plataforma: {products.platforms.map((p) => p.name)}</p>
+// 				<p>Licencia: {products.licenses.map((l) => l.name)}</p>
+// 				<p>{products.description}</p>
+// 				<button
+// 					className={styles.BotonAgregar}
+// 					onClick={() => addToCart(products.id)}>
+// 					Agregar
+// 				</button>
 // 			</div>
 // 		</div>
 // 	);
 // };
 
 // export default Producto;
+
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../css/Producto.module.css";
 
-const Producto = ({ products,addToCart }) => {
- 
+const Producto = ({ id, name, description, image, price, deleted, platforms, licenses, categories, addToCart }) => {
+  const renderArray = (array) => {
+    if (!array || !Array.isArray(array)) {
+      return "";
+    }
+    return array.join(", ");
+  };
+
+  const renderCategories = (categories) => {
+	if (!categories || !Array.isArray(categories)) {
+	  return [];
+	}
+  
+	return categories.map((category) => category.name);
+  };
+
   return (
-    <div>
-		
-      <div className={styles.Producto} key={products.id}>
-        <Link 
-        
-        to={`/detail/${products.id}`}>
-          <button
+    <div className={styles.Producto}>
+      <div>
+        <img src={image} alt="Tuki" className={styles.image} />
+        <div>
+          <p>{name}</p>
+          <p>{renderCategories(categories).join(", ")}</p>
+          <p>{renderArray(platforms)}</p>
+          <p>{renderArray(licenses)}</p>   
+          <p>{price}</p>
           
-          >
-            <img src={products.image} alt="Imagen del producto" />
-          </button>
-        </Link>
-        <h1>{products.name}</h1>
-        <h2>$ {products.price}</h2>
-        <button className={styles.BotonAgregar}
-        onClick={()=>addToCart(products.id)}
-        >Agregar</button>
+        </div>
       </div>
     </div>
   );
 };
+
 export default Producto;

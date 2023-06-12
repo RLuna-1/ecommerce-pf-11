@@ -9,11 +9,8 @@ export function Register(props) {
   //Crear state de Producto
 
   const [state, setState] = useState({
-    name: "",
-    last_name: "",
     email: "",
     password: "",
-    phone:"",
   });
   const [errors, setErrors] = useState({});
 
@@ -35,13 +32,12 @@ export function Register(props) {
     console.log(submitUser);
     actualizarEstado({
       name: "",
-      last_name: "",
+      lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
-      phone: "",
+      mobilephone: "",
     });
-    
   };
 
   return (
@@ -68,7 +64,7 @@ export function Register(props) {
             props.addUser(state);
           }}
         >
-          <div className="Name" className={`${errors.name && "danger"}`}>
+          <div className="Name" class={`${errors.name && "danger"}`}>
             <span className="material-icons"> Nombre </span>
             <input
               type="text"
@@ -90,12 +86,12 @@ export function Register(props) {
 
           <div
             className="Lastname"
-            className={`${errors.lastName && "danger"}`}
+            class={`${errors.lastName && "danger"}`}
           >
             <span className="material-icons"> </span>
             <input
               type="text"
-              name="last_name"
+              name="lastName"
               //className="inputs"
               placeholder="Ingrese su apellido"
               onChange={actualizarEstado}
@@ -162,20 +158,20 @@ export function Register(props) {
           <div>
             <span class="material-icons">Contact Phone</span>
             <input
-              className={`${errors.phone && "danger"}`}
+              className={`${errors.mobilephone && "danger"}`}
               type="tel"
-              name="phone"
+              name="mobilephone"
               //className="inputs"
               placeholder="Ingrese su numero de Telefono, Ej.:(011)18234460"
               onChange={actualizarEstado}
-              value={state.phone}
+              value={state.mobilephone}
               maxlength="16"
               minlength="11"
               required
             />
-            {errors.phone && (
+            {errors.mobilephone && (
               <p id="error" className="danger">
-                {errors.phone}
+                {errors.mobilephone}
               </p>
             )}
           </div>
@@ -229,8 +225,8 @@ export function validate(state) {
   } else if (state.password !== state.confirmPassword) {
     errors.password = "Passwords don't match";
   }
-  if (!/^\d{11}$/.test(state.phone)) {
-    errors.phone = "A valid telephone number should consist of 8 digits";
+  if (!/^\d{11}$/.test(state.mobilephone)) {
+    errors.mobilephone = "A valid telephone number should consist of 8 digits";
   }
   
   return errors;

@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+
 import * as actions from "../redux/actions/actions";
+
 export default function Detail() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,6 +17,7 @@ export default function Detail() {
         const response = await axios.get(`/products/${id}`);
         setProduct(response.data);
       } catch (error) {
+        console.log("Error fetching product:", error);
       }
     };
 
@@ -21,6 +25,7 @@ export default function Detail() {
   }, [id]);
 
   const addToCart = () => {
+    console.log(product.id);
     dispatch(actions.addToCarta(id));
   };
 
@@ -43,6 +48,7 @@ export default function Detail() {
         </div>
 
         <div style={{ flex: "60%" }}>
+
           {product ? (
             <article>
               <header>
@@ -64,14 +70,18 @@ export default function Detail() {
                 <p>{product.categoria}</p>
               </section>
               <section>
+
                 <Link to={"/home"}>
                   <button>
+
                     <span>Regresar a inicio</span>
                   </button>
                 </Link>
               </section>
+
               <Link to={"/carrito"}>
                 <button onClick={addToCart}>
+
                   <span>Agregar al Carrito</span>
                 </button>
               </Link>
@@ -83,4 +93,5 @@ export default function Detail() {
       </div>
     </main>
   );
+
 }

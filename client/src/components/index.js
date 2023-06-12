@@ -7,9 +7,10 @@ import Footer from "./Footer";
 import FormNewProduc from './FormNewProduc';
 import Carrito from "./Carrito";
 import Producto from "./producto";
-import FilterByCategorie from './FilterByCategorie';
 import Productos from './productos';
 import Carousel from "./Carousel";
+import Pagination from "./Pagination"
+import FilterProducts from './FilterProducts';
 
 
 export {
@@ -22,8 +23,9 @@ export {
 	FormNewProduc,
 	Carrito,
 	Producto,
-	FilterByCategorie,
 	Productos,
 	Carousel,
-}
+	// FilterProducts,
+	Pagination
+};
 

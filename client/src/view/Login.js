@@ -7,10 +7,7 @@ import Google from "../img/Google.png";
 import Apple from "../img/AppleLogin.png";
 import Microsoft from "../img/Microsoft.png";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"
 import GoogleLoginButton from "../components/GoogleLoginButton";
-
-axios.defaults.withCredentials = true
 
 export function Login() {
   const navigate = useNavigate();
@@ -35,12 +32,12 @@ export function Login() {
 
   const handleSubmit = async (event, state) => {
     event.preventDefault();
-  
-    const success = await loginUser(state);
-  
-    if (success) {
-      navigate("/Home");
-    }
+    const loginExitoso = await loginUser(state);
+    if (loginExitoso) {
+    navigate("/Home");
+  } else {
+   //nada XD
+  }
   };
 
   return (
@@ -88,12 +85,12 @@ export function Login() {
               Contraseña:{" "}
             </label>
             <input
-              type="password"
-              name="password"
-              required
-              onChange={iniciarSesion}
-              value={state.password}
-            />
+          type="password"
+          name="password"
+          required
+          onChange={iniciarSesion}
+          value={state.password}
+        />
           </div>
           <div className={style.DivBotones}>
             <button
@@ -103,13 +100,13 @@ export function Login() {
             >
               Ingresar
             </button>
-            <Link to="/register">
+			      <Link to='/register'>
               <button className={style.BotonIniciar}>Crear Cuenta</button>
-            </Link>
+			      </Link>
           </div>
         </form>
         <div className={style.DivCuentas}>
-          <GoogleLoginButton>
+        <GoogleLoginButton>
             <img src={Google} className={style.Iconos} alt="Google" /> Continuar
             con Google</GoogleLoginButton>
           <button>

@@ -14,7 +14,9 @@ import "../css/App.css";
 import Login from "./Login";
 import axios from "axios";
 
+
 axios.defaults.baseURL = 'http://localhost:3001/';
+
 
 function App() {
   const { pathname } = useLocation();
@@ -27,9 +29,9 @@ function App() {
         <Route path="/register" element={<SingUp />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/vender" element={<FormNewProduc />} />
+        <Route path="/vender" element={<FormNewProduc/>} />
         <Route path="/detail/:id" element={<Detail/>} />
-        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/carrito" element={<Carrito />} />     
         <Route path="/producto" element={<Producto/>} />
       </Routes>
       <Footer />
