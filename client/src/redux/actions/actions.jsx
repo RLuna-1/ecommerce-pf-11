@@ -14,6 +14,7 @@ import {
 	GET_LICENSES_ROUTE,
   ADD_PRODUCT,
   GET_CATEGORY_ROUTE,
+  SEARCH_BY_NAME,
 } from "../consts";
 
 import axios from "axios";
@@ -350,14 +351,12 @@ export function updateUser(payload) {
   };
 }
 
-export function filterProducts(category) {
+export const filterProducts = (categories) => {
   return {
     type: FILTER_PRODUCTS,
-    payload: {
-      category: category,
-    },
+    payload: categories,
   };
-}
+};
 
 export const resetFilter = () => {
   return {
@@ -532,3 +531,25 @@ export function getCategoryRoute() {
 			});
 	};
 }
+export const searchByName = (searchTerm) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`/products?name=${searchTerm}`);
+      const filteredProducts = response.data;
+
+      dispatch({
+        type: SEARCH_BY_NAME,
+        payload: filteredProducts,
+      });
+
+      console.log(response.data)
+    } catch (error) {
+      Swal.fire({
+        text: 'Error al agregar el producto',
+        icon: 'warning',
+        timer: 2000,
+      });
+      throw error;
+    }
+  };
+};

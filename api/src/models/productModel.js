@@ -37,13 +37,6 @@ module.exports = (sequelize) => {
         defaultValue: false,
         allowNull: false,
       },
-      platforms: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true,
-      },
-      licenses: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-      },
     },
     { timestamps: false }
   );

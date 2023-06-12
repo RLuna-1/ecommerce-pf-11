@@ -8,14 +8,14 @@ const {
   deleteProduct,
 } = require("../controllers/productController.js");
 
-const { validationGetProducts } = require("../utils/validations.js");
-const { requireAuth } = require("../utils/index.js");
+// const { validationGetProducts } = require("../utils/validations.js");
+// const { requireAuth } = require("../utils/index.js");
 
 const productsRouter = Router();
 
 productsRouter.get(
   "/",
-  validationGetProducts,
+  // validationGetProducts,
   async (req, res) => {
     try {
       const showProducts = await getProducts(
@@ -29,7 +29,7 @@ productsRouter.get(
         req.query.categories,
         req.query.order,
         req.query.direction,
-        req.query.page,req.query.platforms, req.query.licenses
+        req.query.page,req.query.platform, req.query.license
       );
       res.status(200).json(await showProducts);
     } catch (error) {
@@ -49,7 +49,8 @@ productsRouter.get("/:id", async (req, res) => {
 });
 
 productsRouter.post("/", async (req, res) => {
-  const { name, description, image, quantity, price, categories, platforms, licenses } = req.body;
+  const { name, description, image, quantity, price, categories } = req.body;
+  console.log(req.body);
   try {
     const newProduct = await createProduct(
       name,
@@ -57,9 +58,7 @@ productsRouter.post("/", async (req, res) => {
       image,
       quantity,
       price,
-      categories,
-      platforms,
-      licenses
+      categories
     );
     res.status(201).json(newProduct);
   } catch (error) {
@@ -75,15 +74,12 @@ productsRouter.put("/:id", async (req, res) => {
       req.body.description,
       req.body.image,
       req.body.quantity,
-      req.body.price,
-      req.body.categories,
-      req.body.platforms,
-      req.body.licenses
+      req.body.price
     );
 
     res.status(200).json(newUpdateProduct);
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(400).json(message.error);
   }
 });
 

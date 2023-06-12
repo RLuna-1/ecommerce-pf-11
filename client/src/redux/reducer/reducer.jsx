@@ -26,13 +26,14 @@ import {
   REMOVE_FROM_WISHLIST,
   GET_CATEGORY_ROUTE,
   GET_PLATFORMS_ROUTE,
-	GET_LICENSES_ROUTE,
+  GET_LICENSES_ROUTE,
   ADD_PRODUCT,
+  SEARCH_BY_NAME,
 } from "../consts";
 
 const initialState = {
   allProducts: [],
-  product: {},
+  products: {},
   user: {},
   users: [],
   data: [],
@@ -44,7 +45,7 @@ const initialState = {
   productsPerPage: 10,
   wishlist: [],
   platformsRoute: [],
-	licensesRoute: [],
+  licensesRoute: [],
   categoryRoute: [],
   newProduct: [],
 };
@@ -215,29 +216,42 @@ const rootReducer = (state = initialState, action) => {
           (product) => product.id !== action.payload
         ),
       };
-      case GET_CATEGORY_ROUTE:
-			return {
-				...state,
-				categoryRoute: action.payload,
-			};
-      case GET_PLATFORMS_ROUTE:
-			return {
-				...state,
-				platformsRoute: action.payload,
-			};
-		case GET_LICENSES_ROUTE:
-			return {
-				...state,
-				licensesRoute: action.payload,
-			};
-      case ADD_PRODUCT:
-			return {
-				...state,
-				allProducts: [...state.allProducts, action.payload],
-				newProduct: action.payload,
-			};
-		default:
-			return state;
+    case GET_CATEGORY_ROUTE:
+      return {
+        ...state,
+        categoryRoute: action.payload,
+      };
+    case GET_PLATFORMS_ROUTE:
+      return {
+        ...state,
+        platformsRoute: action.payload,
+      };
+    case GET_LICENSES_ROUTE:
+      return {
+        ...state,
+        licensesRoute: action.payload,
+      };
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        allProducts: [...state.allProducts, action.payload],
+        newProduct: action.payload,
+      };
+    case SEARCH_BY_NAME:
+      const searchTerm =
+        typeof action.payload === "string" ? action.payload.toLowerCase() : "";
+      const filteredProducts = action.payload.rows.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+
+      return {
+        ...state,
+        filteredProducts: filteredProducts,
+        isFiltering: true,
+      };
+
+    default:
+      return state;
   }
 };
 

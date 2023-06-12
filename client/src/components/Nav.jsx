@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate,  } from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import LogoClaro from "../img/LogoClaro.png";
 import Carrito from "../img/Carrito.png";
 import FilterComponent from './FilterByCategorie';
 import Ordenar from './Ordenar';
 import { AuthContext } from "./AuthContext";
-
+import { searchByName } from '../redux/actions/actions';
+import { useDispatch } from 'react-redux';
 const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isLoggedIn, logout } = useContext(AuthContext);
-
+  const dispatch = useDispatch();
   const handleLogout = () => {
     // Aquí puedes realizar la lógica de cierre de sesión, como limpiar las variables de sesión, etc.
     logout();
@@ -22,6 +23,10 @@ const Nav = () => {
   const handleOrdenarChange = (opcion) => {
     // Aquí puedes realizar acciones según la opción seleccionada en el componente Ordenar
     console.log("Opción de ordenamiento seleccionada:", opcion);
+  };
+    const handleSearch = (event) => {
+    const searchTerm = event.target.value;
+    dispatch(searchByName(searchTerm));
   };
 
   const handleRefrescar = () => {
@@ -60,7 +65,7 @@ const Nav = () => {
                 <Ordenar onOrdenarChange={handleOrdenarChange} />
               </div>
             </div> */}
-            <input className={styles.SearchBar} placeholder="Buscar Software" type="text" />
+            <input className={styles.SearchBar} placeholder="Buscar Software" type="text" onChange={handleSearch} />
           </div> )}
         </div>
       )}

@@ -15,7 +15,7 @@ import "../css/App.css";
 import Login from "./Login";
 import { AuthProvider } from "../components/AuthContext";
 import NewForm from "../components/NewForm";
-
+// import ProductCard from "../components/ProductCard";
 function App() {
   const { pathname } = useLocation();
 
@@ -34,6 +34,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail/>} />
         <Route path="/carrito" element={<Carrito />} />     
         <Route path="/producto" element={<Producto/>} />
+        {/* <Route path="/carta" element={<ProductCard/>} /> */}
       </Routes>
       <Footer />
     </AuthProvider>

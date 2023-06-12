@@ -55,8 +55,8 @@ authRouter.post("/login", async (req, res) => {
 authRouter.get("/logout", async (req, res) => {
   try {
     if (req.user && req.user.googleId) {
-      req.logout();
-      res.status(200).json("Google user logged out succesfully");
+      req.logout(); 
+      res.status(200).json("Google user logged out succesfully")
       // No estoy seguro si esto funciona
     }
 
@@ -75,18 +75,13 @@ authRouter.get(
 authRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/login",
+    failureRedirect: "/google",
     session: false,
   }),
   async (req, res) => {
     try {
       const token = await googleAuthToken(req.user);
-      res.cookie("GoogleOauthToken", token, {
-        httpOnly: true,
-        maxAge: 1000 * 3 * 24 * 60 * 60,
-      });
-      const redirectUrl = "http://localhost:3000/home"; 
-      res.redirect(redirectUrl);
+      return res.status(200).json({ token: token });
     } catch (error) {
       return res.status(500).json({ error: "Authentication failed" });
     }
