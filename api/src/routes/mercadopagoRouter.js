@@ -1,4 +1,3 @@
-
 const { Router } = require("express");
 const mercadopago = require("mercadopago");
 const router = Router();
@@ -20,7 +19,17 @@ router.post("/", (req, res) => {
     binary_mode: true,
   };
 
-  prod?.forEach((prod) => {
+  if (Array.isArray(prod)) {
+    prod.forEach((item) => {
+      preference.items.push({
+        title: item.title,
+        currency_id: "USD",
+        quantity: item.quantity,
+        price: item.price,
+        unit_price: item.price,
+      });
+    });
+  } else {
     preference.items.push({
       title: prod.title,
       currency_id: "USD",
@@ -28,7 +37,7 @@ router.post("/", (req, res) => {
       price: prod.price,
       unit_price: prod.price,
     });
-  });
+  }
 
   mercadopago.preferences
     .create(preference)
@@ -43,11 +52,6 @@ router.get("/feedback", function (req, res) {
     MerchantOrder: req.query.merchant_order_id,
   });
 });
-
-const coso = "coso"
-console.log("COSO?:", coso)
-
-
 
 module.exports = router;
 

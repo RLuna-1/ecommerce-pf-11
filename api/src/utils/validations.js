@@ -47,9 +47,9 @@ const validationGetProducts = async (req, res, next) => {
     validationErrors.push("Pricelte must be a number");
   }
 
-  if (categories && typeof categories !== "string") {
-    validationErrors.push("Categories must be a string");
-  }
+  // if (categories && typeof categories !== "string") {
+  //   validationErrors.push("Categories must be a string");
+  // }
 
   if (
     order &&
