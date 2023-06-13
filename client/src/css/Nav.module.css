@@ -138,3 +138,33 @@ a{
 .FiltroContent label {
     white-space: nowrap;
 }
+
+/* Esto es de Perfil */
+.PerfilDropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+.PerfilContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+  
+  .PerfilDropdown:hover .PerfilContent {
+    display: block;
+  }
+  
+  .PerfilContent label {
+      white-space: nowrap;
+  }
+
+  .Perfil {
+    max-width: 30%;
+    max-height: auto;
+    background: none;
+  }

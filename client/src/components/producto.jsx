@@ -3,12 +3,26 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
 import styles from "../css/Producto.module.css";
-
+import Swal from "sweetalert2";
 function Producto({ id, name, image, price,  categories }) {
   const dispatch = useDispatch();
 
   const addToCart = (id) => {
+    try{
     dispatch(actions.setCart(id));
+    Swal.fire({
+        text: "Se ha agregado el producto",
+        icon: "success",
+        timer: 1100,
+      });
+    } catch (error) {
+      Swal.fire({
+        text: "Error al agregar el producto",
+        icon: "warning",
+        timer: 2000,
+      });
+      throw error;
+    }
   };
 
   const agregarAlWishlist = (id) => {
@@ -44,29 +58,11 @@ function Producto({ id, name, image, price,  categories }) {
             onClick={() => addToCart(id)}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Add to cart
+            Agregar al Carrito
           </a>
         </div>
       </div>
     </div>
   );
 }
-
-
 export default Producto;
-    // <div className={styles.Producto}>
-    //   <div key={product.id}>
-    //     <Link to={`/detail/${product.id}`}>
-    //       <button>
-    //         <img src={product.image} alt='Imagen del producto' />
-    //       </button>
-    //     </Link>
-    //     <h1>{product.name}</h1>
-    //     <h2>$ {product.price}</h2>
-    //     <p>categotia: {product.categories[0].name}</p>
-    //     <p>plataforma: {product.platforms[0].name}</p>
-    //     <p>{product.description}</p>
-    //   </div>
-    //   <button className={styles.BotonAgregar} onClick={() => addToCart(product.id)}>Agregar al carrito</button>
-    //   <button className={styles.BotonAgregar} onClick={() => agregarAlWishlist(product.id)}>Agregar a la lista de deseos</button>
-    // </div>

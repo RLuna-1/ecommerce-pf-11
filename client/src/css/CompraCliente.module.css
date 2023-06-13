@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.Compras {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:space-between;
+    width: auto;
+    height: auto;
+    margin: 3% 25%;
+    padding: 3%;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
+    color: white;
+    background-color: #1c1934;
+    border-radius: 25px;
+}
+
+.Elementos {
+    color: white;
+}
+
+.Elementos h1{
+    color: white;
+    margin-bottom: 1em;
+}
+
+.Carta {
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    justify-content: flex-start;
+  }
+
+.Carta:hover {
+    transform: scale(1.04);
+}
