@@ -13,6 +13,8 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import "../css/App.css";
 import Login from "./Login";
 import NewCarrito from "../components/NewCarrito";
+import InfoCliente from "../components/InfoCliente";
+import CompraCliente from "../components/CompraClinete";
 
 // import ProductCard from "../components/ProductCard";
 import { AuthProvider } from '../components/AuthContext';
@@ -37,6 +39,8 @@ function App() {
         <Route path="/carrito" element={<NewCarrito />} />     
         <Route path="/producto" element={<Producto/>} />
         {/* <Route path="/carta" element={<ProductCard/>} /> */}
+        <Route path="/infocliente" element={<InfoCliente/>}/>
+        <Route path="/compracliente" element={<CompraCliente/>}/>
       </Routes>
       <Footer />
       </AuthProvider>

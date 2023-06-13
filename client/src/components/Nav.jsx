@@ -5,7 +5,7 @@ import LogoClaro from "../img/LogoClaro.png";
 import Carrito from "../img/Carrito.png";
 import FilterComponent from "./FilterByCategorie";
 import Ordenar from "./Ordenar";
-
+import IconoUser from "../img/IconoUser.png";
 import { AuthContext } from "./AuthContext";
 import { searchByName } from "../redux/actions/actions";
 import { useDispatch } from "react-redux";
@@ -70,7 +70,6 @@ const Nav = () => {
                 <Ordenar onOrdenarChange={handleOrdenarChange} />
               </div>
             </div> */}
-          
             </div>
           )}
         </div>
@@ -89,17 +88,28 @@ const Nav = () => {
             </button>
           </Link>
         )}
-        {isLoggedIn ? (
-          <Link to="/">
-            <button onClick={handleLogout} className={styles.Cerrar}>
-              Cerrar Sesión
-            </button>
-          </Link>
-        ) : (
-          <Link to="/login">
-            <button className={styles.Iniciar}>Iniciar Sesión</button>
-          </Link>
-        )}
+        <div class={styles.PerfilDropdown}>
+          <img src={IconoUser} alt="User" class={styles.Perfil} />
+          <div class={styles.PerfilContent}>
+            <Link to="/infocliente">
+              <button className={styles.Iniciar}>Mi Perfil</button>
+            </Link>
+            <Link to="/compracliente">
+              <button className={styles.Iniciar}>Mis Compras</button>
+            </Link>
+            {isLoggedIn ? (
+              <Link to="/">
+                <button onClick={handleLogout} className={styles.Cerrar}>
+                  Cerrar Sesión
+                </button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className={styles.Iniciar}>Iniciar Sesión</button>
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

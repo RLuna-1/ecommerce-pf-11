@@ -390,27 +390,10 @@ export const resetFilter = () => {
 
 export function setCart(payload) {
   return (dispatch) => {
-    try {
       dispatch({
         type: SET_CART,
         payload,
       });
-
-      Swal.fire({
-        text: "Se ha agregado el producto",
-        icon: "success",
-        timer: 1100,
-      });
-      
-    } catch (error) {
-      Swal.fire({
-        text: "Error al agregar el producto",
-        icon: "warning",
-        timer: 2000,
-      });
-      throw error;
-    }
-    console.log("payload "+ dispatch)
   };
 }
 

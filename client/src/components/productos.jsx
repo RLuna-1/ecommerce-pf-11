@@ -46,27 +46,6 @@ function Productos() {
 
 
   return (
-    // <div>
-    //   <div className={styles.Productos}>
-    //     {filteredProducts.length > 0
-    //       ? filteredProducts.map((p) => (
-    //           <Producto key={p.id} product={p} addToCart={addToCart} />
-    //         ))
-    //       : products.map((p) => (
-    //           <Producto key={p.id} product={p} addToCart={addToCart} />
-    //         ))}
-    //   </div>
-    //   {/* <div className={styles.Botones}>
-    //     {currentPage > 1 && (
-    //       <button className={styles.BotonNavegacion} onClick={goToPreviousPage}>
-    //         Atrás
-    //       </button>
-    //     )}
-    //     <button className={styles.BotonNavegacion} onClick={goToNextPage}>
-    //       Siguiente
-    //     </button>
-    //   </div> */}
-    // </div>
     <div>
     <div>{products ? renderProducts : <p>There's no products with the given data</p>}</div>
   </div>
