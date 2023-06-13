@@ -38,58 +38,43 @@ export default function Detail() {
   
 
   return (
-    <main>
-      <div style={{ display: "flex" }}>
-        <div style={{ width: "100%", border: "1px solid #000", padding: "10px" }}>
-          <div>
-            <div>
-              <img
-                src={product?.image}
-                alt="Imagen del producto"
-                style={{ maxWidth: "50%", maxHeight: "100%" }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div style={{ flex: "60%" }}>
-          {product ? (
-            <article>
-              <header>
-                <h1 className="text-2xl font-bold mb-4">Detalles</h1>
-              </header>
-              <section className="mb-4">
-                <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-              </section>
-              <section className="mb-4">
-                <h2 className="text-xl font-semibold mb-2">Precio</h2>
-                <p>${product.price}</p>
-              </section>
-              <section className="mb-4">
-                <h2 className="text-xl font-semibold mb-2">Descripción</h2>
-                <p className="mb-4">{product.description}</p>
-              </section>
-              <section className="mb-4">
-                <h2 className="text-xl font-semibold mb-2">Categoría</h2>
-                <p>{product.categoria}</p>
-              </section>
-              <section>
-                <Link to={"/home"}>
-                  <button className={styles.Boton}>
-                    Regresar a inicio
-                  </button>
-                </Link>
-              </section>
-              
-              <button className={styles.Boton} onClick={() => addToCart(product.id)}>
+    <main className={styles.General}>
+      <div className={styles.DivImg}>
+        <img src={product?.image} alt="Imagen del producto" />
+      </div>
+      <div className={styles.DivInfo}>
+        {product ? (
+          <article>
+            <header>
+              <h1>{product.name}</h1>
+            </header>
+            <section>
+              <h2>Precio</h2>
+              <p>${product.price}</p>
+            </section>
+            <section>
+              <h2>Descripción</h2>
+              <p>{product.description}</p>
+            </section>
+            <section>
+              <h2>Categoría</h2>
+              <p>{product.categoria}</p>
+            </section>
+            <div className={styles.Botones}>
+              <Link to={"/home"}>
+                <button className={styles.Boton}>Regresar a inicio</button>
+              </Link>
+              <button
+                className={styles.Boton}
+                onClick={() => addToCart(product.id)}
+              >
                 Agregar al Carrito
               </button>
-             
-            </article>
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+            </div>
+          </article>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </main>
   );

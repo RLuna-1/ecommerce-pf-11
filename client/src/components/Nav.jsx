@@ -56,22 +56,7 @@ const Nav = () => {
           <Link to="/wishlist">
             <button className={styles.ButtonNav}>Deseos</button>
           </Link>
-          {pathname !== "/vender" && pathname !== "/carrito" && (
-            <div>
-              <div className={styles.FiltroDropdown}>
-                <button className={styles.ButtonNav}>Filtrar</button>
-                <div className={styles.FiltroContent}>
-                  <FilterComponent />
-                </div>
-              </div>
-              {/* <div className={styles.FiltroDropdown}>
-              <button className={styles.ButtonNav}>Ordenar</button>
-              <div className={styles.FiltroContent}>
-                <Ordenar onOrdenarChange={handleOrdenarChange} />
-              </div>
-            </div> */}
-            </div>
-          )}
+         
         </div>
       )}
 
