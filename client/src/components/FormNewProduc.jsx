@@ -1,34 +1,61 @@
 import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import FormULRValidate from '../utils/FormULRValidate';
 import FormValidationsShema from '../utils/FormValidationsShema';
-import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, getCategoryRoute } from '../redux/actions/actions';
+import {
+	addProduct,
+	fetchCategories,
+	setCategories,
+} from '../redux/actions/actions';
 import Swal from 'sweetalert2';
 import '../css/index.css';
 
-//copiar y pegar todo el codigo en el componente FormNewProduct y eliminar el componente NewForm.jsx y elimiar de app.js la importacion de componente.
-export default function FormNewProduc() {
+export default function FormNewProduct() {
 	const dispatch = useDispatch();
-	const categoryRoute = useSelector((state) => state.categoryRoute);
-	console.log(categoryRoute);
+	const categories = useSelector((state) => state.categories) || [];
+
+	useEffect(() => {
+		dispatch(fetchCategories());
+	}, [dispatch]);
+
 	const initialValues = {
 		name: '',
 		description: '',
 		image: '',
 		quantity: '',
 		price: '',
-		category: '',
-		platforms: '',
-		licenses:'',
+		categories: [],
+		platforms: [],
+		licenses: [],
 	};
-
+	//se cambia initialValues por categories
 	const onSubmit = async (values, { resetForm }) => {
 		try {
-			await dispatch(addProduct(values));
+			// Convert categories to an array if it's not already
+			const updatedValues = {
+				...values,
+				categories: Array.isArray(values.categories)
+					? values.categories
+					: [values.categories],
+				platforms: Array.isArray(values.platforms)
+					? values.platforms
+					: [values.platforms],
+				licenses: Array.isArray(values.licenses)
+					? values.licenses
+					: [values.licenses],
+			};
+
+			await dispatch(addProduct(updatedValues));
 			resetForm({
-				values: { ...initialValues, category:'' },
+				values: {
+					...initialValues,
+					categories: [],
+					platforms: [],
+					licenses: [],
+				},
 			});
+			console.log(updatedValues);
 			Swal.fire({
 				text: 'Se ha agregado el producto',
 				icon: 'success',
@@ -45,8 +72,9 @@ export default function FormNewProduc() {
 	};
 
 	useEffect(() => {
-		dispatch(getCategoryRoute());
+		dispatch(setCategories());
 	}, [dispatch]);
+
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -117,10 +145,9 @@ export default function FormNewProduc() {
 							className='text-red-500'
 						/>
 					</div>
-
 					<div className='mb-4'>
 						<label htmlFor='quantity' className='block mb-2'>
-							Cantidad
+							Quantity
 						</label>
 						<Field
 							type='number'
@@ -129,42 +156,19 @@ export default function FormNewProduc() {
 							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
 						<ErrorMessage
-							name='marca'
-							component='div'
-							className='text-red-500'
-						/>
-					</div>
-
-					<div className='mb-4'>
-						<label htmlFor='category' className='block mb-2'>
-							Categoria
-						</label>
-						<Field
-							as='select'
-							id='category'
-							name='category'
-							className='w-full p-2 border rounded drop-shadow-lg'>
-							<option value=''>Seleccione una categoría</option>
-							{categoryRoute.map((category) => (
-								<option key={category}>{category}</option>
-							))}
-						</Field>
-						<ErrorMessage
-							name='category'
+							name='quantity'
 							component='div'
 							className='text-red-500'
 						/>
 					</div>
 					<div className='mb-4'>
 						<label htmlFor='price' className='block mb-2'>
-							Precio
+							Price
 						</label>
 						<Field
 							type='number'
 							id='price'
 							name='price'
-							min='1'
-							step='any'
 							className='w-full p-2 border rounded drop-shadow-lg'
 						/>
 						<ErrorMessage
@@ -174,8 +178,38 @@ export default function FormNewProduc() {
 						/>
 					</div>
 					<div className='mb-4'>
+						<label htmlFor='Categorias' className='block mb-2'>
+							Categorias
+						</label>
+						{categories.length > 0 ? (
+							<Field
+								as='select'
+								id='categories'
+								name='categories'
+								className='w-full p-2 border rounded drop-shadow-lg'>
+								<option value='' disabled>
+									Select a category
+								</option>
+								{categories.map((category) => (
+									<option
+										key={category.id}
+										value={category.name}>
+										{category.name}
+									</option>
+								))}
+							</Field>
+						) : (
+							<div>Loading categories...</div>
+						)}
+						<ErrorMessage
+							name='categories'
+							component='div'
+							className='text-red-500'
+						/>
+					</div>
+					<div className='mb-4'>
 						<label htmlFor='platforms' className='block mb-2'>
-							Plataformas
+							Platforms
 						</label>
 						<Field
 							type='text'
@@ -191,7 +225,7 @@ export default function FormNewProduc() {
 					</div>
 					<div className='mb-4'>
 						<label htmlFor='licenses' className='block mb-2'>
-							Licencias
+							Licenses
 						</label>
 						<Field
 							type='text'
@@ -205,15 +239,12 @@ export default function FormNewProduc() {
 							className='text-red-500'
 						/>
 					</div>
-
-					<div className='flex justify-center'>
-						<button
-							type='submit'
-							disabled={!isValid}
-							className='bg-[#6F47EB] hover:bg-[#4c1d95] text-white font-bold py-2 px-4 rounded'>
-							Submit
-						</button>
-					</div>
+					<button
+						type='submit'
+						className='px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600'
+						disabled={!isValid}>
+						Submit
+					</button>
 				</Form>
 			)}
 		</Formik>

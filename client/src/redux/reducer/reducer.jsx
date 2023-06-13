@@ -29,11 +29,14 @@ import {
   GET_LICENSES_ROUTE,
   ADD_PRODUCT,
   SEARCH_BY_NAME,
+  SET_CATEGORIES,
+  SET_PRODUCTS,
+  SET_FILTERS,
 } from "../consts";
 
 const initialState = {
   allProducts: [],
-  products: {},
+  products: [],
   user: {},
   users: [],
   data: [],
@@ -48,6 +51,22 @@ const initialState = {
   licensesRoute: [],
   categoryRoute: [],
   newProduct: [],
+  categories: [],
+  filters: {
+    name: "",
+    quantity: null,
+    quantitygte: null,
+    quantitylte: null,
+    price: null,
+    pricegte: null,
+    pricelte: null,
+    categories: [],
+    order: "",
+    direction: "",
+    page: 1,
+    platforms: [],
+    licenses: [],
+  },
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -249,7 +268,19 @@ const rootReducer = (state = initialState, action) => {
         filteredProducts: filteredProducts,
         isFiltering: true,
       };
-
+      case SET_CATEGORIES:
+        return {
+          ...state,
+          categories: action.payload,
+        };
+        case SET_PRODUCTS:
+          return {
+            ...state,
+            products: action.payload.rows,
+            countProducts: action.payload.count,
+          };
+          case SET_FILTERS:
+            return { ...state, filters: action.payload };
     default:
       return state;
   }

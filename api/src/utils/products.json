@@ -511,5 +511,16 @@
         "categories": ["Logística"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS"]
+      },
+      {
+        "name": "Lucas",
+        "description": "dasd",
+        "image": "asd",
+        "quantity": 123,
+        "price": 123,
+        "deleted": false,
+        "platforms": null,
+        "licenses": null,
+        "categories": []
       }
 ]
