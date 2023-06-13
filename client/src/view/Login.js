@@ -9,6 +9,7 @@ import Apple from "../img/AppleLogin.png";
 import Microsoft from "../img/Microsoft.png";
 import { Link, useNavigate } from "react-router-dom";
 import Nav from '../components/Nav';
+import GoogleLoginButton from "../components/GoogleLoginButton";
 
 export function Login() {
   useEffect(() => {
@@ -115,10 +116,9 @@ export function Login() {
           </div>
         </form>
         <div className={style.DivCuentas}>
-          <button>
+        <GoogleLoginButton>
             <img src={Google} className={style.Iconos} alt="Google" /> Continuar
-            con Google
-          </button>
+            con Google</GoogleLoginButton>
           <button>
             <img src={Apple} className={style.Iconos} alt="Apple" /> Continuar
             con Apple

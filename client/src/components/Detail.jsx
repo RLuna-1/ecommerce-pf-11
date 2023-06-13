@@ -33,7 +33,7 @@ export default function Detail() {
   }, [cart]);
 
   const addToCart = (productId) => {
-    dispatch(actions.addToCarta(productId));
+    dispatch(actions.setCart(productId));
   };
   
 

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
 import styles from "../css/Producto.module.css";
 
-function Producto({ id, name, description, image, price, deleted, platforms, licenses, categories }) {
+function Producto({ id, name, image, price,  categories }) {
   const dispatch = useDispatch();
 
   const addToCart = (id) => {
-    dispatch(actions.addToCarta(id));
+    dispatch(actions.setCart(id));
   };
 
   const agregarAlWishlist = (id) => {

@@ -35,7 +35,7 @@ import {
 } from "../consts";
 
 const initialState = {
-  allProducts: [],
+  // allProducts: [],
   products: [],
   user: {},
   users: [],
@@ -84,17 +84,17 @@ const rootReducer = (state = initialState, action) => {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload,
+        products: action.payload,
       };
     case FILTER_PRODUCTS:
       const { category } = action.payload;
       let filterProduct;
       if (category.length > 0) {
-        filterProduct = state.allProducts.filter((product) =>
+        filterProduct = state.products.filter((product) =>
           category.includes(product.categories[0].name)
         );
       } else {
-        filterProduct = state.allProducts;
+        filterProduct = state.products;
       }
       return {
         ...state,
@@ -140,20 +140,20 @@ const rootReducer = (state = initialState, action) => {
           }
         }),
       };
-    case ADD_TO_CART: {
-      let newItem = state.allProducts.find(
+    case SET_CART: {
+      let newItem = state.products.find(
         (product) => product.id === action.payload
       );
 
-      let itemInCart = state.cart.find((item) => item.id === newItem.id);
+      let itemInCart = state.cart.find((item) => item.id=== newItem);
 
       return itemInCart
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
+              item.id === newItem
+                ? { ...item.id, quantity: item.quantity + 1 }
+                : item.id
             ),
           }
         : {
@@ -205,11 +205,11 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-    case SET_CART:
-      return {
-        ...state,
-        cart: action.payload,
-      };
+    // case SET_CART:
+    //   return {
+    //     ...state,
+    //     cart: action.payload,
+    //   };
 
     case SET_CURRENT_PAGE:
       return {
@@ -253,7 +253,7 @@ const rootReducer = (state = initialState, action) => {
     case ADD_PRODUCT:
       return {
         ...state,
-        allProducts: [...state.allProducts, action.payload],
+        products: [...state.products, action.payload],
         newProduct: action.payload,
       };
     case SEARCH_BY_NAME:

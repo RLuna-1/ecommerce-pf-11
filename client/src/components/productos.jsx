@@ -14,7 +14,7 @@ function Productos() {
   const filters = useSelector((state) => state.filters);
 
   const addToCart = (id) => {
-    dispatch(actions.addToCarta(id));
+    dispatch(actions.setCart(id));
   };
 
   useEffect(() => {

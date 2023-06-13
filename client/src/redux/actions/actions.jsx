@@ -4,7 +4,6 @@ import {
   GET_ALL_PRODUCTS,
   FILTER_PRODUCTS,
   RESET_FILTER,
-  ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
   SET_CART,
@@ -389,11 +388,11 @@ export const resetFilter = () => {
   };
 };
 
-export function addToCarta(payload) {
+export function setCart(payload) {
   return (dispatch) => {
     try {
       dispatch({
-        type: ADD_TO_CART,
+        type: SET_CART,
         payload,
       });
 
@@ -411,6 +410,7 @@ export function addToCarta(payload) {
       });
       throw error;
     }
+    console.log("payload "+ dispatch)
   };
 }
 
@@ -435,12 +435,12 @@ export function removeFromCart(payload) {
   };
 }
 
-export const setCart = (cart) => {
-  return {
-    type: SET_CART,
-    payload: cart,
-  };
-};
+// export const setCart = (cart) => {
+//   return {
+//     type: SET_CART,
+//     payload: cart,
+//   };
+// };
 
 // export function setCurrentPage(page) {
 //   return {
