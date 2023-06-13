@@ -2,7 +2,7 @@ import FilterProducts from "../components/FilterProducts";
 import React, { useState, useEffect } from 'react';
 import { Productos, Carousel } from '../components/index';
 import styles from '../css/Home.module.css'
-
+import Pagination from '../components/Pagination';
 const Home = () => {
   const [showCarousel, setShowCarousel] = useState(false);
 
@@ -26,6 +26,7 @@ const Home = () => {
       <div className={styles.Productos}>
         <Productos />
       </div>
+      <Pagination/>
     </div>
 	);
 };

@@ -30,11 +30,11 @@ function Producto({ id, name, description, image, price, deleted, platforms, lic
             {name}
           </h5>
         </Link>
-        {/* <div className="flex items-center mt-2.5 mb-5">
+        <div className="flex items-center mt-2.5 mb-5">
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            Categoria: {product.categories[0].name}
+            Categoria: {categories[0].name}
           </h5>
-        </div> */}
+        </div>
 
         <div className="flex items-end justify-between">
           <span className="text-3xl font-bold text-gray-900 dark:text-white">
