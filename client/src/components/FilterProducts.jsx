@@ -110,23 +110,25 @@ function Filters() {
 	return (
 		<div className='p-4'>
 			<div className='flex items-center justify-between mb-4'>
-				<h1 className='text-2xl font-bold'>Filtros</h1>
-				<div
-					className='p-2 bg-gray-200 cursor-pointer'
-					onClick={toggleFilters}>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						viewBox='0 0 24 24'
-						fill='none'
-						stroke='currentColor'
-						strokeWidth='2'
-						strokeLinecap='round'
-						strokeLinejoin='round'
-						className={`h-6 w-6 ${
-							showFilters ? 'transform rotate-180' : ''
-						}`}>
-						<path d='M19 9l-7 7-7-7' />
-					</svg>
+				<div className='flex items-center'>
+					<h1 className='text-2xl font-bold mr-2'>Filtros</h1>
+					<div
+						className='w-8 h-8 flex items-center justify-center bg-gray-200 cursor-pointer'
+						onClick={toggleFilters}>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							viewBox='0 0 24 24'
+							fill='none'
+							stroke='currentColor'
+							strokeWidth='2'
+							strokeLinecap='round'
+							strokeLinejoin='round'
+							className={`h-4 w-4 transform ${
+								showFilters ? 'rotate-180' : ''
+							}`}>
+							<path d='M19 9l-7 7-7-7' />
+						</svg>
+					</div>
 				</div>
 			</div>
 
