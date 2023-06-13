@@ -32,7 +32,7 @@ productsRouter.get(
         req.query.categories,
         req.query.order,
         req.query.direction,
-        req.query.page,req.query.platforms, req.query.licenses
+        req.query.page,req.query.platforms, req.query.licenses, req.query.pageSize
       );
       res.status(200).json(await showProducts);
     } catch (error) {
