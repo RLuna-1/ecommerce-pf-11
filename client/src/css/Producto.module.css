@@ -1,5 +1,5 @@
 .Producto {
-    max-width: 20%;
+    max-width: 15%;
     background: #dcdef0;
     border-radius: 6px;
     padding: 1em;
@@ -9,17 +9,18 @@
     align-items: center;
     margin: 1.5em;
     box-shadow: -5px 4px 5px 3px black;
-    width: 100%;
+    width: 80%;
   }
 
 .Producto:hover {
     transform: scale(1.02);
   }
 
-  .Producto img {
-    max-width: 100%;
-    max-height: 200px; /* Ajusta el valor según tus necesidades */
-    border: #1C1934 1px solid;
+  .producto-image {
+    max-width: 100px;
+    max-height: 100px; /* Ajusta el valor según tus necesidades */
+    /* object-fit: cover; */
+    /* border: #1C1934 1px solid; */
   }
 .productos {
   align-items: center;

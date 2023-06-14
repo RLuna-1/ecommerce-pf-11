@@ -23,6 +23,7 @@ function App() {
   const { pathname } = useLocation();
 
   return (
+   
     <SearchContextProvider>
     <AuthProvider>
       {pathname !== "/login" && <Nav />}
@@ -45,6 +46,7 @@ function App() {
       <Footer />
       </AuthProvider>
       </SearchContextProvider>
+
   );
 }
 

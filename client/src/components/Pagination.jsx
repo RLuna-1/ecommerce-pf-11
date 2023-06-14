@@ -9,7 +9,7 @@ function Pagination() {
   const { page } = filters;
 
   const totalPages = Math.ceil(countProducts / 8);
-  console.log("SOY TOTAL PAGES:", totalPages);
+  
 
   const handlePrevPage = () => {
     if (page > 1) dispatch(setFilters({ ...filters, page: page - 1 }));
@@ -34,7 +34,7 @@ function Pagination() {
       </div>
     </div>
   ) : (
-    <div>{console.log(totalPages)}</div>
+    <div></div>
   );
 }
 export default Pagination;

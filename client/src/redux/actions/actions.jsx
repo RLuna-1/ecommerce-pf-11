@@ -37,7 +37,6 @@ export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
 const URL = 'http://localhost:3001'
 
 export const setProducts = (products) => {
-  console.log(products);
   return {
     type: SET_PRODUCTS,
     payload: products,
@@ -568,8 +567,6 @@ export const fetchCategories = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/Categories`);
-      console.log("categories:", response);
-      
       dispatch(setCategories(response.data));
     } catch (error) {
       console.log(error);
@@ -614,7 +611,7 @@ export const fetchProducts = (filters) => {
           licenses,
         },
       });
-      console.log("ESTOY EN FETCHPRODUCTS:", categories)
+      
 
       if (response.data.rows.length === 0) {
         // Handle the case when there are no products matching the filters

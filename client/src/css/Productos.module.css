@@ -5,7 +5,11 @@
     width: 100%;
     height: 90%;
 }
-
+.Producto{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .Botones {
     display: flex;
     flex-wrap: wrap;

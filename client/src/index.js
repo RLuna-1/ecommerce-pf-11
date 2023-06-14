@@ -8,6 +8,7 @@ import store from './redux/Store';
 import axios from 'axios';
 import { AuthProvider } from './components/AuthContext';
 
+
 axios.defaults.baseURL = 'http://localhost:3001';
 
 const rootElement = document.getElementById('root');
@@ -15,15 +16,16 @@ const rootElement = document.getElementById('root');
 ReactDOM.createRoot(rootElement).render(
   <Provider store={store}>
     <BrowserRouter>
-    <AuthProvider>
-      <App />
+      <AuthProvider>
+      
+          <App />
+     
       </AuthProvider>
     </BrowserRouter>
   </Provider>
 );
 
 serviceWorker.unregister();
-
 
 
 // If you want your app to work offline and load faster, you can change
