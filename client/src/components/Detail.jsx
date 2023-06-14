@@ -53,7 +53,7 @@ export default function Detail() {
 	return (
 		<main className='grid justify-center items-center mt-20 mb-40 mx-10 grid-cols-2 gap-4'>
 			<div className='grid justify-center items-center'>
-				<div className='max-w-[600px] max-h-[600px] flex justify-center items-center'>
+				<div className='max-w-[900px] max-h-[900px] flex justify-center items-center'>
 					<div className='w-full h-full'>
 						<img
 							src={product?.image}
