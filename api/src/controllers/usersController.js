@@ -95,11 +95,13 @@ async function getUserByName(name) {
     await user.save();
   }
 
+
+
   module.exports = {
     getUserByName,
     getAllUsers,
     getUserById,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
   };

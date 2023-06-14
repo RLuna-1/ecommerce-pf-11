@@ -22,6 +22,7 @@ const seedDB = async () => {
         platform.toLowerCase()
       );
 
+
       const createdProduct = await Product.create({
         name: product.name,
         description: product.description,

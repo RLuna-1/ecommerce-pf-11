@@ -15,9 +15,9 @@ const getProducts = async (
   direction,
   page = 1,
   platforms,
-  licenses
+  licenses,
+  pageSize = 8
 ) => {
-  const pageSize = 9;
   const offset = (page - 1) * pageSize;
 
   const orderClause = [];

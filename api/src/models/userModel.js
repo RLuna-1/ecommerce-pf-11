@@ -81,6 +81,14 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      verification_code: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      is_verified: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     {
       timestamps: false,
@@ -89,8 +97,6 @@ module.exports = (sequelize) => {
           user.email = user.email.toLowerCase();
           const hashedPassword = await bcrypt.hash(user.password, 10);
           user.password = hashedPassword;
-
-          
         },
       },
     }
@@ -98,7 +104,7 @@ module.exports = (sequelize) => {
 
   User.login = async (emailOrGoogleId, password) => {
     let user;
-    
+
     if (emailOrGoogleId.includes("@")) {
       user = await User.findOne({
         where: {
@@ -128,6 +134,70 @@ module.exports = (sequelize) => {
     }
 
     return user;
+  };
+
+  User.verify = async (email, verification_code) => {
+    let user;
+
+    user = await User.findOne({
+      where: {
+        email: email.toLowerCase(),
+      },
+    });
+
+    console.log(user)
+
+    if (!user) {
+
+      throw new Error(`User ${email} not found`);
+      
+    }
+
+    if (user.is_verified) {
+      throw new Error(`User ${email} is already verified`);
+    }
+
+    if (user.googleId) {
+      throw new Error(
+        `Users authenticated by google do not require further verification`
+      );
+    }
+
+    if (user.verification_code === verification_code) {
+      user.is_verified = true;
+      await user.save();
+    } else {
+      throw new Error(
+        `Invalid verification code: ${verification_code} for user ${email}`
+      );
+    }
+  };
+
+  User.regen_verification_code = async (email) => {
+    let user;
+
+    user = await User.findOne({ where: email.toLowerCase() });
+
+    if (!user) {
+      
+      throw new Error(`User ${email} not found`);
+      
+    }
+
+    if (user.is_verified) {
+      throw new Error(`User ${email} is already verified`);
+    }
+
+    if (user.googleId) {
+      throw new Error(
+        `Users authenticated by google do not require further verification`
+      );
+    }
+
+    const new_verification_code = uuidv4();
+
+    user.verification_code = new_verification_code;
+    await user.save();
   };
 
   return User;

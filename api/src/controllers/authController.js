@@ -23,6 +23,7 @@ const postSignUp = async (name, last_name, email, password, phone) => {
     password: password,
     createdInBd: false,
     phone: phone,
+    is_verified: false
   });
 
   const token = createToken(newSignUp._id);
@@ -48,6 +49,12 @@ const googleAuthToken = async (user, revoke) => {
   return token;
 };
 
+const userVerification = async (email, verification_code) => {
+  const verification = await User.verify(email, verification_code)
+
+  return verification
+}
+
 const getLogOut = () => {};
 
-module.exports = { getSignUp, getLogIn, postSignUp, postLogIn, getLogOut, googleAuthToken };
+module.exports = { getSignUp, getLogIn, postSignUp, postLogIn, getLogOut, googleAuthToken, userVerification };

@@ -483,14 +483,14 @@
         "platforms": ["Android", "macOS"]
       },
       {
-        "name": "ElementMaster",
-        "description": "Software de vanguardia que aprovecha el poder de la manipulación de elementos para mejorar la productividad y la creatividad. ElementMaster es un software de vanguardia que aprovecha el poder de la manipulación de elementos para mejorar la productividad y la creatividad. Con ElementMaster, los usuarios pueden controlar y manipular los elementos de manera virtual, lo que les brinda una amplia gama de posibilidades creativas y productivas. Este software está disponible en las plataformas Android e iOS, brindando a los usuarios la capacidad de aprovechar el poder de los elementos en sus dispositivos móviles.",
-        "image": "https://cdna.artstation.com/p/assets/covers/images/030/066/310/large/clark-coots-clark-coots-avatarsymbolsthumbnail.jpg",
+        "name": "Administrador de Puertas Estelares",
+        "description": "Software de última generación diseñado para administrar las Puertas Estelares, los dispositivos de transporte interestelar destacados en el universo de Stargate. Con el Administrador de Puertas Estelares, puedes controlar y coordinar el funcionamiento de múltiples Puertas Estelares, facilitando los viajes sin problemas entre diferentes planetas y galaxias. Este software avanzado ofrece características como almacenamiento de direcciones de las puertas, programación de activación de puertas, monitoreo de energía y diagnóstico de las puertas. Ya seas un explorador, científico o miembro de un equipo especializado en Puertas Estelares, el Administrador de Puertas Estelares es la herramienta esencial para una gestión eficiente de las puertas.",
+        "image": "https://c4.wallpaperflare.com/wallpaper/261/923/691/stargate-wallpaper-preview.jpg",
         "quantity": 10,
-        "price": 399,
-        "categories": ["Manipulación de Elementos"],
+        "price": 499,
+        "categories": ["Gestión de Puertas"],
         "licenses": ["Licencia de por vida"],
-        "platforms": ["Android", "iOS"]
+        "platforms": ["Windows", "macOS", "Linux"]
       },
       {
         "name": "DroidMaster",
@@ -511,16 +511,5 @@
         "categories": ["Logística"],
         "licenses": ["Licencia de por vida", "Suscripción anual"],
         "platforms": ["Windows", "macOS"]
-      },
-      {
-        "name": "Lucas",
-        "description": "dasd",
-        "image": "asd",
-        "quantity": 123,
-        "price": 123,
-        "deleted": false,
-        "platforms": null,
-        "licenses": null,
-        "categories": []
       }
 ]
