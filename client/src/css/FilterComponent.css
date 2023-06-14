@@ -1,48 +1,8 @@
-.filter-container {
-    position: relative;
+label {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 1em;
 }
-  
-.option {
-    position: relative;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-    color: #5E5D6D;
-    white-space: nowrap;
-}
-  
-.suboptions {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: none;
-    z-index: 999;
-    white-space: wrap;
-}
-  
-.option:hover .suboptions {
-    display: block;
-}
-  
-.suboptions.expanded {
-    display: block;
-}
-
-.suboptions label {
-    /* Estilos de cada etiqueta de subopción */
-    display: flex; /* Aplica un estilo flex para controlar el espaciado */
-    align-items: center; /* Centra verticalmente los elementos */
-    margin-bottom: 5px; /* Espacio entre cada etiqueta */
-  }
-  
-  .suboptions label input {
-    /* Estilos del checkbox de subopción */
-    margin-right: 10px; /* Aumenta el espacio entre el texto y el checkbox */
-  }
 
   

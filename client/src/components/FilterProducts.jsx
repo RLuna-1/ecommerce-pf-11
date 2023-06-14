@@ -4,6 +4,7 @@ import { setFilters, fetchCategories } from '../redux/actions/actions';
 import SearchBar from './SearchBar';
 import { SearchContext } from '../redux/context/SearchContext';
 import '../css/index.css';
+import '../css/FilterComponent.css'
 
 function Filters() {
 
@@ -217,7 +218,7 @@ function Filters() {
 							className='mr-2'
 							
 						/>
-						Licencia de por vida {console.log(selectedLicenses)}
+						Licencia de por vida
 					</label>
 					<label className='mb-2'>
 						<input
@@ -273,11 +274,12 @@ function Filters() {
 						value={filters.order}
 						onChange={handleOrderChange}
 						className='w-full p-2 border rounded mb-4'>
-						<option disabled value=''>
+						{/* <option disabled value=''>
 							Ordenar
-						</option>
-						<option value='alphabetical'>Alphabetically</option>
-						<option value='price'>Pricing</option>
+						</option> */}
+						<option value=''>Ordenar</option>
+						<option value='alphabetical'>Alfabetico</option>
+						<option value='price'>Precio</option>
 					</select>
 
 					<h3 className='text-lg font-bold mb-2'>Dirección</h3>
@@ -285,11 +287,12 @@ function Filters() {
 						value={filters.direction}
 						onChange={handleDirectionChange}
 						className='w-full p-2 border rounded mb-4'>
-						<option disabled value=''>
+						{/* <option disabled value=''>
 							Dirección
-						</option>
-						<option value='DESC'>Descending</option>
-						<option value='ASC'>Ascending</option>
+						</option> */}
+						<option value=''>Dirección</option>
+						<option value='DESC'>Descendente </option>
+						<option value='ASC'>Ascendente</option>
 					</select>
 
 					<button
