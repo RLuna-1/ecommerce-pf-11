@@ -483,7 +483,7 @@
         "platforms": ["Android", "macOS"]
       },
       {
-        "name": "Administrador de Puertas Estelares",
+        "name": "GateMaster Pro",
         "description": "Software de última generación diseñado para administrar las Puertas Estelares, los dispositivos de transporte interestelar destacados en el universo de Stargate. Con el Administrador de Puertas Estelares, puedes controlar y coordinar el funcionamiento de múltiples Puertas Estelares, facilitando los viajes sin problemas entre diferentes planetas y galaxias. Este software avanzado ofrece características como almacenamiento de direcciones de las puertas, programación de activación de puertas, monitoreo de energía y diagnóstico de las puertas. Ya seas un explorador, científico o miembro de un equipo especializado en Puertas Estelares, el Administrador de Puertas Estelares es la herramienta esencial para una gestión eficiente de las puertas.",
         "image": "https://c4.wallpaperflare.com/wallpaper/261/923/691/stargate-wallpaper-preview.jpg",
         "quantity": 10,
