@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setFilters } from "../redux/actions/actions";
+import styles from '../css/Pagination.module.css';
 
 function Pagination() {
   const dispatch = useDispatch();
@@ -20,18 +21,12 @@ function Pagination() {
   };
 
   return totalPages > 1 ? (
-    <div>
-      <div>
-      <button onClick={handlePrevPage}>Prev</button>
-      </div>
-      <div>
+    <div className={styles.General}>
+      <button onClick={handlePrevPage} className={styles.BotonNavegacion}>Atras</button>
       <span>
-        Page {page} of {totalPages}
+        Pagina {page} - {totalPages}
       </span>
-      </div>
-    <div>
-      <button onClick={handleNextPage}>Next</button> 
-      </div>
+      <button onClick={handleNextPage} className={styles.BotonNavegacion}>Siguiente</button> 
     </div>
   ) : (
     <div></div>

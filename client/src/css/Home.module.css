@@ -20,15 +20,33 @@
     width: 100%;
 }
 
+.Carousel h1:hover {
+    transform: scale(1.02);
+}
+
 .subCarousel {
-    background-color: #1c1934ce;
+    background-color: rgba(28, 25, 52, 0.116);
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
     width: 90%;
 }
 
-.Productos {
+.General {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    margin-left: 30%;
-    
+    justify-content:space-between;
+    width: 100vw;
+    height: auto;
+    margin: 1% 5%;
+}
+
+.Filtros {
+    display: flex;
+    width: 20%;
+    height: auto;
+    background: white;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
+}
+
+.Productos {
+    width: 80%;
 }
