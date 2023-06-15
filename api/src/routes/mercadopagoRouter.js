@@ -11,7 +11,7 @@ router.post("/", (req, res) => {
     items: [],
 
     back_urls: {
-      success: "https://ecommers-front-rust.vercel.app/purchase-success",
+      success: "https://ecommers-front-rust.vercel.app/feedback",
       failure: "https://ecommers-front-rust.vercel.app/home",
       pending: "https://ecommers-front-rust.vercel.app/home",
     },
