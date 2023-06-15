@@ -23,15 +23,6 @@ const Nav = () => {
     // logoutUser();
   };
 
-  const handleOrdenarChange = (opcion) => {
-    // Aquí puedes realizar acciones según la opción seleccionada en el componente Ordenar
-    console.log("Opción de ordenamiento seleccionada:", opcion);
-  };
-  const handleSearch = (event) => {
-    const searchTerm = event.target.value;
-    dispatch(searchByName(searchTerm));
-  };
-
   const handleRefrescar = () => {
     pathname === "/home" && window.location.reload();
   };

@@ -31,7 +31,6 @@ function NewCarrito() {
   .reduce(function (acumulador, elemento) {
     return acumulador + elemento;
   }, 0);
-  console.log(cart);
   /*****se agrega para calcular el total de cantidades */
   const totalQuantity = cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   /************ */
@@ -59,7 +58,6 @@ const eliminarProducto1 = (id) => {
 };
 const sumarProducto1 = (id) => {
   dispatch(sume1FromCart(id));
-  console.log();
 };
 const eliminarProducto = (id) => {
   dispatch(removeFromCart(id));

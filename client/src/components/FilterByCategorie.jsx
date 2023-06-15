@@ -5,7 +5,6 @@ import { filterProducts, resetFilter } from '../redux/actions/actions';
 
 function FilterByCategorie() {
   const [selectedCategories, setSelectedCategories] = useState([]);
-  console.log(selectedCategories);
   const dispatch = useDispatch();
 
   const handleOptionChange = (e) => {

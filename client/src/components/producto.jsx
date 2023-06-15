@@ -13,7 +13,6 @@ import Web from "../img/IconoWeb.png";
 
 function Producto({ id, name, image, price, licenses, platforms, categories }) {
   const dispatch = useDispatch();
-  console.log("producto", categories);
   const addToCart = (id) => {
     try {
       dispatch(actions.setCart(id));
@@ -35,7 +34,6 @@ function Producto({ id, name, image, price, licenses, platforms, categories }) {
   const agregarAlWishlist = (id) => {
     dispatch(actions.addToWishlist(id));
   };
-  console.log("platforms: ", platforms);
   return (
     <div className="grid grid-cols-4 items-center bg-gray-100 border border-gray-200 rounded-lg shadow mt-2 h-58">
       <div className="col-span-1 max-w-full max-h-full m-2">

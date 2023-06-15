@@ -119,9 +119,7 @@ function Filters() {
           onChange={handleCategoryChange}
           className="w-full p-2 border rounded mb-4"
         >
-          <option value="">
-            Categorías
-          </option>
+          <option value="">Categorías</option>
           {categories &&
             categories.map((category) => (
               <option key={category.id} value={category.name}>
@@ -171,7 +169,7 @@ function Filters() {
           />
           iOS
         </label>
-		<label className="mb-2">
+        <label className="mb-2">
           <input
             type="checkbox"
             value="android"

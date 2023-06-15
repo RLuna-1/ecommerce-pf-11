@@ -28,7 +28,6 @@ const Carrito = () => {
     }
   }, [dispatch]);
 
-  console.log(cart);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [nombre, setNombre] = useState("");
   const [dni, setDni] = useState("");
@@ -43,7 +42,6 @@ const Carrito = () => {
   };
   const sumarProducto1 = (id) => {
     dispatch(sume1FromCart(id));
-    console.log(sume1FromCart)
   };
   const eliminarProducto = (id) => {
     dispatch(removeFromCart(id));
