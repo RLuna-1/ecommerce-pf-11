@@ -231,6 +231,7 @@ export const loginUser = async (payload) => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true
       }
     );
     localStorage.setItem("user", JSON.stringify(response.data));
