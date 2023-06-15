@@ -36,7 +36,8 @@
     justify-content:space-between;
     width: 100vw;
     height: auto;
-    margin: 1% 5%;
+    margin: 1% 0;
+    padding: 0 5%;
 }
 
 .Filtros {
@@ -49,4 +50,5 @@
 
 .Productos {
     width: 80%;
+    padding-left: 5%;
 }
