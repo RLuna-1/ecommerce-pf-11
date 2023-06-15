@@ -10,6 +10,7 @@ const transactionsRouter = require("./transactionsRouter");
 const ratingsRouter = require("./ratingsRouter");
 const authRouter = require("./authRouter");
 const mercadopagoRouter = require("./mercadopagoRouter")
+const nodemailerRouter = require("./nodemailerRouter")
 // const { licenseRouter } = require("./licenseRouter");
 // const { platformRouter } = require("./platformRouter");
 
@@ -27,5 +28,6 @@ mainRouter.use("/transactions", transactionsRouter);
 mainRouter.use("/ratings", ratingsRouter);
 mainRouter.use("/auth", authRouter)
 mainRouter.use("/mercadopago", mercadopagoRouter)
+mainRouter.use("/nodemailer", nodemailerRouter)
 
 module.exports = mainRouter;
