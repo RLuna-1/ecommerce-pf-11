@@ -26,14 +26,14 @@ const postSignUp = async (name, last_name, email, password, phone) => {
     is_verified: false
   });
 
-  const token = createToken(newSignUp._id);
+  const token = createToken(newSignUp.id);
   return { newSignUp, token };
 };
 
 const postLogIn = async (email, password) => {
   const newLogIn = await User.login(email, password);
 
-  const token = createToken(newLogIn._id);
+  const token = createToken(newLogIn.id);
 
   return { newLogIn, token };
 };
@@ -45,7 +45,7 @@ const googleAuthToken = async (user, revoke) => {
     return null;
   }
 
-  const token = createToken(user._id);
+  const token = createToken(user.id);
   return token;
 };
 
@@ -55,6 +55,16 @@ const userVerification = async (email, verification_code) => {
   return verification
 }
 
+const getUserByToken = async (decodedToken) => {
+  try {
+    const user = await User.findByPk(decodedToken.id);
+    console.log("IM IN GETUSERBYTOKEN>", user)
+    return user;
+  } catch (error) {
+    throw new Error("Error retrieving user");
+  }
+};
+
 const getLogOut = () => {};
 
-module.exports = { getSignUp, getLogIn, postSignUp, postLogIn, getLogOut, googleAuthToken, userVerification };
+module.exports = { getSignUp, getLogIn, postSignUp, postLogIn, getLogOut, googleAuthToken, userVerification, getUserByToken };
