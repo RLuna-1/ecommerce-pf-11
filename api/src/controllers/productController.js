@@ -16,7 +16,7 @@ const getProducts = async (
   page = 1,
   platforms,
   licenses,
-  pageSize = 8
+  pageSize = 9
 ) => {
   const offset = (page - 1) * pageSize;
 

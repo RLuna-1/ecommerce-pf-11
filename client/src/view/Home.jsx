@@ -15,7 +15,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className={styles.General}>
       <div className={styles.Carousel}>
         <div className={styles.subCarousel}>
           <h1 onClick={toggleCarousel}>→ → Destacados de la semana ← ←</h1>
@@ -31,7 +31,6 @@ const Home = () => {
         </div>
         <Pagination />
       </div>
-      
     </div>
   );
 };

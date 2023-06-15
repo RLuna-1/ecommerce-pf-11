@@ -14,11 +14,6 @@ const Footer = () => {
 					</a>
 				</div>
 			</div>
-			<div>
-				<Link to="/landing">
-				<h2> Sobre nosotros </h2>
-				</Link>
-			</div>
 			<div className={styles.Contactos}>
 				<h2>Contactanos</h2>
 				<p>Codexpress@ejemplo.com</p>

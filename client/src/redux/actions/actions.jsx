@@ -569,7 +569,6 @@ export const fetchCategories = () => {
       const response = await axios.get(`/Categories`);
       dispatch(setCategories(response.data));
     } catch (error) {
-      console.log(error);
     }
   };
 };
@@ -611,17 +610,14 @@ export const fetchProducts = (filters) => {
           licenses,
         },
       });
-      
 
-      if (response.data.rows.length === 0) {
-        // Handle the case when there are no products matching the filters
+      if (response.data.rows && response.data.rows.length === 0) {
         dispatch(setProducts([]));
       } else {
         dispatch(setProducts(response.data));
       }
     } catch (error) {
-      console.log("ERROR:", error);
-      dispatch(setProducts([])); // Set an empty array if there's an error
+      dispatch(setProducts([]));
     }
   };
 };
