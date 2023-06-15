@@ -8,12 +8,12 @@ import {
 } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
-
+import axios from 'axios';
 
 
 function NewCarrito() {
-  const [quantity1, setQuantity1] = useState(2);
-  const [quantity2, setQuantity2] = useState(2);
+  const [setQuantity1] = useState(2);
+  const [setQuantity2] = useState(2);
 
   const handleQuantityChange1 = (event) => {
     setQuantity1(event.target.value);
@@ -45,14 +45,12 @@ useEffect(() => {
 }, [dispatch]);
 
 
-const [mostrarFormulario, setMostrarFormulario] = useState(false);
-const [nombre, setNombre] = useState("");
-const [dni, setDni] = useState("");
-const [telefono, setTelefono] = useState("");
-const [direccion, setDireccion] = useState("");
-const [codigoPostal, setCodigoPostal] = useState("");
-const [mensajeCompra, setMensajeCompra] = useState("");
-const [mostrarBotonComprar, setMostrarBotonComprar] = useState(true);
+const [nombre] = useState("");
+const [dni] = useState("");
+const [telefono] = useState("");
+const [direccion] = useState("");
+const [codigoPostal] = useState("");
+const [ setMensajeCompra] = useState("");
 
 const eliminarProducto1 = (id) => {
   dispatch(remove1FromCart(id));
@@ -68,17 +66,7 @@ useEffect(() => {
   localStorage.setItem("cart", JSON.stringify(cart));
 }, [cart]);
 
-const mostrarFormularioEmergente = () => {
-  setMostrarFormulario(true);
-  setMostrarBotonComprar(false); // Oculta el primer botón "Comprar"
-};
-
-const ocultarFormularioEmergente = () => {
-  setMostrarFormulario(false);
-  setMostrarBotonComprar(true); // Muestra el primer botón "Comprar" nuevamente
-};
-
-const realizarCompra = () => {
+const realizarCompra = async () => {
   if (
     nombre !== "" &&
     dni !== "" &&
@@ -87,6 +75,25 @@ const realizarCompra = () => {
     codigoPostal !== ""
   ) {
     setMensajeCompra("¡La compra se ha realizado exitosamente!");
+    try {
+      
+      const productos = cart.map((producto) => ({
+        title: producto.name,
+        quantity: producto.quantity,
+        price: producto.price,
+      }));
+
+      
+     await axios.post("/mercadopago", productos);
+
+
+      setMensajeCompra("¡La compra se ha realizado exitosamente!");
+    } catch (error) {
+      console.error("Error al realizar el pago:", error);
+      setMensajeCompra(
+        "Ha ocurrido un error al realizar el pago. Por favor, intenta nuevamente."
+      );
+    }
   } else {
     setMensajeCompra("Por favor, completa todos los campos del formulario.");
   }
@@ -154,7 +161,7 @@ const realizarCompra = () => {
         
             </div>
           </div>
-          <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Comprar</button>
+          <button onClick={realizarCompra} className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Comprar</button>
         </div>
         
       </div>    

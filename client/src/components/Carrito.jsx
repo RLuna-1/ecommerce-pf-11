@@ -29,15 +29,14 @@ const Carrito = () => {
     }
   }, [dispatch]);
 
-
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  // const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [nombre, setNombre] = useState("");
   const [dni, setDni] = useState("");
   const [telefono, setTelefono] = useState("");
   const [direccion, setDireccion] = useState("");
   const [codigoPostal, setCodigoPostal] = useState("");
   const [mensajeCompra, setMensajeCompra] = useState("");
-  const [mostrarBotonComprar, setMostrarBotonComprar] = useState(true);
+  // const [mostrarBotonComprar, setMostrarBotonComprar] = useState(true);
 
   const eliminarProducto1 = (id) => {
     dispatch(remove1FromCart(id));
@@ -53,15 +52,15 @@ const Carrito = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const mostrarFormularioEmergente = () => {
-    setMostrarFormulario(true);
-    setMostrarBotonComprar(false); // Oculta el primer botón "Comprar"
-  };
+  // const mostrarFormularioEmergente = () => {
+  //   setMostrarFormulario(true);
+  //   setMostrarBotonComprar(false); // Oculta el primer botón "Comprar"
+  // };
 
-  const ocultarFormularioEmergente = () => {
-    setMostrarFormulario(false);
-    setMostrarBotonComprar(true); // Muestra el primer botón "Comprar" nuevamente
-  };
+  // const ocultarFormularioEmergente = () => {
+  //   setMostrarFormulario(false);
+  //   setMostrarBotonComprar(true); // Muestra el primer botón "Comprar" nuevamente
+  // };
 
   const realizarCompra = async () => {
     if (
@@ -128,12 +127,6 @@ const Carrito = () => {
           Total ({cart.length} Articulos): ${price}
         </h2>
       )}
-
-      {mostrarBotonComprar && (
-        <button className={styles.Comprar} onClick={mostrarFormularioEmergente}>
-          Comprar
-        </button>
-      )}
       <Link></Link>
       <button className={styles.Comprar}>
         <Link to={`/home`}>
@@ -141,7 +134,6 @@ const Carrito = () => {
           </Link>
       </button>
 
-      {mostrarFormulario && (
   <div className={styles.ElementoCompra}>
     <h2>Formulario de Compra</h2>
     <input
@@ -175,16 +167,7 @@ const Carrito = () => {
       placeholder="Código Postal"
     />
     <button onClick={realizarCompra}>Realizar Compra</button>
-    <button onClick={ocultarFormularioEmergente}>Cancelar</button>
   </div>
-)}
-
-      {mensajeCompra && (
-        <div className={styles.MensajeEmergente}>
-          <p>{mensajeCompra}</p>
-          <button onClick={() => setMensajeCompra("")}>Cerrar</button>
-        </div>
-      )}
     </div>
   );
 };
