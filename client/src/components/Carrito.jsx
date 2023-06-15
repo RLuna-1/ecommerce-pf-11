@@ -29,7 +29,7 @@ const Carrito = () => {
     }
   }, [dispatch]);
 
-  console.log(cart);
+
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [nombre, setNombre] = useState("");
   const [dni, setDni] = useState("");

@@ -611,16 +611,15 @@ export const fetchProducts = (filters) => {
           licenses,
         },
       });
-      
 
       if (response.data.rows.length === 0) {
         // Handle the case when there are no products matching the filters
         dispatch(setProducts([]));
+        alert("No se encontraron productos que coincidan con los filtros.");
       } else {
         dispatch(setProducts(response.data));
       }
     } catch (error) {
-      console.log("ERROR:", error);
       dispatch(setProducts([])); // Set an empty array if there's an error
     }
   };
