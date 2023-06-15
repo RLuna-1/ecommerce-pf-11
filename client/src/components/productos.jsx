@@ -47,7 +47,9 @@ function Productos() {
       {products && products.length > 0 ? (
         renderProducts
       ) : (
-        <p>Sin productos disponibles</p>
+        <div>
+        <p className={styles.Mensaje}>Sin productos disponibles</p>
+        </div>
       )}
     </div>
   );
