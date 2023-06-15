@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import LogoClaro from "../img/LogoClaro.png";
 import Carrito from "../img/Carrito.png";
-import FilterComponent from "./FilterByCategorie";
-import Ordenar from "./Ordenar";
 import IconoUser from "../img/IconoUser.png";
 import { AuthContext } from "./AuthContext";
 import { searchByName } from "../redux/actions/actions";
@@ -22,6 +20,16 @@ const Nav = () => {
     navigate("/login"); // Redireccionar al usuario a la página de inicio de sesión
     // logoutUser();
   };
+  useEffect(() => {
+    const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
+    if (storedLoggedInStatus) {
+      setIsLoggedIn(JSON.parse(storedLoggedInStatus));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
 
   const handleOrdenarChange = (opcion) => {
     // Aquí puedes realizar acciones según la opción seleccionada en el componente Ordenar
