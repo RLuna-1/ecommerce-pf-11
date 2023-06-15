@@ -35,7 +35,7 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Product, Category, Wishlist, User } = sequelize.models;
+const { Product, Category, Wishlist, User, Carrito } = sequelize.models;
 
 Product.belongsToMany(Category, { through: "products_categories" });
 Category.belongsToMany(Product, { through: "products_categories" });
@@ -49,6 +49,17 @@ User.hasOne(Wishlist);
 Wishlist.belongsTo(User);
 Wishlist.belongsToMany(Product, { through: 'WishlistProduct' });
 Product.belongsToMany(Wishlist, { through: 'WishlistProduct' });
+User.hasOne(Carrito, {
+  foreignKey: 'userId',
+  as: 'carrito'
+});
+
+Carrito.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'user'
+});
+
+
 
 
 module.exports = {

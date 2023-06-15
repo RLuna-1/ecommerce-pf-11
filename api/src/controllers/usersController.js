@@ -1,6 +1,8 @@
 const {
 User
 } = require ('../db')
+const nodemailer = require('nodemailer');
+
 
 
 
