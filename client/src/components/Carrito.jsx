@@ -8,6 +8,7 @@ import {
 } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
+import axios from "axios";
 // import eliminarIcono from '../img/cesto_basura.png';
 
 const Carrito = () => {
@@ -62,7 +63,7 @@ const Carrito = () => {
     setMostrarBotonComprar(true); // Muestra el primer botón "Comprar" nuevamente
   };
 
-  const realizarCompra = () => {
+  const realizarCompra = async () => {
     if (
       nombre !== "" &&
       dni !== "" &&
@@ -71,6 +72,25 @@ const Carrito = () => {
       codigoPostal !== ""
     ) {
       setMensajeCompra("¡La compra se ha realizado exitosamente!");
+      try {
+        
+        const productos = cart.map((producto) => ({
+          title: producto.name,
+          quantity: producto.quantity,
+          price: producto.price,
+        }));
+
+        
+       await axios.post("/mercadopago", productos);
+
+
+        setMensajeCompra("¡La compra se ha realizado exitosamente!");
+      } catch (error) {
+        console.error("Error al realizar el pago:", error);
+        setMensajeCompra(
+          "Ha ocurrido un error al realizar el pago. Por favor, intenta nuevamente."
+        );
+      }
     } else {
       setMensajeCompra("Por favor, completa todos los campos del formulario.");
     }
