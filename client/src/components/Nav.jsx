@@ -50,13 +50,9 @@ const Nav = () => {
               Productos
             </button>
           </Link>
-          <Link to="/vender">
-            <button className={styles.ButtonNav}>Vender</button>
+          <Link to="/landing">
+            <button className={styles.ButtonNav}>Nosotros</button>
           </Link>
-          <Link to="/wishlist">
-            <button className={styles.ButtonNav}>Deseos</button>
-          </Link>
-         
         </div>
       )}
 
@@ -73,24 +69,29 @@ const Nav = () => {
             </button>
           </Link>
         )}
-        <div class={styles.PerfilDropdown}>
-          <img src={IconoUser} alt="User" class={styles.Perfil} />
-          <div class={styles.PerfilContent}>
+        <div className={styles.PerfilDropdown}>
+          <img src={IconoUser} alt="User" className={styles.Perfil} />
+          <div className={styles.PerfilContent}>
             <Link to="/infocliente">
-              <button className={styles.Iniciar}>Mi Perfil</button>
+              <button className={styles.ButtonNav}>Mi Perfil</button>
             </Link>
             <Link to="/compracliente">
-              <button className={styles.Iniciar}>Mis Compras</button>
+              <button className={styles.ButtonNav}>Mis Compras</button>
             </Link>
             {isLoggedIn ? (
+              <Link to="/#">
+                <button className={styles.ButtonNav}>Administrador</button>
+              </Link>
+            ) : null}
+            {isLoggedIn ? (
               <Link to="/">
-                <button onClick={handleLogout} className={styles.Cerrar}>
+                <button onClick={handleLogout} className={styles.ButtonNav}>
                   Cerrar Sesión
                 </button>
               </Link>
             ) : (
               <Link to="/login">
-                <button className={styles.Iniciar}>Iniciar Sesión</button>
+                <button className={styles.ButtonNav}>Iniciar Sesión</button>
               </Link>
             )}
           </div>
