@@ -133,5 +133,4 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  getUserByToken
 };
