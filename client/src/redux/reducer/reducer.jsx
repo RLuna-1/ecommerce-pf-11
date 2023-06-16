@@ -285,6 +285,23 @@ const rootReducer = (state = initialState, action) => {
           };
           case SET_FILTERS:
             return { ...state, filters: action.payload };
+
+
+
+      //       case EDIT_PRODUCT:
+      // const { id, bodyFormData } = action.payload;
+      // const productosActualizados = state.products.map(producto => {
+      //   if (producto.id === id) {
+      //     return { ...producto, ...bodyFormData };
+      //   }
+      //   return producto;
+      // });
+
+      // return {
+      //   ...state,
+      //   productos: productosActualizados
+      // };
+    
     default:
       return state;
   }

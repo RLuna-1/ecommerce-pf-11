@@ -199,8 +199,8 @@ const updateProduct = async (
     price: price,
     platforms: platforms,
     licenses: licenses,
-  });
-
+  }); 
+  
   if (categories) {
     const categoryIds = Array.isArray(categories) ? categories : [categories];
     await updatedProduct.setCategories(categoryIds);

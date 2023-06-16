@@ -73,9 +73,9 @@ const Nav = () => {
             </button>
           </Link>
         )}
-        <div class={styles.PerfilDropdown}>
-          <img src={IconoUser} alt="User" class={styles.Perfil} />
-          <div class={styles.PerfilContent}>
+        <div className={styles.PerfilDropdown}>
+          <img src={IconoUser} alt="User" className={styles.Perfil} />
+          <div className={styles.PerfilContent}>
             <Link to="/infocliente">
               <button className={styles.Iniciar}>Mi Perfil</button>
             </Link>

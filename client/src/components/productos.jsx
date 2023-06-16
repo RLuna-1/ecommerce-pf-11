@@ -63,9 +63,11 @@ import { fetchProducts } from "../redux/actions/actions";
 
 function Productos() {
   const products = useSelector((state) => state.products);
+  console.log(products);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
+  console.log(filters);
 
   const addToCart = (id) => {
     dispatch(actions.setCart(id));
@@ -77,6 +79,7 @@ function Productos() {
 
   useEffect(() => {
     dispatch(fetchProducts(filters));
+    console.log();
   }, [dispatch, filters]);
 
   const renderProducts = products.map((card) => (

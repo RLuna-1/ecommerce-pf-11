@@ -19,6 +19,7 @@ import CompraCliente from "../components/CompraClinete";
 // import ProductCard from "../components/ProductCard";
 import { AuthProvider } from '../components/AuthContext';
 import { SearchContextProvider } from "../redux/context/SearchContext";
+import Admin from "../dasboard/Admin";
 function App() {
   const { pathname } = useLocation();
 
@@ -42,6 +43,7 @@ function App() {
         {/* <Route path="/carta" element={<ProductCard/>} /> */}
         <Route path="/infocliente" element={<InfoCliente/>}/>
         <Route path="/compracliente" element={<CompraCliente/>}/>
+        <Route path="/dashboard" element={<Admin/>}/>
       </Routes>
       <Footer />
       </AuthProvider>

@@ -33,6 +33,7 @@ export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
+//export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 const URL = 'http://localhost:3001'
 
@@ -134,16 +135,18 @@ export function postProduct(bodyFormData) {
 }
 
 export function editProduct(bodyFormData, id) {
+  console.log('el ide de la action es: ' +id);
+  console.log(bodyFormData);
   return function (dispatch) {
     return axios
       .put(`${URL}/products/${id}`, bodyFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        //headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
         Swal.fire({
           icon: "success",
           title: "Modificación",
-          text: "Se modificó el producto correctamente",
+          text: `Se modificó el producto ${bodyFormData.name} correctamente`,
         });
         getProduct(res.data.id)(dispatch);
       })
@@ -625,3 +628,72 @@ export const fetchProducts = (filters) => {
     }
   };
 };
+
+// export const editProduct = (bodyFormData, id) => {
+//   return dispatch => {
+//     axios.put(`http://localhost:3001/productos/${id}`, bodyFormData)
+//       .then(response => {
+//         dispatch({
+//           type: EDIT_PRODUCT,
+//           payload: {
+//             id,
+//             bodyFormData: response.data
+//           }
+//         });
+//       })
+//       .catch(error => {
+//         // Manejo del error
+//       });
+//   };
+// };
+
+// export function editProduct(bodyFormData, id) {
+//   console.log('el ide de la action es: ' +id);
+//   console.log(bodyFormData);
+//   return function (dispatch) {
+//     return axios
+//       .put(`${URL}/products/${id}`, bodyFormData, {
+//         //headers: { "Content-Type": "multipart/form-data" },
+//       })
+//       .then((res) => {
+//         Swal.fire({
+//           icon: "success",
+//           title: "Modificación",
+//           text: `Se modificó el producto ${bodyFormData.name} correctamente`,
+//         });
+//         getProduct(res.data.id)(dispatch);
+//       })
+//       .catch((error) => {
+//         Swal.fire({
+//           icon: "error",
+//           title: "Oops...",
+//           text: "Completa todos los datos obligatorios",
+//         });
+//       });
+//   };
+// }
+
+
+export function deleteProduct(id) {
+  console.log('el ide de la action es: ' +id);
+  
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/products/${id}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: `Se modificó el producto ${id} correctamente`,
+        });
+       // getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}

@@ -20,17 +20,17 @@ function Pagination() {
   };
 
   return totalPages > 1 ? (
-    <div>
-      <div>
-      <button onClick={handlePrevPage}>Prev</button>
+    <div className="mt-4 flex justify-center items-center ">
+      <div >
+      <button onClick={handlePrevPage} className="mx-1 px-2 py-1 rounded  bg-blue-500 text-white" >Prev</button>
       </div>
       <div>
-      <span>
+      <span >
         Page {page} of {totalPages}
       </span>
       </div>
     <div>
-      <button onClick={handleNextPage}>Next</button> 
+      <button onClick={handleNextPage} className="mx-1 px-2 py-1 rounded  bg-blue-500 text-white">Next</button> 
       </div>
     </div>
   ) : (
