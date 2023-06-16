@@ -10,6 +10,8 @@ import FilterByCategorie from './FilterByCategorie';
 import Productos from './productos';
 import Carousel from "./Carousel";
 import Wishlist from "./Wishlist";
+import Questions from './Questions';
+
 
 export {
 	Nav,
@@ -24,5 +26,6 @@ export {
 	Productos,
 	Carousel,
 	Wishlist,
-}
+	Questions,
+};
 

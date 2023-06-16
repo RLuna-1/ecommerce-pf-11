@@ -45,67 +45,85 @@ const Nav = () => {
   };
 
   return (
-    <div className={styles.Nav}>
-      <div className={styles.DivLogo}>
-        <a href="/home">
-          <img className={styles.Logo} src={LogoClaro} alt="Logo" />
-        </a>
-      </div>
-      {pathname !== "/" && (
-        <div className={styles.DivCentral}>
-          <Link to="/home">
-            <button onClick={handleRefrescar} className={styles.ButtonNav}>
-              Productos
-            </button>
-          </Link>
-          <Link to="/landing">
-            <button className={styles.ButtonNav}>Nosotros</button>
-          </Link>
-        </div>
-      )}
+		<div className={styles.Nav}>
+			<div className={styles.DivLogo}>
+				<a href='/home'>
+					<img className={styles.Logo} src={LogoClaro} alt='Logo' />
+				</a>
+			</div>
+			{pathname !== '/' && (
+				<div className={styles.DivCentral}>
+					<Link to='/home'>
+						<button
+							onClick={handleRefrescar}
+							className={styles.ButtonNav}>
+							Productos
+						</button>
+					</Link>
+					<Link to='/landing'>
+						<button className={styles.ButtonNav}>Nosotros</button>
+					</Link>
+					<Link to='/FQA'>
+						<button
+							className={styles.ButtonNav}>
+							Preguntas Frecuentes
+						</button>
+					</Link>
+				</div>
+			)}
 
-      <div className={styles.DivLogin}>
-        {pathname === "/" && (
-          <Link to="/home">
-            <button className={styles.ButtonNav}>Ingresar</button>
-          </Link>
-        )}
-        {pathname !== "/" && pathname !== "/carrito" && (
-          <Link to="/carrito">
-            <button className={styles.Carrito}>
-              <img src={Carrito} alt="Carrito" />
-            </button>
-          </Link>
-        )}
-        <div className={styles.PerfilDropdown}>
-          <img src={IconoUser} alt="User" className={styles.Perfil} />
-          <div className={styles.PerfilContent}>
-            <Link to="/infocliente">
-              <button className={styles.ButtonNav}>Mi Perfil</button>
-            </Link>
-            <Link to="/compracliente">
-              <button className={styles.ButtonNav}>Mis Compras</button>
-            </Link>
-            {isLoggedIn ? (
-              <Link to="/#">
-                <button className={styles.ButtonNav}>Administrador</button>
-              </Link>
-            ) : null}
-            {isLoggedIn ? (
-              <Link to="/">
-                <button onClick={handleLogout} className={styles.ButtonNav}>
-                  Cerrar Sesión
-                </button>
-              </Link>
-            ) : (
-              <Link to="/login">
-                <button className={styles.ButtonNav}>Iniciar Sesión</button>
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+			<div className={styles.DivLogin}>
+				{pathname === '/' && (
+					<Link to='/home'>
+						<button className={styles.ButtonNav}>Ingresar</button>
+					</Link>
+				)}
+				{pathname !== '/' && pathname !== '/carrito' && (
+					<Link to='/carrito'>
+						<button className={styles.Carrito}>
+							<img src={Carrito} alt='Carrito' />
+						</button>
+					</Link>
+				)}
+				<div className={styles.PerfilDropdown}>
+					<img src={IconoUser} alt='User' className={styles.Perfil} />
+					<div className={styles.PerfilContent}>
+						<Link to='/infocliente'>
+							<button className={styles.ButtonNav}>
+								Mi Perfil
+							</button>
+						</Link>
+						<Link to='/compracliente'>
+							<button className={styles.ButtonNav}>
+								Mis Compras
+							</button>
+						</Link>
+						{isLoggedIn ? (
+							<Link to='/#'>
+								<button className={styles.ButtonNav}>
+									Administrador
+								</button>
+							</Link>
+						) : null}
+						{isLoggedIn ? (
+							<Link to='/'>
+								<button
+									onClick={handleLogout}
+									className={styles.ButtonNav}>
+									Cerrar Sesión
+								</button>
+							</Link>
+						) : (
+							<Link to='/login'>
+								<button className={styles.ButtonNav}>
+									Iniciar Sesión
+								</button>
+							</Link>
+						)}
+					</div>
+				</div>
+			</div>
+		</div>
   );
 };
 

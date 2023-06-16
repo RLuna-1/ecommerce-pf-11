@@ -39,7 +39,7 @@ function Producto({ id, name, image, price, licenses, platforms, categories }) {
           </Link>
         </div>
       </div>
-      <div className="col-span-3 flex flex-col justify-between ml-24 mt-2">
+      <div className="col-span-3 flex flex-col justify-between ml-2 mt-2">
         <div>
           <div class="flex flex-row justify-between">
             <Link to={`/detail/${id}`}>
