@@ -5,7 +5,7 @@ import LogoOscuro from '../img/LogoOscuro.png';
 
 const Footer = () => {
 	return (
-		<footer className='bg-[#1c1934] pt-9 pr-20 pl-20 mr-6 flex flex-wrap justify-between bottom-0 left-0 w-full'>
+		<footer className='bg-[#1c1934] pt-9 pr-20 pl-20 mr-6 flex flex-wrap justify-between bottom-0 left-0 w-screen'>
 			<div className='text-center'>
 				<img className='w-28 h-28' src={LogoOscuro} alt='Logo' />
 			</div>

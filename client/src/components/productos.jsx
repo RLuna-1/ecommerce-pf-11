@@ -8,17 +8,13 @@ import { fetchProducts } from "../redux/actions/actions";
 
 function Productos() {
   const products = useSelector((state) => state.products);
-  const cart = useSelector((state) => state.cart);
+  // const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
 
   const addToCart = (id) => {
     dispatch(actions.setCart(id));
   };
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
 
   useEffect(() => {
     dispatch(fetchProducts(filters));
