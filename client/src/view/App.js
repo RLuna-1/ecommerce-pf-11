@@ -27,7 +27,7 @@ function App() {
   return (
 		<SearchContextProvider>
 			<AuthProvider>
-				{pathname !== '/login' && <Nav />}
+				{pathname !== '/login' && pathname !== '/dashboard' && <Nav />}
 				<Routes>
 					<Route path='/' element={<Navigate to='/home' />} />
 					<Route path='/home' element={<Home />} />
@@ -46,7 +46,7 @@ function App() {
 					<Route path='/FQA' element={<Questions />} />
 					<Route path="/dashboard" element={<Admin/>}/>
 				</Routes>
-				<Footer />
+				{pathname !== '/dashboard' && <Footer />}
 			</AuthProvider>
 		</SearchContextProvider>
   );
