@@ -80,7 +80,7 @@ const InfoCliente = () => {
         email: userData.email,
       });
       disableEditing();
-      setUserData({ ...userData, name, lastName, phone: phoneNumber });
+      setUserData({ ...userData, name, lastName: lastName, phone: phoneNumber });
     } catch (error) {
       console.error(error);
     }
@@ -114,7 +114,7 @@ console.log("editpass",editpass);
           ) : (
             <img src={PerfilDefault} alt="Usuario" />
           )}
-          <h1>{`${name} ${lastName}`}</h1>
+          {name && lastName ? (<h1>{`${name} ${lastName}`}</h1>):(<h1>{name}</h1>)}
         </div>
       <div className={styles.Info}>
         
@@ -157,7 +157,7 @@ console.log("editpass",editpass);
                 <h2>Nombre: </h2>
                 <h1>{userData.name}</h1>
                 <h2>Apellido: </h2>
-                <h1>{userData.last_name}</h1>
+                <h1>{lastName}</h1>
                 <h2>Teléfono: </h2>
                 <h1>{userData.phone}</h1>
                 <h2>Correo: </h2>
@@ -241,5 +241,6 @@ const saveChanges = async () => {
     console.error(error);
   }
 };
+
 
 */
