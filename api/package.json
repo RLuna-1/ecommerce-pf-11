@@ -28,6 +28,7 @@
     "passport-google-oauth2": "^0.2.0",
     "pg": "^8.11.0",
     "pg-hstore": "^2.3.4",
+    "react-cookie": "^4.1.1",
     "sequelize": "^6.31.1"
   },
   "devDependencies": {
