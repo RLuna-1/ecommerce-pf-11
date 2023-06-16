@@ -136,16 +136,14 @@ export function postProduct(bodyFormData) {
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
     return axios
-      .put(`${URL}/products/${id}`, bodyFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .put(`${URL}/products/${id}`, bodyFormData)
       .then((res) => {
         Swal.fire({
           icon: "success",
           title: "Modificación",
           text: "Se modificó el producto correctamente",
         });
-        getProduct(res.data.id)(dispatch);
+        //getProduct(res.data.id)(dispatch);
       })
       .catch((error) => {
         Swal.fire({
@@ -625,3 +623,28 @@ export const fetchProducts = (filters) => {
     }
   };
 };
+
+
+export function deleteProduct(id) {
+  console.log('el ide de la action es: ' +id);
+  
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/products/${id}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: `Se modificó el producto ${id} correctamente`,
+        });
+       // getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}
