@@ -51,15 +51,29 @@ export default function Detail() {
 	};
 
 	return (
-		<main className='grid justify-center items-center mt-20 mb-40 mx-10 grid-cols-2 gap-4'>
-			<div className='grid justify-center items-center'>
-				<div className='max-w-[900px] max-h-[900px] flex justify-center items-center'>
-					<div className='w-full h-full'>
-						<img
-							src={product?.image}
-							alt='Imagen del producto'
-							className='object-cover'
-						/>
+		<main className='grid justify-center items-start mt-20 mb-40 mx-10 grid-cols-2 gap-4 '>
+			<div className='grid justify-center items-start'>
+				<div className='max-w-full max-h-full'>
+					<div className='flex justify-center items-start'>
+						<div className='w-96 h-96'>
+							<img
+								src={product?.image}
+								alt='Imagen del producto'
+								className='object-cover'
+							/>
+						</div>
+					</div>
+					<div className='mt-auto'>
+						<Link to={'/home'}>
+							<button className='mx-4 px-4 py-2 mt-4 text-blue-700 bg-blue-200 hover:bg-blue-600 hover:text-white rounded transition-colors duration-300'>
+								Regresar a inicio
+							</button>
+						</Link>
+						<button
+							className='px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600 transition-colors duration-300'
+							onClick={() => addToCart(product.id)}>
+							Agregar al Carrito
+						</button>
 					</div>
 				</div>
 			</div>
@@ -78,71 +92,62 @@ export default function Detail() {
 								${product.price}
 							</p>
 						</section>
-						<section className=' mt-2 mb-2'>
+						<section className='mt-2 mb-2'>
 							<h2 className='text-lg font-bold'>Descripción</h2>
 							<p className='text-gray-700'>
 								{product.description}
 							</p>
 						</section>
 						{product.categories && (
-							<section className=' mt-2 mb-2'>
-								<h2 className='text-lg font-bold'>Categoría</h2>
-								{product.categories.map((category, index) => (
-									<p className='text-gray-700' key={index}>
-										{category.name}
-									</p>
-								))}
-							</section>
-						)}
-						{product.platforms && (
-							<section className=' mt-2 mb-2'>
-								<h2 className='text-lg font-bold'>
-									Plataformas
-								</h2>
-								<div className='pl-10'>
-									<ul className='text-gray-700'>
-										{product.platforms.map(
-											(platform, index) => (
-												<li key={index}>{platform}</li>
-											),
-										)}
-									</ul>
+							<section className='mt-5 mb-2 flex'>
+								<div className='pr-4'>
+									<h2 className='text-lg font-bold'>
+										Categoría
+									</h2>
+									{product.categories.map(
+										(category, index) => (
+											<p
+												className='text-gray-700'
+												key={index}>
+												{category.name}
+											</p>
+										),
+									)}
 								</div>
+								{product.platforms && (
+									<div className='pl-10'>
+										<h2 className='text-lg font-bold'>
+											Plataformas
+										</h2>
+										<ul className='pl-10 text-gray-700'>
+											{product.platforms.map(
+												(platform, index) => (
+													<li key={index}>
+														{platform}
+													</li>
+												),
+											)}
+										</ul>
+									</div>
+								)}
+								{product.licenses && (
+									<div className='pl-10'>
+										<h2 className='text-lg font-bold'>
+											Tipo de licencia
+										</h2>
+										<ul className='pl-10 text-gray-700'>
+											{product.licenses.map(
+												(license, index) => (
+													<li key={index}>
+														{license}
+													</li>
+												),
+											)}
+										</ul>
+									</div>
+								)}
 							</section>
 						)}
-						{product.licenses && (
-							<section className='mt-2 mb-2'>
-								<h2 className='text-lg font-bold'>
-									Tipo de licencia
-								</h2>
-								<div className='pl-10'>
-									<ul className='text-gray-700'>
-										{product.licenses.map(
-											(license, index) => (
-												<li key={index}>{license}</li>
-											),
-										)}
-									</ul>
-								</div>
-							</section>
-						)}
-
-						<section className=' mt-2 mb-2'>
-							<h2 className='text-lg font-bold'>Disponibles</h2>
-							<p className='text-gray-700'>{product.quantity}</p>
-						</section>
-						<div className='p-4'>
-							<Link to={'/home'}>
-								<button className='mx-4 px-4 py-2 mt-4 text-blue-700 bg-blue-200 hover:bg-blue-600 hover:text-white rounded transition-colors duration-300'>
-									Regresar a inicio
-								</button>
-							</Link>
-							<button
-								className='px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600 transition-colors duration-300'
-								onClick={() => addToCart(product.id)}>
-								Agregar al Carrito
-							</button>
-						</div>
 					</article>
 				) : (
 					<p>Loading...</p>

@@ -5,8 +5,12 @@ const {
   postSignUp,
   postLogIn,
   getLogOut,
-  googleAuthToken,userVerification
+  googleAuthToken,
+  userVerification,
+  getUserByToken,
 } = require("../controllers/authController");
+
+const jwt = require("jsonwebtoken");
 
 const passport = require("passport");
 
@@ -100,9 +104,30 @@ authRouter.post("/verification", async (req, res) => {
       req.body.verification_code
     );
 
-    res.status(200).json(`User ${req.body.email} verificated succesfully`)
+    res.status(200).json(`User ${req.body.email} verificated succesfully`);
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
+  }
+});
+
+authRouter.get("/user", async (req, res) => {
+  const token = req.cookies.jwt;
+
+  try {
+    jwt.verify(
+      token,
+      "shnawg is not paying the bills",
+      async (error, decodedToken) => {
+        if (error) {
+          throw new Error(error.message);
+        } else {
+          const user = await getUserByToken(decodedToken);
+          res.status(200).json({ user });
+        }
+      }
+    );
+  } catch (error) {
+    res.status(400).json(error.message);
   }
 });
 
