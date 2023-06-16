@@ -171,3 +171,9 @@
     color: #1c1934;
     text-align: center;
 }
+
+.BotonesPass {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 10%;
+}

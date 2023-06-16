@@ -153,7 +153,7 @@ console.log("editpass",editpass);
                   onChange={handleProfilePictureChange}
                 /> */}
               </div>)}
-              {!editpass && (<div className={styles.DatosLectura}>
+              {!editpass && !editing && (<div className={styles.DatosLectura}>
                 <h2>Nombre: </h2>
                 <h1>{userData.name}</h1>
                 <h2>Apellido: </h2>
@@ -175,17 +175,36 @@ console.log("editpass",editpass);
               )}
               {!editing && !editpass && <button>Cerrar Sesión</button>}
               {!editing && !editpass && <div className={styles.Contraseña}>
-              {editpass && (
-                <div>
-                  {console.log('botones')}
-                  <button onClick={savePass}>Guardar</button>
-                  <button onClick={disablePass}>Cancelar</button>
-                </div>
-              )}
                 <button onClick={enablePass}>
                   <img src={Llave} alt="llave" /> <p>Cambiar Contraseña</p>
                 </button>
               </div>}
+              {editpass && (
+                <div className={styles.DatosInput}>
+                    <h2>Contraseña Actual:</h2>
+                  <input 
+                    type="text"
+                    placeholder="Contraseña Actual"
+                    onChange={handleNameChange} 
+                  />
+                  <h2>Contraseña Nueva:</h2>
+                  <input
+                    type="text"
+                    placeholder="Contraseña Nueva"
+                    onChange={handleLastNameChange}
+                  />
+                  <h2>Repetir:</h2>
+                  <input
+                    type="text"
+                    placeholder="Contraseña Nueva"
+                    onChange={handlePhoneChange}
+                  />
+                    <div className={styles.BotonesPass}>
+                      <button >Guardar</button>  {/* onClick={savePass} */}
+                      <button onClick={disablePass}>Cancelar</button>
+                    </div>
+                </div>
+              )}
             </div>
           </div>
         ) : (
