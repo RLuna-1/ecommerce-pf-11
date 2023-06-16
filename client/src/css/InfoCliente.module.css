@@ -1,13 +1,12 @@
-.Info {
+.General {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    width: 80vw;
-    height: 30vw;
+    width: 80%;
+    height: auto;
     margin: 3% 10%;
-    padding: 0 3%;
-    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
+
 }
 
 .Perfil {
@@ -21,8 +20,9 @@
     border-radius: 5px;
     color: white;
     background: none;
-    margin-left: 5%;
+    margin-right: 5%;
     margin-top: -1%;
+    border: solid 1px #1c1934;
 }
 
 .Perfil h1 {
@@ -32,17 +32,59 @@
 
 .Perfil img {
     border-radius: 5px;
+    border: solid 1px #1c1934;
+}
+
+.Info {
+    display: flex;
+    justify-content: center;
+    padding: 1% 3%;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
 }
 
 .Datos {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 90%;
+    height: auto;
+    text-align: center;
+    padding: 1%;
 }
 
 .Datos h1 {
-    margin-bottom: 1em;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #1c1934;
+    flex-basis: 80%
+}
+
+.Datos h2 {
+    flex-basis: 20%
+}
+
+.DatosLectura {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+.DatosInput {
+    display: flex;
+    flex-direction: column;
+    margin: 1% 0;
     text-align: left;
+}
+
+.DatosInput input {
+    margin: 1% 25%;
+    width: 50%;
+    text-align: center;
+    border: solid 1px #1c1934;
+    background: #1c19343d;
 }
 
 .Botones {
@@ -62,6 +104,8 @@
     font-size: 20px;
     line-height: 30px;
     padding: 0.2em 0.5em;
+    margin: 0 1em;
+
     white-space: nowrap;
 }
 
@@ -86,12 +130,44 @@
     margin-left: auto;
 }
 
-.Editar p{
+.Editar p {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 30px; 
+    line-height: 30px;
     color: #1c1934;
     text-align: right;
+}
+
+.Contraseña {
+    width: auto;
+    height: 100%;
+    padding: 0 5%;
+}
+
+.Contraseña button {
+    width: 90%;
+    height: auto;
+    background: none;
+    color: black;
+    border: solid 1px #1c1934;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Contraseña img {
+    width: 8%;
+    height: auto;
+}
+
+.Contraseña p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #1c1934;
+    text-align: center;
 }
