@@ -59,6 +59,7 @@ async function updateUser(req, res) {
       image,
       email,
       password,
+      phone,
       admin,
       disabled,
     } = req.body;
@@ -75,6 +76,7 @@ async function updateUser(req, res) {
     user.image = image;
     user.email = email;
     user.password = password;
+    user.phone = phone;
     user.admin = admin;
     user.disabled = disabled;
 
