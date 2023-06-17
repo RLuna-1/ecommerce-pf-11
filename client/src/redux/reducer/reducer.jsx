@@ -107,7 +107,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case UPDATE_PRODUCT_LIST:
-      console.log("action.payload list:", action.payload);
       return {
         ...state,
         products: action.payload,

@@ -56,14 +56,11 @@ const UsersTable = () => {
   const handleEditFormSubmit = (e) => {
     e.preventDefault();
     // falta la logica para guardar los cambios del formulario de edición
-    console.log("Guardar cambios para el Usuario:", selectedProduct);
-    console.log("Valores actualizados:", editForm);
     setEditModalOpen(false);
   };
 
   const handleDeleteConfirm = () => {
     // falta la lgica para confirmar la eliminación del Usuario
-    console.log("Eliminar Usuario:", selectedProduct);
     setDeleteModalOpen(false);
   };
 
@@ -74,7 +71,6 @@ const UsersTable = () => {
   const handleAddFormSubmit = (e) => {
     e.preventDefault();
     // Lógica para guardar el nuevo Usuario
-    console.log("Agregar nuevo Usuario:", addForm);
     setAddModalOpen(false);
   };
 

@@ -204,7 +204,6 @@ function NewCarrito() {
   };
   const sumarProducto1 = (id) => {
     dispatch(sume1FromCart(id));
-    console.log();
   };
   const eliminarProducto = (id) => {
     dispatch(removeFromCart(id));

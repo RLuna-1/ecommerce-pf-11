@@ -60,11 +60,7 @@ useEffect(() => {
 
 
   const handleEdit = (product) => {
-    console.log(product);
-    console.log(product.id);
     setSelectedProduct(product);
-    console.log(product);
-    //console.log('a ver '+ product);
 
     setEditForm({
 
@@ -78,8 +74,6 @@ useEffect(() => {
 		platforms:product.platforms,
 		licenses:product.licenses,
     });
-
-    console.log(editForm);
     setEditModalOpen(true);
   };
 
@@ -93,16 +87,8 @@ useEffect(() => {
   };
 
   const handleEditFormSubmit = async (e) => {
-    console.log('esto es editForm' + {editForm});
-    console.log('esto es setEditForm' +setEditForm);
     e.preventDefault();
     dispatch(editProduct(editForm, editForm.id))
-
-
-
-    console.log("Guardar cambios para el producto:", selectedProduct);
-    console.log("Valores actualizados:", editForm);
-
     setEditModalOpen(false);
   };
 
@@ -110,7 +96,6 @@ useEffect(() => {
     // Lógica para confirmar la eliminación del producto
     const { id } = selectedProduct;
     dispatch(deleteProduct(id))
-    console.log("Eliminar producto:", selectedProduct);
     setDeleteModalOpen(false);
   };
 
@@ -121,7 +106,6 @@ useEffect(() => {
   const handleAddFormSubmit = (e) => {
     e.preventDefault();
     // Lógica para guardar el nuevo producto
-    console.log("Agregar nuevo producto:", addForm);
     setAddModalOpen(false);
   };
 

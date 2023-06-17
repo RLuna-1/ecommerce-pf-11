@@ -63,7 +63,6 @@ const InfoCliente = () => {
   };
 
   const enablePass = () => {
-    console.log('se ejecuto un true', setEditpass, editpass)
     setEditpass(true);
   };
 
@@ -98,7 +97,6 @@ const InfoCliente = () => {
     }
   }
 
-console.log("editpass",editpass);
   return (
     <div className={styles.General}>
       <div className={styles.Perfil}>
