@@ -58,7 +58,7 @@ const userVerification = async (email, verification_code) => {
 const getUserByToken = async (decodedToken) => {
   try {
     const user = await User.findByPk(decodedToken.id);
-    console.log("IM IN GETUSERBYTOKEN>", user)
+    //console.log("IM IN GETUSERBYTOKEN>", user)
     return user;
   } catch (error) {
     throw new Error("Error retrieving user");

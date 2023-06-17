@@ -33,7 +33,7 @@ const Nav = () => {
 
   const handleOrdenarChange = (opcion) => {
     // Aquí puedes realizar acciones según la opción seleccionada en el componente Ordenar
-    console.log("Opción de ordenamiento seleccionada:", opcion);
+    //console.log("Opción de ordenamiento seleccionada:", opcion);
   };
   const handleSearch = (event) => {
     const searchTerm = event.target.value;

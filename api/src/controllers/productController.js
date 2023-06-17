@@ -100,7 +100,7 @@ const getProducts = async (
     ],
   });
 
-  console.log(responseProducts.count);
+  //console.log(responseProducts.count);
 
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
@@ -165,7 +165,7 @@ const getProductDetail = async (id) => {
     ],
   });
 
-  console.log(productDetail);
+  //console.log(productDetail);
 
   if (!productDetail) throw new Error(`No existe ${id}`);
   if (productDetail.deleted === true)

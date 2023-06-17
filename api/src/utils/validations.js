@@ -13,9 +13,9 @@ const validationGetProducts = async (req, res, next) => {
     page,
   } = req.query;
 
-  console.log(price);
+  //console.log(price);
 
-  console.log(price);
+  //console.log(price);
 
   const validationErrors = [];
 
