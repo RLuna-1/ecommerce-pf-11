@@ -8,34 +8,6 @@ async function getUserByName(name) {
 
 async function getAllUsers() {
   let users = await User.findAll();
-
-  if (users.length === 0) {
-    await User.bulkCreate([
-      {
-        name: "Iñaki",
-        last_name: "Galindez",
-        user_name: "mrmandarina",
-        image: "imagen1.jpg",
-        email: "iakigalindez@gmail.com",
-        password: "contraseña1",
-        admin: true,
-        createdInBd: true,
-      },
-      {
-        name: "Jorge",
-        last_name: "Vega",
-        user_name: "jVega",
-        image: "imagen2.jpg",
-        email: "jvega@example.com",
-        password: "contraseña2",
-        admin: false,
-        createdInBd: true,
-      },
-    ]);
-
-    users = await User.findAll();
-  }
-
   return users;
 }
 

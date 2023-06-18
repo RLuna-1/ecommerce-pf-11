@@ -1,0 +1,22 @@
+[
+    {
+      "name": "Iñaki",
+      "last_name": "Galindez",
+      "user_name": "mrmandarina",
+      "image": "imagen1.jpg",
+      "email": "iakigalindez@gmail.com",
+      "password": "contraseña1",
+      "admin": true,
+      "createdInBd": true
+    },
+    {
+      "name": "Jorge",
+      "last_name": "Vega",
+      "user_name": "jVega",
+      "image": "imagen2.jpg",
+      "email": "jvega@example.com",
+      "password": "contraseña2",
+      "admin": false,
+      "createdInBd": true
+    }
+  ]

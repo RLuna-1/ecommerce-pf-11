@@ -59,12 +59,14 @@ authRouter.post("/login", async (req, res) => {
 authRouter.get("/logout", async (req, res) => {
   try {
     if (req.user && req.user.googleId) {
-      req.logout();
-      res.status(200).json("Google user logged out succesfully");
-      // No estoy seguro si esto funciona
+      res.cookie("GoogleOauthToken", req.cookies.GoogleOauthToken, {
+        httpOnly: true,
+        maxAge: 1,
+      });
+      return res.status(200).json("Google user logged out successfully");
     }
 
-    res.clearCookie("jwt");
+    res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
     res.status(200).json("User logged out successfully");
   } catch (error) {
     res.status(400).json(`Error while logging out the user: ${error.message}`);
@@ -114,18 +116,22 @@ authRouter.get("/user", async (req, res) => {
   const token = req.cookies.jwt;
 
   try {
-    jwt.verify(
-      token,
-      "shnawg is not paying the bills",
-      async (error, decodedToken) => {
-        if (error) {
-          throw new Error(error.message);
-        } else {
-          const user = await getUserByToken(decodedToken);
-          res.status(200).json({ user });
+    if (token) {
+      jwt.verify(
+        token,
+        "shnawg is not paying the bills",
+        async (error, decodedToken) => {
+          if (error) {
+            throw new Error(error.message);
+          } else {
+            const user = await getUserByToken(decodedToken);
+            res.status(200).json({ user });
+          }
         }
-      }
-    );
+      );
+    } else {
+      res.status(400).json("There's no user logged with jwt");
+    }
   } catch (error) {
     res.status(400).json(error.message);
   }
