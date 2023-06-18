@@ -73,7 +73,7 @@ const seedDB = async () => {
       });
     }
 
-    console.log("Products upload completed.");
+    //console.log("Products upload completed.");
   } catch (error) {
     console.error("Failed to upload dummy products:", error);
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ventas from "./ventas";//estado global de todas las ventas
 
 const VentasTable = () => {
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const ventasPerPage = 13; // registro a mostar de las ventas para mostar por página
   const [filterText, setFilterText] = useState(""); // Texto del filtro
 
@@ -52,80 +52,85 @@ const VentasTable = () => {
   };
 
   return (
-    <div className="antialiased bg-gray-50 dark:bg-gray-900">
-      <h2 className="p-2 font-bold mb-4">Ventas</h2>
+		<div className='antialiased bg-gray-50 dark:bg-gray-900 text-slate-300'>
+			<h2 className='p-2 font-bold mb-4'>Ventas</h2>
 
-      <div className="mb-4">
-        <input
-          type="text"
-          className="px-2 py-1 rounded border border-gray-300"
-          placeholder="Filtrar por producto"
-          value={filterText}
-          onChange={handleFilterChange}
-        />
-      </div>
+			<div className='mb-4'>
+				<input
+					type='text'
+					className='px-2 py-1 rounded border border-gray-300'
+					placeholder='Filtrar por producto'
+					value={filterText}
+					onChange={handleFilterChange}
+				/>
+			</div>
 
-      <table className="w-full border-collapse">
-        <thead>
-          <tr>
-            <th className="p-2 border">ID</th>
-            <th className="p-2 border">Producto</th>
-            <th className="p-2 border">Método de Pago</th>
-            <th className="p-2 border">Cantidad Vendida</th>
-            <th className="p-2 border">Precio</th>
-            <th className="p-2 border text-right">Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentVentas.map((venta) => (
-            <tr key={venta.id} className="text-center">
-              <td className="p-2 border">{venta.id}</td>
-              <td className="p-2 border">{venta.producto}</td>
-              <td className="p-2 border">{venta.metodoPago}</td>
-              <td className="p-2 border">{venta.cantidadVendida}</td>
-              <td className="p-2 border">{venta.precio}</td>
-              <td className="p-2 border text-right">
-                {venta.cantidadVendida * venta.precio}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+			<table className='w-full border-collapse'>
+				<thead>
+					<tr>
+						<th className='p-2 border'>ID</th>
+						<th className='p-2 border'>Producto</th>
+						<th className='p-2 border'>Método de Pago</th>
+						<th className='p-2 border'>Cantidad Vendida</th>
+						<th className='p-2 border'>Precio</th>
+						<th className='p-2 border text-right'>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{currentVentas.map((venta) => (
+						<tr key={venta.id} className='text-center'>
+							<td className='p-2 border'>{venta.id}</td>
+							<td className='p-2 border'>{venta.producto}</td>
+							<td className='p-2 border'>{venta.metodoPago}</td>
+							<td className='p-2 border'>
+								{venta.cantidadVendida}
+							</td>
+							<td className='p-2 border'>{venta.precio}</td>
+							<td className='p-2 border text-right'>
+								{venta.cantidadVendida * venta.precio}
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
 
-      <div className="mt-4 font-bold text-right">Total Vendido: ${totalVendidoRounded}</div>
+			<div className='mt-4 font-bold text-right'>
+				Total Vendido: ${totalVendidoRounded}
+			</div>
 
-      {/* Paginado */}
-      <div className="mt-4 flex justify-center items-center">
-        <button
-          className="mx-1 px-2 py-1 rounded bg-gray-300"
-          onClick={goToPreviousPage}
-          disabled={currentPage === 1}
-        >
-          {"<"}
-        </button>
-        {Array.from({ length: Math.ceil(filteredVentas.length / ventasPerPage) }).map(
-          (_, index) => (
-            <button
-              key={index}
-              className={`mx-1 px-2 py-1 rounded ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
-              }`}
-              onClick={() => paginate(index + 1)}
-            >
-              {index + 1}
-            </button>
-          )
-        )}
-        <button
-          className="mx-1 px-2 py-1 rounded bg-gray-300"
-          onClick={goToNextPage}
-          disabled={currentPage === Math.ceil(filteredVentas.length / ventasPerPage)}
-        >
-          {">"}
-        </button>
-      </div>
-      
-    </div>
+			{/* Paginado */}
+			<div className='mt-4 flex justify-center items-center'>
+				<button
+					className='mx-1 px-2 py-1 rounded bg-gray-300'
+					onClick={goToPreviousPage}
+					disabled={currentPage === 1}>
+					{'<'}
+				</button>
+				{Array.from({
+					length: Math.ceil(filteredVentas.length / ventasPerPage),
+				}).map((_, index) => (
+					<button
+						key={index}
+						className={`mx-1 px-2 py-1 rounded ${
+							currentPage === index + 1
+								? 'bg-blue-500 text-white'
+								: 'bg-gray-300'
+						}`}
+						onClick={() => paginate(index + 1)}>
+						{index + 1}
+					</button>
+				))}
+				<button
+					className='mx-1 px-2 py-1 rounded bg-gray-300'
+					onClick={goToNextPage}
+					disabled={
+						currentPage ===
+						Math.ceil(filteredVentas.length / ventasPerPage)
+					}>
+					{'>'}
+				</button>
+			</div>
+		</div>
   );
 };
 

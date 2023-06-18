@@ -19,7 +19,7 @@ productsRouter.get(
   async (req, res) => {
     try {
 
-      console.log(req.body)
+      //console.log(req.body)
 
       const showProducts = await getProducts(
         req.query.name,

@@ -17,7 +17,7 @@ const passport = require("passport");
 const authRouter = Router();
 
 authRouter.post("/signup", async (req, res) => {
-  console.log("Request Body:", req.body);
+  //console.log("Request Body:", req.body);
   const { name, last_name, email, password, phone } = req.body;
 
   try {
