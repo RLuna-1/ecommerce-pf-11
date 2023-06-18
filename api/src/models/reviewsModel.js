@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const Category = sequelize.define("review", {
+  const Review = sequelize.define("review", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -13,12 +13,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
     },
     description: {
-        type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
     deleted: {
       type: DataTypes.BOOLEAN,
@@ -26,7 +26,13 @@ module.exports = (sequelize) => {
       defaultValue: false,
     },
   });
-  Category.prototype.softDelete = async function () {
+  Review.prototype.softDelete = async function () {
+    if (this.deleted === true) {
+      this.deleted = false;
+      await this.save()
+      return;
+    }
+
     this.deleted = true;
     await this.save();
   };
