@@ -1,31 +1,10 @@
 import React, { useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import {
-  remove1FromCart,
-  removeFromCart,
-  sume1FromCart,
-} from "../redux/actions/actions";
+import { remove1FromCart, removeFromCart, sume1FromCart } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
 import axios from "axios";
-
-
-const realizarCompra = () => {
-  axios
-    .post("/mercadopago", cart)
-    .then(response => {
-      const { init_point } = response.data;
-      if (init_point) {
-        window.location.href = init_point;
-      }
-    })
-    .catch(error => {
-      console.error("Error al realizar la compra:", error);
-    });
-};
-
-
+import Cookies from "js-cookie";
 
 function NewCarrito() {
   const [quantity1, setQuantity1] = useState(2);
@@ -39,18 +18,13 @@ function NewCarrito() {
     setQuantity2(event.target.value);
   };
 
-  /******************* */
-
   const cart = useSelector((state) => state.cart);
   const price = cart
     .map((ele) => ele.price * ele.quantity)
     .reduce(function (acumulador, elemento) {
       return acumulador + elemento;
     }, 0);
-  console.log(cart);
-  /*****se agrega para calcular el total de cantidades */
   const totalQuantity = cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
-  /************ */
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,14 +35,12 @@ function NewCarrito() {
   }, [dispatch]);
 
 
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
-  const [nombre, setNombre] = useState("");
-  const [dni, setDni] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [direccion, setDireccion] = useState("");
-  const [codigoPostal, setCodigoPostal] = useState("");
-  const [mensajeCompra, setMensajeCompra] = useState("");
-  const [mostrarBotonComprar, setMostrarBotonComprar] = useState(true);
+  const [nombre] = useState("");
+  const [dni] = useState("");
+  const [telefono] = useState("");
+  const [direccion] = useState("");
+  const [codigoPostal] = useState("");
+  const [setMensajeCompra] = useState("");
 
   const eliminarProducto1 = (id) => {
     dispatch(remove1FromCart(id));
@@ -80,32 +52,38 @@ function NewCarrito() {
   const eliminarProducto = (id) => {
     dispatch(removeFromCart(id));
   };
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const mostrarFormularioEmergente = () => {
-    setMostrarFormulario(true);
-    setMostrarBotonComprar(false); // Oculta el primer botón "Comprar"
+  const realizarCompra = async () => {
+    await axios
+      .post("/mercadopago", cart)
+      .then(response => {
+        const { init_point } = response.data;
+        if (init_point) {
+          window.location.href = init_point;
+        }
+      })
+      .catch(error => {
+        console.error("Error al realizar la compra:", error);
+      });
   };
 
-  const ocultarFormularioEmergente = () => {
-    setMostrarFormulario(false);
-    setMostrarBotonComprar(true); // Muestra el primer botón "Comprar" nuevamente
-  };
-
-  const realizarCompra = () => {
-    if (
-      nombre !== "" &&
-      dni !== "" &&
-      telefono !== "" &&
-      direccion !== "" &&
-      codigoPostal !== ""
-    ) {
-      setMensajeCompra("¡La compra se ha realizado exitosamente!");
-    } else {
-      setMensajeCompra("Por favor, completa todos los campos del formulario.");
+  const getCartId = () => {
+    let cartId = Cookies.get("cartId");
+    if (!cartId) {
+      cartId = generateCartId();
+      Cookies.set("cartId", cartId);
     }
+    return cartId;
+  };
+
+  const generateCartId = () => {
+    // Lógica para generar una identificación única del carrito
+    // Puedes utilizar un UUID o cualquier otro método de generación de identificadores únicos
+    return "id del carrito";
   };
 
   return (
@@ -113,9 +91,7 @@ function NewCarrito() {
       <h1 className="mb-10 text-center text-2xl font-bold">Carro de Compra</h1>
       <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
-
           {cart.map((producto, i) => (
-
             <div key={i} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
               <img src={producto.image} alt="product-image" className="w-full rounded-lg sm:w-40" />
               <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
@@ -137,8 +113,8 @@ function NewCarrito() {
                     <span className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={() => sumarProducto1(producto.id)}> + </span>
                   </div>
                   <div className="flex items-center space-x-4">
-
-                    <svg onClick={() => eliminarProducto(producto.id)}
+                    <svg
+                      onClick={() => eliminarProducto(producto.id)}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -153,35 +129,19 @@ function NewCarrito() {
               </div>
             </div>
           ))}
-
-
-
-
         </div>
         <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-          <div className="mb-2 flex justify-between">
-
-          </div>
+          <div className="mb-2 flex justify-between"></div>
           <hr className="my-4" />
           <div className="flex justify-between">
             <p className="text-lg font-bold">Total</p>
             <div className="">
               <p className="mb-1 text-lg ">{totalQuantity} Articulos: ${price}</p>
-
             </div>
           </div>
-          <button
-            className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
-            onClick={realizarCompra}
-          >
-            Comprar
-          </button>
-
+          <button onClick={realizarCompra} className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Comprar</button>
         </div>
-
       </div>
-
-
       <button className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6  rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 pr-5">
         <Link to={`/home`}>
           Mas Productos

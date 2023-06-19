@@ -136,16 +136,14 @@ export function postProduct(bodyFormData) {
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
     return axios
-      .put(`${URL}/products/${id}`, bodyFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .put(`${URL}/products/${id}`, bodyFormData)
       .then((res) => {
         Swal.fire({
           icon: "success",
           title: "Modificación",
           text: "Se modificó el producto correctamente",
         });
-        getProduct(res.data.id)(dispatch);
+        //getProduct(res.data.id)(dispatch);
       })
       .catch((error) => {
         Swal.fire({
@@ -231,6 +229,7 @@ export const loginUser = async (payload) => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true
       }
     );
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -611,17 +610,41 @@ export const fetchProducts = (filters) => {
           licenses,
         },
       });
-      
 
       if (response.data.rows.length === 0) {
         // Handle the case when there are no products matching the filters
         dispatch(setProducts([]));
+        alert("No se encontraron productos que coincidan con los filtros.");
       } else {
         dispatch(setProducts(response.data));
       }
     } catch (error) {
-      console.log("ERROR:", error);
       dispatch(setProducts([])); // Set an empty array if there's an error
     }
   };
 };
+
+
+export function deleteProduct(id) {
+  console.log('el ide de la action es: ' +id);
+  
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/products/${id}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: `Se modificó el producto ${id} correctamente`,
+        });
+       // getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}
