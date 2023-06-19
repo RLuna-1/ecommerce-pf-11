@@ -29,7 +29,7 @@ authRouter.post("/signup", async (req, res) => {
       phone
     );
 
-    res.cookie("jwt", token, {
+    res.cookie("login", token, {
       httpOnly: true,
       maxAge: 1000 * 3 * 24 * 60 * 60,
     });
@@ -45,7 +45,7 @@ authRouter.post("/login", async (req, res) => {
   try {
     const { newLogIn, token } = await postLogIn(email, password);
 
-    res.cookie("jwt", token, {
+    res.cookie("login", token, {
       httpOnly: true,
       maxAge: 1000 * 3 * 24 * 60 * 60,
     });
@@ -59,14 +59,14 @@ authRouter.post("/login", async (req, res) => {
 authRouter.get("/logout", async (req, res) => {
   try {
     if (req.user && req.user.googleId) {
-      res.cookie("GoogleOauthToken", req.cookies.GoogleOauthToken, {
+      res.cookie("login", req.cookies.login, {
         httpOnly: true,
         maxAge: 1,
       });
       return res.status(200).json("Google user logged out successfully");
     }
 
-    res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
+    res.cookie("login", "", { httpOnly: true, maxAge: 1 });
     res.status(200).json("User logged out successfully");
   } catch (error) {
     res.status(400).json(`Error while logging out the user: ${error.message}`);
@@ -87,7 +87,7 @@ authRouter.get(
   async (req, res) => {
     try {
       const token = await googleAuthToken(req.user);
-      res.cookie("GoogleOauthToken", token, {
+      res.cookie("login", token, {
         httpOnly: true,
         maxAge: 1000 * 3 * 24 * 60 * 60,
       });
@@ -113,7 +113,7 @@ authRouter.post("/verification", async (req, res) => {
 });
 
 authRouter.get("/user", async (req, res) => {
-  const token = req.cookies.jwt;
+  const token = req.cookies.login;
 
   try {
     if (token) {
@@ -130,7 +130,7 @@ authRouter.get("/user", async (req, res) => {
         }
       );
     } else {
-      res.status(400).json("There's no user logged with jwt");
+      res.status(400).json("There's no user logged");
     }
   } catch (error) {
     res.status(400).json(error.message);
