@@ -1,3 +1,4 @@
+import { GET_All_USERS } from "../actions/actions";
 import {
   PUT_PASSWORD,
   CREATE_USER,
@@ -284,6 +285,13 @@ const rootReducer = (state = initialState, action) => {
           };
           case SET_FILTERS:
             return { ...state, filters: action.payload };
+
+            case GET_All_USERS:
+              return {
+                ...state,
+                users: action.payload,
+                //allvideogames1: action.payload,
+              };
     default:
       return state;
   }

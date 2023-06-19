@@ -33,6 +33,7 @@ export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
+export const GET_All_USERS = 'GET_All_USERS';
 
 const URL = 'http://localhost:3001'
 
@@ -638,6 +639,39 @@ export function deleteProduct(id) {
           text: `Se modificó el producto ${id} correctamente`,
         });
        // getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    const response = (await axios("http://localhost:3001/users")).data;
+    return dispatch({
+      type: GET_All_USERS,
+      payload: response,
+    });
+  };
+};
+
+export function editUser(bodyFormData, id) {
+  console.log(bodyFormData);
+  return function (dispatch) {
+    return axios
+      .put(`${URL}/users/${id}`, bodyFormData)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: "Se modificó el producto correctamente",
+        });
+        //getProduct(res.data.id)(dispatch);
       })
       .catch((error) => {
         Swal.fire({

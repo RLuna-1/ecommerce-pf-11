@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import FormNewProduct from "../components/FormNewProduc";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, editProduct, fetchCategories, fetchProducts, setFilters } from "../redux/actions/actions";
@@ -26,10 +25,6 @@ useEffect(() => {
 useEffect(() => {
   dispatch(fetchCategories());
 }, [dispatch]);
-// useEffect(() => {
-//   dispatch(editProduct(editForm, editForm.id));
-// }, [dispatch]);
-
 ///////////////////////////////
 
   const [editForm, setEditForm] = useState({
@@ -57,7 +52,6 @@ useEffect(() => {
       (categoryFilter === "" || product.category === categoryFilter)
     );
   });
-
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
@@ -93,7 +87,6 @@ useEffect(() => {
   };
 
   const handleDeleteConfirm = () => {
-    // Lógica para confirmar la eliminación del producto
     const { id } = selectedProduct;
     dispatch(deleteProduct(id))
     setDeleteModalOpen(false);
@@ -105,7 +98,7 @@ useEffect(() => {
 
   const handleAddFormSubmit = (e) => {
     e.preventDefault();
-    // Lógica para guardar el nuevo producto
+
     setAddModalOpen(false);
   };
 
@@ -120,21 +113,27 @@ useEffect(() => {
 	};
 
   return (
-		<div className='antialiased bg-gray-50 dark:bg-gray-900 text-slate-300'>
-			{/* input,boton,select */}
-			<div className='   flex-wrap flex justify-between items-center mb-4'>
-				<div className='  flex flex-wrap justify-between items-center'>
-					<SearchBar />
-				</div>
+    <div className="antialiased bg-gray-50 dark:bg-gray-900 mx-10 ">
 
-				<div>
-					<button
-						onClick={handleAdd}
-						className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>
-						+ Agregar Producto
-					</button>
+      {/* input,boton,select */}
+      <div className="   flex-wrap flex justify-between items-center mb-4">
+        <div className="  flex flex-wrap justify-between items-center">
+          
+        
+           <SearchBar />
 
-					<select
+        </div>
+
+        <div>
+          <button 
+            onClick={handleAdd}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            + Agregar Producto
+          </button>
+
+
+            <select
+
 						onChange={handleCategoryChange}
 						className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
 						<option value=''>Todas las categorías</option>
