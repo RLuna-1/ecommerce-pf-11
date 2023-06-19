@@ -11,12 +11,11 @@ const SearchBar = ({ className }) => {
   useContext(SearchContext);
 
  return (
-		<div
-			className={` mx-auto py-4 rounded-lg min-h-[3rem]`}>
+		<div className={` mx-auto py-4 rounded-lg min-h-[3rem]`}>
 			<input
 				className={`w-full p-2 border rounded-md`}
 				type='text'
-				placeholder='Search...'
+				placeholder='Buscar...'
 				onChange={handleSearchInputChange}
 				value={searchInput}
 			/>

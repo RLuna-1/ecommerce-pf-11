@@ -8,7 +8,6 @@ import "../css/FilterComponent.css";
 
 function Filters() {
   const dispatch = useDispatch();
-  const [showFilters, setShowFilters] = useState(false);
   const { filters } = useSelector((state) => state);
   const { products } = useSelector((state) => state);
   const { categories } = useSelector((state) => state);
@@ -96,10 +95,7 @@ function Filters() {
     setSelectedPlatforms([]);
     setSelectedLicenses([]);
   };
-  //despliega el componente filter
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
+
 
   return (
     <div className="p-4">
@@ -199,7 +195,7 @@ function Filters() {
             value="licencia de por vida"
             checked={selectedLicenses.includes("licencia de por vida")}
             onChange={handleLicenseChange}
-            className="mr-2"
+            className="m-2"
           />
           Licencia de por vida
         </label>
@@ -257,7 +253,8 @@ function Filters() {
           <option value="alphabetical">Alfabetico</option>
           <option value="price">Precio</option>
         </select>
-
+            {filters.order === 'price' && (
+                <>
         <h3 className="text-lg font-bold mb-2">Dirección</h3>
         <select
           value={filters.direction}
@@ -271,6 +268,8 @@ function Filters() {
           <option value="DESC">Descendente </option>
           <option value="ASC">Ascendente</option>
         </select>
+                </>
+            )}
 
         <button
           onClick={handleResetClick}
