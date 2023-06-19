@@ -32,15 +32,18 @@ nodemailerRouter.post("/send-confirmation-email", async (req, res) => {
     const confirmationLink = `https://ecommers-front-rust.vercel.app/confirm/${confirmationToken}`;
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp-mail.outlook.com', 
+      port: 587, 
+      secure: false, 
       auth: {
-        user: process.env.GMAIL_USERNAME,
-        pass: process.env.GMAIL_PASSWORD,
+        user: process.env.OUTLOOK_USERNAME, 
+        pass: process.env.OUTLOOK_PASSWORD, 
       },
     });
+    
 
     const mailOptions = {
-      from: process.env.GMAIL_USERNAME,
+      from: process.env.OUTLOOK_USERNAME_USERNAME,
       to: email,
       subject: "Confirmación de registro",
       text: `Por favor, haz clic en el siguiente enlace para confirmar tu registro: ${confirmationLink}`,
@@ -55,18 +58,16 @@ nodemailerRouter.post("/send-confirmation-email", async (req, res) => {
   }
 });
 
-// Ruta para confirmar el usuario
+
 nodemailerRouter.get("/confirm/:token", async (req, res) => {
   try {
     const { token } = req.params;
 
-    // Buscar el usuario por el token de confirmación
     const user = await User.findOne({ where: { confirmationToken: token } });
     if (!user) {
       return res.status(400).json({ message: "Token de confirmación inválido" });
     }
 
-    // Actualizar el estado de confirmación del usuario
     await user.update({ confirmed: true });
 
     return res.redirect("https://ecommers-front-rust.vercel.app/home");

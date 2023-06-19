@@ -60,7 +60,7 @@ async function getUserByName(name) {
   async function updateUser(req, res) {
     try {
       const { id } = req.params;
-      const { name, last_name, user_name, image, email, password, admin, disabled } = req.body;
+      const { name, last_name, user_name, image, email, password, admin, disabled , phone} = req.body;
   
       const user = await User.findByPk(id);
   
@@ -76,6 +76,7 @@ async function getUserByName(name) {
       user.password = password;
       user.admin = admin;
       user.disabled = disabled;
+      user.phone = phone;
   
       await user.save();
   
