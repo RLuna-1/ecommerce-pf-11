@@ -36,9 +36,7 @@ export function Register(props) {
 			}),
 		);
 	};
-	console.log(state);
 	const submitUser = (e) => {
-		console.log(submitUser);
 		actualizarEstado({
 			name: '',
 			lastName: '',

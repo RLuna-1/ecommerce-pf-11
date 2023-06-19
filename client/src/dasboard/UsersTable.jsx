@@ -66,12 +66,11 @@ const UsersTable = () => {
   const handleEditFormSubmit = async (e) => {
     const {id} = selectedProduct   
     e.preventDefault();
-    
+
     dispatch(editUser(editForm, id))
     dispatch(getUsers())
-    console.log("Valores actualizados:", editForm);
-    console.log("Guardar cambios para el Usuario:", selectedProduct);
     setEditForm({})
+
 
     setEditModalOpen(false);
   };
@@ -82,7 +81,6 @@ const UsersTable = () => {
 
   const handleDeleteConfirm = () => {
     // falta la lgica para confirmar la eliminación del Usuario
-    console.log("Eliminar Usuario:", selectedProduct);
     setDeleteModalOpen(false);
   };
 
@@ -92,8 +90,10 @@ const UsersTable = () => {
 
   const handleAddFormSubmit = (e) => {
     e.preventDefault();
+
     console.log("Agregar nuevo Usuario:", addForm);
    dispatch(addUser(addForm))
+
 
     setAddModalOpen(false);
   };
