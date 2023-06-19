@@ -113,7 +113,7 @@ const UsersTable = () => {
 
 
   return (
-    <div className="antialiased bg-gray-50 dark:bg-gray-900 ">
+    <div className="antialiased bg-gray-50 dark:bg-gray-900 h-screen ">
 
       {/* input,boton,select */}
       <div className="   flex-wrap flex justify-between items-center mb-4">
