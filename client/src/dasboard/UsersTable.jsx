@@ -1,65 +1,84 @@
-import React, { useState } from "react";
-
-import { usuarios } from "./usuarios";/// estado global de todos los user
-import Pagination from "../components/Pagination";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, editUser, getUsers } from "../redux/actions/actions";
 
 const UsersTable = () => {
+  const { users } = useSelector((state) => state);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   const [filter, setFilter] = useState("");
-  const [usernameFilter, setusernameFilter] = useState("");
+  const [user_nameFilter, setUser_nameFilter] = useState("");
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [editForm, setEditForm] = useState({
-    nombre: "",
-    username: "",
-    correo: '',
-    telefono: '',
+    name: "",
+    user_name: "",
+    email: "",
+    phone: "",
+    admin:null,
+    is_verified:null,
+    disabled:null
   });
+ 
   const [addForm, setAddForm] = useState({
-    nombre: "",
-    username: "",
-    correo: "",
-    telefono: "",
+    name: "",
+    user_name: "",
+    email: "",
+    phone: "",
+    admin:null,
+    is_verified: null,
+    disabled:null
   });
 
-  const filteredData = usuarios.filter((product) => {
-    return (
-      (product.nombre.toLowerCase().includes(filter.toLowerCase()) ||
-        product.correo.toString().includes(filter.toLowerCase())) &&
-      (usernameFilter === "" || product.username === usernameFilter)
-    );
-  });
+  const handleEdit = (user) => {
 
-  const categories = [...new Set(usuarios.map((product) => product.username))];
-
-  const handleEdit = (product) => {
-    setSelectedProduct(product);
+    setSelectedProduct(user);
     setEditForm({
-      nombre: product.nombre,
-      username: product.username,
-      correo: product.correo,
-      telefono: product.telefono,
+      name: user.name,
+      last_name: user.last_name,
+      user_name: user.user_name,
+      phone: user.phone,
+      email: user.email,
+      password: user.password,
+      admin:user.admin,
+      is_verified:user.is_verified ,
+      disabled:user.disabled,
     });
+    console.log(editForm);
     setEditModalOpen(true);
   };
 
-  const handleDelete = (product) => {
-    setSelectedProduct(product);
+  const handleDelete = () => {
+ 
     setDeleteModalOpen(true);
   };
 
   const handleAdd = () => {
+    console.log(addForm);
     setAddModalOpen(true);
   };
 
-  const handleEditFormSubmit = (e) => {
+  const handleEditFormSubmit = async (e) => {
+    const {id} = selectedProduct   
     e.preventDefault();
-    // falta la logica para guardar los cambios del formulario de edición
-    console.log("Guardar cambios para el Usuario:", selectedProduct);
+    
+    dispatch(editUser(editForm, id))
+    dispatch(getUsers())
     console.log("Valores actualizados:", editForm);
+    console.log("Guardar cambios para el Usuario:", selectedProduct);
+    setEditForm({})
+
     setEditModalOpen(false);
   };
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [editModalOpen])
 
   const handleDeleteConfirm = () => {
     // falta la lgica para confirmar la eliminación del Usuario
@@ -73,26 +92,40 @@ const UsersTable = () => {
 
   const handleAddFormSubmit = (e) => {
     e.preventDefault();
-    // Lógica para guardar el nuevo Usuario
     console.log("Agregar nuevo Usuario:", addForm);
+   dispatch(addUser(addForm))
+
     setAddModalOpen(false);
   };
 
+  const [filterText, setFilterText] = useState(""); // Texto del filtro
+
+   // esto es un filtro para buscar por  texto ingresado
+   const filteredUsers = users.filter((user) =>
+   user.name.toLowerCase().includes(filterText.toLowerCase())
+   
+   
+ );
+  // funcion del cambio en el input de filtro
+  const handleFilterChange = (event) => {
+    setFilterText(event.target.value); 
+  };
+
+
   return (
-    <div className="antialiased bg-gray-50 dark:bg-gray-900">
+    <div className="antialiased bg-gray-50 dark:bg-gray-900 ">
 
       {/* input,boton,select */}
       <div className="   flex-wrap flex justify-between items-center mb-4">
-        <div className="  flex flex-wrap justify-between items-center">
-          
-          <input
+        <div flex flex-wrap justify-between items-center>
+        <input
           type="text"
-          
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Buscar"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          placeholder="Buscar Usuarios"
+          value={filterText}
+          onChange={handleFilterChange}
         />
-        </div>
+      </div>
 
         <div>
           <button 
@@ -101,19 +134,6 @@ const UsersTable = () => {
             + Agregar Usuario
           </button>
 
-          {/* <select
-           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
-            value={usernameFilter}
-            onChange={(e) => setusernameFilter(e.target.value)}
-          >
-            <option value="">Todas las categorías</option>
-            {categories.map((username) => (
-              <option key={username} value={username}>
-                {username}
-              </option>
-            ))}
-          </select> */}
         </div>
       </div>
       <h2 className="p-2 font-bold mb-4">Usuarios</h2>
@@ -122,23 +142,31 @@ const UsersTable = () => {
           <tr>
             <th className="p-2 border">ID</th>
             <th className="p-2 border">Nombre</th>
-            <th className="p-2 border">Usernombre</th>
+            <th className="p-2 border">Apellido</th>
+            <th className="p-2 border">Usuario</th>
             <th className="p-2 border">Correo</th>
-            <th className="p-2 border">Telefono</th>
+            <th className="p-2 border">Admin</th>
+            <th className="p-2 border">Verificado</th>
+            <th className="p-2 border">Deshabilitado</th>
+            
             <th className="p-2 border">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((product) => (
-            <tr key={product.id}>
-              <td className="p-2 border">{product.id}</td>
-              <td className="p-2 border">{product.nombre}</td>
-              <td className="p-2 border">{product.username}</td>
-              <td className="p-2 border">{product.correo}</td>
-              <td className="p-2 border">{product.telefono}</td>
+          {filteredUsers.map((user) => (
+            <tr key={user.id}>
+              <td className="p-2 border">{user.id}</td>
+              <td className="p-2 border">{user.name}</td>
+              <td className="p-2 border">{user.last_name}</td>
+              <td className="p-2 border">{user.user_name}</td>
+              <td className="p-2 border">{user.email}</td>
+              <td className="p-2 border">{user.admin === true ? "SI" : "NO"}</td>
+              <td className="p-2 border">{user.is_verified === true ? "SI" : "NO"}</td>
+              <td className="p-2 border">{user.disabled === true ? "SI" : "NO"}</td>
+              
               <td className="p-2 border">
                 <button
-                  onClick={() => handleEdit(product)}
+                  onClick={() => handleEdit(user)}
                   className="bg-blue-500 text-white rounded px-2 py-1 mr-2"
                 >
                   Editar
@@ -147,7 +175,7 @@ const UsersTable = () => {
                   onClick={() => handleDelete(product)}
                   className="bg-red-500 text-white rounded px-2 py-1"
                 >
-                  Borrar
+                  Desabilitar
                 </button>
               </td>
             </tr>
@@ -157,69 +185,100 @@ const UsersTable = () => {
 
       
 
-      {/* ventana de edición */}
+      {/* userna de edición */}
       {editModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded">
+          <div className="bg-white p-4 rounded  w-2/5 h-screen overflow-scroll ">
             <h2 className="text-lg font-bold mb-2">Editar Usuario</h2>
-            <form onSubmit={handleEditFormSubmit}>
-              <div className="mb-2">
-                <label className="block font-bold mb-1" htmlFor="edit-nombre">
+            <form onSubmit={handleEditFormSubmit} className='max-w-md mx-auto mt-10 mb-10'>
+              <div className="mb-4">
+                <label className='block mb-2 font-sans' htmlFor="edit-name">
                   Nombre:
                 </label>
                 <input
                   type="text"
-                  id="edit-nombre"
-                  value={editForm.nombre}
+                  id="edit-name"
+                  value={editForm.name}
                   onChange={(e) =>
-                    setEditForm({ ...editForm, nombre: e.target.value })
+                    setEditForm({ ...editForm, name: e.target.value })
                   }
-                  className="p-2 border rounded w-full"
+                  className='w-full p-2 border rounded drop-shadow-lg'
                 />
               </div>
               <div className="mb-2">
-                <label className="block font-bold mb-1" htmlFor="edit-username">
-                  Username:
+                <label className='block mb-2 font-sans' htmlFor="edit-name">
+                  Usuario:
                 </label>
                 <input
                   type="text"
-                  id="edit-username"
-                  value={editForm.username}
+                  id="edit-user_name"
+                  value={editForm.user_name}
                   onChange={(e) =>
-                    setEditForm({ ...editForm, username: e.target.value })
+                    setEditForm({ ...editForm, user_name: e.target.value })
                   }
-                  className="p-2 border rounded w-full"
+                  className='w-full p-2 border rounded drop-shadow-lg'
                 />
               </div>
               <div className="mb-2">
-                <label className="block font-bold mb-1" htmlFor="edit-mail">
+                <label className='block mb-2 font-sans' htmlFor="edit-name">
                   Correo:
                 </label>
                 <input
                   type="text"
                   id="edit-mail"
-                  value={editForm.correo}
+                  value={editForm.email}
                   onChange={(e) =>
-                    setEditForm({ ...editForm, correo: e.target.value })
+                    setEditForm({ ...editForm, email: e.target.value })
                   }
-                  className="p-2 border rounded w-full"
+                  className='w-full p-2 border rounded drop-shadow-lg'
                 />
               </div>
               <div className="mb-2">
                 <label
-                  className="block font-bold mb-1"
-                  htmlFor="edit-telefono"
+                  className='block mb-2 font-sans' htmlFor="edit-name"
                 >
-                  Telefono:
+                  Admin:
                 </label>
                 <input
                   type="text"
-                  id="edit-telefono"
-                  value={editForm.telefono}
+                  id="edit-phone"
+                  value={editForm.admin}
                   onChange={(e) =>
-                    setEditForm({ ...editForm, telefono: e.target.value})
+                    setEditForm({ ...editForm, admin: e.target.value})
                   }
-                  className="mr-2"
+                  className='w-full p-2 border rounded drop-shadow-lg'
+                />
+              </div>
+              <div className="mb-2">
+                <label
+                 className='block mb-2 font-sans' htmlFor="edit-name"
+                >
+                  Verificado:
+                </label>
+                <input
+                  type="text"
+                  id="edit-phone"
+                  value={editForm.is_verified}
+                  onChange={(e) =>
+                    setEditForm({ ...editForm, is_verified: e.target.value})
+                  }
+                  className='w-full p-2 border rounded drop-shadow-lg'
+                />
+              </div>
+              <div className="mb-2">
+                <label
+                 className='block mb-2 font-sans' htmlFor="edit-name"
+                >
+                  Deshabilitado:
+                </label>
+                <input
+                  type="text"
+                  id="edit-phone"
+                  value={editForm.disabled}
+                  onChange={(e) =>
+                    setEditForm({ ...editForm, disabled: e.target.value})
+                  }
+                  className='w-full p-2 border rounded drop-shadow-lg'
                 />
               </div>
               <button
@@ -239,7 +298,7 @@ const UsersTable = () => {
         </div>
       )}
 
-      {/* ventana de eliminación */}
+      {/* userna de eliminación */}
       {deleteModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded">
@@ -268,29 +327,29 @@ const UsersTable = () => {
             <h2 className="text-lg font-bold mb-2">Agregar Usuario</h2>
             <form onSubmit={handleAddFormSubmit}>
               <div className="mb-2">
-                <label className="block font-bold mb-1" htmlFor="add-nombre">
+                <label className="block font-bold mb-1" htmlFor="add-name">
                   Nombre:
                 </label>
                 <input
                   type="text"
-                  id="add-nombre"
-                  value={addForm.nombre}
+                  id="add-name"
+                  value={addForm.name}
                   onChange={(e) =>
-                    setAddForm({ ...addForm, nombre: e.target.value })
+                    setAddForm({ ...addForm, name: e.target.value })
                   }
                   className="p-2 border rounded w-full"
                 />
               </div>
               <div className="mb-2">
-                <label className="block font-bold mb-1" htmlFor="add-username">
-                  Username:
+                <label className="block font-bold mb-1" htmlFor="add-user_name">
+                  Usuario:
                 </label>
                 <input
                   type="text"
-                  id="add-username"
-                  value={addForm.username}
+                  id="add-user_name"
+                  value={addForm.user_name}
                   onChange={(e) =>
-                    setAddForm({ ...addForm, username: e.target.value })
+                    setAddForm({ ...addForm, user_name: e.target.value })
                   }
                   className="p-2 border rounded w-full"
                 />
@@ -302,9 +361,9 @@ const UsersTable = () => {
                 <input
                   type="text"
                   id="add-price"
-                  value={addForm.correo}
+                  value={addForm.email}
                   onChange={(e) =>
-                    setAddForm({ ...addForm, correo: e.target.value })
+                    setAddForm({ ...addForm, email: e.target.value })
                   }
                   className="p-2 border rounded w-full"
                 />
@@ -312,16 +371,16 @@ const UsersTable = () => {
               <div className="mb-2">
                 <label
                   className="block font-bold mb-1"
-                  htmlFor="add-telefono"
+                  htmlFor="add-phone"
                 >
-                  Telefono:
+                  Admin:
                 </label>
                 <input
                   type="text"
-                  id="add-telefono"
-                  value={addForm.telefono}
+                  id="add-admin"
+                  value={addForm.admin}
                   onChange={(e) =>
-                    setAddForm({ ...addForm, telefono: e.target.value })
+                    setAddForm({ ...addForm, admin: e.target.value })
                   }
                   className="mr-2"
                 />

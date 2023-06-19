@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import FormNewProduct from "../components/FormNewProduc";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, editProduct, fetchCategories, fetchProducts, setFilters } from "../redux/actions/actions";
@@ -26,10 +25,6 @@ useEffect(() => {
 useEffect(() => {
   dispatch(fetchCategories());
 }, [dispatch]);
-// useEffect(() => {
-//   dispatch(editProduct(editForm, editForm.id));
-// }, [dispatch]);
-
 ///////////////////////////////
 
   const [editForm, setEditForm] = useState({
@@ -58,16 +53,13 @@ useEffect(() => {
     );
   });
 
-
   const handleEdit = (product) => {
     console.log(product);
     console.log(product.id);
     setSelectedProduct(product);
     console.log(product);
-    //console.log('a ver '+ product);
 
-    setEditForm({
-      
+    setEditForm({      
     id:product.id,
     name: product.name,
 		description: product.description,
@@ -93,24 +85,15 @@ useEffect(() => {
   };
 
   const handleEditFormSubmit = async (e) => {
-    console.log('esto es editForm' + {editForm});
-    console.log('esto es setEditForm' +setEditForm);
     e.preventDefault();
     dispatch(editProduct(editForm, editForm.id))
-    
-
-  
-    console.log("Guardar cambios para el producto:", selectedProduct);
-    console.log("Valores actualizados:", editForm);
-    
+    setEditForm(editForm)    
     setEditModalOpen(false);
   };
 
   const handleDeleteConfirm = () => {
-    // Lógica para confirmar la eliminación del producto
     const { id } = selectedProduct;
     dispatch(deleteProduct(id))
-    console.log("Eliminar producto:", selectedProduct);
     setDeleteModalOpen(false);
   };
 
@@ -120,8 +103,6 @@ useEffect(() => {
 
   const handleAddFormSubmit = (e) => {
     e.preventDefault();
-    // Lógica para guardar el nuevo producto
-    console.log("Agregar nuevo producto:", addForm);
     setAddModalOpen(false);
   };
 
@@ -136,7 +117,7 @@ useEffect(() => {
 	};
 
   return (
-    <div className="antialiased bg-gray-50 dark:bg-gray-900">
+    <div className="antialiased bg-gray-50 dark:bg-gray-900 mx-10 ">
 
       {/* input,boton,select */}
       <div className="   flex-wrap flex justify-between items-center mb-4">

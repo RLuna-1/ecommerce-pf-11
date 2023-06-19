@@ -5,6 +5,7 @@ const ventas = [
     precio: 29.99,
     cantidadVendida: 3,
     metodoPago: 'Tarjeta de crédito',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const ventas = [
     precio: 49.99,
     cantidadVendida: 2,
     metodoPago: 'Efectivo',
+    fecha: new Date("2023-06-11")
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const ventas = [
     precio: 89.99,
     cantidadVendida: 1,
     metodoPago: 'PayPal',
+    fecha: new Date("2023-06-12")
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ const ventas = [
     precio: 39.99,
     cantidadVendida: 4,
     metodoPago: 'Transferencia bancaria',
+    fecha: new Date("2023-06-13")
   },
   {
     id: 5,
@@ -33,6 +37,7 @@ const ventas = [
     precio: 19.99,
     cantidadVendida: 2,
     metodoPago: 'Tarjeta de crédito',
+    fecha: new Date("2023-06-20")
   },
   {
     id: 6,
@@ -40,6 +45,7 @@ const ventas = [
     precio: 69.99,
     cantidadVendida: 1,
     metodoPago: 'Efectivo',
+    fecha: new Date("2023-06-22")
   },
   {
     id: 7,
@@ -47,6 +53,7 @@ const ventas = [
     precio: 79.99,
     cantidadVendida: 2,
     metodoPago: 'PayPal',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 8,
@@ -54,6 +61,7 @@ const ventas = [
     precio: 99.99,
     cantidadVendida: 1,
     metodoPago: 'Transferencia bancaria',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 9,
@@ -61,6 +69,7 @@ const ventas = [
     precio: 59.99,
     cantidadVendida: 3,
     metodoPago: 'Tarjeta de crédito',
+    fecha: new Date("2023-06-15")
   },
   {
     id: 10,
@@ -68,6 +77,7 @@ const ventas = [
     precio: 34.99,
     cantidadVendida: 2,
     metodoPago: 'Efectivo',
+    fecha: new Date("2023-06-19")
   },
   {
     id: 11,
@@ -75,6 +85,7 @@ const ventas = [
     precio: 49.99,
     cantidadVendida: 1,
     metodoPago: 'PayPal',
+    fecha: new Date("2023-06-22")
   },
   {
     id: 12,
@@ -82,6 +93,7 @@ const ventas = [
     precio: 89.99,
     cantidadVendida: 1,
     metodoPago: 'Transferencia bancaria',
+    fecha: new Date("2023-06-23")
   },
   {
     id: 13,
@@ -89,6 +101,7 @@ const ventas = [
     precio: 14.99,
     cantidadVendida: 4,
     metodoPago: 'Tarjeta de crédito',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 14,
@@ -96,6 +109,7 @@ const ventas = [
     precio: 44.99,
     cantidadVendida: 2,
     metodoPago: 'Efectivo',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 15,
@@ -103,6 +117,7 @@ const ventas = [
     precio: 9.99,
     cantidadVendida: 5,
     metodoPago: 'PayPal',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 16,
@@ -110,6 +125,7 @@ const ventas = [
     precio: 19.99,
     cantidadVendida: 3,
     metodoPago: 'Transferencia bancaria',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 17,
@@ -117,6 +133,7 @@ const ventas = [
     precio: 79.99,
     cantidadVendida: 1,
     metodoPago: 'Tarjeta de crédito',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 18,
@@ -124,6 +141,7 @@ const ventas = [
     precio: 24.99,
     cantidadVendida: 2,
     metodoPago: 'Efectivo',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 19,
@@ -131,6 +149,7 @@ const ventas = [
     precio: 39.99,
     cantidadVendida: 1,
     metodoPago: 'PayPal',
+    fecha: new Date("2023-06-10")
   },
   {
     id: 20,
@@ -138,6 +157,7 @@ const ventas = [
     precio: 79.99,
     cantidadVendida: 1,
     metodoPago: 'Transferencia bancaria',
+    fecha: new Date("2023-06-10")
   },
 ];
 
