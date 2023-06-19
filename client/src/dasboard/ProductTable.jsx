@@ -179,7 +179,7 @@ useEffect(() => {
 								<button
 									onClick={() => handleDelete(product)}
 									className='bg-red-500 text-white rounded px-2 py-1'>
-									Borrar
+									Deshabilitar
 								</button>
 							</td>
 						</tr>
@@ -387,16 +387,16 @@ useEffect(() => {
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
 					<div className='bg-white p-4 rounded'>
 						<h2 className='text-lg font-bold mb-2'>
-							Eliminar producto
+						Deshabilitar producto
 						</h2>
 						<p>
-							¿Estás seguro de que deseas eliminar este producto?
+							¿Estás seguro de que deseas deshabilitar este producto?
 						</p>
 						<div className='flex justify-end mt-4'>
 							<button
 								onClick={handleDeleteConfirm}
 								className='bg-red-500 text-white rounded px-4 py-2'>
-								Eliminar
+								Deshabilitar
 							</button>
 							<button
 								onClick={handleDeleteCancel}
