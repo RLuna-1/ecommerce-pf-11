@@ -1,7 +1,7 @@
 const express = require("express");
 const nodemailerRouter = express.Router();
 const nodemailer = require("nodemailer");
-const { User } = require("../db");
+const { User, Carrito } = require("../db");
 require("dotenv").config();
 const crypto = require("crypto");
 
@@ -12,7 +12,8 @@ function generateConfirmationToken() {
 }
 
 
-nodemailerRouter.post("/send-confirmation-email", async (req, res) => {
+
+nodemailerRouter.post("/envio-confirmacion", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -29,7 +30,7 @@ nodemailerRouter.post("/send-confirmation-email", async (req, res) => {
 
     await user.update({ confirmationToken, confirmed: false });
 
-    const confirmationLink = `https://ecommers-front-rust.vercel.app/confirm/${confirmationToken}`;
+    const confirmationLink = `https://ecommers-front-rust.vercel.app/nodemailer/confirm/${confirmationToken}`;
 
     const transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com",
@@ -79,5 +80,52 @@ nodemailerRouter.get("/confirm/:token", async (req, res) => {
     return res.status(500).json({ message: "Ocurrió un error al confirmar el usuario" });
   }
 });
+
+nodemailerRouter.post("/compra-exitosa", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(400).json({ message: "El usuario no existe" });
+    }
+
+    const cart = await Carrito.findOne({ where: { userId: user.id } });
+    if (!cart) {
+      return res.status(400).json({ message: "El carrito no existe" });
+    }
+
+    const cartContent = "Contenido del carrito:\n" + cart.dataValues; 
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp-mail.outlook.com",
+      port: 587,
+      tls: {
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
+      },
+      auth: {
+        user: process.env.OUTLOOK_USERNAME,
+        pass: process.env.OUTLOOK_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.OUTLOOK_USERNAME,
+      to: email,
+      subject: "Compra exitosa",
+      text: `¡Gracias por tu compra!\n\nDetalles de la compra:\n${cartContent}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    return res.status(200).json({ message: "El correo de compra exitosa ha sido enviado" });
+  } catch (error) {
+    console.error("Error al enviar el correo de compra exitosa:", error);
+    return res.status(500).json({ message: "Ocurrió un error al enviar el correo de compra exitosa" });
+  }
+});
+
+
 
 module.exports = nodemailerRouter;

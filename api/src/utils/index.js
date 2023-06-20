@@ -105,7 +105,7 @@ const authMiddleware = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ error: "Acceso no autorizado" });
     }
-    const decoded = jwt.verify(token, "secreto");
+    const decoded = jwt.verify(token, "shnawg is not paying the bills");
     const userId = decoded.userId;
     const user = await User.findByPk(userId);
     if (!user) {

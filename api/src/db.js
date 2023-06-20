@@ -43,6 +43,8 @@ Category.belongsToMany(Product, { through: "products_categories" });
 // Platform.belongsToMany(Product, { through: "products_platforms" });
 // Product.belongsToMany(License, { through: "products_licenses" });
 // License.belongsToMany(Product, { through: "products_licenses" });
+Carrito.belongsToMany(Product, { through: "products_carrito" });
+Product.belongsToMany(Carrito, { through: "products_carrito" });
 
 
 User.hasOne(Wishlist);
