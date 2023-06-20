@@ -11,7 +11,7 @@ import Productos from './productos';
 import Carousel from "./Carousel";
 import Wishlist from "./Wishlist";
 import Questions from './Questions';
-import Reviews from './Reviews';
+
 
 export {
 	Nav,
@@ -27,6 +27,5 @@ export {
 	Carousel,
 	Wishlist,
 	Questions,
-	Reviews,
 };
 

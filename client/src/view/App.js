@@ -9,7 +9,6 @@ import {
 	Producto,
 	Wishlist,
 	Questions,
-	Reviews,
 } from '../components/index';
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import "../css/App.css";
@@ -46,7 +45,6 @@ function App() {
 					<Route path='/compracliente' element={<CompraCliente />} />
 					<Route path='/FQA' element={<Questions />} />
 					<Route path="/dashboard" element={<Admin/>}/>
-					<Route path='/reviews' element={<Reviews/>}/>
 				</Routes>
 				{pathname !== '/dashboard' && <Footer />}
 			</AuthProvider>

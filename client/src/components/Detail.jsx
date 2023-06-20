@@ -15,6 +15,7 @@ export default function Detail() {
   const { id } = useParams();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+ console.log(reviews +"productos");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -38,7 +39,6 @@ export default function Detail() {
         console.error('Error fetching reviews:', error);
       }
     };
-
     fetchReviews();
   }, [id]);
 
