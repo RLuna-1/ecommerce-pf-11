@@ -113,29 +113,23 @@ useEffect(() => {
 	};
 
   return (
-    <div className="antialiased bg-gray-50 dark:bg-gray-900 mx-10 h-screen ">
+		<div className='antialiased bg-gray-50 dark:bg-slate-100 h-screen overflow-auto'>
+			{/* input,boton,select */}
+			<div className='   flex-wrap flex justify-between items-center mb-4'>
+				<div className='flex flex-wrap justify-between items-center mx-4'>
+					<SearchBar />
+				</div>
 
-      {/* input,boton,select */}
-      <div className="   flex-wrap flex justify-between items-center mb-4">
-        <div className="  flex flex-wrap justify-between items-center">
-          
-        
-           <SearchBar />
+				<div>
+					<button
+						onClick={handleAdd}
+						className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>
+						+ Agregar Producto
+					</button>
 
-        </div>
-
-        <div>
-          <button 
-            onClick={handleAdd}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-            + Agregar Producto
-          </button>
-
-
-            <select
-
+					<select
 						onChange={handleCategoryChange}
-						className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+						className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
 						<option value=''>Todas las categorías</option>
 
 						{categories &&
@@ -186,7 +180,9 @@ useEffect(() => {
 					))}
 				</tbody>
 			</table>
-			<Pagination />
+			<div className='flex items-center justify-center'>
+				<Pagination />
+			</div>
 			{/* ventana de edición */}
 			{editModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
@@ -387,10 +383,11 @@ useEffect(() => {
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
 					<div className='bg-white p-4 rounded'>
 						<h2 className='text-lg font-bold mb-2'>
-						Deshabilitar producto
+							Deshabilitar producto
 						</h2>
 						<p>
-							¿Estás seguro de que deseas deshabilitar este producto?
+							¿Estás seguro de que deseas deshabilitar este
+							producto?
 						</p>
 						<div className='flex justify-end mt-4'>
 							<button
