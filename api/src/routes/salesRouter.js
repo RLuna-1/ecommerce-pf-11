@@ -28,8 +28,8 @@ salesRouter.get("/:id", (req, res) => {
 });
 
 salesRouter.post("/", (req, res) => {
-  const { producto, precio, cantidad, metodoPago, fecha, userId } = req.body;
-  DetallesVentas.create({ producto, precio, cantidad, metodoPago, fecha, userId })
+  const { producto, precio, cantidad, metodoPago } = req.body;
+  DetallesVentas.create({ producto, precio, cantidad, metodoPago })
     .then((newSale) => {
       res.status(201).json(newSale);
     })

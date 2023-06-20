@@ -24,14 +24,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    fecha: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
   });
 
   return DetallesVentas;
