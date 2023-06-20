@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import LogoClaro from "../img/LogoClaro.png";
@@ -7,12 +7,14 @@ import IconoUser from "../img/IconoUser.png";
 import { AuthContext } from "./AuthContext";
 import { searchByName } from "../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const dispatch = useDispatch();
+  const [admin, setAdmin] = useState(false);
 
   const handleLogout = () => {
     // Aquí puedes realizar la lógica de cierre de sesión, como limpiar las variables de sesión, etc.
@@ -44,6 +46,21 @@ const Nav = () => {
     pathname === "/home" && window.location.reload();
   };
 
+  const cookiesUsers = async () => {
+    try {
+      const response = await axios.get("/auth/user", {
+        withCredentials: true,
+      });
+      setAdmin(response.data.user.admin);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    cookiesUsers();
+  }, []);
+  
   return (
     <div className={styles.Nav}>
       <div className={styles.DivLogo}>
@@ -103,9 +120,9 @@ const Nav = () => {
               </Link>
             )}
 			 {isLoggedIn ? (
-              <Link to="/dashboard">
+              (admin && <Link to="/dashboard">
                 <button className={styles.ButtonNav}>Administrador</button>
-              </Link>
+              </Link>)
             ) : null}
           </div>
         </div>

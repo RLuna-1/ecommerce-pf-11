@@ -9,6 +9,10 @@
 
 }
 
+.General button:hover {
+    transform: scale(1.06);
+}
+
 .Perfil {
     display: flex;
     flex-direction: column;
@@ -18,7 +22,6 @@
     padding: 0.5em;
     box-shadow: 3px 3px 30px 0px rgba(0, 0, 0, 0.404);
     border-radius: 5px;
-    color: white;
     background: none;
     margin-right: 5%;
     margin-top: -1%;
@@ -85,6 +88,41 @@
     text-align: center;
     border: solid 1px #1c1934;
     background: #1c19343d;
+}
+
+.CargaImagen {
+    display: flex;
+    justify-content: center;
+}
+
+.CargaImagen input {
+    margin: 6% 0 1% 0;
+    width: 100%;
+    text-align: center;
+    border: solid 1px #1c1934;
+    background: #1c19343d;
+}
+
+.BotonesIMG {
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.BotonesIMG button {
+    gap: 10px;
+    background: none;
+    color: black;
+    border-radius: 6px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 0.2em 0.5em;
+    margin: 0 1em;
+
+    white-space: nowrap;
 }
 
 .Botones {
