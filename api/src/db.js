@@ -97,7 +97,9 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Product, Category, Wishlist, User, Review, DetallesVentas } = sequelize.models;
+
+const { Product, Category, Wishlist, User, Carrito, Review, DetallesVentas } = sequelize.models;
+
 
 Product.belongsToMany(Category, { through: "products_categories" });
 Category.belongsToMany(Product, { through: "products_categories" });
@@ -105,6 +107,9 @@ Category.belongsToMany(Product, { through: "products_categories" });
 // Platform.belongsToMany(Product, { through: "products_platforms" });
 // Product.belongsToMany(License, { through: "products_licenses" });
 // License.belongsToMany(Product, { through: "products_licenses" });
+
+Carrito.belongsToMany(Product, { through: "products_carrito" });
+Product.belongsToMany(Carrito, { through: "products_carrito" });
 User.hasMany(Review);
 Review.belongsTo(User);
 Product.hasMany(Review);
@@ -113,6 +118,17 @@ User.hasOne(Wishlist);
 Wishlist.belongsTo(User);
 Wishlist.belongsToMany(Product, { through: 'WishlistProduct' });
 Product.belongsToMany(Wishlist, { through: 'WishlistProduct' });
+User.hasOne(Carrito, {
+  foreignKey: 'userId',
+  as: 'carrito'
+});
+
+Carrito.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'user'
+});
+
+
 
 User.hasMany(DetallesVentas);
 DetallesVentas.belongsTo(User);

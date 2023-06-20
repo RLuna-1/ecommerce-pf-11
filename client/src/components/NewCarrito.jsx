@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mostrarCarrito, agregarAlCarrito, quitarProducto } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+
+
+import * as actions from "../redux/actions/actions";
+import axios from "axios";
+
 import Cookies from "js-cookie";
 
 function NewCarrito() {
   const [quantity1, setQuantity1] = useState(2);
   const [quantity2, setQuantity2] = useState(2);
+
   const userId = Cookies.get("user");
+
   const handleQuantityChange1 = (event) => {
     setQuantity1(event.target.value);
   };
-  
+
   const handleQuantityChange2 = (event) => {
     setQuantity2(event.target.value);
   };
@@ -30,6 +36,7 @@ function NewCarrito() {
     const userId = "..." // Obtén el ID del usuario actual
     dispatch(mostrarCarrito(userId));
   }, [dispatch]);
+
 
   const [nombre] = useState("");
   const [dni] = useState("");

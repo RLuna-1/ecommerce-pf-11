@@ -40,6 +40,7 @@ router.post("/", (req, res) => {
   }
 
   var respuestaMercadopago = mercadopago.preferences
+
   .create(preference)
   .then((response) => {
     if (response.body.init_point) {
@@ -51,6 +52,7 @@ router.post("/", (req, res) => {
     }
   })
   .catch((error) => res.status(400).send({ error: error }));
+
 
 });
 
