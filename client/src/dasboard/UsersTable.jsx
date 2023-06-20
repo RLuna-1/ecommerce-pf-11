@@ -153,26 +153,26 @@ const UsersTable = () => {
 				<tbody>
 					{filteredUsers.map((user) => (
 						<tr key={user.id}>
-							<td className='p-2 border text-white'>{user.id}</td>
-							<td className='p-2 border text-white'>
+							<td className='p-2 border'>{user.id}</td>
+							<td className='p-2 border'>
 								{user.name}
 							</td>
-							<td className='p-2 border text-white'>
+							<td className='p-2 border'>
 								{user.last_name}
 							</td>
-							<td className='p-2 border text-white'>
+							<td className='p-2 border'>
 								{user.user_name}
 							</td>
-							<td className='p-2 border text-white'>
+							<td className='p-2 border'>
 								{user.email}
 							</td>
-							<td className='p-2 border text-white'>
+							<td className='p-2 border'>
 								{user.admin === true ? 'SI' : 'NO'}
 							</td>
-							<td className='p-2 border text-white'>
+							<td className='p-2 border'>
 								{user.is_verified === true ? 'SI' : 'NO'}
 							</td>
-							<td className='p-2 border text-white'>
+							<td className='p-2 border'>
 								{user.disabled === true ? 'SI' : 'NO'}
 							</td>
 							<td className='p-2 border'>
