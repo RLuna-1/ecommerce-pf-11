@@ -152,11 +152,13 @@ useEffect(() => {
 			<table className='w-full border-collapse'>
 				<thead>
 					<tr>
+
 						<th className='p-2 border'>ID</th>
 						<th className='p-2 border'>Nombre</th>
 						<th className='p-2 border'>Categoría</th>
 						<th className='p-2 border'>Precio</th>
 						<th className='p-2 border'>Acciones</th>
+
 					</tr>
 				</thead>
 				<tbody>
