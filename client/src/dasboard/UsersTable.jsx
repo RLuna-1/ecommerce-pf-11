@@ -53,8 +53,9 @@ const UsersTable = () => {
     setEditModalOpen(true);
   };
 
-  const handleDelete = () => {
 
+  const handleDelete = (user) => {
+    setSelectedProduct(user);
     setDeleteModalOpen(true);
   };
 
@@ -147,26 +148,55 @@ const UsersTable = () => {
 						<th className='p-2 border'>Verificado</th>
 						<th className='p-2 border'>Deshabilitado</th>
 
-						<th className='p-2 border'>Acciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filteredUsers.map((user) => (
-						<tr key={user.id}>
-							<td className='p-2 border'>{user.id}</td>
-							<td className='p-2 border'>{user.name}</td>
-							<td className='p-2 border'>{user.last_name}</td>
-							<td className='p-2 border'>{user.user_name}</td>
-							<td className='p-2 border'>{user.email}</td>
-							<td className='p-2 border'>
-								{user.admin === true ? 'SI' : 'NO'}
-							</td>
-							<td className='p-2 border'>
-								{user.is_verified === true ? 'SI' : 'NO'}
-							</td>
-							<td className='p-2 border'>
-								{user.disabled === true ? 'SI' : 'NO'}
-							</td>
+        </div>
+      </div>
+      <h2 className="p-2 font-bold mb-4">Usuarios</h2>
+     <table className="w-full border-collapse">
+        <thead>
+          <tr>
+            <th className="p-2 border text-white">ID</th>
+            <th className="p-2 border text-white">Nombre</th>
+            <th className="p-2 border text-white">Apellido</th>
+            <th className="p-2 border text-white">Usuario</th>
+            <th className="p-2 border text-white">Correo</th>
+            <th className="p-2 border text-white">Admin</th>
+            <th className="p-2 border text-white">Verificado</th>
+            <th className="p-2 border text-white">Deshabilitado</th>
+            
+            <th className="p-2 border text-white">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredUsers.map((user) => (
+            <tr key={user.id}>
+              <td className="p-2 border text-white">{user.id}</td>
+              <td className="p-2 border text-white">{user.name}</td>
+              <td className="p-2 border text-white">{user.last_name}</td>
+              <td className="p-2 border text-white">{user.user_name}</td>
+              <td className="p-2 border text-white">{user.email}</td>
+              <td className="p-2 border text-white">{user.admin === true ? "SI" : "NO"}</td>
+              <td className="p-2 border text-white">{user.is_verified === true ? "SI" : "NO"}</td>
+              <td className="p-2 border text-white">{user.disabled === true ? "SI" : "NO"}</td>
+              
+              <td className="p-2 border">
+                <button
+                  onClick={() => handleEdit(user)}
+                  className="bg-blue-500 text-white rounded px-2 py-1 mr-2"
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleDelete(user)}
+                  className="bg-red-500 text-white rounded px-2 py-1"
+                >
+                  Desabilitar
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table> 
+
 
 							<td className='p-2 border'>
 								<button
