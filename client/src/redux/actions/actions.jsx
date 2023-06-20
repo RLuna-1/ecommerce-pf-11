@@ -739,6 +739,7 @@ export function quitarProducto(productId, id) {
 export function getReviews(id) {
   return function (dispatch) {
     const url = `/reviews?productId=${id}`;
+    console.log(id + " actions")
     return axios.get(url)
       .then(res => res.data)
       .then(data => {

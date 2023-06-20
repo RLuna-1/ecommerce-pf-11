@@ -15,7 +15,7 @@ export default function Detail() {
   const { id } = useParams();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
- console.log(reviews +"productos");
+ 
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -35,6 +35,7 @@ export default function Detail() {
       try {
         const response = await axios.get(`/reviews?productId=${id}`);
         setReviews(response.data.reviews);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching reviews:', error);
       }
@@ -162,19 +163,18 @@ export default function Detail() {
 
         <div className='bg-gray-100 drop-shadow-lg rounded p-6 mt-4'>
           <h2 className='text-lg font-bold mb-4'>Opiniones sobre el Producto</h2>
-          {reviews ? (
-            reviews.map((review) => (
-              <div key={review.id}>
-                <p>Rating: {review.rating}</p>
-                <h3>{review.name}</h3>
-                <p>{review.description}</p>
-                <p>{review.user.name}</p>
-                {/* <button onClick={() => deleteReview(review.id)}>Borrar Review</button> */}
-              </div>
-            ))
-          ) : (
-            <p>No hay opiniones disponibles</p>
-          )}
+          {reviews.length > 0 ? (
+  reviews.map((review) => (
+    <div key={review.id}>
+      <p>Rating: {review.rating}</p>
+      <h3>{review.name}</h3>
+      <p>{review.description}</p>
+      {/* <p>{review.user.name}</p> */}
+    </div>
+  ))
+) : (
+  <p>No hay opiniones disponibles</p>
+)}
         </div>
       </div>
     </main>
