@@ -5,13 +5,13 @@ const {
     agregarProducto,
     quitarProducto
   } = require("../controllers/carritoController");
-const authMiddleware = require("../utils/index");
+const {requireAuth} = require("../utils/index");
 
 
-carritoRouter.get("/", authMiddleware, mostrarCarrito);
+carritoRouter.get("/", requireAuth, mostrarCarrito);
 
-carritoRouter.post("/", authMiddleware, agregarProducto);
+carritoRouter.post("/", requireAuth, agregarProducto);
 
-carritoRouter.delete("/:productId", authMiddleware, quitarProducto);
+carritoRouter.delete("/:productId", requireAuth, quitarProducto);
 
-module.exports = router;
+module.exports = carritoRouter;
