@@ -67,12 +67,9 @@ const UsersTable = () => {
   const handleEditFormSubmit = async (e) => {
     const {id} = selectedProduct
     e.preventDefault();
-
     dispatch(editUser(editForm, id))
     dispatch(getUsers())
     setEditForm({})
-
-
     setEditModalOpen(false);
   };
 
