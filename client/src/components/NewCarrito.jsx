@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { remove1FromCart, removeFromCart, sume1FromCart } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import * as actions from "../redux/actions/actions";
-import axios from 'axios';
+import axios from "axios";
 import Cookies from "js-cookie";
 
 function NewCarrito() {
   const [quantity1, setQuantity1] = useState(2);
   const [quantity2, setQuantity2] = useState(2);
-  
+
   const handleQuantityChange1 = (event) => {
     setQuantity1(event.target.value);
   };
-  
+
   const handleQuantityChange2 = (event) => {
     setQuantity2(event.target.value);
   };
@@ -33,7 +33,7 @@ function NewCarrito() {
       dispatch(actions.setCart(JSON.parse(savedCart)));
     }
   }, [dispatch]);
-  
+
 
   const [nombre] = useState("");
   const [dni] = useState("");

@@ -1,5 +1,8 @@
+
+const nodemailer = require('nodemailer');
 const { User } = require("../db");
 const jwt = require("jsonwebtoken");
+
 
 async function getUserByName(name) {
   const user = await User.findAll({ where: { name } });

@@ -89,6 +89,14 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+      confirmed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      confirmationToken: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       timestamps: false,
@@ -121,6 +129,10 @@ module.exports = (sequelize) => {
 
     if (!user) {
       throw new Error("Invalid user");
+    }
+
+    if(!user.confirmed){
+      throw new Error("Please confirm your email to login")
     }
 
     if (user.googleId) {
