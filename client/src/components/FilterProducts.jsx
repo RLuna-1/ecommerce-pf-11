@@ -8,7 +8,6 @@ import "../css/FilterComponent.css";
 
 function Filters() {
   const dispatch = useDispatch();
-  const [showFilters, setShowFilters] = useState(false);
   const { filters } = useSelector((state) => state);
   const { products } = useSelector((state) => state);
   const { categories } = useSelector((state) => state);
@@ -96,190 +95,188 @@ function Filters() {
     setSelectedPlatforms([]);
     setSelectedLicenses([]);
   };
-  //despliega el componente filter
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
+
 
   return (
-    <div className="p-4">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          <h1 className="text-2xl font-bold mr-2">Filtros</h1>
-        </div>
-      </div>
+		<div className='p-4'>
+			<div className='flex items-center justify-between mb-4'>
+				<div className='flex items-center'>
+					<h1 className='text-2xl font-bold mr-2'>Filtros</h1>
+				</div>
+			</div>
 
-      <div>
-        <div>
-          <SearchBar />
-        </div>
-        <h2 className="text-lg font-bold mb-2">Categorías</h2>
-        <select
-          value={filters.categories}
-          onChange={handleCategoryChange}
-          className="w-full p-2 border rounded mb-4"
-        >
-          <option value="">
-            Categorías
-          </option>
-          {categories &&
-            categories.map((category) => (
-              <option key={category.id} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-        </select>
+			<div>
+				<div>
+					<SearchBar />
+				</div>
+				<h2 className='text-lg font-bold mb-2'>Categorías</h2>
+				<select
+					value={filters.categories}
+					onChange={handleCategoryChange}
+					className='w-full p-2 border rounded mb-4'>
+					<option value=''>Categorías</option>
+					{categories &&
+						categories.map((category) => (
+							<option key={category.id} value={category.name}>
+								{category.name}
+							</option>
+						))}
+				</select>
 
-        <h2 className="text-lg font-bold mb-2">Plataformas</h2>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="windows"
-            checked={selectedPlatforms.includes("windows")}
-            onChange={handlePlatformChange}
-            className="m-2"
-          />
-          Windows
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="linux"
-            checked={selectedPlatforms.includes("linux")}
-            onChange={handlePlatformChange}
-            className="m-2"
-          />
-          Linux
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="macos"
-            checked={selectedPlatforms.includes("macos")}
-            onChange={handlePlatformChange}
-            className="m-2"
-          />
-          macOS
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="ios"
-            checked={selectedPlatforms.includes("ios")}
-            onChange={handlePlatformChange}
-            className="m-2"
-          />
-          iOS
-        </label>
-		<label className="mb-2">
-          <input
-            type="checkbox"
-            value="android"
-            checked={selectedPlatforms.includes("android")}
-            onChange={handlePlatformChange}
-            className="m-2"
-          />
-          Android
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="web"
-            checked={selectedPlatforms.includes("web")}
-            onChange={handlePlatformChange}
-            className="m-2"
-          />
-          Web
-        </label>
+				<h2 className='text-lg font-bold mb-2'>Plataformas</h2>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='windows'
+						checked={selectedPlatforms.includes('windows')}
+						onChange={handlePlatformChange}
+						className='m-2'
+					/>
+					Windows
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='linux'
+						checked={selectedPlatforms.includes('linux')}
+						onChange={handlePlatformChange}
+						className='m-2'
+					/>
+					Linux
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='macos'
+						checked={selectedPlatforms.includes('macos')}
+						onChange={handlePlatformChange}
+						className='m-2'
+					/>
+					macOS
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='ios'
+						checked={selectedPlatforms.includes('ios')}
+						onChange={handlePlatformChange}
+						className='m-2'
+					/>
+					iOS
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='android'
+						checked={selectedPlatforms.includes('android')}
+						onChange={handlePlatformChange}
+						className='m-2'
+					/>
+					Android
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='web'
+						checked={selectedPlatforms.includes('web')}
+						onChange={handlePlatformChange}
+						className='m-2'
+					/>
+					Web
+				</label>
 
-        <h2 className="text-lg font-bold mb-2">Licencias</h2>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="licencia de por vida"
-            checked={selectedLicenses.includes("licencia de por vida")}
-            onChange={handleLicenseChange}
-            className="mr-2"
-          />
-          Licencia de por vida
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="suscripción anual"
-            checked={selectedLicenses.includes("suscripción anual")}
-            onChange={handleLicenseChange}
-            className="m-2"
-          />
-          Suscripción anual
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="suscripción mensual"
-            checked={selectedLicenses.includes("suscripción mensual")}
-            onChange={handleLicenseChange}
-            className="m-2"
-          />
-          Suscripción mensual
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="prueba gratuita"
-            checked={selectedLicenses.includes("prueba gratuita")}
-            onChange={handleLicenseChange}
-            className="m-2"
-          />
-          Prueba gratuita
-        </label>
-        <label className="mb-2">
-          <input
-            type="checkbox"
-            value="código abierto"
-            checked={selectedLicenses.includes("código abierto")}
-            onChange={handleLicenseChange}
-            className="m-2"
-          />
-          Código abierto
-        </label>
+				<h2 className='text-lg font-bold mb-2'>Licencias</h2>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='licencia de por vida'
+						checked={selectedLicenses.includes(
+							'licencia de por vida',
+						)}
+						onChange={handleLicenseChange}
+						className='m-2'
+					/>
+					Licencia de por vida
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='suscripción anual'
+						checked={selectedLicenses.includes('suscripción anual')}
+						onChange={handleLicenseChange}
+						className='m-2'
+					/>
+					Suscripción anual
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='suscripción mensual'
+						checked={selectedLicenses.includes(
+							'suscripción mensual',
+						)}
+						onChange={handleLicenseChange}
+						className='m-2'
+					/>
+					Suscripción mensual
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='prueba gratuita'
+						checked={selectedLicenses.includes('prueba gratuita')}
+						onChange={handleLicenseChange}
+						className='m-2'
+					/>
+					Prueba gratuita
+				</label>
+				<label className='mb-2'>
+					<input
+						type='checkbox'
+						value='código abierto'
+						checked={selectedLicenses.includes('código abierto')}
+						onChange={handleLicenseChange}
+						className='m-2'
+					/>
+					Código abierto
+				</label>
 
-        <h2 className="text-lg font-bold mb-2">Ordenar</h2>
-        <select
-          value={filters.order}
-          onChange={handleOrderChange}
-          className="w-full p-2 border rounded mb-4"
-        >
-          {/* <option disabled value=''>
+				<h2 className='text-lg font-bold mb-2'>Ordenar</h2>
+				<select
+					value={filters.order}
+					onChange={handleOrderChange}
+					className='w-full p-2 border rounded mb-4'>
+					{/* <option disabled value=''>
 							Ordenar
 						</option> */}
-          <option value="">Ordenar</option>
-          <option value="alphabetical">Alfabetico</option>
-          <option value="price">Precio</option>
-        </select>
-
-        <h3 className="text-lg font-bold mb-2">Dirección</h3>
-        <select
-          value={filters.direction}
-          onChange={handleDirectionChange}
-          className="w-full p-2 border rounded mb-4"
-        >
-          {/* <option disabled value=''>
+					<option value=''>Ordenar</option>
+					<option value='alphabetical'>Alfabetico</option>
+					<option value='price'>Precio</option>
+				</select>
+				{filters.order === 'price' && (
+					<>
+						<h3 className='text-lg font-bold mb-2'>Dirección</h3>
+						<select
+							value={filters.direction}
+							onChange={handleDirectionChange}
+							className='w-full p-2 border rounded mb-4'>
+							{/* <option disabled value=''>
 							Dirección
 						</option> */}
-          <option value="">Dirección</option>
-          <option value="DESC">Descendente </option>
-          <option value="ASC">Ascendente</option>
-        </select>
+							<option value=''>Dirección</option>
+							<option value='DESC'>Descendente </option>
+							<option value='ASC'>Ascendente</option>
+						</select>
+					</>
+				)}
 
-        <button
-          onClick={handleResetClick}
-          className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          Reset filters
-        </button>
-      </div>
-    </div>
+				<button
+					onClick={handleResetClick}
+					className='px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600'>
+					Restablecer filtros
+				</button>
+			</div>
+		</div>
   );
 }
 

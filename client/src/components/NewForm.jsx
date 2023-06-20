@@ -26,7 +26,6 @@ const NewForm = () => {
         "http://localhost:3001/products",
         values
       );
-      console.log(response.data);
       Swal.fire({
         text: "Se ha agregado el producto",
         icon: "success",

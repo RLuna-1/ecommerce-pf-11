@@ -16,7 +16,8 @@ const getProducts = async (
   page = 1,
   platforms,
   licenses,
-  pageSize = 8
+  pageSize = 8,
+  deleted
 ) => {
   const offset = (page - 1) * pageSize;
 
@@ -71,6 +72,10 @@ const getProducts = async (
     };
   }
 
+  if (deleted) {
+    whereClause.deleted = deleted
+  }
+
   if (order === "price") {
     orderClause.push(["price", direction === "DESC" ? "DESC" : "ASC"]);
   } else if (order === "quantity") {
@@ -78,6 +83,8 @@ const getProducts = async (
   } else if (order === "alphabetical") {
     orderClause.push(["name", direction === "DESC" ? "DESC" : "ASC"]);
   }
+
+  
 
   const responseProducts = await Product.findAndCountAll({
     where: whereClause,
@@ -100,7 +107,7 @@ const getProducts = async (
     ],
   });
 
-  console.log(responseProducts.count);
+  //console.log(responseProducts.count);
 
   if (!responseProducts.rows.length) {
     throw new Error(`There are no products with the given data`);
@@ -165,7 +172,7 @@ const getProductDetail = async (id) => {
     ],
   });
 
-  console.log(productDetail);
+  //console.log(productDetail);
 
   if (!productDetail) throw new Error(`No existe ${id}`);
   if (productDetail.deleted === true)
@@ -222,7 +229,7 @@ const deleteProduct = async (id) => {
 
   await product.softDelete();
 
-  return product, `${id} fue desactivado correctamente`;
+  return product, `Deleted is now ${product.deleted} for ${product.name} with id: ${id}`;
 };
 
 module.exports = {

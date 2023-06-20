@@ -2,7 +2,7 @@ const { Router } = require("express");
 const mercadopago = require("mercadopago");
 const router = Router();
 require("dotenv").config();
-
+url="http://localhost:3000";
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
 router.post("/", (req, res) => {
@@ -11,9 +11,9 @@ router.post("/", (req, res) => {
     items: [],
 
     back_urls: {
-      success: "https://ecommers-front-rust.vercel.app/feedback",
-      failure: "https://ecommers-front-rust.vercel.app/home",
-      pending: "https://ecommers-front-rust.vercel.app/home",
+      success: "http://localhost:3000/feedback",
+      failure: "http://localhost:3000/home",
+      pending: "http://localhost:3000/home",
     },
     auto_return: "approved",
     binary_mode: true,
@@ -40,14 +40,20 @@ router.post("/", (req, res) => {
   }
 
   var respuestaMercadopago = mercadopago.preferences
-    .create(preference)
-    .then((response) => res.status(201).send({ response }))
-    .catch((error) => res.status(400).send({ error: error }));
-    if (respuestaMercadopago.response.body.init_point){
+
+  .create(preference)
+  .then((response) => {
+    if (response.body.init_point) {
       res.json({
-        init_point: respuestaMercadopago.response.body.init_point
-      }) 
+        init_point: response.body.init_point
+      });
+    } else {
+      res.status(400).send({ error: 'No init_point found in the response' });
     }
+  })
+  .catch((error) => res.status(400).send({ error: error }));
+
+
 });
 
 router.get("/feedback", function (req, res) {
@@ -59,4 +65,3 @@ router.get("/feedback", function (req, res) {
 });
 
 module.exports = router;
-

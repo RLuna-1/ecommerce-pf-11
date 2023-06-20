@@ -17,7 +17,7 @@ const passport = require("passport");
 const authRouter = Router();
 
 authRouter.post("/signup", async (req, res) => {
-  console.log("Request Body:", req.body);
+  //console.log("Request Body:", req.body);
   const { name, last_name, email, password, phone } = req.body;
 
   try {
@@ -29,7 +29,7 @@ authRouter.post("/signup", async (req, res) => {
       phone
     );
 
-    res.cookie("jwt", token, {
+    res.cookie("login", token, {
       httpOnly: true,
       maxAge: 1000 * 3 * 24 * 60 * 60,
     });
@@ -45,7 +45,7 @@ authRouter.post("/login", async (req, res) => {
   try {
     const { newLogIn, token } = await postLogIn(email, password);
 
-    res.cookie("jwt", token, {
+    res.cookie("login", token, {
       httpOnly: true,
       maxAge: 1000 * 3 * 24 * 60 * 60,
     });
@@ -59,12 +59,14 @@ authRouter.post("/login", async (req, res) => {
 authRouter.get("/logout", async (req, res) => {
   try {
     if (req.user && req.user.googleId) {
-      req.logout();
-      res.status(200).json("Google user logged out succesfully");
-      // No estoy seguro si esto funciona
+      res.cookie("login", req.cookies.login, {
+        httpOnly: true,
+        maxAge: 1,
+      });
+      return res.status(200).json("Google user logged out successfully");
     }
 
-    res.clearCookie("jwt");
+    res.cookie("login", "", { httpOnly: true, maxAge: 1 });
     res.status(200).json("User logged out successfully");
   } catch (error) {
     res.status(400).json(`Error while logging out the user: ${error.message}`);
@@ -85,7 +87,7 @@ authRouter.get(
   async (req, res) => {
     try {
       const token = await googleAuthToken(req.user);
-      res.cookie("GoogleOauthToken", token, {
+      res.cookie("login", token, {
         httpOnly: true,
         maxAge: 1000 * 3 * 24 * 60 * 60,
       });
@@ -111,21 +113,25 @@ authRouter.post("/verification", async (req, res) => {
 });
 
 authRouter.get("/user", async (req, res) => {
-  const token = req.cookies.jwt;
+  const token = req.cookies.login;
 
   try {
-    jwt.verify(
-      token,
-      "shnawg is not paying the bills",
-      async (error, decodedToken) => {
-        if (error) {
-          throw new Error(error.message);
-        } else {
-          const user = await getUserByToken(decodedToken);
-          res.status(200).json({ user });
+    if (token) {
+      jwt.verify(
+        token,
+        "shnawg is not paying the bills",
+        async (error, decodedToken) => {
+          if (error) {
+            throw new Error(error.message);
+          } else {
+            const user = await getUserByToken(decodedToken);
+            res.status(200).json({ user });
+          }
         }
-      }
-    );
+      );
+    } else {
+      res.status(400).json("There's no user logged");
+    }
   } catch (error) {
     res.status(400).json(error.message);
   }

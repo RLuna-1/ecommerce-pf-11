@@ -157,7 +157,7 @@ module.exports = (sequelize) => {
       },
     });
 
-    console.log(user)
+    //console.log(user)
 
     if (!user) {
 

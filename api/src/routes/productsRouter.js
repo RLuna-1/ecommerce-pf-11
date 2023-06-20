@@ -19,7 +19,7 @@ productsRouter.get(
   async (req, res) => {
     try {
 
-      console.log(req.body)
+      //console.log(req.body)
 
       const showProducts = await getProducts(
         req.query.name,
@@ -32,7 +32,7 @@ productsRouter.get(
         req.query.categories,
         req.query.order,
         req.query.direction,
-        req.query.page,req.query.platforms, req.query.licenses, req.query.pageSize
+        req.query.page,req.query.platforms, req.query.licenses, req.query.pageSize, req.query.deleted
       );
       res.status(200).json(await showProducts);
     } catch (error) {

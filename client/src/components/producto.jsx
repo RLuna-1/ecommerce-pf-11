@@ -77,7 +77,7 @@ function Producto({ id, name, image, price, licenses, platforms, categories }) {
         <div className="flex items-center justify-between mt-0">
           <span className="text-2xl font-bold text-gray-900">$ {price}</span>
           <div
-            className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600 transition-colors duration-300 mr-5"
+            className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600 transition-colors duration-300 mr-5 cursor-pointer"
             onClick={() => addToCart(id)}
           >
             Agregar al Carrito
