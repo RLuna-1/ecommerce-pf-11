@@ -109,7 +109,6 @@ export default function Detail() {
           </div>
         </div>
       </div>
-
       <div>
         {product ? (
           <article className='bg-gray-100 drop-shadow-lg rounded p-6'>
