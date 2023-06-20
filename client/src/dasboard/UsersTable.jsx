@@ -116,7 +116,7 @@ const UsersTable = () => {
   return (
 		<div className='antialiased bg-gray-50 dark:bg-slate-100 h-screen overflow-auto'>
 			{/* input,boton,select */}
-			<div className='   flex-wrap flex justify-between items-center mb-4'>
+			<div className='flex-wrap flex justify-between items-center mb-4'>
 				<div flex flex-wrap justify-between items-center>
 					<input
 						type='text'
@@ -147,57 +147,34 @@ const UsersTable = () => {
 						<th className='p-2 border'>Admin</th>
 						<th className='p-2 border'>Verificado</th>
 						<th className='p-2 border'>Deshabilitado</th>
-
-        </div>
-      </div>
-      <h2 className="p-2 font-bold mb-4">Usuarios</h2>
-     <table className="w-full border-collapse">
-        <thead>
-          <tr>
-            <th className="p-2 border text-white">ID</th>
-            <th className="p-2 border text-white">Nombre</th>
-            <th className="p-2 border text-white">Apellido</th>
-            <th className="p-2 border text-white">Usuario</th>
-            <th className="p-2 border text-white">Correo</th>
-            <th className="p-2 border text-white">Admin</th>
-            <th className="p-2 border text-white">Verificado</th>
-            <th className="p-2 border text-white">Deshabilitado</th>
-            
-            <th className="p-2 border text-white">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map((user) => (
-            <tr key={user.id}>
-              <td className="p-2 border text-white">{user.id}</td>
-              <td className="p-2 border text-white">{user.name}</td>
-              <td className="p-2 border text-white">{user.last_name}</td>
-              <td className="p-2 border text-white">{user.user_name}</td>
-              <td className="p-2 border text-white">{user.email}</td>
-              <td className="p-2 border text-white">{user.admin === true ? "SI" : "NO"}</td>
-              <td className="p-2 border text-white">{user.is_verified === true ? "SI" : "NO"}</td>
-              <td className="p-2 border text-white">{user.disabled === true ? "SI" : "NO"}</td>
-              
-              <td className="p-2 border">
-                <button
-                  onClick={() => handleEdit(user)}
-                  className="bg-blue-500 text-white rounded px-2 py-1 mr-2"
-                >
-                  Editar
-                </button>
-                <button
-                  onClick={() => handleDelete(user)}
-                  className="bg-red-500 text-white rounded px-2 py-1"
-                >
-                  Desabilitar
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> 
-
-
+						<th className='p-2 border'>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{filteredUsers.map((user) => (
+						<tr key={user.id}>
+							<td className='p-2 border text-white'>{user.id}</td>
+							<td className='p-2 border text-white'>
+								{user.name}
+							</td>
+							<td className='p-2 border text-white'>
+								{user.last_name}
+							</td>
+							<td className='p-2 border text-white'>
+								{user.user_name}
+							</td>
+							<td className='p-2 border text-white'>
+								{user.email}
+							</td>
+							<td className='p-2 border text-white'>
+								{user.admin === true ? 'SI' : 'NO'}
+							</td>
+							<td className='p-2 border text-white'>
+								{user.is_verified === true ? 'SI' : 'NO'}
+							</td>
+							<td className='p-2 border text-white'>
+								{user.disabled === true ? 'SI' : 'NO'}
+							</td>
 							<td className='p-2 border'>
 								<button
 									onClick={() => handleEdit(user)}
@@ -205,9 +182,9 @@ const UsersTable = () => {
 									Editar
 								</button>
 								<button
-									onClick={() => handleDelete()}
+									onClick={() => handleDelete(user)}
 									className='bg-red-500 text-white rounded px-2 py-1'>
-									Desabilitar
+									Deshabilitar
 								</button>
 							</td>
 						</tr>
@@ -215,10 +192,10 @@ const UsersTable = () => {
 				</tbody>
 			</table>
 
-			{/* userna de edición */}
+			{/* ventana de edición */}
 			{editModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-					<div className='bg-white p-4 rounded  w-2/5 h-screen overflow-scroll '>
+					<div className='bg-white p-4 rounded w-2/5 h-screen overflow-scroll'>
 						<h2 className='text-lg font-bold mb-2'>
 							Editar Usuario
 						</h2>
@@ -247,7 +224,7 @@ const UsersTable = () => {
 							<div className='mb-2'>
 								<label
 									className='block mb-2 font-sans'
-									htmlFor='edit-name'>
+									htmlFor='edit-user_name'>
 									Usuario:
 								</label>
 								<input
@@ -266,7 +243,7 @@ const UsersTable = () => {
 							<div className='mb-2'>
 								<label
 									className='block mb-2 font-sans'
-									htmlFor='edit-name'>
+									htmlFor='edit-mail'>
 									Correo:
 								</label>
 								<input
@@ -354,7 +331,7 @@ const UsersTable = () => {
 				</div>
 			)}
 
-			{/* userna de eliminación */}
+			{/* ventana de eliminación */}
 			{deleteModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
 					<div className='bg-white p-4 rounded'>
