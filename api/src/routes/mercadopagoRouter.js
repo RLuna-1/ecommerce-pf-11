@@ -39,10 +39,15 @@ router.post("/", (req, res) => {
     });
   }
 
-  mercadopago.preferences
+  var respuestaMercadopago = mercadopago.preferences
     .create(preference)
     .then((response) => res.status(201).send({ response }))
     .catch((error) => res.status(400).send({ error: error }));
+    if (respuestaMercadopago.response.body.init_point){
+      res.json({
+        init_point: respuestaMercadopago.response.body.init_point
+      }) 
+    }
 });
 
 router.get("/feedback", function (req, res) {

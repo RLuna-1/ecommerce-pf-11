@@ -32,18 +32,21 @@ nodemailerRouter.post("/send-confirmation-email", async (req, res) => {
     const confirmationLink = `https://ecommers-front-rust.vercel.app/confirm/${confirmationToken}`;
 
     const transporter = nodemailer.createTransport({
-      host: 'smtp-mail.outlook.com', 
-      port: 587, 
-      secure: false, 
+      host: "smtp-mail.outlook.com",
+      port: 587,
+      tls: {
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
+      },
       auth: {
-        user: process.env.OUTLOOK_USERNAME, 
-        pass: process.env.OUTLOOK_PASSWORD, 
+        user: process.env.OUTLOOK_USERNAME,
+        pass: process.env.OUTLOOK_PASSWORD,
       },
     });
-    
+
 
     const mailOptions = {
-      from: process.env.OUTLOOK_USERNAME_USERNAME,
+      from: process.env.OUTLOOK_USERNAME,
       to: email,
       subject: "Confirmación de registro",
       text: `Por favor, haz clic en el siguiente enlace para confirmar tu registro: ${confirmationLink}`,

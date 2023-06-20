@@ -1,5 +1,4 @@
 
-
 const nodemailer = require('nodemailer');
 const { User } = require("../db");
 const jwt = require("jsonwebtoken");
@@ -53,37 +52,6 @@ async function createUser(userData) {
   return newUser;
 }
 
-<<<<<<< HEAD
-  async function updateUser(req, res) {
-    try {
-      const { id } = req.params;
-      const { name, last_name, user_name, image, email, password, admin, disabled , phone} = req.body;
-  
-      const user = await User.findByPk(id);
-  
-      if (!user) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
-      }
-  
-      user.name = name;
-      user.last_name = last_name;
-      user.user_name = user_name;
-      user.image = image;
-      user.email = email;
-      user.password = password;
-      user.admin = admin;
-      user.disabled = disabled;
-      user.phone = phone;
-  
-      await user.save();
-  
-      return res.status(200).json({ message: 'Usuario actualizado correctamente' });
-    } catch (error) {
-      console.error('Error al actualizar el usuario:', error);
-      return res.status(500).json({ message: 'Ocurrió un error al actualizar el usuario' });
-    }
-  }
-=======
 async function updateUser(req, res) {
   try {
     const { id } = req.params;
@@ -98,7 +66,6 @@ async function updateUser(req, res) {
       admin,
       disabled,
     } = req.body;
->>>>>>> dbbcd86304975d2cefc5b3d7381aef365499085c
 
     const user = await User.findByPk(id);
 
