@@ -148,28 +148,28 @@ useEffect(() => {
 				</div>
 			</div>
 
-			<h2 className='p-2 font-bold mb-4'>Productos</h2>
+			<h2 className='p-2 font-bold mb-4 text-white'>Productos</h2>
 			<table className='w-full border-collapse'>
 				<thead>
 					<tr>
-						<th className='p-2 border'>ID</th>
-						<th className='p-2 border'>Nombre</th>
-						<th className='p-2 border'>Categoría</th>
-						<th className='p-2 border'>Precio</th>
-						<th className='p-2 border'>Acciones</th>
+						<th className='p-2 border text-white'>ID</th>
+						<th className='p-2 border text-white'>Nombre</th>
+						<th className='p-2 border text-white'>Categoría</th>
+						<th className='p-2 border text-white'>Precio</th>
+						<th className='p-2 border text-white'>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
 					{filteredData.map((product) => (
 						<tr key={product.id}>
-							<td className='p-2 border'>{product.id}</td>
-							<td className='p-2 border'>{product.name}</td>
-							<td className='p-2 border'>
+							<td className='p-2 border text-white'>{product.id}</td>
+							<td className='p-2 border text-white'>{product.name}</td>
+							<td className='p-2 border text-white'>
 								{product.categories.map(
 									(category) => category.name,
 								)}
 							</td>
-							<td className='p-2 border'>{product.price}</td>
+							<td className='p-2 border text-white'>{product.price}</td>
 							<td className='p-2 border'>
 								<button
 									onClick={() => handleEdit(product)}

@@ -77,7 +77,7 @@ const VentasTable = () => {
 
   return (
     <div className="antialiased bg-gray-50 dark:bg-gray-900 h-screen" >
-      <h2 className="p-2 font-bold mb-4 ">Ventas</h2>
+      <h2 className="p-2 font-bold mb-4 text-white">Ventas</h2>
 
       <div className="   flex-wrap flex justify-evenly  items-center mb-4 ">
         <div className="mb-4">
@@ -115,23 +115,23 @@ const VentasTable = () => {
       <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th className="p-2 border">ID</th>
-            <th className="p-2 border">Producto</th>
-            <th className="p-2 border">Método de Pago</th>
-            <th className="p-2 border">Cantidad Vendida</th>
-            <th className="p-2 border">Precio</th>
-            <th className="p-2 border text-right">Total</th>
+            <th className="p-2 border text-white">ID</th>
+            <th className="p-2 border text-white">Producto</th>
+            <th className="p-2 border text-white">Método de Pago</th>
+            <th className="p-2 border text-white">Cantidad Vendida</th>
+            <th className="p-2 border text-white">Precio</th>
+            <th className="p-2 border text-right text-white">Total</th>
           </tr>
         </thead>
         <tbody>
           {currentVentas.map((venta) => (
             <tr key={venta.id} className="text-center">
-              <td className="p-2 border">{venta.id}</td>
-              <td className="p-2 border">{venta.producto}</td>
-              <td className="p-2 border">{venta.metodoPago}</td>
-              <td className="p-2 border">{venta.cantidadVendida}</td>
-              <td className="p-2 border">{venta.precio}</td>
-              <td className="p-2 border text-right">
+              <td className="p-2 border text-white">{venta.id}</td>
+              <td className="p-2 border text-white">{venta.producto}</td>
+              <td className="p-2 border text-white">{venta.metodoPago}</td>
+              <td className="p-2 border text-white">{venta.cantidadVendida}</td>
+              <td className="p-2 border text-white">{venta.precio}</td>
+              <td className="p-2 border text-right text-white">
                 {venta.cantidadVendida * venta.precio}
               </td>
             </tr>
