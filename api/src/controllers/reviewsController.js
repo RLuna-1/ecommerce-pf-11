@@ -43,6 +43,9 @@ const getReviews = (
   if (userId) {
     whereClause.userId = userId;
   }
+  if (productId) { 
+    whereClause.productId = productId;
+  }
 
   if (createdAt) {
     whereClause.createdAt = {

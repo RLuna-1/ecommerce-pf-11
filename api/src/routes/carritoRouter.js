@@ -14,4 +14,4 @@ carritoRouter.post("/", authMiddleware, agregarProducto);
 
 carritoRouter.delete("/:productId", authMiddleware, quitarProducto);
 
-module.exports = router;
+module.exports = carritoRouter;

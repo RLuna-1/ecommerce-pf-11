@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { remove1FromCart, removeFromCart, sume1FromCart } from "../redux/actions/actions";
+import { mostrarCarrito, agregarAlCarrito, quitarProducto } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
-import * as actions from "../redux/actions/actions";
 import axios from 'axios';
 import Cookies from "js-cookie";
 
 function NewCarrito() {
   const [quantity1, setQuantity1] = useState(2);
   const [quantity2, setQuantity2] = useState(2);
-  
+  const userId = Cookies.get("user");
   const handleQuantityChange1 = (event) => {
     setQuantity1(event.target.value);
   };
@@ -28,12 +27,9 @@ function NewCarrito() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      dispatch(actions.setCart(JSON.parse(savedCart)));
-    }
+    const userId = "..." // Obtén el ID del usuario actual
+    dispatch(mostrarCarrito(userId));
   }, [dispatch]);
-  
 
   const [nombre] = useState("");
   const [dni] = useState("");
@@ -43,13 +39,15 @@ function NewCarrito() {
   const [setMensajeCompra] = useState("");
 
   const eliminarProducto1 = (id) => {
-    dispatch(remove1FromCart(id));
+    dispatch(quitarProducto(id, userId));
   };
+
   const sumarProducto1 = (id) => {
-    dispatch(sume1FromCart(id));
+    // Lógica para incrementar la cantidad de un producto en el carrito
   };
+
   const eliminarProducto = (id) => {
-    dispatch(removeFromCart(id));
+    dispatch(quitarProducto(id, userId));
   };
 
   useEffect(() => {
@@ -57,17 +55,9 @@ function NewCarrito() {
   }, [cart]);
 
   const realizarCompra = async () => {
-    await axios
-      .post("/mercadopago", cart)
-      .then(response => {
-        const { init_point } = response.data;
-        if (init_point) {
-          window.location.href = init_point;
-        }
-      })
-      .catch(error => {
-        console.error("Error al realizar la compra:", error);
-      });
+    const userId = "..." // Obtén el ID del usuario actual
+    await dispatch(agregarAlCarrito(cart, userId));
+    // Resto de la lógica para realizar la compra
   };
 
   const getCartId = () => {
