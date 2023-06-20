@@ -28,8 +28,8 @@ salesRouter.get("/:id", (req, res) => {
 });
 
 salesRouter.post("/", (req, res) => {
-  const { id, producto, precio, cantidad, metodoPago, fecha } = req.body;
-  DetallesVentas.create({ id, producto, precio, cantidad, metodoPago, fecha })
+  const { producto, precio, cantidad, metodoPago, fecha, userId } = req.body;
+  DetallesVentas.create({ producto, precio, cantidad, metodoPago, fecha, userId })
     .then((newSale) => {
       res.status(201).json(newSale);
     })
@@ -37,6 +37,7 @@ salesRouter.post("/", (req, res) => {
       res.status(500).json({ error: "Error al crear la venta" });
     });
 });
+
 
 
 
