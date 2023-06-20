@@ -72,35 +72,25 @@ const InfoCliente = () => {
         last_name: lastName,
         phone: phoneNumber,
         email: userData.email,
-      });
-      disableEditing();
-      setUserData({ ...userData, name, last_name: lastName, phone: phoneNumber });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleSave = async (image) => {
-    try {
-      await axios.put(`/users/${id}`, {
-        name,
-        last_name: lastName,
-        phone: phoneNumber,
-        email: userData.email,
-        image: image,
+        image: userData.image,
       });
       disableEditing();
       setUserData({
         ...userData,
         name,
-        lastName: lastName,
+        last_name: lastName,
         phone: phoneNumber,
-        image: image,
       });
-      console.log('Datos actualizados en el backend');
     } catch (error) {
-      console.error('Error al guardar los datos en el backend:', error);
+      console.error(error);
     }
+  };
+
+  const handleSave = (image) => {
+    setUserData({
+      ...userData,
+      image: image,
+    });
   };
 
   const savePass = async () => {
@@ -117,7 +107,7 @@ const InfoCliente = () => {
 
   return (
     <div className={styles.General}>
-      {(!editing && <div className={styles.Perfil}>
+      <div className={styles.Perfil}>
         {userData ? (
           <img
             src={userData.image ? userData.image : PerfilDefault}
@@ -126,12 +116,9 @@ const InfoCliente = () => {
         ) : (
           <img src={PerfilDefault} alt="Usuario" />
         )}
-        {name && lastName ? (
-          <h1>{`${name} ${lastName}`}</h1>
-        ) : (
-          <h1>{name}</h1>
-        )}
-      </div>)}
+        {name && lastName ? <h1>{`${name} ${lastName}`}</h1> : <h1>{name}</h1>}
+      </div>
+
       <div className={styles.Info}>
         {userData ? (
           <div className={styles.Datos}>
@@ -146,11 +133,7 @@ const InfoCliente = () => {
             {editing && (
               <div className={styles.DatosInput}>
                 <h2>Nombre:</h2>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={handleNameChange}
-                />
+                <input type="text" value={name} onChange={handleNameChange} />
                 <h2>Apellido:</h2>
                 <input
                   type="text"
@@ -163,6 +146,13 @@ const InfoCliente = () => {
                   value={phoneNumber}
                   onChange={handlePhoneChange}
                 />
+                <div>
+                  <SubirImagen handleSave={handleSave} />
+                  <div className={styles.Botones}>
+                    <button onClick={saveChanges}>Guardar</button>
+                    <button onClick={disableEditing}>Cancelar</button>
+                  </div>
+                </div>
               </div>
             )}
             {!editpass && !editing && (
@@ -181,12 +171,6 @@ const InfoCliente = () => {
               <Link to="/compracliente">
                 {!editing && !editpass && <button>Mis Compras</button>}
               </Link>
-              {editing && (
-                <>
-                  <button onClick={saveChanges}>Guardar</button>
-                  <button onClick={disableEditing}>Cancelar</button>
-                </>
-              )}
               {!editing && !editpass && <button>Cerrar Sesión</button>}
               {!editing && !editpass && (
                 <div className={styles.Contraseña}>
@@ -228,11 +212,9 @@ const InfoCliente = () => {
         )}
         {!userData && <div className={loader.loaderLarge}></div>}
       </div>
-      {(editing && <div>
-        <SubirImagen handleSave={handleSave} />
-        </div>)}
     </div>
   );
 };
 
 export default InfoCliente;
+

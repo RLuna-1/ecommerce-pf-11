@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Image } from 'cloudinary-react';
+import styles from "../css/InfoCliente.module.css";
 
-const SubirImagen = ({ handleSave }) => {
+const SubirImagen = ({ handleSave, setProfilePicture }) => {
   const [image, setImage] = useState('');
 
   const handleUpload = async (event) => {
@@ -16,18 +16,24 @@ const SubirImagen = ({ handleSave }) => {
         'https://api.cloudinary.com/v1_1/dq9qehsik/image/upload',
         formData
       );
-      setImage(response.data.secure_url);
-      console.log('URL de la imagen cargada:', response.data.secure_url);
+      const imageURL = response.data.secure_url;
+      setImage(imageURL);
+      setProfilePicture(imageURL); // Actualizar el estado de la imagen en InfoCliente
+      console.log('URL de la imagen cargada:', imageURL);
+      handleSave(imageURL); // Guardar la imagen en el backend
     } catch (error) {
       console.error('Error al subir la imagen:', error);
     }
   };
 
   return (
-    <div>
+    <div className={styles.CargaImagen}>
       <input type="file" onChange={handleUpload} />
-      {image && <Image cloudName="dq9qehsik" publicId={image} width="300" />}
-      {image && <button onClick={() => handleSave(image)}>Guardar imagen</button>}
+      {image && (
+        <div className={styles.BotonesIMG}>
+          <button onClick={() => handleSave(image)}>Guardar Imagen</button>
+        </div>
+      )}
     </div>
   );
 };
