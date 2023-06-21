@@ -28,5 +28,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: 0.0,
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   });
 };
