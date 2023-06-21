@@ -113,7 +113,7 @@ function Filters() {
 				<select
 					value={filters.categories}
 					onChange={handleCategoryChange}
-					className='w-full p-2 border rounded mb-4'>
+					className='w-full p-2 border rounded mb-4 cursor-pointer'>
 					<option value=''>Categorías</option>
 					{categories &&
 						categories.map((category) => (
@@ -124,69 +124,69 @@ function Filters() {
 				</select>
 
 				<h2 className='text-lg font-bold mb-2'>Plataformas</h2>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='windows'
 						checked={selectedPlatforms.includes('windows')}
 						onChange={handlePlatformChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Windows
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='linux'
 						checked={selectedPlatforms.includes('linux')}
 						onChange={handlePlatformChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Linux
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='macos'
 						checked={selectedPlatforms.includes('macos')}
 						onChange={handlePlatformChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					macOS
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='ios'
 						checked={selectedPlatforms.includes('ios')}
 						onChange={handlePlatformChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					iOS
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='android'
 						checked={selectedPlatforms.includes('android')}
 						onChange={handlePlatformChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Android
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='web'
 						checked={selectedPlatforms.includes('web')}
 						onChange={handlePlatformChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Web
 				</label>
 
 				<h2 className='text-lg font-bold mb-2'>Licencias</h2>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='licencia de por vida'
@@ -194,21 +194,21 @@ function Filters() {
 							'licencia de por vida',
 						)}
 						onChange={handleLicenseChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Licencia de por vida
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='suscripción anual'
 						checked={selectedLicenses.includes('suscripción anual')}
 						onChange={handleLicenseChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Suscripción anual
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='suscripción mensual'
@@ -216,27 +216,27 @@ function Filters() {
 							'suscripción mensual',
 						)}
 						onChange={handleLicenseChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Suscripción mensual
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='prueba gratuita'
 						checked={selectedLicenses.includes('prueba gratuita')}
 						onChange={handleLicenseChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Prueba gratuita
 				</label>
-				<label className='mb-2'>
+				<label className='mb-2 cursor-pointer'>
 					<input
 						type='checkbox'
 						value='código abierto'
 						checked={selectedLicenses.includes('código abierto')}
 						onChange={handleLicenseChange}
-						className='m-2'
+						className='m-2 cursor-pointer'
 					/>
 					Código abierto
 				</label>
@@ -245,7 +245,7 @@ function Filters() {
 				<select
 					value={filters.order}
 					onChange={handleOrderChange}
-					className='w-full p-2 border rounded mb-4'>
+					className='w-full p-2 border rounded mb-4 cursor-pointer'>
 					{/* <option disabled value=''>
 							Ordenar
 						</option> */}
@@ -259,7 +259,7 @@ function Filters() {
 						<select
 							value={filters.direction}
 							onChange={handleDirectionChange}
-							className='w-full p-2 border rounded mb-4'>
+							className='w-full p-2 border rounded mb-4 cursor-pointer'>
 							{/* <option disabled value=''>
 							Dirección
 						</option> */}

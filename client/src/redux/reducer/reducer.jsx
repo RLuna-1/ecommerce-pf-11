@@ -33,6 +33,8 @@ import {
   SET_CATEGORIES,
   SET_PRODUCTS,
   SET_FILTERS,
+  VIEW_REVIEW,
+  DELETE_REVIEW,
 } from "../consts";
 
 const initialState = {
@@ -67,6 +69,7 @@ const initialState = {
     page: 1,
     platforms: [],
     licenses: [],
+    review: [],
   },
 };
 
@@ -142,19 +145,25 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case SET_CART: {
-      const newItem = state.products.find((product) => product.id === action.payload);
-    
+      const newItem = state.products.find(
+        (product) => product.id === action.payload
+      );
+
       if (!newItem) {
         return state; // No se encontró el producto, no se realiza ningún cambio en el estado
       }
-    
-      const existingItemIndex = state.cart.findIndex((item) => item.id === newItem.id);
-    
+
+      const existingItemIndex = state.cart.findIndex(
+        (item) => item.id === newItem.id
+      );
+
       if (existingItemIndex !== -1) {
         return {
           ...state,
           cart: state.cart.map((item, index) =>
-            index === existingItemIndex ? { ...item, quantity: item.quantity + 1 } : item
+            index === existingItemIndex
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
           ),
         };
       } else {
@@ -164,7 +173,6 @@ const rootReducer = (state = initialState, action) => {
         };
       }
     }
-    
 
     case REMOVE_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
@@ -272,26 +280,34 @@ const rootReducer = (state = initialState, action) => {
         filteredProducts: filteredProducts,
         isFiltering: true,
       };
-      case SET_CATEGORIES:
-        return {
-          ...state,
-          categories: action.payload,
-        };
-        case SET_PRODUCTS:
-          return {
-            ...state,
-            products: action.payload.rows,
-            countProducts: action.payload.count,
-          };
-          case SET_FILTERS:
-            return { ...state, filters: action.payload };
+    case SET_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
+      };
+    case SET_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.rows,
+        countProducts: action.payload.count,
+      };
+    case SET_FILTERS:
+      return { ...state, filters: action.payload };
 
-            case GET_All_USERS:
-              return {
-                ...state,
-                users: action.payload,
-                //allvideogames1: action.payload,
-              };
+    case GET_All_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case VIEW_REVIEW: {
+      return { ...state, review: action.payload };
+    }
+    case DELETE_REVIEW: {
+      return {
+        ...state,
+        review: state.review.filter((item) => item.id !== action.payload),
+      };
+    }
     default:
       return state;
   }

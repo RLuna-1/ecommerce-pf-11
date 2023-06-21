@@ -17,6 +17,8 @@ import {
   SET_FILTERS,
   SET_CATEGORIES,
   SET_PRODUCTS,
+  VIEW_REVIEW,
+  DELETE_REVIEW,
 } from "../consts";
 import { toast } from 'react-toastify';
 import axios from "axios";
@@ -76,23 +78,23 @@ export function getAllProducts(page) {
   };
 }
 
-export function agregarAlCarrito(newData, id) {
-  return function (dispatch) {
-    return axios
-      .post(`${URL}/users/${id}/cart`, {
-        product: newData,
-      })
-      .then((res) => {
-        dispatch({
-          type: GET_CARTG,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        console.error("Error adding to cart:", err);
-      });
-  };
-}
+// export function agregarAlCarrito(newData, id) {
+//   return function (dispatch) {
+//     return axios
+//       .post(`${URL}/users/${id}/cart`, {
+//         product: newData,
+//       })
+//       .then((res) => {
+//         dispatch({
+//           type: GET_CARTG,
+//           payload: res.data,
+//         });
+//       })
+//       .catch((err) => {
+//         console.error("Error adding to cart:", err);
+//       });
+//   };
+// }
 
 export function getProduct(id) {
   return function (dispatch) {
@@ -627,7 +629,6 @@ export const fetchProducts = (filters) => {
 
 
 export function deleteProduct(id) {
-  console.log('el ide de la action es: ' +id);
   
   return function (dispatch) {
     return axios
@@ -661,7 +662,7 @@ export const getUsers = () => {
 };
 
 export function editUser(bodyFormData, id) {
-  console.log(bodyFormData);
+  
   return function (dispatch) {
     return axios
       .put(`${URL}/users/${id}`, bodyFormData)
@@ -682,3 +683,105 @@ export function editUser(bodyFormData, id) {
       });
   };
 }
+
+
+export function deleteUser(id) {
+  
+  
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/users/${id}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: `Se ha Deshabilitado el usuario correctamente`,
+        });
+       // getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}
+
+///////////////////
+
+export function mostrarCarrito(id) {
+  return function (dispatch) {
+    return axios
+      .get(`${URL}/users/${id}/cart`)
+      .then((res) => {
+        dispatch({
+          type: GET_CARTG,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error("Error al obtener el carrito:", err);
+      });
+  };
+}
+
+export function agregarAlCarrito(newData, id) {
+  return function (dispatch) {
+    return axios
+      .post(`${URL}/users/${id}/cart`, {
+        product: newData,
+      })
+      .then((res) => {
+        dispatch({
+          type: GET_CARTG,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error("Error al agregar al carrito:", err);
+      });
+  };
+}
+
+export function quitarProducto(productId, id) {
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/users/${id}/cart/${productId}`)
+      .then((res) => {
+        dispatch({
+          type: GET_CARTG,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error("Error al quitar del carrito:", err);
+      });
+  };
+}
+/////////////////////////////
+export function getReviews(id) {
+  return function (dispatch) {
+    const url = `/reviews?productId=${id}`;
+    console.log(id + " actions")
+    return axios.get(url)
+      .then(res => res.data)
+      .then(data => {
+        dispatch({ type: VIEW_REVIEW, payload: data })
+      })
+  }
+}
+
+export function deleteReview( id) {
+  return function (dispatch) {
+    const url = `http://localhost:3001/review/${id}`;
+    return axios.delete(url)
+        .then(data => {
+          dispatch({ type:DELETE_REVIEW , payload: id });
+        })
+      .then(() => alert('Se borro la review'))
+      .catch(error => alert(error, 'Algo salió mal al borrar la review'))
+  }
+}
+

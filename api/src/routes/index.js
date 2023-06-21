@@ -29,7 +29,9 @@ mainRouter.use("/transactions", transactionsRouter);
 mainRouter.use("/reviews", reviewsRouter);
 mainRouter.use("/auth", authRouter)
 mainRouter.use("/mercadopago", mercadopagoRouter)
+
 mainRouter.use("/nodemailer", nodemailerRouter)
 mainRouter.use("/carrito", carritoRouter)
+
 
 module.exports = mainRouter;
