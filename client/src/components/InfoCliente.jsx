@@ -16,6 +16,9 @@ const InfoCliente = () => {
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [pass, setPass] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
 
   const id = userData?.id;
 
@@ -65,6 +68,14 @@ const InfoCliente = () => {
     setEditpass(false);
   };
 
+  const handleNewPasswordChange = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const saveChanges = async () => {
     try {
       await axios.put(`/users/${id}`, {
@@ -94,16 +105,34 @@ const InfoCliente = () => {
   };
 
   const savePass = async () => {
-    try {
-      await axios.put(`/users/${id}`, {
-        email: userData.email,
-        password: pass,
-      });
-      disableEditing();
-    } catch (error) {
-      console.error(error);
+    if (await isCurrentPasswordValid()) {
+      if (newPassword === confirmPassword) {
+        try {
+          await axios.put(`/users/${id}`, {
+            email: userData.email,
+            password: pass,
+          });
+          disableEditing();
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        console.log("Las contraseñas no coinciden");
+      }
+    } else {
+      console.log("La contraseña actual es incorrecta");
     }
   };
+
+  const isPasswordValid = () => {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(newPassword);
+  };
+
+  const isCurrentPasswordValid = () => {
+    return currentPassword === userData.password;
+  };
+  
 
   return (
     <div className={styles.General}>
@@ -171,7 +200,6 @@ const InfoCliente = () => {
               <Link to="/compracliente">
                 {!editing && !editpass && <button>Mis Compras</button>}
               </Link>
-              {!editing && !editpass && <button>Cerrar Sesión</button>}
               {!editing && !editpass && (
                 <div className={styles.Contraseña}>
                   <button onClick={enablePass}>
@@ -199,8 +227,19 @@ const InfoCliente = () => {
                     placeholder="Contraseña Nueva"
                     onChange={handlePhoneChange}
                   />
+                  {!isPasswordValid() && (
+                    <p className={styles.ErrorMessage}>
+                      La contraseña debe tener al menos 8 caracteres y contener
+                      al menos una letra y un número.
+                    </p>
+                  )}
+                  {!isCurrentPasswordValid() && (
+                    <p className={styles.ErrorMessage}>
+                      La contraseña actual es incorrecta.
+                    </p>
+                  )}
                   <div className={styles.BotonesPass}>
-                    <button>Guardar</button>
+                    <button >Guardar</button>
                     <button onClick={disablePass}>Cancelar</button>
                   </div>
                 </div>
@@ -217,4 +256,3 @@ const InfoCliente = () => {
 };
 
 export default InfoCliente;
-
