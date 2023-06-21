@@ -41,33 +41,34 @@ export function Register(props) {
     );
   };
   const submitUser = async (e) => {
-    e.preventDefault();
-    const formErrors = validate(state);
-    setErrors(formErrors);
-
-    if (Object.keys(formErrors).length === 0) {
-      const agregarUser = props.addUser(state);
-      if (agregarUser.success) {
-        try {
-          const respuesta = await axios.post("/nodemailer/envio-confirmacion", { "email": state.email });
-          console.log("Correo de confirmación enviado exitosamente");
-          if (respuesta.status(200)) {
-            setState({
-              name: "",
-              last_name: "",
-              email: "",
-              password: "",
-              confirmPassword: "",
-              phone: "",
-            });
-          }
-        } catch (error) {
-          console.error("Error al enviar el correo de confirmación:", error);
-        }
-      }
-    }
-
+	e.preventDefault();
+	const formErrors = validate(state);
+	setErrors(formErrors);
+  
+	if (Object.keys(formErrors).length === 0) {
+	  const agregarUser = await props.addUser(state);
+	  if (agregarUser.success) {
+		try {
+		  const respuesta = await axios.post("/nodemailer/envio-confirmacion", { "email": state.email });
+		  console.log("Correo de confirmación enviado exitosamente");
+		  if (respuesta.status === 200) {
+			setState({
+			  name: "",
+			  last_name: "",
+			  email: "",
+			  password: "",
+			  confirmPassword: "",
+			  phone: "",
+			});
+		  }
+		} catch (error) {
+		  console.error("Error al enviar el correo de confirmación:", error);
+		}
+	  }
+	}
   };
+  
+  
 
   return (
     <div ref={centerRef} className={style.General}>
