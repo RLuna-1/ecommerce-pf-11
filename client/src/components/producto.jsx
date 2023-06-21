@@ -41,30 +41,30 @@ function Producto({ id, name, image, price, licenses, platforms, categories }) {
       </div>
       <div className="col-span-3 flex flex-col justify-between ml-2 mt-2">
         <div>
-          <div class="flex flex-row justify-between">
+          <div className="flex flex-row justify-between">
             <Link to={`/detail/${id}`}>
               <h5 className="text-xl font-semibold tracking-tight text-gray-900">
                 {name}
               </h5>
             </Link>
-            <div class="flex flex-row mr-5">
+            <div className="flex flex-row mr-5">
               {platforms.includes("windows") && (
-                <img src={Windows} alt="Windows" class="w-10 h-10" />
+                <img src={Windows} alt="Windows" className="w-10 h-10" />
               )}
               {platforms.includes("linux") && (
-                <img src={Linux} alt="Linux" class="w-10 h-10 ml-4" />
+                <img src={Linux} alt="Linux" className="w-10 h-10 ml-4" />
               )}
               {platforms.includes("macos") && (
-                <img src={macOS} alt="macOS" class="w-10 h-10 ml-4" />
+                <img src={macOS} alt="macOS" className="w-10 h-10 ml-4" />
               )}
               {platforms.includes("ios") && (
-                <img src={iOS} alt="iOS" class="w-12 h-10 ml-4" />
+                <img src={iOS} alt="iOS" className="w-12 h-10 ml-4" />
               )}
               {platforms.includes("android") && (
-                <img src={Android} alt="Android" class="w-10 h-10 ml-4" />
+                <img src={Android} alt="Android" className="w-10 h-10 ml-4" />
               )}
               {platforms.includes("web") && (
-                <img src={Web} alt="Web" class="w-10 h-10 ml-4" />
+                <img src={Web} alt="Web" className="w-10 h-10 ml-4" />
               )}
             </div>
           </div>
