@@ -11,7 +11,7 @@ import {
 import Swal from 'sweetalert2';
 import '../css/index.css';
 
-export default function FormNewProduct() {
+export default function FormNewProduct({ setAddModalOpen}) {
 	const dispatch = useDispatch();
 	const categories = useSelector((state) => state.categories) || [];
 
@@ -243,7 +243,13 @@ export default function FormNewProduct() {
 						type='submit'
 						className='px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600'
 						disabled={!isValid}>
-						Submit
+						Crear
+					</button>
+					<button
+						type='submit'
+						className='bg-red-500  hover:bg-red-600 text-white rounded px-4 py-2 ml-5 mt-4'
+						onClick={()=>setAddModalOpen(false)}>
+						Cancelar
 					</button>
 				</Form>
 			)}
