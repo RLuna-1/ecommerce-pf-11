@@ -199,7 +199,7 @@ const UsersTable = () => {
         </tbody>
       </table> 
 
-
+{/* 
 				<div>
 					<button
 						onClick={handleAdd}
@@ -263,7 +263,7 @@ const UsersTable = () => {
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</table> */}
 
 
       {/* userna de edición */}
