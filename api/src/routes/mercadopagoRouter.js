@@ -56,22 +56,6 @@ router.post("/", (req, res) => {
 router.get("/feedback", function (req, res) {
   const { payment_id, status, merchant_order_id } = req.query;
 
-  // Obtén el token del encabezado de la solicitud
-  const token = req.headers.authorization.split(" ")[1];
-
-  // Decodifica el token para obtener la información del usuario, como el correo electrónico
-  const decodedToken = jwt.verify(token, "secret_key");
-  const email = decodedToken.email;
-
-  axios
-    .post("/nodemailer/compra-exitosa", { email })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
   res.json({
     Payment: payment_id,
     Status: status,
