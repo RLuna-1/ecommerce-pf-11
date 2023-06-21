@@ -139,7 +139,7 @@ useEffect(() => {
     <div className="antialiased bg-gray-50 dark:bg-gray-900">
 
       {/* input,boton,select */}
-      <div className="   flex-wrap flex justify-between items-center mb-4">
+      <div className="   flex-wrap flex justify-between items-center mb-4 ">
         <div className="  flex flex-wrap justify-between items-center">
           
         
@@ -213,12 +213,12 @@ useEffect(() => {
       {/* ventana de edición */}
       {editModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded  w-2/5 h-screen overflow-scroll ">
+          <div className="bg-white p-4 rounded  w-2/5 h-screen overflow-scroll  ">
             <h2 className="text-lg font-bold mb-2">Editar producto</h2>
 
 
-            <form onSubmit={handleEditFormSubmit} className='max-w-md mx-auto mt-10 mb-10'>
-              <div className='mb-4'>
+            <form onSubmit={handleEditFormSubmit} className='max-w-md mx-auto mt-10 mb-10 '>
+              <div className='mb-4 '>
                 <label className='block mb-2 font-sans' htmlFor="edit-name">
                   Nombre:
                 </label>
@@ -413,7 +413,7 @@ useEffect(() => {
       
       {addModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white max-w h-screen overflow-scroll	 p-4 rounded">
+          <div className="bg-white max-w h-screen overflow-scroll	 p-4 rounded w-2/5">
             <h2 className="text-lg font-bold mb-2">Agregar producto</h2>
 
             {/* <form onSubmit={handleAddFormSubmit}>
@@ -490,7 +490,9 @@ useEffect(() => {
               </button>
             </form> */}
 
-            <FormNewProduct />
+            <FormNewProduct 
+            setAddModalOpen={setAddModalOpen}
+            />
           </div>
         </div>
       )}

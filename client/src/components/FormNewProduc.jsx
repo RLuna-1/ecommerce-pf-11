@@ -61,6 +61,7 @@ export default function FormNewProduct({ setAddModalOpen}) {
 				icon: 'success',
 				timer: 1100,
 			});
+			
 		} catch (error) {
 			console.error('Error al agregar el producto:', error);
 			Swal.fire({
@@ -69,6 +70,7 @@ export default function FormNewProduct({ setAddModalOpen}) {
 				title: 'Oops...',
 			});
 		}
+		setAddModalOpen(false)
 	};
 
 	useEffect(() => {
@@ -76,7 +78,7 @@ export default function FormNewProduct({ setAddModalOpen}) {
 	}, [dispatch]);
 
 	return (
-		<Formik
+		<Formik 
 			initialValues={initialValues}
 			onSubmit={onSubmit}
 			validationSchema={FormValidationsShema}>
