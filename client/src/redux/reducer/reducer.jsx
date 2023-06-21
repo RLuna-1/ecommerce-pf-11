@@ -1,4 +1,4 @@
-import { GET_All_USERS } from "../actions/actions";
+import { GET_All_USERS, SET_CART1 } from "../actions/actions";
 import {
   PUT_PASSWORD,
   CREATE_USER,
@@ -217,11 +217,11 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-    // case SET_CART:
-    //   return {
-    //     ...state,
-    //     cart: action.payload,
-    //   };
+    case SET_CART1:
+      return {
+        ...state,
+        cart: action.payload,
+      };
 
     case SET_CURRENT_PAGE:
       return {

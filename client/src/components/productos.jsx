@@ -8,7 +8,7 @@ import { fetchProducts } from "../redux/actions/actions";
 
 function Productos() {
   const products = useSelector((state) => state.products);
-  // const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
 
@@ -19,6 +19,20 @@ function Productos() {
   useEffect(() => {
     dispatch(fetchProducts(filters));
   }, [dispatch, filters]);
+
+  useEffect(() => {
+    const getLC = () => {
+      const carLC = JSON.parse(localStorage.getItem('cart')) ?? []
+      console.log(carLC);
+      dispatch(actions.setCart(carLC))
+    }
+    getLC()
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
 
   let renderProducts = null;
 

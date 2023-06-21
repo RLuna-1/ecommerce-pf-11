@@ -36,6 +36,8 @@ export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
 export const GET_All_USERS = 'GET_All_USERS';
+export const SET_CART1 = 'SET_CART1';
+
 
 const URL = 'http://localhost:3001'
 
@@ -419,12 +421,12 @@ export function removeFromCart(payload) {
   };
 }
 
-// export const setCart = (cart) => {
-//   return {
-//     type: SET_CART,
-//     payload: cart,
-//   };
-// };
+export const setCart1 = (cart) => {
+  return {
+    type: SET_CART1,
+    payload: cart,
+  };
+};
 
 // export function setCurrentPage(page) {
 //   return {
