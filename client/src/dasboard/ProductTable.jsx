@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import FormNewProduct from "../components/FormNewProduc";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, editProduct, fetchCategories, fetchProducts, setFilters } from "../redux/actions/actions";
@@ -26,9 +26,7 @@ useEffect(() => {
 useEffect(() => {
   dispatch(fetchCategories());
 }, [dispatch]);
-// useEffect(() => {
-//   dispatch(editProduct(editForm, editForm.id));
-// }, [dispatch]);
+
 
 ///////////////////////////////
 
@@ -60,11 +58,11 @@ useEffect(() => {
 
 
   const handleEdit = (product) => {
-    console.log(product);
-    console.log(product.id);
+   
+   
     setSelectedProduct(product);
-    console.log(product);
-    //console.log('a ver '+ product);
+
+   
 
     setEditForm({
       
@@ -107,7 +105,7 @@ useEffect(() => {
   };
 
   const handleDeleteConfirm = () => {
-    // Lógica para confirmar la eliminación del producto
+   
     const { id } = selectedProduct;
     dispatch(deleteProduct(id))
     console.log("Eliminar producto:", selectedProduct);
@@ -211,14 +209,7 @@ useEffect(() => {
         </tbody>
       </table> 
       <Pagination />
-      {/* ventana de edición */}
-
-
-
-      
-    
-
-              
+      {/* ventana de edición */}       
               
 
         
