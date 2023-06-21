@@ -11,7 +11,7 @@ router.post("/", (req, res) => {
   let preference = {
     items: [],
     back_urls: {
-      success: `https://ecommers-front-rust.vercel.app/mercadopago/feedback`,
+      success: `https://ecommers-front-rust.vercel.app/home`,
       failure: "https://ecommers-front-rust.vercel.app/home",
       pending: "https://ecommers-front-rust.vercel.app/home",
     },
