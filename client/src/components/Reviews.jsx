@@ -1,38 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { deleteReview, getReviews } from '../../actions/index.js';
+import { useDispatch } from "react-redux"
 
-const AllReviews = () => {
-  const [reviews, setReviews] = useState([]);
-  const productId = "123"; // Reemplaza con el id del producto actual
+export default function Review(props) {
+    const dispatch = useDispatch()
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await fetch(`/reviews/${productId}`);
-        const data = await response.json();
-        setReviews(data);
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-      }
+    const [input, setInputs] = useState({
+        comment: "",
+        rating: "",
+        beerId: props.beerId,
+        reviewId: props.id
+    });
+    
+    const ratingChanged = ( newRating ) => {     
+      setInputs({ ...input, rating : newRating });
+    } ;
+    
+    const handleInputChange = function (e) {
+        setInputs({ ...input, [e.target.name]: e.target.value });
     };
+    
+    function submit(e, input, beer, id){
+        e.preventDefault();
+        const url = `http://localhost:3000/beers/${beer}/review/${id}`;
+        return axios.put(url, input)
+            .then(res => res.data)
+            .then((data) => {
+              dispatch(getReviews(data.review.beerId));
+              window.location.reload()
+              alert('Se modifico el review')
+            })
+            .catch(error => alert(error, 'Algo salió mal al modificar el review'))
+    }
 
-    fetchReviews();
-  }, [productId]);
-
-  return (
-    <div className="opiniones">
-      <div>
-        {reviews.map((review) => (
-          <div key={review.id}>
-            <p>Rating: {review.rating}</p>
-            <h3>{review.name}</h3>
-            <p>{review.description}</p>
-            <p>{review.user.name}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default AllReviews;
-
+    function handleClick(beer, id) {
+    
+        dispatch(deleteReview(beer, id));
+    
+    }
+   console.log("aaaaaaaaaaaaaaaa", props);
+    return (
+        <div>
+            <div className="card text-white bg-dark mb-3" style={{ width: "300px" }}>
+            <div class="card-header">
+                <p className="card-text"> Usuario : {props.username.username} </p>
+             </div>
+            <div className="card-body">
+                <ReactStars
+                    count={5}
+                    value = {props.rating}
+                    edit = {false}
+                    size={24}
+                    emptyIcon = {<img src={beerEmpty} height="40"></img>}
+                    filledIcon = {<img src={beerFull} height="40"></img>}
+                />
+                <p className="card-text mt-3"> {props.comment} </p>
+                {props.user.admin === true ? <button type="button" onClick = {() => handleClick(props.beerId, props.id)} className="d-block p-2 mt-2 btn btn-outline-danger">Eliminar Review</button> : null }
+                {props.user.id === props.username.id ? 
+                <div class="btn-group dropright">
+                </div>
+                : null }
+            </div>
+            </div>
+        
+        </div>
+    );
+}

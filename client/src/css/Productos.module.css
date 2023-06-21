@@ -9,6 +9,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    height: 10%;
+    margin-bottom: 1em;
 }
 .Botones {
     display: flex;

@@ -74,8 +74,9 @@ async function deleteUser(id) {
   if (!user) {
     throw new Error("Usuario no encontrado");
   }
-
-  user.disabled = true;
+  if (user.disabled = true) {user.disabled = false}
+  else {user.disabled = true;}
+  
   await user.save();
 }
 
