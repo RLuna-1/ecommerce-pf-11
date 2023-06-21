@@ -28,8 +28,9 @@ const Home = () => {
         </div>
         <div className={styles.Productos}>
           <Productos />
+          <Pagination />
         </div>
-        <Pagination />
+        
       </div>
       
     </div>
@@ -37,16 +38,3 @@ const Home = () => {
 };
 
 export default Home;
-// <div>
-//   <div className={styles.Carousel}>
-//     <div className={styles.subCarousel}>
-//       <h1 onClick={toggleCarousel}>↓ Destacados de la semana ↓</h1>
-//       {showCarousel && <Carousel />}
-//     </div>
-//     <FilterProducts/>
-//   </div>
-//   <div className={styles.Productos}>
-//     <Productos />
-//   </div>
-//   <Pagination/>
-// </div>

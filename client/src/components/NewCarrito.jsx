@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { remove1FromCart, removeFromCart, sume1FromCart } from "../redux/actions/actions";
+import { mostrarCarrito, sume1FromCart, remove1FromCart, removeFromCart } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
-import * as actions from "../redux/actions/actions";
 import axios from "axios";
+
 import Cookies from "js-cookie";
 
 function NewCarrito() {
   const [quantity1, setQuantity1] = useState(2);
   const [quantity2, setQuantity2] = useState(2);
+
+  const userId = Cookies.get("user");
 
   const handleQuantityChange1 = (event) => {
     setQuantity1(event.target.value);
@@ -28,10 +30,8 @@ function NewCarrito() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      dispatch(actions.setCart(JSON.parse(savedCart)));
-    }
+    const userId = "..." // Obtén el ID del usuario actual
+    dispatch(mostrarCarrito(userId));
   }, [dispatch]);
 
 
@@ -43,13 +43,17 @@ function NewCarrito() {
   const [setMensajeCompra] = useState("");
 
   const eliminarProducto1 = (id) => {
-    dispatch(remove1FromCart(id));
+    dispatch(remove1FromCart(id, userId));
   };
+
   const sumarProducto1 = (id) => {
     dispatch(sume1FromCart(id));
   };
+  
+  
+
   const eliminarProducto = (id) => {
-    dispatch(removeFromCart(id));
+    dispatch(removeFromCart(id, userId));
   };
 
   useEffect(() => {
