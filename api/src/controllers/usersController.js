@@ -68,32 +68,17 @@ async function updateUser(req, res) {
   }
 }
 
-// async function deleteUser(id) {
-//   const user = await User.findByPk(id);
-
-//   if (!user) {
-//     throw new Error("Usuario no encontrado");
-//   }
-
-//   user.disabled = true;
-//   await user.save();
-// }
-
 async function deleteUser(id) {
   const user = await User.findByPk(id);
 
   if (!user) {
     throw new Error("Usuario no encontrado");
   }
-
-  if (user.disabled) {user.disabled = false}
-
-
+  if (user.disabled = true) {user.disabled = false}
   else {user.disabled = true;}
   
   await user.save();
 }
-
 
 
 // const checkUser = (req, res, next) => {

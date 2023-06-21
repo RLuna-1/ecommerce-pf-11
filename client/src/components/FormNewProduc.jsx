@@ -11,7 +11,7 @@ import {
 import Swal from 'sweetalert2';
 import '../css/index.css';
 
-export default function FormNewProduct({ setAddModalOpen}) {
+export default function FormNewProduct() {
 	const dispatch = useDispatch();
 	const categories = useSelector((state) => state.categories) || [];
 
@@ -61,7 +61,6 @@ export default function FormNewProduct({ setAddModalOpen}) {
 				icon: 'success',
 				timer: 1100,
 			});
-			
 		} catch (error) {
 			console.error('Error al agregar el producto:', error);
 			Swal.fire({
@@ -70,7 +69,6 @@ export default function FormNewProduct({ setAddModalOpen}) {
 				title: 'Oops...',
 			});
 		}
-		setAddModalOpen(false)
 	};
 
 	useEffect(() => {
@@ -78,7 +76,7 @@ export default function FormNewProduct({ setAddModalOpen}) {
 	}, [dispatch]);
 
 	return (
-		<Formik 
+		<Formik
 			initialValues={initialValues}
 			onSubmit={onSubmit}
 			validationSchema={FormValidationsShema}>
@@ -245,13 +243,7 @@ export default function FormNewProduct({ setAddModalOpen}) {
 						type='submit'
 						className='px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600'
 						disabled={!isValid}>
-						Crear
-					</button>
-					<button
-						type='submit'
-						className='bg-red-500  hover:bg-red-600 text-white rounded px-4 py-2 ml-5 mt-4'
-						onClick={()=>setAddModalOpen(false)}>
-						Cancelar
+						Submit
 					</button>
 				</Form>
 			)}

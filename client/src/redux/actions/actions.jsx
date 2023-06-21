@@ -684,32 +684,6 @@ export function editUser(bodyFormData, id) {
       });
   };
 }
-
-
-export function deleteUser(id) {
-  
-  
-  return function (dispatch) {
-    return axios
-      .delete(`${URL}/users/${id}`)
-      .then((res) => {
-        Swal.fire({
-          icon: "success",
-          title: "Modificación",
-          text: `Se ha Deshabilitado el usuario correctamente`,
-        });
-       // getProduct(res.data.id)(dispatch);
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Completa todos los datos obligatorios",
-        });
-      });
-  };
-}
-
 ///////////////////
 
 export function mostrarCarrito(id) {
@@ -785,4 +759,3 @@ export function deleteReview( id) {
       .catch(error => alert(error, 'Algo salió mal al borrar la review'))
   }
 }
-
