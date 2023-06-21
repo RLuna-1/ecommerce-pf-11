@@ -1,25 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { connect } from 'react-redux';
-import { addUser } from '../redux/actions/actions';
-import style from '../css/SingUp.module.css';
-import { Link } from 'react-router-dom';
-import LogoClaro from '../img/LogoClaro.png';
-import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
+import { connect } from "react-redux";
+import { addUser } from "../redux/actions/actions";
+import style from "../css/SingUp.module.css";
+import { Link } from "react-router-dom";
+import LogoClaro from "../img/LogoClaro.png";
 
 export function Register(props) {
-	const [formSubmitted, setFormSubmitted] = useState(false);
-	const [isFormValid, setIsFormValid] = useState(false);
+  const centerRef = useRef(null);
 
-	const centerRef = useRef(null);
+  useEffect(() => {
+    if (centerRef.current) {
+      centerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, []);
 
-	useEffect(() => {
-		if (centerRef.current) {
-			centerRef.current.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center',
-			});
-		}
-	}, []);
+  const [state, setState] = useState({
+    name: "",
+    last_name: "",
+    email: "",
+    password: "",
+	phone: null,
+  });
+  const [errors, setErrors] = useState({});
 
   
   const actualizarEstado = (e) => {
@@ -56,246 +61,174 @@ export function Register(props) {
     });
   };
 
+  return (
+    <div ref={centerRef} className={style.General}>
+      <div className={style.DivBienvenido}>
+        <h1>Bienvenidos a CodeXpress</h1>
+        <p>
+          Nuestra plataforma de venta de software! Descubre soluciones de
+          vanguardia para potenciar tu productividad, seguridad y creatividad.
+          Regístrate y lleva tus proyectos al siguiente nivel
+        </p>
+        <div className={style.DivImg}>
+          <img src={LogoClaro} alt="Logo" />
+        </div>
+        <Link to="/">
+          <button>Regresar</button>
+        </Link>
+      </div>
+      <div className={style.Login}>
+        <h2>Create tu cuenta</h2>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            props.addUser(state);
+          }}
+        >
+          <div class={`${errors.name && "danger"}`}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Ingrese su nombre"
+              onChange={actualizarEstado}
+              value={state.name}
+              required
+            />
+            {errors.name && (
+              <p id="error" className="text-orange-400 text-center">
+                {errors.name}
+              </p>
+            )}
+          </div>
+          <div class={`${errors.last_name && "danger"}`}>
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Ingrese su apellido"
+              onChange={actualizarEstado}
+              value={state.last_name}
+              required
+            />
+            {errors.last_name && (
+              <p id="error" className="text-orange-400 text-center">
+                {errors.last_name}
+              </p>
+            )}
+          </div>
+          <div>
+            <input
+              className={`${errors.email && "danger"}`}
+              type="text"
+              name="email"
+              placeholder="Ingrese su email"
+              onChange={actualizarEstado}
+              value={state.email}
+              required
+            />
+            {errors.email && (
+              <p id="error" className="text-orange-400 text-center">
+                {errors.email}
+              </p>
+            )}
+          </div>
 
-	//Funcion que se ejecuta cada vez que el usuario escribe en un input
-	const actualizarEstado = (e) => {
-		setState({
-			...state,
-			[e.target.name]: e.target.value, //modifica el valor del input y lo guarda en actualizarState
-		});
-		setErrors(
-			validate({
-				...state,
-				[e.target.name]: e.target.value,
-			}),
-		);
-	};
-
-	useEffect(() => {
-		// Verificar si no hay errores
-		if (Object.keys(errors).length === 0) {
-			setIsFormValid(true);
-		} else {
-			setIsFormValid(false);
-		}
-	}, [errors]);
-
-	const submitUser = (e) => {
-		e.preventDefault();
-		setFormSubmitted(true);
-
-		if (Object.keys(errors).length === 0) {
-			// Aquí puedes realizar cualquier acción adicional al enviar el formulario
-			props.addUser(state);
-			actualizarEstado({
-				name: '',
-				last_name: '',
-				email: '',
-				password: '',
-				confirmPassword: '',
-				phone: '',
-			});
-		}
-	};
-
-	const campoPendiente = () => {
-		for (const key in errors) {
-			if (errors[key]) {
-				return key;
-			}
-		}
-		return null;
-	};
-
-	return (
-		<div ref={centerRef} className={style.General}>
-			<div className={style.DivBienvenido}>
-				<h1>Bienvenidos a CodeXpress</h1>
-				<p>
-					Nuestra plataforma de venta de software! Descubre soluciones
-					de vanguardia para potenciar tu productividad, seguridad y
-					creatividad. Regístrate y lleva tus proyectos al siguiente
-					nivel
-				</p>
-				<div className={style.DivImg}>
-					<img src={LogoClaro} alt='Logo' />
-				</div>
-				<Link to='/'>
-					<button>Regresar</button>
-				</Link>
-			</div>
-			<div className={style.Login}>
-				<h2>Create tu cuenta</h2>
-				<form
-					onSubmit={(e) => {
-						e.preventDefault();
-						props.addUser(state);
-					}}>
-					<div class={`${errors.name && 'danger'}`}>
-						<input
-							type='text'
-							name='name'
-							placeholder='Ingrese su nombre'
-							onChange={actualizarEstado}
-							value={state.name}
-							required
-						/>
-						{errors.name &&
-							(campoPendiente() === 'name' || formSubmitted) && (
-								<p
-									id='error'
-									className='text-orange-400 text-center'>
-									{errors.name}
-								</p>
-							)}
-					</div>
-					<div class={`${errors.last_name && 'danger'}`}>
-						<input
-							type='text'
-							name='last_name'
-							placeholder='Ingrese su apellido'
-							onChange={actualizarEstado}
-							value={state.last_name}
-							required
-						/>
-						{errors.last_name &&
-							(campoPendiente() === 'last_name' ||
-								formSubmitted) && (
-								<p
-									id='error'
-									className='text-orange-400 text-center'>
-									{errors.last_name}
-								</p>
-							)}
-					</div>
-					<div>
-						<input
-							className={`${errors.email && 'danger'}`}
-							type='text'
-							name='email'
-							placeholder='Ingrese su email'
-							onChange={actualizarEstado}
-							value={state.email}
-							required
-						/>
-						{errors.email &&
-							(campoPendiente() === 'email' || formSubmitted) && (
-								<p
-									id='error'
-									className='text-orange-400 text-center'>
-									{errors.email}
-								</p>
-							)}
-					</div>
-
-					<div>
-						<input
-							className={`${errors.password && 'danger'}`}
-							type='password'
-							name='password'
-							placeholder='Ingrese su contraseña'
-							onChange={actualizarEstado}
-							value={state.password}
-							required
-						/>
-						{errors.password &&
-							(campoPendiente() === 'password' ||
-								formSubmitted) && (
-								<p
-									id='error'
-									className='text-orange-400 text-center'>
-									{errors.password}
-								</p>
-							)}
-					</div>
-					<div>
-						<input
-							type='password'
-							name='confirmPassword'
-							placeholder='nuevamente su contraseña '
-							onChange={actualizarEstado}
-							value={state.confirmPassword}
-							required
-						/>
-					</div>
-					<div>
-						<input
-							className={`${errors.phone && 'danger'}`}
-							type='tel'
-							name='phone'
-							placeholder='Ingrese su Telefono'
-							onChange={actualizarEstado}
-							value={state.phone}
-							maxlength='16'
-							minlength='11'
-							required
-						/>
-						{errors.phone &&
-							(campoPendiente() === 'phone' || formSubmitted) && (
-								<p
-									id='error'
-									className='text-orange-400 text-center'>
-									{errors.phone}
-								</p>
-							)}
-					</div>
-					<div className={style.DivBotones}>
-						<Link to='/login'>
-							<button>Iniciar Sesion</button>
-						</Link>
-						<button
-							onSubmit={submitUser}
-							type='submit'
-							class='btn btn-primary'
-							disabled={!isFormValid}>
-							{' '}
-							Registrarse{' '}
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	);
+          <div>
+            <input
+              className={`${errors.password && "danger"}`}
+              type="password"
+              name="password"
+              placeholder="Ingrese su contraseña"
+              onChange={actualizarEstado}
+              value={state.password}
+              required
+            />
+            {errors.password && (
+              <p id="error" className="text-orange-400 text-center">
+                {errors.password}
+              </p>
+            )}
+          </div>
+          <div>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="nuevamente su contraseña "
+              onChange={actualizarEstado}
+              value={state.confirmPassword}
+              required
+            />
+          </div>
+          <div>
+            <input
+              className={`${errors.phone && "danger"}`}
+              type="tel"
+              name="phone"
+              placeholder="Ingrese su Telefono"
+              onChange={actualizarEstado}
+              value={state.phone}
+              maxlength="16"
+              minlength="11"
+              required
+            />
+            {errors.phone && (
+              <p id="error" className="text-orange-400 text-center">
+                {errors.phone}
+              </p>
+            )}
+          </div>
+          <div className={style.DivBotones}>
+            <Link to="/login">
+              <button>Iniciar Sesion</button>
+            </Link>
+            <button onSubmit={submitUser} type="submit" class="btn btn-primary">
+              {" "}
+              Registrarse{" "}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
-	return {
-		usuarioGuardado: state.usuarios,
-	};
+  return {
+    usuarioGuardado: state.usuarios,
+  };
 }
 function mapDispatchToProps(dispatch) {
-	return {
-		addUser: (title) => dispatch(addUser(title)),
-	};
+  return {
+    addUser: (title) => dispatch(addUser(title)),
+  };
 }
 
 export function validate(state) {
-	let errors = {};
-	if (!state.name) {
-		errors.name = 'Nombre es requerido';
-	}
-	if (!state.last_name) {
-		errors.last_name = 'Apellido es requerido';
-	}
-	if (!state.email) {
-		errors.email = 'Email es requerido';
-	} else if (!/\S+@\S+\.\S+/.test(state.email)) {
-		errors.email = 'Email es invalido';
-	}
-	if (!state.password) {
-		errors.password = 'Contraseña requerida';
-	} else if (!/([A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9])/.test(state.password)) {
-		errors.password =
-			'la contraseña debe tener al menos una mayúscula y dos números';
-	} else if (state.password !== state.confirmPassword) {
-		errors.password = 'Contraseña no coincide';
-	}
-	if (!/^\d{11}$/.test(state.phone)) {
-		errors.phone =
-			'Un número de teléfono válido debe constar de 11 dígitos Ej.: 9 11 1234 5678';
-	}
+  let errors = {};
+  if (!state.name) {
+    errors.name = "Nombre es requerido";
+  }
+  if (!state.last_name) {
+    errors.last_name = "Apellido es requerido";
+  }
+  if (!state.email) {
+    errors.email = "Email es requerido";
+  } else if (!/\S+@\S+\.\S+/.test(state.email)) {
+    errors.email = "Email es invalido";
+  }
+  if (!state.password) {
+    errors.password = "Contraseña requerida";
+  } else if (!/([A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9])/.test(state.password)) {
+    errors.password =
+      "la contraseña debe tener al menos una mayúscula y dos números";
+  } else if (state.password !== state.confirmPassword) {
+    errors.password = "Contraseña no coincide";
+  }
+  if (!/^\d{11}$/.test(state.phone)) {
+    errors.phone =
+      "Un número de teléfono válido debe constar de 11 dígitos Ej.: 9 11 1234 5678";
+  }
 
-	return errors;
+  return errors;
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
