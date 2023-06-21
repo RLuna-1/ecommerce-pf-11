@@ -26,11 +26,11 @@ export function Register(props) {
   });
   const [errors, setErrors] = useState({});
 
-  //Funcion que se ejecuta cada vez que el usuario escribe en un input
+  
   const actualizarEstado = (e) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value, //modifica el valor del input y lo guarda en actualizarState
+      [e.target.name]: e.target.value, 
     });
     setErrors(
       validate({
@@ -40,7 +40,18 @@ export function Register(props) {
     );
   };
   const submitUser = (e) => {
-    actualizarEstado({
+    e.preventDefault();
+    props.addUser(state);
+
+    axios.post("/nodemailer/envio-confirmacion", { email: state.email })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    setState({
       name: "",
       last_name: "",
       email: "",
