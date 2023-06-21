@@ -44,7 +44,7 @@ const UsersTable = () => {
     email: "",
     phone: "",
     admin: false,
-    is_verified: false,
+    is_verified: true,
     disabled: false,
   });
 
@@ -70,7 +70,6 @@ const UsersTable = () => {
   };
 
   const handleAdd = () => {
-   
     setAddModalOpen(true);
   };
 
@@ -98,7 +97,7 @@ const UsersTable = () => {
     e.preventDefault();
     dispatch(addUser(addForm));
     dispatch(getUsers());
-    setAddForm({})
+    setAddForm({});
     setAddModalOpen(false);
   };
 
@@ -115,7 +114,7 @@ const UsersTable = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [editModalOpen, deleteModalOpen,addModalOpen]);
+  }, [editModalOpen, deleteModalOpen, addModalOpen]);
 
   return (
     <div className="antialiased bg-gray-50 dark:bg-gray-900 h-screen ">
@@ -295,9 +294,7 @@ const UsersTable = () => {
                 />
               </div>
               <div className="mb-2">
-                <label
-                 className='block mb-2 font-sans' htmlFor="edit-name"
-                >
+                <label className="block mb-2 font-sans" htmlFor="edit-name">
                   Verificado:
                 </label>
                 <input
@@ -305,9 +302,9 @@ const UsersTable = () => {
                   id="edit-phone"
                   value={editForm.is_verified}
                   onChange={(e) =>
-                    setEditForm({ ...editForm, is_verified: e.target.value})
+                    setEditForm({ ...editForm, is_verified: e.target.value })
                   }
-                  className='w-full p-2 border rounded drop-shadow-lg'
+                  className="w-full p-2 border rounded drop-shadow-lg"
                 />
               </div>
 
@@ -438,23 +435,20 @@ const UsersTable = () => {
                   className="p-2 border rounded w-full"
                 />
               </div>
-              {/* <div className="mb-2">
-                <label
-                 className="block font-bold mb-1" htmlFor="add-price"
-                >
+              <div className="mb-2">
+                <label className="block font-bold mb-1" htmlFor="add-price">
                   Verificado:
                 </label>
                 <input
                   type="text"
                   id="edit-phone"
-                  value={addForm.is_verified= true}
+                  value={addForm.is_verified}
                   onChange={(e) =>
-                    setEditForm({ ...addForm, is_verified: true})
+                    setAddForm({ ...addForm, is_verified: e.target.value })
                   }
-                  className='w-full p-2 border rounded drop-shadow-lg'
+                  className="w-full p-2 border rounded drop-shadow-lg"
                 />
-              </div> */}
-
+              </div>
               <button
                 type="submit"
                 className="bg-green-500 text-white rounded px-4 py-2"
