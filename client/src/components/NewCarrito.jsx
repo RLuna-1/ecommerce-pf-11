@@ -62,9 +62,17 @@ function NewCarrito() {
   }, [cart]);
 
   const realizarCompra = async () => {
-    const userId = "..." // Obtén el ID del usuario actual
-    await dispatch(agregarAlCarrito(cart, userId));
-    // Resto de la lógica para realizar la compra
+    await axios
+      .post("/mercadopago", cart)
+      .then(response => {
+        const { init_point } = response.data;
+        if (init_point) {
+          window.location.href = init_point;
+        }
+      })
+      .catch(error => {
+        console.error("Error al realizar la compra:", error);
+      });
   };
 
   const getCartId = () => {
