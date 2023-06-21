@@ -1,54 +1,59 @@
 .Carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    padding: 0%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 3%;
+	margin-bottom: 3%;
+	padding: 0%;
 }
 
 .Carousel h1 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-    color: white; 
-    background-color: #1c1934;
-    width: 100%;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 30px;
+	text-align: center;
+	color: white;
+	background-color: #1c1934;
+	width: 100%;
+	cursor:pointer;
 }
 
 .Carousel h1:hover {
-    transform: scale(1.02);
+	transform: scale(1.02);
 }
 
 .subCarousel {
-    background-color: rgba(28, 25, 52, 0.116);
-    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
-    width: 90%;
+	background-color: rgba(28, 25, 52, 0.116);
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
+	width: 90%;
 }
 
 .General {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-between;
-    width: 100vw;
-    height: auto;
-    margin: 1% 0;
-    padding: 0 5%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100vw;
+	height: auto;
+	margin: 1% 0;
+	padding: 0 5%;
 }
 
 .Filtros {
-    display: flex;
-    width: 20%;
-    height: auto;
-    background: white;
-    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.171);
+	display: flex;
+	width: 20%;
+	height: 80%;
+	box-shadow: 5px -2px 4px rgba(0, 0, 0, 0.2);
+	border-width: 2px;
+	border-style: solid;
+	border-color: #CCCCCC;
 }
 
 .Productos {
-    width: 80%;
-    padding-left: 5%;
+	width: 80%;
+	padding-left: 5%;
+	display: flex;
+	flex-wrap: wrap;
 }

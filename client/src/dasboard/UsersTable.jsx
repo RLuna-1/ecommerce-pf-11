@@ -74,12 +74,9 @@ const UsersTable = () => {
   const handleEditFormSubmit = async (e) => {
     const {id} = selectedProduct
     e.preventDefault();
-
     dispatch(editUser(editForm, id))
     dispatch(getUsers())
     setEditForm({})
-
-
     setEditModalOpen(false);
   };
 
@@ -202,7 +199,72 @@ const UsersTable = () => {
         </tbody>
       </table> 
 
-      
+
+				<div>
+					<button
+						onClick={handleAdd}
+						className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>
+						+ Agregar Usuario
+					</button>
+				</div>
+			</div>
+			<h2 className='p-2 font-bold mb-4'>Usuarios</h2>
+			<table className='w-full border-collapse'>
+				<thead>
+					<tr>
+						<th className='p-2 border'>ID</th>
+						<th className='p-2 border'>Nombre</th>
+						<th className='p-2 border'>Apellido</th>
+						<th className='p-2 border'>Usuario</th>
+						<th className='p-2 border'>Correo</th>
+						<th className='p-2 border'>Admin</th>
+						<th className='p-2 border'>Verificado</th>
+						<th className='p-2 border'>Deshabilitado</th>
+						<th className='p-2 border'>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{filteredUsers.map((user) => (
+						<tr key={user.id}>
+							<td className='p-2 border'>{user.id}</td>
+							<td className='p-2 border'>
+								{user.name}
+							</td>
+							<td className='p-2 border'>
+								{user.last_name}
+							</td>
+							<td className='p-2 border'>
+								{user.user_name}
+							</td>
+							<td className='p-2 border'>
+								{user.email}
+							</td>
+							<td className='p-2 border'>
+								{user.admin === true ? 'SI' : 'NO'}
+							</td>
+							<td className='p-2 border'>
+								{user.is_verified === true ? 'SI' : 'NO'}
+							</td>
+							<td className='p-2 border'>
+								{user.disabled === true ? 'SI' : 'NO'}
+							</td>
+							<td className='p-2 border'>
+								<button
+									onClick={() => handleEdit(user)}
+									className='bg-blue-500 text-white rounded px-2 py-1 mr-2'>
+									Editar
+								</button>
+								<button
+									onClick={() => handleDelete(user)}
+									className='bg-red-500 text-white rounded px-2 py-1'>
+									Deshabilitar
+								</button>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+
 
       {/* userna de edición */}
       {editModalOpen && (

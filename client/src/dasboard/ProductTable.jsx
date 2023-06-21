@@ -169,6 +169,7 @@ useEffect(() => {
 							))}
 					</select>
 
+
         </div>
       </div>
 
@@ -294,6 +295,159 @@ useEffect(() => {
                 {/* //////Categoría////// */}
 
               {/* <div className="mb-2">
+
+				</div>
+			</div>
+
+			<h2 className='p-2 font-bold mb-4'>Productos</h2>
+			<table className='w-full border-collapse'>
+				<thead>
+					<tr>
+						<th className='p-2 border'>ID</th>
+						<th className='p-2 border'>Nombre</th>
+						<th className='p-2 border'>Categoría</th>
+						<th className='p-2 border'>Precio</th>
+						<th className='p-2 border'>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{filteredData.map((product) => (
+						<tr key={product.id}>
+							<td className='p-2 border'>{product.id}</td>
+							<td className='p-2 border'>{product.name}</td>
+							<td className='p-2 border'>
+								{product.categories.map(
+									(category) => category.name,
+								)}
+							</td>
+							<td className='p-2 border'>{product.price}</td>
+							<td className='p-2 border'>
+								<button
+									onClick={() => handleEdit(product)}
+									className='bg-blue-500 text-white rounded px-2 py-1 mr-2'>
+									Editar
+								</button>
+								<button
+									onClick={() => handleDelete(product)}
+									className='bg-red-500 text-white rounded px-2 py-1'>
+									Deshabilitar
+								</button>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+			<div className='flex items-center justify-center'>
+				<Pagination />
+			</div>
+			{/* ventana de edición */}
+			{editModalOpen && (
+				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
+					<div className='bg-white p-4 rounded  w-2/5 h-screen overflow-scroll '>
+						<h2 className='text-lg font-bold mb-2'>
+							Editar producto
+						</h2>
+
+						<form
+							onSubmit={handleEditFormSubmit}
+							className='max-w-md mx-auto mt-10 mb-10'>
+							<div className='mb-4'>
+								<label
+									className='block mb-2 font-sans'
+									htmlFor='edit-name'>
+									Nombre:
+								</label>
+								<input
+									type='text'
+									id='edit-name'
+									value={editForm.name}
+									onChange={(e) =>
+										setEditForm({
+											...editForm,
+											name: e.target.value,
+										})
+									}
+									className='w-full p-2 border rounded drop-shadow-lg'
+								/>
+							</div>
+							{/* //////imagen////// */}
+							<div className='mb-4'>
+								<label
+									className='block mb-2 font-sans'
+									htmlFor='edit-name'>
+									Imagen:
+								</label>
+								<input
+									type='text'
+									id='edit-name'
+									value={editForm.image}
+									onChange={(e) =>
+										setEditForm({
+											...editForm,
+											image: e.target.value,
+										})
+									}
+									className='w-full p-2 border rounded drop-shadow-lg'
+								/>
+							</div>
+							<div>
+								{editForm.image.trim() && (
+									<img
+										src={editForm.image}
+										alt='Product'
+										className='w-full object-cover mx-auto mt-4'
+									/>
+								)}
+							</div>
+
+							{/* //////Descripcion////// */}
+
+							<div className='mb-4'>
+								<label
+									className='block mb-2 font-sans'
+									htmlFor='edit-name'>
+									Descripcion:
+								</label>
+								<input
+									type='text'
+									id='edit-name'
+									value={editForm.description}
+									onChange={(e) =>
+										setEditForm({
+											...editForm,
+											description: e.target.value,
+										})
+									}
+									className='w-full p-2 border rounded drop-shadow-lg'
+								/>
+							</div>
+
+							{/* //////Precio////// */}
+
+							<div className='mb-4'>
+								<label
+									className='block mb-2 font-sans'
+									htmlFor='edit-name'>
+									Precio:
+								</label>
+								<input
+									type='number'
+									id='edit-price'
+									value={editForm.price}
+									onChange={(e) =>
+										setEditForm({
+											...editForm,
+											price: e.target.value,
+										})
+									}
+									className='p-2 border rounded w-full'
+								/>
+							</div>
+
+							{/* //////Categoría////// */}
+
+							{/* <div className="mb-2">
+
                 <label className="block font-bold mb-1" htmlFor="edit-category">
                   Categoría:
                 </label>

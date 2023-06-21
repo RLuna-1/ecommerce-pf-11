@@ -1,5 +1,8 @@
+
+const nodemailer = require('nodemailer');
 const { User } = require("../db");
 const jwt = require("jsonwebtoken");
+
 
 async function getUserByName(name) {
   const user = await User.findAll({ where: { name } });
@@ -82,7 +85,10 @@ async function deleteUser(id) {
   if (!user) {
     throw new Error("Usuario no encontrado");
   }
+
   if (user.disabled) {user.disabled = false}
+
+
   else {user.disabled = true;}
   
   await user.save();
