@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { mostrarCarrito, sume1FromCart, remove1FromCart, removeFromCart } from "../redux/actions/actions";
+import { mostrarCarrito, sume1FromCart, remove1FromCart, removeFromCart, setCart1 } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Cookies from "js-cookie";
+
+
 
 function NewCarrito() {
   const [quantity1, setQuantity1] = useState(2);
@@ -21,6 +23,7 @@ function NewCarrito() {
   };
 
   const cart = useSelector((state) => state.cart);
+  
   const price = cart
     .map((ele) => ele.price * ele.quantity)
     .reduce(function (acumulador, elemento) {
@@ -55,6 +58,14 @@ function NewCarrito() {
   const eliminarProducto = (id) => {
     dispatch(removeFromCart(id, userId));
   };
+
+  useEffect(() => {
+    const getLC = () => {
+      const carLC = JSON.parse(localStorage.getItem('cart')) ?? []  
+      dispatch(setCart1(carLC))
+    }
+    getLC()
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
