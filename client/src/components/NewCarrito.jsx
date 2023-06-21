@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { mostrarCarrito, agregarAlCarrito, quitarProducto } from "../redux/actions/actions";
+import { mostrarCarrito, sume1FromCart, remove1FromCart, removeFromCart } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
-
-
-import * as actions from "../redux/actions/actions";
 import axios from "axios";
 
 import Cookies from "js-cookie";
@@ -46,15 +43,17 @@ function NewCarrito() {
   const [setMensajeCompra] = useState("");
 
   const eliminarProducto1 = (id) => {
-    dispatch(quitarProducto(id, userId));
+    dispatch(remove1FromCart(id, userId));
   };
 
   const sumarProducto1 = (id) => {
-    // Lógica para incrementar la cantidad de un producto en el carrito
+    dispatch(sume1FromCart(id));
   };
+  
+  
 
   const eliminarProducto = (id) => {
-    dispatch(quitarProducto(id, userId));
+    dispatch(removeFromCart(id, userId));
   };
 
   useEffect(() => {
