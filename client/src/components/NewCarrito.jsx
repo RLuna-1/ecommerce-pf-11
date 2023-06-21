@@ -57,6 +57,7 @@ function NewCarrito() {
   }, [cart]);
 
   const realizarCompra = async () => {
+
     await axios
       .post("/mercadopago", cart)
       .then(response => {

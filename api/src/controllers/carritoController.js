@@ -28,12 +28,10 @@ const agregarProducto = async (req, res) => {
  
     let carrito = await Carrito.findOne({ where: { userId: user.id } });
 
-    /// Si no existe, crear un nuevo carrito para el usuario
     if (!carrito) {
       carrito = await Carrito.create({ userId: user.id });
     }
 
-    //// verificamos si el producto ya esta en el carrito
     const productInCart = await carrito.hasProduct(productId);
 
     if (productInCart) {
