@@ -1,0 +1,13 @@
+.background {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    height: auto;
+    top: 35%;
+    left: 55%;
+    z-index: -1;
+}
+.background img{
+    opacity: 50%;
+}

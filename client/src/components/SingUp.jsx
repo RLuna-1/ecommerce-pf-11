@@ -4,11 +4,12 @@ import { addUser } from "../redux/actions/actions";
 import style from "../css/SingUp.module.css";
 import { Link } from "react-router-dom";
 import LogoClaro from "../img/LogoClaro.png";
+import axios from "axios"
 
 export function Register(props) {
   const centerRef = useRef(null);
 
-useEffect(() => {
+  useEffect(() => {
     if (centerRef.current) {
       centerRef.current.scrollIntoView({
         behavior: "smooth",
@@ -18,16 +19,19 @@ useEffect(() => {
   }, []);
 
   const [state, setState] = useState({
+    name: "",
+    last_name: "",
     email: "",
     password: "",
+    phone: null,
   });
   const [errors, setErrors] = useState({});
 
-  //Funcion que se ejecuta cada vez que el usuario escribe en un input
+
   const actualizarEstado = (e) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value, //modifica el valor del input y lo guarda en actualizarState
+      [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
@@ -36,17 +40,33 @@ useEffect(() => {
       })
     );
   };
-  console.log(state);
-  const submitUser = (e) => {
-    console.log(submitUser);
-    actualizarEstado({
-      name: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      mobilephone: "",
-    });
+  const submitUser = async (e) => {
+    e.preventDefault();
+    const formErrors = validate(state);
+    setErrors(formErrors);
+
+    if (Object.keys(formErrors).length === 0) {
+      const agregarUser = props.addUser(state);
+      if (agregarUser.success) {
+        try {
+          const respuesta = await axios.post("/nodemailer/envio-confirmacion", { "email": state.email });
+          console.log("Correo de confirmación enviado exitosamente");
+          if (respuesta.status(200)) {
+            setState({
+              name: "",
+              last_name: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+              phone: "",
+            });
+          }
+        } catch (error) {
+          console.error("Error al enviar el correo de confirmación:", error);
+        }
+      }
+    }
+
   };
 
   return (
@@ -68,13 +88,9 @@ useEffect(() => {
       <div className={style.Login}>
         <h2>Create tu cuenta</h2>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            props.addUser(state);
-          }}
+          onSubmit={submitUser}
         >
           <div class={`${errors.name && "danger"}`}>
-    
             <input
               type="text"
               name="name"
@@ -84,27 +100,23 @@ useEffect(() => {
               required
             />
             {errors.name && (
-              <p id="error" className="danger">
+              <p id="error" className="text-orange-400 text-center">
                 {errors.name}
               </p>
             )}
           </div>
-          <br />
-          <br />
-          <div
-            class={`${errors.lastName && "danger"}`}
-          >
+          <div class={`${errors.last_name && "danger"}`}>
             <input
               type="text"
-              name="lastName"
+              name="last_name"
               placeholder="Ingrese su apellido"
               onChange={actualizarEstado}
-              value={state.lastName}
+              value={state.last_name}
               required
             />
-            {errors.lastName && (
-              <p id="error" className="danger">
-                {errors.lastName}
+            {errors.last_name && (
+              <p id="error" className="text-orange-400 text-center">
+                {errors.last_name}
               </p>
             )}
           </div>
@@ -113,14 +125,13 @@ useEffect(() => {
               className={`${errors.email && "danger"}`}
               type="text"
               name="email"
-          
               placeholder="Ingrese su email"
               onChange={actualizarEstado}
               value={state.email}
               required
             />
             {errors.email && (
-              <p id="error" className="danger">
+              <p id="error" className="text-orange-400 text-center">
                 {errors.email}
               </p>
             )}
@@ -137,7 +148,7 @@ useEffect(() => {
               required
             />
             {errors.password && (
-              <p id="error" className="danger">
+              <p id="error" className="text-orange-400 text-center">
                 {errors.password}
               </p>
             )}
@@ -146,7 +157,7 @@ useEffect(() => {
             <input
               type="password"
               name="confirmPassword"
-              placeholder="Introduzca su contraseña nuevamente"
+              placeholder="nuevamente su contraseña "
               onChange={actualizarEstado}
               value={state.confirmPassword}
               required
@@ -154,29 +165,27 @@ useEffect(() => {
           </div>
           <div>
             <input
-              className={`${errors.mobilephone && "danger"}`}
+              className={`${errors.phone && "danger"}`}
               type="tel"
-              name="mobilephone"
-              placeholder="Ingrese su numero de Telefono, Ej.:(011)18234460"
+              name="phone"
+              placeholder="Ingrese su Telefono"
               onChange={actualizarEstado}
-              value={state.mobilephone}
+              value={state.phone}
               maxlength="16"
               minlength="11"
               required
             />
-            {errors.mobilephone && (
-              <p id="error" className="danger">
-                {errors.mobilephone}
+            {errors.phone && (
+              <p id="error" className="text-orange-400 text-center">
+                {errors.phone}
               </p>
             )}
           </div>
           <div className={style.DivBotones}>
-            <Link to="/login"><button>Iniciar Sesion</button></Link> 
-            <button
-              onSubmit={submitUser}
-              type="submit"
-              class="btn btn-primary"
-            >
+            <Link to="/login">
+              <button>Iniciar Sesion</button>
+            </Link>
+            <button type="submit" class="btn btn-primary">
               {" "}
               Registrarse{" "}
             </button>
@@ -186,7 +195,6 @@ useEffect(() => {
     </div>
   );
 }
-
 
 function mapStateToProps(state) {
   return {
@@ -204,8 +212,8 @@ export function validate(state) {
   if (!state.name) {
     errors.name = "Nombre es requerido";
   }
-  if (!state.lastName) {
-    errors.lastName = "Apellido es requerido";
+  if (!state.last_name) {
+    errors.last_name = "Apellido es requerido";
   }
   if (!state.email) {
     errors.email = "Email es requerido";
@@ -220,11 +228,12 @@ export function validate(state) {
   } else if (state.password !== state.confirmPassword) {
     errors.password = "Contraseña no coincide";
   }
-  if (!/^\d{11}$/.test(state.mobilephone)) {
-    errors.mobilephone = "Un número de teléfono válido debe constar de 8 dígitos";
+  if (!/^\d{11}$/.test(state.phone)) {
+    errors.phone =
+      "Un número de teléfono válido debe constar de 11 dígitos Ej.: 9 11 1234 5678";
   }
-  
+
   return errors;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

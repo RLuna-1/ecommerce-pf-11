@@ -1,20 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import LogoClaro from "../img/LogoClaro.png";
 import Carrito from "../img/Carrito.png";
-import FilterComponent from "./FilterByCategorie";
-import Ordenar from "./Ordenar";
 import IconoUser from "../img/IconoUser.png";
 import { AuthContext } from "./AuthContext";
 import { searchByName } from "../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const dispatch = useDispatch();
+  const [admin, setAdmin] = useState(false);
 
   const handleLogout = () => {
     // Aquí puedes realizar la lógica de cierre de sesión, como limpiar las variables de sesión, etc.
@@ -22,10 +22,20 @@ const Nav = () => {
     navigate("/login"); // Redireccionar al usuario a la página de inicio de sesión
     // logoutUser();
   };
+  useEffect(() => {
+    const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
+    if (storedLoggedInStatus) {
+      setIsLoggedIn(JSON.parse(storedLoggedInStatus));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
 
   const handleOrdenarChange = (opcion) => {
     // Aquí puedes realizar acciones según la opción seleccionada en el componente Ordenar
-    console.log("Opción de ordenamiento seleccionada:", opcion);
+    //console.log("Opción de ordenamiento seleccionada:", opcion);
   };
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
@@ -36,6 +46,21 @@ const Nav = () => {
     pathname === "/home" && window.location.reload();
   };
 
+  const cookiesUsers = async () => {
+    try {
+      const response = await axios.get("/auth/user", {
+        withCredentials: true,
+      });
+      setAdmin(response.data.user.admin);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    cookiesUsers();
+  }, []);
+  
   return (
     <div className={styles.Nav}>
       <div className={styles.DivLogo}>
@@ -50,13 +75,12 @@ const Nav = () => {
               Productos
             </button>
           </Link>
-          <Link to="/vender">
-            <button className={styles.ButtonNav}>Vender</button>
+          <Link to="/landing">
+            <button className={styles.ButtonNav}>Nosotros</button>
           </Link>
-          <Link to="/wishlist">
-            <button className={styles.ButtonNav}>Deseos</button>
+          <Link to="/FQA">
+            <button className={styles.ButtonNav}>Preguntas Frecuentes</button>
           </Link>
-         
         </div>
       )}
 
@@ -73,26 +97,33 @@ const Nav = () => {
             </button>
           </Link>
         )}
-        <div class={styles.PerfilDropdown}>
-          <img src={IconoUser} alt="User" class={styles.Perfil} />
-          <div class={styles.PerfilContent}>
-            <Link to="/infocliente">
-              <button className={styles.Iniciar}>Mi Perfil</button>
-            </Link>
-            <Link to="/compracliente">
-              <button className={styles.Iniciar}>Mis Compras</button>
-            </Link>
+        <div className={styles.PerfilDropdown}>
+          <img src={IconoUser} alt="User" className={styles.Perfil} />
+          <div className={styles.PerfilContent}>
             {isLoggedIn ? (
-              <Link to="/">
-                <button onClick={handleLogout} className={styles.Cerrar}>
-                  Cerrar Sesión
-                </button>
-              </Link>
+              <>
+                <Link to="/infocliente">
+                  <button className={styles.ButtonNav}>Mi Perfil</button>
+                </Link>
+                <Link to="/compracliente">
+                  <button className={styles.ButtonNav}>Mis Compras</button>
+                </Link>
+                <Link to="/">
+                  <button onClick={handleLogout} className={styles.ButtonNav}>
+                    Cerrar Sesión
+                  </button>
+                </Link>
+              </>
             ) : (
               <Link to="/login">
-                <button className={styles.Iniciar}>Iniciar Sesión</button>
+                <button className={styles.ButtonNav}>Iniciar Sesión</button>
               </Link>
             )}
+			 {isLoggedIn ? (
+              (admin && <Link to="/dashboard">
+                <button className={styles.ButtonNav}>Administrador</button>
+              </Link>)
+            ) : null}
           </div>
         </div>
       </div>

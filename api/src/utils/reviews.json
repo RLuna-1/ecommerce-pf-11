@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Horrible",
+        "description": "Ni siquiera funcionaba, y cuándo reclamé me enviaron un crack y me bloquearon.",
+        "rating": 2,
+        "userEmail": "iakigalindez@gmail.com",
+        "productName": "ForceNullify"
+      },
+      {
+        "name": "Bastante bien",
+        "description": "Le salía un poco de humo, pero un par de patadas y arrancó.",
+        "rating": 9,
+        "userEmail": "jvega@example.com",
+        "productName": "GateMaster Pro"
+      }
+]

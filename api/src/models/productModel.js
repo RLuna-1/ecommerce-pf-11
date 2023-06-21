@@ -48,6 +48,12 @@ module.exports = (sequelize) => {
     { timestamps: false }
   );
   Product.prototype.softDelete = async function () {
+    if (this.deleted === true) {
+      this.deleted = false;
+      await this.save()
+      return;
+    }
+
     this.deleted = true;
     await this.save();
   };

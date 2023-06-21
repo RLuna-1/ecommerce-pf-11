@@ -11,7 +11,6 @@ const SearchContextProvider = ({ children }) => {
   const { filters } = useSelector((state) => state);
 
   const handleSearchInputChange = (e) => {
-    console.log(e.target.value)
     setSearchInput(e.target.value);
     dispatch(setFilters({...filters, name: e.target.value, page: 1}))
   };

@@ -15,37 +15,26 @@ const Home = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ width: "20%", position: "fixed", top:"20%", background: "rgba(0, 0, 0, 0.336)"  }}>
-        <FilterProducts />
+    <div>
+      <div className={styles.Carousel}>
+        <div className={styles.subCarousel}>
+          <h1 onClick={toggleCarousel}>→ → Destacados de la semana ← ←</h1>
+          {showCarousel && <Carousel />}
+        </div>
       </div>
-      <div style={{ width: "90%" }}>
-        <div className={styles.Carousel}>
-          <div className={styles.subCarousel}>
-            <h1 onClick={toggleCarousel}>↓ Destacados de la semana ↓</h1>
-            {showCarousel && <Carousel />}
-          </div>
+      <div className={styles.General}>
+        <div className={styles.Filtros}>
+          <FilterProducts />
         </div>
         <div className={styles.Productos}>
           <Productos />
+          <Pagination />
         </div>
-        <Pagination />
+        
       </div>
+      
     </div>
   );
 };
 
 export default Home;
-    // <div>
-    //   <div className={styles.Carousel}>
-    //     <div className={styles.subCarousel}>
-    //       <h1 onClick={toggleCarousel}>↓ Destacados de la semana ↓</h1>
-    //       {showCarousel && <Carousel />}
-    //     </div>
-    //     <FilterProducts/>
-    //   </div>
-    //   <div className={styles.Productos}>
-    //     <Productos />
-    //   </div>
-    //   <Pagination/>
-    // </div>

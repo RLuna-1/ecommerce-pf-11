@@ -66,42 +66,6 @@
     transform: scale(1.04);
 }
 
-.Iniciar {
-    gap: 10px;
-    background: #D8DBFB;
-    color: #6F47EB;
-    border-radius: 6px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-    padding: 0.2em 0.5em;
-    white-space: nowrap;
-}
-
-.Iniciar:hover {
-    transform: scale(1.04);
-}
-
-.Cerrar {
-    gap: 10px;
-    background: #6F47EB;
-    color: #FFFFFF;
-    border-radius: 6px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-    padding: 0.2em 0.5em;
-    white-space: nowrap;
-}
-
-.Cerrar:hover {
-    transform: scale(1.04);
-}
-
 .SearchBar {
     font-family: 'Poppins';
     font-style: normal;
@@ -153,10 +117,15 @@ a{
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 1;
+    left: 0;
+    transform: translate(-70%, 0);
+    
   }
   
   .PerfilDropdown:hover .PerfilContent {
     display: block;
+    top: 100%;
+    transform: translate(-70%, 0);
   }
   
   .PerfilContent label {
@@ -167,4 +136,8 @@ a{
     max-width: 30%;
     max-height: auto;
     background: none;
+  }
+
+  .PerfilDropdown button{
+    white-space: nowrap;
   }

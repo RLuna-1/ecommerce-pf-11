@@ -17,6 +17,8 @@ import {
   SET_FILTERS,
   SET_CATEGORIES,
   SET_PRODUCTS,
+  VIEW_REVIEW,
+  DELETE_REVIEW,
 } from "../consts";
 import { toast } from 'react-toastify';
 import axios from "axios";
@@ -33,6 +35,9 @@ export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
+export const GET_All_USERS = 'GET_All_USERS';
+export const SET_CART1 = 'SET_CART1';
+
 
 const URL = 'http://localhost:3001'
 
@@ -75,23 +80,23 @@ export function getAllProducts(page) {
   };
 }
 
-export function agregarAlCarrito(newData, id) {
-  return function (dispatch) {
-    return axios
-      .post(`${URL}/users/${id}/cart`, {
-        product: newData,
-      })
-      .then((res) => {
-        dispatch({
-          type: GET_CARTG,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        console.error("Error adding to cart:", err);
-      });
-  };
-}
+// export function agregarAlCarrito(newData, id) {
+//   return function (dispatch) {
+//     return axios
+//       .post(`${URL}/users/${id}/cart`, {
+//         product: newData,
+//       })
+//       .then((res) => {
+//         dispatch({
+//           type: GET_CARTG,
+//           payload: res.data,
+//         });
+//       })
+//       .catch((err) => {
+//         console.error("Error adding to cart:", err);
+//       });
+//   };
+// }
 
 export function getProduct(id) {
   return function (dispatch) {
@@ -136,16 +141,14 @@ export function postProduct(bodyFormData) {
 export function editProduct(bodyFormData, id) {
   return function (dispatch) {
     return axios
-      .put(`${URL}/products/${id}`, bodyFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .put(`${URL}/products/${id}`, bodyFormData)
       .then((res) => {
         Swal.fire({
           icon: "success",
           title: "Modificación",
           text: "Se modificó el producto correctamente",
         });
-        getProduct(res.data.id)(dispatch);
+        //getProduct(res.data.id)(dispatch);
       })
       .catch((error) => {
         Swal.fire({
@@ -183,6 +186,8 @@ export function addUser(payload, email) {
             icon: "success",
             timer: "2000",
           });
+          return {success: true,
+          data: response.data}
         }
       })
       .catch((error) => {
@@ -231,6 +236,7 @@ export const loginUser = async (payload) => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true
       }
     );
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -417,12 +423,12 @@ export function removeFromCart(payload) {
   };
 }
 
-// export const setCart = (cart) => {
-//   return {
-//     type: SET_CART,
-//     payload: cart,
-//   };
-// };
+export const setCart1 = (cart) => {
+  return {
+    type: SET_CART1,
+    payload: cart,
+  };
+};
 
 // export function setCurrentPage(page) {
 //   return {
@@ -611,17 +617,175 @@ export const fetchProducts = (filters) => {
           licenses,
         },
       });
-      
 
       if (response.data.rows.length === 0) {
         // Handle the case when there are no products matching the filters
         dispatch(setProducts([]));
+        alert("No se encontraron productos que coincidan con los filtros.");
       } else {
         dispatch(setProducts(response.data));
       }
     } catch (error) {
-      console.log("ERROR:", error);
       dispatch(setProducts([])); // Set an empty array if there's an error
     }
   };
 };
+
+
+export function deleteProduct(id) {
+  
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/products/${id}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: `Se modificó el producto ${id} correctamente`,
+        });
+       // getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    const response = (await axios("http://localhost:3001/users")).data;
+    return dispatch({
+      type: GET_All_USERS,
+      payload: response,
+    });
+  };
+};
+
+export function editUser(bodyFormData, id) {
+  
+  return function (dispatch) {
+    return axios
+      .put(`${URL}/users/${id}`, bodyFormData)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: "Se modificó el producto correctamente",
+        });
+        //getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}
+
+
+export function deleteUser(id) {
+  
+  
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/users/${id}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Modificación",
+          text: `Se ha Deshabilitado el usuario correctamente`,
+        });
+       // getProduct(res.data.id)(dispatch);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Completa todos los datos obligatorios",
+        });
+      });
+  };
+}
+
+///////////////////
+
+export function mostrarCarrito(id) {
+  return function (dispatch) {
+    return axios
+      .get(`${URL}/users/${id}/cart`)
+      .then((res) => {
+        dispatch({
+          type: GET_CARTG,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error("Error al obtener el carrito:", err);
+      });
+  };
+}
+
+export function agregarAlCarrito(newData, id) {
+  return function (dispatch) {
+    return axios
+      .post(`${URL}/users/${id}/cart`, {
+        product: newData,
+      })
+      .then((res) => {
+        dispatch({
+          type: GET_CARTG,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error("Error al agregar al carrito:", err);
+      });
+  };
+}
+
+export function quitarProducto(productId, id) {
+  return function (dispatch) {
+    return axios
+      .delete(`${URL}/users/${id}/cart/${productId}`)
+      .then((res) => {
+        dispatch({
+          type: GET_CARTG,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error("Error al quitar del carrito:", err);
+      });
+  };
+}
+/////////////////////////////
+export function getReviews(id) {
+  return function (dispatch) {
+    const url = `/reviews?productId=${id}`;
+    console.log(id + " actions")
+    return axios.get(url)
+      .then(res => res.data)
+      .then(data => {
+        dispatch({ type: VIEW_REVIEW, payload: data })
+      })
+  }
+}
+
+export function deleteReview( id) {
+  return function (dispatch) {
+    const url = `http://localhost:3001/review/${id}`;
+    return axios.delete(url)
+        .then(data => {
+          dispatch({ type:DELETE_REVIEW , payload: id });
+        })
+      .then(() => alert('Se borro la review'))
+      .catch(error => alert(error, 'Algo salió mal al borrar la review'))
+  }
+}
+

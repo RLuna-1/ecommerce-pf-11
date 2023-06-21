@@ -1,144 +1,152 @@
 .General {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 5%
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 5%;
 }
 
-
-.DivBienvenido{
-    background: #EFF0FC;
-    color: #1C1934;
-    display: flex;
-    max-width: 40%;
-    max-height: 80%;
-    padding: 4.5% 5%;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.767);
-    border: 0px solid black;
-    border-radius: 0.5rem;
+.DivBienvenido {
+	background: #eff0fc;
+	color: #1c1934;
+	display: flex;
+	max-width: 40%;
+	max-height: 80%;
+	padding: 4.5% 5%;
+	flex-direction: column;
+	justify-content: center;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.767);
+	border: 0px solid black;
+	border-radius: 0.5rem;
 }
 
-.DivBienvenido h1{
-    flex-basis: 100%;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 48px;
-    text-align: center;
-    color: #1C1934;
-    padding-bottom: 1em;
+.DivBienvenido h1 {
+	flex-basis: 100%;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 40px;
+	line-height: 48px;
+	text-align: center;
+	color: #1c1934;
+	padding-bottom: 1em;
 }
 
 .DivBienvenido p {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    text-align: left;
-    color: #5E5D6D;
-    padding-bottom: 1em;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: left;
+	color: #5e5d6d;
+	padding-bottom: 1em;
 }
 
-.DivBienvenido img {   
-    max-width: 50%;
-    margin-top: 5%;
+.DivBienvenido img {
+	max-width: 50%;
+	margin-top: 5%;
 }
 
 .DivImg {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
-.DivBienvenido button{
-    margin: 10% 20% 0 20%;
-    font-family: 'Work Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 30px;
-    color: #307996;
-    background: #C9EFFF;
-    border-radius: 17px;
-    border: 0px;
-    padding: 0.1em 25%;
+.DivBienvenido button {
+	margin: 10% 20% 0 20%;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 30px;
+	color: #307996;
+	background: #c9efff;
+	border-radius: 17px;
+	border: 0px;
+	padding: 0.1em 25%;
 }
 /* ////////////////////////////////////////////// */
 
 .Login {
-    background: #1C1934;
-    color: white;
-    display: flex;
-    max-width: 40%;
-    width: 100%;
-    max-height: 80%;
-    padding: 3% 5%;
-    flex-direction: column;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.767);
-    border: 0px solid black;
-    border-radius: 0.5rem;
-    margin-left: -2%;
-    
+	background: #1c1934;
+	color: white;
+	display: flex;
+	max-width: 40%;
+	width: 100%;
+	max-height: 80%;
+	padding: 3% 5%;
+	flex-direction: column;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.767);
+	border: 0px solid black;
+	border-radius: 0.5rem;
+	margin-left: -2%;
 }
 
 .Login h1 {
-    flex-basis: 100%;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 48px;
-    text-align: center;
-    color: white;
-    padding-bottom: 1em;
+	flex-basis: 100%;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 40px;
+	line-height: 48px;
+	text-align: center;
+	color: white;
+	padding-bottom: 1em;
+}
+
+.Login h2 {
+	flex-basis: 100%;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 48px;
+	text-align: center;
+	color: white;
+	padding-bottom: 1em;
 }
 
 .Login span {
-    flex-basis: 100%;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-    color: #D8DBFB;
+	flex-basis: 100%;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 30px;
+	color: #d8dbfb;
 }
 
 .Login input {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    background: #D9D9D9;
-    border-radius: 0.5rem;
-    padding: 0.5em;
-    margin: 1% 30%;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	background: #d9d9d9;
+	border-radius: 0.5rem;
+	padding: 0.5em;
+	margin: 1% 26%;
+	color: black;
 }
 
 .DivBotones {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10%;
-    align-items: center;
-    margin-top: 15%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 10%;
+	align-items: center;
+	margin-top: 15%;
 }
 
 .DivBotones button {
-    gap: 10px;
-    background: #D8DBFB;
-    border-radius: 6px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 30px;
-    color: #1C1934;;
-    padding: 0.2em 0.5em;
-    
+	gap: 10px;
+	background: #d8dbfb;
+	border-radius: 6px;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 30px;
+	color: #1c1934;
+	padding: 0.2em 0.5em;
 }
-
-
