@@ -4,6 +4,8 @@ import { addUser } from "../redux/actions/actions";
 import style from "../css/SingUp.module.css";
 import { Link } from "react-router-dom";
 import LogoClaro from "../img/LogoClaro.png";
+import axios from 'axios';
+
 
 export function Register(props) {
   const centerRef = useRef(null);
@@ -26,11 +28,11 @@ export function Register(props) {
   });
   const [errors, setErrors] = useState({});
 
-  
+
   const actualizarEstado = (e) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value, 
+      [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
