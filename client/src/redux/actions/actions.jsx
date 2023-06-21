@@ -629,7 +629,6 @@ export const fetchProducts = (filters) => {
 
 
 export function deleteProduct(id) {
-  console.log('el ide de la action es: ' +id);
   
   return function (dispatch) {
     return axios
@@ -663,7 +662,7 @@ export const getUsers = () => {
 };
 
 export function editUser(bodyFormData, id) {
-  console.log(bodyFormData);
+  
   return function (dispatch) {
     return axios
       .put(`${URL}/users/${id}`, bodyFormData)
