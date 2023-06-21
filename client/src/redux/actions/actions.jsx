@@ -186,6 +186,8 @@ export function addUser(payload, email) {
             icon: "success",
             timer: "2000",
           });
+          return {success: true,
+          data: response.data}
         }
       })
       .catch((error) => {

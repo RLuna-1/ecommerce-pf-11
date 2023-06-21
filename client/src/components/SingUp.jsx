@@ -23,15 +23,15 @@ export function Register(props) {
     last_name: "",
     email: "",
     password: "",
-	phone: null,
+    phone: null,
   });
   const [errors, setErrors] = useState({});
 
-  
+
   const actualizarEstado = (e) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value, 
+      [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
@@ -44,26 +44,29 @@ export function Register(props) {
     e.preventDefault();
     const formErrors = validate(state);
     setErrors(formErrors);
-  
+
     if (Object.keys(formErrors).length === 0) {
-      props.addUser(state);
-  
-      try {
-        await axios.post("/nodemailer/envio-confirmacion", { email: state.email });
-        console.log("Correo de confirmación enviado exitosamente");
-      } catch (error) {
-        console.error("Error al enviar el correo de confirmación:", error);
+      const agregarUser = props.addUser(state);
+      if (agregarUser.success) {
+        try {
+          const respuesta = await axios.post("/nodemailer/envio-confirmacion", { "email": state.email });
+          console.log("Correo de confirmación enviado exitosamente");
+          if (respuesta.status(200)) {
+            setState({
+              name: "",
+              last_name: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+              phone: "",
+            });
+          }
+        } catch (error) {
+          console.error("Error al enviar el correo de confirmación:", error);
+        }
       }
-  
-      setState({
-        name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        phone: "",
-      });
     }
+
   };
 
   return (
@@ -233,4 +236,4 @@ export function validate(state) {
   return errors;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
