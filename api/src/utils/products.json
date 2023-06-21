@@ -13,7 +13,7 @@
       {
         "name": "BrushMaster",
         "description": "Software con una amplia colección de pinceles digitales y funciones avanzadas. Con BrushMaster, podrás explorar una extensa variedad de estilos y técnicas artísticas digitales. Elige entre una amplia gama de pinceles personalizables y herramientas especializadas para dar vida a tus ideas y capturar la esencia de tu creatividad. Tanto si eres un ilustrador, diseñador o artista digital, BrushMaster te proporciona las herramientas necesarias para perfeccionar tu arte.",
-        "image": "https://gdm-catalog-fmapi-prod.imgix.net/ProductScreenshot/d8e758ba-4af2-43ba-911b-c38c150f0d43.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/BrushMaster_psbnhw.png",
         "quantity": 10,
         "price": 199,
         "categories": ["Arte Digital"],
@@ -24,7 +24,7 @@
       {
         "name": "ArtFlow Studio",
         "description": "Estudio versátil para la creación y diseño de arte digital. Descubre ArtFlow Studio, un completo estudio de arte digital que te brinda todas las herramientas necesarias para llevar tu creatividad al siguiente nivel. Experimenta con una amplia variedad de técnicas de pintura, efectos y estilos artísticos. Ya sea que prefieras crear ilustraciones detalladas o diseños abstractos, ArtFlow Studio te ofrece todas las opciones y características que necesitas para expresarte plenamente.",
-        "image": "https://i.pinimg.com/originals/49/2d/19/492d19149da245250956ccf103f3a9f7.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/ArtFlow_Studio_eeyiqg.jpg",
         "quantity": 10,
         "price": 159,
         "categories": ["Arte Digital"],
@@ -35,7 +35,7 @@
       {
         "name": "ProStylus",
         "description": "Software de nivel profesional para ilustración y bocetos digitales. ProStylus es una herramienta indispensable para artistas y diseñadores que desean llevar su arte digital al siguiente nivel. Con una amplia variedad de funciones avanzadas y una interfaz intuitiva, podrás crear ilustraciones y bocetos digitales de manera fluida y precisa. Ya sea que estés creando personajes, paisajes o ilustraciones detalladas, ProStylus te brinda todas las herramientas necesarias para plasmar tu visión artística.",
-        "image": "https://www.softwaretestinghelp.com/wp-content/qa/uploads/2021/07/Krita2.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367952/productos/ProStylus_z13eu8.jpg",
         "quantity": 10,
         "price": 129,
         "categories": ["Arte Digital"],
@@ -46,7 +46,7 @@
       {
         "name": "SketchCraft",
         "description": "Software potente para realizar bocetos digitales. Con SketchCraft, podrás capturar y dar vida a tus ideas de manera rápida y sencilla. Explora una amplia variedad de herramientas de dibujo y pinceles personalizables para crear bocetos digitales impresionantes. Tanto si eres un artista profesional como un aficionado entusiasta, SketchCraft te brinda todas las características y funcionalidades necesarias para perfeccionar tus habilidades de dibujo.",
-        "image": "https://cdn.windowsreport.com/wp-content/uploads/2023/02/best-free-drawing-software-with-pressure-sensitivity.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367952/productos/SketchCraft_duk52s.jpg",
         "quantity": 10,
         "price": 119,
         "categories": ["Arte Digital"],
@@ -57,7 +57,7 @@
       {
         "name": "ArtScribe",
         "description": "Software creativo para expresar tu arte. ArtScribe es una herramienta esencial para cualquier artista digital en busca de una plataforma para expresarse de manera creativa. Con una amplia variedad de herramientas de dibujo y opciones de personalización, podrás crear obras de arte digitales únicas y expresar tu estilo artístico de forma auténtica. Experimenta con diferentes técnicas y estilos, y deja que ArtScribe sea tu lienzo digital.",
-        "image": "https://i.ytimg.com/vi/UzXwoGxGzhI/maxresdefault.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367947/productos/ArtScribe_upgaxb.jpg",
         "quantity": 10,
         "price": 139,
         "categories": ["Arte Digital"],
@@ -68,7 +68,7 @@
       {
         "name": "DigiArt Studio",
         "description": "Estudio completo para arte digital y proyectos creativos. Descubre DigiArt Studio, un estudio digital todo en uno que te brinda todas las herramientas necesarias para tus proyectos artísticos y creativos. Con una amplia variedad de funciones y opciones, podrás explorar diferentes técnicas de arte digital, crear ilustraciones, editar imágenes y mucho más. DigiArt Studio es la elección perfecta tanto para artistas profesionales como para aficionados apasionados.",
-        "image": "https://blog.tubikstudio.com/wp-content/uploads/2019/12/tea-time-illustration-tubikarts.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367949/productos/DigiArt_Studio_i9nar0.jpg",
         "quantity": 10,
         "price": 179,
         "categories": ["Arte Digital"],
@@ -79,7 +79,7 @@
       {
         "name": "PaintWave",
         "description": "Surfea la ola de la creatividad con este software de pintura digital. Con PaintWave, podrás explorar tu creatividad y expresar tu estilo artístico a través de increíbles obras de arte digital. Descubre una amplia variedad de pinceles y herramientas de pintura, efectos especiales y opciones de capas para crear composiciones impresionantes. Sumérgete en el mundo de la pintura digital con PaintWave y deja que tu imaginación fluya.",
-        "image": "https://images.creativemarket.com/0.1.0/ps/2229810/2417/1608/m1/fpnw/wm0/paintwave_01_product-image-.jpg?1486159874&s=8296112fdb24fe71edf95fbebd5db2e2",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367951/productos/PaintWave_we8zoj.jpg",
         "quantity": 10,
         "price": 149,
         "categories": ["Arte Digital"],
@@ -90,7 +90,7 @@
       {
         "name": "DrawEase",
         "description": "Experimenta facilidad y precisión con este software de dibujo intuitivo. DrawEase es una herramienta imprescindible para cualquier artista digital en busca de una experiencia de dibujo suave y precisa. Con una interfaz intuitiva y opciones de personalización avanzadas, podrás crear ilustraciones detalladas y expresar tus ideas de manera eficiente. Ya seas un profesional creativo o un entusiasta del arte, DrawEase te brinda la facilidad y fluidez necesarias para dar vida a tus obras de arte digitales.",
-        "image": "https://webneel.com/daily/sites/default/files/images/daily/07-2020/19-best-free-painting-software-pencil2d.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/DrawEase_qcpsmv.jpg",
         "quantity": 10,
         "price": 99,
         "categories": ["Arte Digital"],
@@ -112,7 +112,7 @@
       {
         "name": "ArchitectPro",
         "description": "Software de dibujo técnico potente para arquitectos y diseñadores. Con ArchitectPro, los arquitectos y diseñadores pueden llevar a cabo proyectos de diseño y dibujo técnico de manera eficiente y precisa. Este software ofrece una amplia gama de herramientas especializadas para la creación de planos, diseños arquitectónicos y modelos 3D. Con una interfaz intuitiva y opciones de personalización flexibles, ArchitectPro permite a los profesionales del diseño desarrollar sus ideas con facilidad. Ya seas un arquitecto experimentado o un estudiante de arquitectura, ArchitectPro es la herramienta ideal para llevar tus diseños al siguiente nivel.",
-        "image": "https://www.arch2o.com/wp-content/uploads/2017/02/Arch2O-8-architectural-design-software-that-every-architect-should-learn.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367949/productos/ArchitectPro_mrsipu.png",
         "quantity": 10,
         "price": 299,
         "categories": ["Dibujo Técnico"],
@@ -122,7 +122,7 @@
       {
         "name": "DraftMaster",
         "description": "Software avanzado de dibujo técnico con herramientas y funciones precisas. Con DraftMaster, podrás crear dibujos técnicos de alta calidad con facilidad y precisión. Explora una amplia variedad de herramientas de dibujo, opciones de dimensionamiento y características avanzadas para llevar tus proyectos de diseño al siguiente nivel. Tanto si eres un profesional experimentado como un principiante entusiasta, DraftMaster te brinda todas las herramientas necesarias para crear diseños técnicos precisos y detallados.",
-        "image": "https://www.cad-schroer.com/wp-content/uploads/2020/10/M4-PERSONAL-ist-das-kostenlose-leistungsstarke-2D-3D-CAD-Paket-1024x654.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/DraftMaster_dbbzqt.jpg",
         "quantity": 10,
         "price": 199,
         "categories": ["Dibujo Técnico"],
@@ -133,7 +133,7 @@
       {
         "name": "CADWizard",
         "description": "Software CAD intuitivo para dibujo y modelado eficiente. CADWizard es una herramienta imprescindible para cualquier profesional del diseño y la ingeniería en busca de un software CAD potente y fácil de usar. Con una interfaz intuitiva y herramientas de dibujo precisas, podrás crear dibujos y modelos 2D y 3D de alta calidad. Ya seas un arquitecto, ingeniero o diseñador, CADWizard te brinda todas las funcionalidades necesarias para crear diseños y modelos precisos y detallados.",
-        "image": "https://damassets.autodesk.net/content/dam/autodesk/www/products/autodesk-autocad-lt/fy24/overview/images/what-is-autocad-lt-2024-03-large-1920x1024.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367949/productos/CADWizard_ildy7y.jpg",
         "quantity": 10,
         "price": 249,
         "categories": ["Dibujo Técnico"],
@@ -144,7 +144,7 @@
       {
         "name": "DesignDraft",
         "description": "Software de dibujo técnico completo para ingenieros y diseñadores. Descubre DesignDraft, una herramienta integral de dibujo técnico que te brinda todas las funcionalidades necesarias para llevar a cabo proyectos de diseño y dibujo técnico de manera eficiente. Explora una amplia variedad de herramientas de dibujo, opciones de anotación y características avanzadas para crear diseños técnicos precisos y detallados. DesignDraft es la elección perfecta tanto para ingenieros profesionales como para diseñadores creativos en busca de una solución completa para sus necesidades de dibujo técnico.",
-        "image": "https://i.ytimg.com/vi/GZ9K6mtnV2Q/maxresdefault.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/DesignDraft_dqmzcg.jpg",
         "quantity": 10,
         "price": 279,
         "categories": ["Dibujo Técnico"],
@@ -155,7 +155,7 @@
       {
         "name": "SecureShield",
         "description": "Software antivirus integral para una protección definitiva. SecureShield es un software antivirus confiable que proporciona una protección completa contra una amplia gama de amenazas en línea. Con funciones de detección y eliminación de amenazas en tiempo real, SecureShield mantiene tu sistema protegido contra virus, malware, ransomware y otras formas de ataques cibernéticos. Con una interfaz intuitiva y un rendimiento optimizado, SecureShield garantiza la seguridad de tu computadora y la privacidad de tus datos. Ya sea que navegues por la web, descargues archivos o envíes correos electrónicos, SecureShield te brinda la tranquilidad de saber que estás protegido en todo momento.",
-        "image": "https://cdn.mos.cms.futurecdn.net/XY3rDQVQ6ZR6iQUuhFJ9qB-1200-80.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367952/productos/SecureShield_quzpzx.jpg",
         "quantity": 10,
         "price": 49,
         "categories": ["Antivirus"],
@@ -165,7 +165,7 @@
       {
         "name": "GuardianPro",
         "description": "Software de seguridad avanzado con detección y eliminación de amenazas en tiempo real. GuardianPro es un software de seguridad de vanguardia que te brinda protección avanzada contra todo tipo de amenazas cibernéticas. Con su potente motor de detección y eliminación de malware, GuardianPro identifica y neutraliza cualquier intento de intrusión en tu sistema. Además, cuenta con funciones de protección en tiempo real que monitorean constantemente tu computadora para detectar y bloquear cualquier amenaza emergente. Con GuardianPro, puedes navegar, descargar y trabajar en línea con total confianza.",
-        "image": "https://www.bidvestinsurance.co.za/wp-content/uploads/2020/10/what-is-antivirus-and-why-you-need-it.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367950/productos/GuardianPro_eldhhw.jpg",
         "quantity": 10,
         "price": 59,
         "categories": ["Antivirus"],
@@ -175,7 +175,7 @@
       {
         "name": "MalwareShield",
         "description": "Potente software de protección contra malware para un entorno digital seguro. MalwareShield es un software especializado en la protección contra malware que mantiene tu computadora y tus datos seguros. Con su tecnología de vanguardia, MalwareShield identifica y elimina eficientemente todo tipo de malware, incluyendo virus, spyware, adware y otros programas maliciosos. Su enfoque proactivo y su base de datos actualizada garantizan una defensa sólida contra las amenazas cibernéticas. Con MalwareShield, puedes disfrutar de una experiencia en línea segura y sin preocupaciones.",
-        "image": "https://acf.geeknetic.es/imagenes/auto/20/04/29/6uo-muestra.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367951/productos/MalwareShield_yj4mw6.jpg",
         "quantity": 10,
         "price": 39,
         "categories": ["Antimalware"],
@@ -195,7 +195,7 @@
       {
         "name": "SafeNet Security",
         "description": "Suite de seguridad integral con funciones antivirus. SafeNet Security es una suite de seguridad completa que ofrece una amplia gama de funciones para mantener tu computadora segura. Con su sólido motor antivirus y sus características adicionales de seguridad, SafeNet Security te brinda protección contra virus, malware, ransomware y otras amenazas cibernéticas. Además, incluye herramientas de privacidad y protección de datos para mantener tus archivos y tu identidad seguros. Con soporte multiplataforma, SafeNet Security te protege en Windows, macOS, Android e iOS, brindándote tranquilidad en todos tus dispositivos.",
-        "image": "https://cdn.freebiesupply.com/logos/large/2x/safenet-5-logo-png-transparent.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367952/productos/SafeNet_Security_euaiu0.jpg",
         "quantity": 10,
         "price": 69,
         "categories": ["Antivirus"],
@@ -205,7 +205,7 @@
       {
         "name": "VideoMaster Pro",
         "description": "Potente software de edición de video con efectos avanzados y herramientas de edición. VideoMaster Pro es un software de edición de video profesional que te permite crear videos impresionantes con efectos visuales y herramientas de edición avanzadas. Con su interfaz intuitiva y su rendimiento optimizado, VideoMaster Pro brinda una experiencia de edición fluida y eficiente. Ya sea que estés trabajando en un proyecto personal o profesional, este software te permite dar rienda suelta a tu creatividad y obtener resultados de alta calidad.",
-        "image": "https://blog.hootsuite.com/wp-content/uploads/2022/10/free-video-editing-software-09.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367953/productos/VideoMaster_Pro_lnta7h.jpg",
         "quantity": 10,
         "price": 299,
         "categories": ["Edición de Video"],
@@ -215,7 +215,7 @@
       {
         "name": "FilmCraft Studio",
         "description": "Suite de edición de video profesional para cineastas y videógrafos. FilmCraft Studio es una suite de edición de video diseñada para satisfacer las necesidades de los cineastas y videógrafos profesionales. Con una amplia gama de herramientas y funciones especializadas, este software te permite editar y mejorar tus videos con precisión y estilo. Desde la edición básica hasta la corrección de color avanzada y los efectos visuales sofisticados, FilmCraft Studio proporciona todas las herramientas necesarias para llevar tus producciones al siguiente nivel.",
-        "image": "https://assets-global.website-files.com/5fa0baa5ea5c262586cf8fd0/608c9323a5220bdba8e72d53_Best%20Filmmaking%20Software%20%26%20Tools%20-%20Featured%20Image%20-%20Wrapbook.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367949/productos/FilmCraft_Studio_rjyd1j.jpg",
         "quantity": 10,
         "price": 399,
         "categories": ["Edición de Video"],
@@ -225,7 +225,7 @@
       {
         "name": "EditPro Xpress",
         "description": "Software de edición de video intuitivo y rico en funciones para principiantes y entusiastas. EditPro Xpress es un software de edición de video que combina facilidad de uso y funciones avanzadas. Con su interfaz intuitiva, es perfecto para principiantes que desean iniciarse en la edición de video. Al mismo tiempo, ofrece herramientas y efectos profesionales para aquellos que desean explorar su creatividad. EditPro Xpress admite múltiples plataformas, incluyendo Windows, macOS y Linux, lo que lo convierte en una opción versátil para todo tipo de usuarios.",
-        "image": "https://i.pcmag.com/imagery/roundups/07zK5ZMCRXxdm3S7ZnlT3Xw-7..v1650989183.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367950/productos/EditPro_Xpress_xtkapo.png",
         "quantity": 10,
         "price": 99,
         "categories": ["Edición de Video"],
@@ -235,7 +235,7 @@
       {
         "name": "CineCut Pro",
         "description": "Software de edición de video integral con integración perfecta de efectos de audio y visual. CineCut Pro es un software de edición de video completo que te permite combinar audio y efectos visuales de manera fluida en tus producciones. Con su conjunto de herramientas avanzadas, puedes editar y ajustar cada aspecto de tu video, desde el color y la iluminación hasta los efectos especiales y las transiciones. Además, CineCut Pro ofrece soporte multiplataforma, lo que te permite editar tus videos en Windows, macOS, Android e iOS, brindándote flexibilidad y libertad creativa.",
-        "image": "https://digitalfilms.files.wordpress.com/2012/12/df_4k_wkflw_11.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/CineCut_Pro_syt1mi.jpg",
         "quantity": 10,
         "price": 499,
         "categories": ["Edición de Video"],
@@ -245,7 +245,7 @@
       {
         "name": "MotionFX Studio",
         "description": "Software de edición de video avanzado con capacidades de gráficos en movimiento y animación 3D. MotionFX Studio es un software de edición de video de vanguardia que te permite crear efectos de gráficos en movimiento y animaciones 3D impresionantes. Con su conjunto de herramientas especializadas, puedes agregar elementos visuales dinámicos a tus videos, como títulos animados, transiciones fluidas y efectos especiales. MotionFX Studio ofrece una interfaz intuitiva y potentes capacidades de renderizado, lo que te permite lograr resultados visuales sorprendentes en tus proyectos de video.",
-        "image": "https://www.munianim.com/wp-content/uploads/2020/08/ShowTraj-1024x584.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367951/productos/MotionFX_Studio_fczdjq.png",
         "quantity": 10,
         "price": 349,
         "categories": ["Edición de Video"],
@@ -255,7 +255,7 @@
       {
         "name": "CutPro Ultimate",
         "description": "Software de edición de video versátil para profesionales y entusiastas. CutPro Ultimate es un software de edición de video altamente versátil diseñado para satisfacer las necesidades tanto de profesionales como de entusiastas. Con una amplia gama de herramientas y efectos, puedes editar, cortar, ajustar y mejorar tus videos de manera precisa y eficiente. CutPro Ultimate ofrece licencias de por vida, suscripciones anuales y una prueba gratuita, brindándote opciones flexibles según tus necesidades. Además, es compatible con Windows, macOS y Linux, lo que te permite trabajar en la plataforma que prefieras.",
-        "image": "https://i.pcmag.com/imagery/roundups/07zK5ZMCRXxdm3S7ZnlT3Xw-10..v1650989183.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/CutPro_Ultimate_cbjsdn.jpg",
         "quantity": 10,
         "price": 199,
         "categories": ["Edición de Video"],
@@ -265,7 +265,7 @@
       {
         "name": "SoundLab Pro",
         "description": "Estación de trabajo de audio digital avanzada para producción musical y diseño de sonido. SoundLab Pro es una estación de trabajo de audio digital avanzada que te brinda todas las herramientas necesarias para la producción musical y el diseño de sonido. Con su interfaz intuitiva y su conjunto de funciones poderosas, puedes grabar, editar, mezclar y masterizar tus pistas de audio con facilidad. SoundLab Pro es compatible con múltiples plataformas, incluyendo Windows, macOS, Android e iOS, lo que te permite llevar tus proyectos de audio contigo donde quiera que vayas.",
-        "image": "https://d29rinwu2hi5i3.cloudfront.net/article_media/520b26cd-64e4-43d9-98b4-59877e45639c/2.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367953/productos/SoundLab_Pro_kfyiic.jpg",
         "quantity": 10,
         "price": 299,
         "categories": ["Producción de Audio"],
@@ -275,7 +275,7 @@
       {
         "name": "FireLab Studio",
         "description": "Potente estación de trabajo de audio para creación de ritmos, secuenciación y grabación de audio. FireLab Studio es una estación de trabajo de audio diseñada para la creación de ritmos, secuenciación y grabación de audio. Con su conjunto de herramientas especializadas, puedes crear y editar tus propios ritmos, samplear sonidos, y grabar y editar pistas de audio. BeatMaker Studio ofrece una interfaz intuitiva y una amplia biblioteca de sonidos y muestras, lo que te permite dar rienda suelta a tu creatividad musical.",
-        "image": "https://www.image-line.com/wp-content/uploads/2021/09/FLStudioFeaturedImageSquare.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367949/productos/FireLab_Studio_hj5as1.jpg",
         "quantity": 10,
         "price": 199,
         "categories": ["Producción de Audio"],
@@ -285,7 +285,7 @@
       {
         "name": "AudioCraft Pro",
         "description": "Estación de trabajo de audio de calidad profesional con amplias capacidades de edición y mezcla de audio. AudioCraft Pro es una estación de trabajo de audio de calidad profesional que ofrece un conjunto completo de herramientas para la edición y mezcla de audio. Con su interfaz intuitiva y sus capacidades de procesamiento de alta calidad, puedes editar y mezclar tus grabaciones con precisión y obtener resultados de sonido excelentes. AudioCraft Pro está disponible en Windows y macOS, brindándote una plataforma estable y confiable para tus proyectos de audio.",
-        "image": "https://guidady.com/wp-content/uploads/2023/06/Audiocraft-768x432.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/AudioCraft_Pro_civrbf.png",
         "quantity": 10,
         "price": 399,
         "categories": ["Producción de Audio"],
@@ -295,7 +295,7 @@
       {
         "name": "TrackMaster Xpress",
         "description": "Estación de trabajo de audio intuitiva y rica en funciones para grabación, edición y arreglo musical. TrackMaster Xpress es una estación de trabajo de audio que combina una interfaz intuitiva con funciones ricas en características. Con TrackMaster Xpress, puedes grabar, editar y organizar tus pistas de audio de manera eficiente. Ya sea que estés grabando música, podcasts o cualquier otra forma de audio, este software te brinda las herramientas necesarias para crear producciones de alta calidad. TrackMaster Xpress es compatible con Windows, macOS, Linux, Android e iOS, lo que te permite trabajar en la plataforma que prefieras y llevar tu estudio de audio contigo dondequiera que vayas.",
-        "image": "https://media.wavescdn.com/images/products/mixers-racks/max/tracks-live.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367953/productos/TrackMaster_Xpress_azzn5x.jpg",
         "quantity": 10,
         "price": 99,
         "categories": ["Producción de Audio"],
@@ -305,7 +305,7 @@
       {
         "name": "MelodyLab Studio",
         "description": "DAW completo para la creación de melodías, instrumentos virtuales y secuenciación MIDI. MelodyLab Studio es una estación de trabajo de audio digital completa diseñada para la creación de melodías, instrumentos virtuales y secuenciación MIDI. Con su amplia biblioteca de sonidos, instrumentos virtuales de alta calidad y herramientas de secuenciación MIDI, puedes componer música de forma creativa y expresiva. MelodyLab Studio ofrece una licencia de por vida y una suscripción anual, brindándote opciones flexibles para satisfacer tus necesidades musicales. Es compatible con Windows y macOS, lo que te permite trabajar en tu plataforma preferida.",
-        "image": "https://i1.sndcdn.com/avatars-pammdWGjPKCdyQ0A-zSBsLA-t500x500.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367951/productos/MelodyLab_Studio_qiclmk.jpg",
         "quantity": 10,
         "price": 249,
         "categories": ["Producción de Audio"],
@@ -315,7 +315,7 @@
       {
         "name": "MixPro Ultimate",
         "description": "Estación de trabajo de audio versátil para mezcla, masterización y postproducción de audio. MixPro Ultimate es una estación de trabajo de audio versátil que ofrece herramientas poderosas para mezclar, masterizar y realizar postproducción de audio. Con su conjunto de efectos y procesadores de audio de alta calidad, puedes lograr resultados de sonido profesionales en tus producciones musicales, bandas sonoras, podcasts y más. MixPro Ultimate ofrece licencias de por vida, suscripciones anuales y una prueba gratuita, brindándote opciones flexibles según tus necesidades. Además, es compatible con Windows, macOS, Android e iOS, lo que te permite trabajar en la plataforma que prefieras y llevar tu estudio de audio contigo dondequiera que vayas.",
-        "image": "https://manual.mixxx.org/2.2/en/_images/overview.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367951/productos/MixPro_Ultimate_ppxs2x.png",
         "quantity": 10,
         "price": 349,
         "categories": ["Producción de Audio"],
@@ -325,7 +325,7 @@
       {
         "name": "TaskFlow",
         "description": "Herramienta versátil de gestión de proyectos para el seguimiento efectivo de tareas y la colaboración. TaskFlow es una herramienta de gestión de proyectos diseñada para el seguimiento efectivo de tareas y la colaboración en equipo. Con TaskFlow, puedes crear y organizar tareas, asignarlas a los miembros del equipo, establecer fechas límite y realizar un seguimiento del progreso. Esta herramienta versátil es compatible con múltiples plataformas, incluyendo web, Windows, macOS, Android e iOS, lo que te permite acceder y administrar tus proyectos desde cualquier dispositivo.",
-        "image": "https://cdn-cashy-static-assets.lucidchart.com/marketing/pages/consideration-page/workflow-software/_new_visualize-your-business-process.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367953/productos/TaskFlow_na8syd.png",
         "quantity": 10,
         "price": 99,
         "categories": ["Gestión de Proyectos"],
@@ -335,7 +335,7 @@
       {
         "name": "AgilePlan",
         "description": "Herramienta de gestión de proyectos ágil con soporte para Scrum y Kanban para una colaboración eficiente en equipo. AgilePlan es una herramienta de gestión de proyectos ágil que ofrece soporte para metodologías Scrum y Kanban. Con AgilePlan, puedes organizar y gestionar tus proyectos de forma ágil, realizar un seguimiento del progreso de las tareas, asignar recursos y colaborar de manera eficiente con tu equipo. AgilePlan está disponible en web, Windows y macOS, brindándote flexibilidad para trabajar en la plataforma que mejor se adapte a tus necesidades.",
-        "image": "https://powerslides.com/wp-content/uploads/2022/09/Agile-Project-Plan-Template-4.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367947/productos/AgilePlan_olodrc.png",
         "quantity": 10,
         "price": 199,
         "categories": ["Gestión de Proyectos"],
@@ -345,7 +345,7 @@
       {
         "name": "ProTasker",
         "description": "Software completo de gestión de proyectos para organizar tareas, líneas de tiempo y recursos. ProTasker es un software completo de gestión de proyectos que te ayuda a organizar tareas, líneas de tiempo y recursos de manera efectiva. Con ProTasker, puedes crear proyectos, asignar tareas, establecer fechas límite y realizar un seguimiento del progreso en un solo lugar. Este software está disponible en web, Windows y macOS, lo que te brinda la flexibilidad de trabajar en la plataforma de tu elección y gestionar tus proyectos de manera eficiente.",
-        "image": "https://www.softwaretestinghelp.com/wp-content/qa/uploads/2020/04/task-management-monday.com_.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367951/productos/ProTasker_xrlgsc.png",
         "quantity": 10,
         "price": 149,
         "categories": ["Gestión de Proyectos"],
@@ -355,7 +355,7 @@
       {
         "name": "ProjectPlus",
         "description": "Plataforma integral de gestión de proyectos con gráficos de Gantt, seguimiento de tiempo e informes. ProjectPlus es una plataforma integral de gestión de proyectos que ofrece gráficos de Gantt, seguimiento de tiempo e informes avanzados. Con ProjectPlus, puedes planificar y organizar tus proyectos, asignar tareas, realizar un seguimiento del tiempo dedicado y generar informes detallados sobre el progreso del proyecto. ProjectPlus ofrece licencias de por vida, suscripciones anuales y una prueba gratuita para adaptarse a tus necesidades. Además, es compatible con web, Windows, macOS, Android e iOS, lo que te permite acceder y gestionar tus proyectos desde cualquier dispositivo.",
-        "image": "https://toggl.com/blog/wp-content/uploads/2020/11/tp-1-p-1080-1.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367951/productos/ProjectPlus_frhnmk.png",
         "quantity": 10,
         "price": 299,
         "categories": ["Gestión de Proyectos"],
@@ -365,7 +365,7 @@
       {
         "name": "PayProOnline",
         "description": "Software integral de procesamiento de pagos en línea para empresas que aceptan tarjetas de crédito y débito. PayProOnline es un software completo de procesamiento de pagos en línea diseñado para empresas que desean aceptar pagos con tarjetas de crédito y débito. Con PayProOnline, puedes procesar pagos de forma segura y eficiente, brindando una experiencia de compra fluida a tus clientes. Este software está disponible en la plataforma web, lo que te permite administrar tus pagos desde cualquier dispositivo con acceso a Internet.",
-        "image": "https://ganardineroenlinea.pro/wp-content/uploads/2022/12/que-es-y-como-funciona-paypro-global.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367952/productos/PayProOnline_ejrmmd.webp",
         "quantity": 10,
         "price": 199,
         "categories": ["Procesamiento de Pagos"],
@@ -375,7 +375,7 @@
       {
         "name": "CardWave",
         "description": "Software de pagos en línea seguro y sin problemas para aceptar pagos con tarjeta en plataformas de comercio electrónico. CardWave es un software de pagos en línea que ofrece una solución segura y sin problemas para aceptar pagos con tarjeta en plataformas de comercio electrónico. Con CardWave, puedes brindar a tus clientes una experiencia de pago fluida y protegida, ayudando a aumentar la confianza y las conversiones. Este software está disponible en la plataforma web, lo que te permite integrarlo fácilmente en tu sitio web de comercio electrónico y comenzar a aceptar pagos en poco tiempo.",
-        "image": "https://www.checkalt.com/hs-fs/hubfs/virtualcard.png?width=1204&name=virtualcard.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367948/productos/CardWave_ojkuit.png",
         "quantity": 10,
         "price": 149,
         "categories": ["Procesamiento de Pagos"],
@@ -395,7 +395,7 @@
       {
         "name": "RhythmWriter",
         "description": "Editor intuitivo de partituras con amplias funciones para guitarra, bajo y batería. RhythmWriter es un editor intuitivo de partituras que ofrece funciones extensas para guitarra, bajo y batería. Con RhythmWriter, puedes crear y editar partituras musicales de forma fácil y precisa. Este software está diseñado específicamente para músicos de guitarra, bajo y batería, y proporciona herramientas especializadas para notación musical en estos instrumentos. RhythmWriter está disponible en las plataformas Windows, macOS, Android e iOS, lo que te permite acceder y editar tus partituras desde diferentes dispositivos.",
-        "image": "https://blog.guitar-pro.com/wp-content/uploads/2022/09/GuitarPro8-new-features-audio-track.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367952/productos/RhythmWriter_twmqix.png",
         "quantity": 10,
         "price": 149,
         "categories": ["Notación Musical"],
@@ -405,7 +405,7 @@
       {
         "name": "JamComposer",
         "description": "Potente editor de partituras musicales para guitarra, bajo y batería con herramientas de composición en tiempo real. JamComposer es un potente editor de partituras musicales que ofrece herramientas avanzadas de composición en tiempo real para guitarra, bajo y batería. Con JamComposer, puedes crear y editar partituras de forma profesional y capturar tus ideas musicales al instante. Este software está diseñado específicamente para músicos que desean componer y producir música para guitarra, bajo y batería. JamComposer está disponible en las plataformas Windows y macOS, proporcionando un entorno de trabajo óptimo para componer y editar tus partituras.",
-        "image": "https://imag.malavida.com/mvimgbig/download-fs/songsterr-guitar-tabs-and-chords-17449-1.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367950/productos/JamComposer_r0vc4t.jpg",
         "quantity": 10,
         "price": 249,
         "categories": ["Notación Musical"],
@@ -415,7 +415,7 @@
       {
         "name": "BassTabMaestro",
         "description": "Editor especializado de partituras para bajo con herramientas dedicadas para notación de bajo. BassTabMaestro es un editor especializado de partituras diseñado específicamente para la notación de bajo. Con BassTabMaestro, puedes crear y editar partituras de bajo de forma precisa y eficiente. Este software ofrece herramientas dedicadas para la notación de bajo, lo que te permite representar con precisión las técnicas y las notas específicas de este instrumento. BassTabMaestro está disponible en las plataformas Windows, macOS y Android, brindándote flexibilidad para trabajar en tus partituras desde diferentes dispositivos.",
-        "image": "https://guitargearfinder.com/wp-content/uploads/2021/12/bass-tab-numbers.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367947/productos/BassTabMaestro_d1yvop.jpg",
         "quantity": 10,
         "price": 99,
         "categories": ["Notación Musical"],
@@ -425,7 +425,7 @@
       {
         "name": "DrumScoreStudio",
         "description": "Editor de partituras de batería completo para crear partituras y partituras de batería detalladas. DrumScoreStudio es un editor de partituras de batería completo que te permite crear partituras y partituras de batería detalladas. Con DrumScoreStudio, puedes representar con precisión los patrones de batería y crear partituras complejas con múltiples instrumentos de percusión. Este software está disponible en las plataformas Windows, macOS y Android, brindándote la flexibilidad para trabajar en tus partituras de batería desde diferentes dispositivos.",
-        "image": "https://tomtommag.com/wp-content/uploads/2017/02/Screen-Shot-2018-04-09-at-9.24.16-PM-1024x489.png",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367949/productos/DrumScoreStudio_jsuwc3.png",
         "quantity": 10,
         "price": 199,
         "categories": ["Notación Musical"],
@@ -435,7 +435,7 @@
       {
         "name": "GuitarEnsemble",
         "description": "Editor versátil de partituras para guitarra para arreglos de conjunto y orquestación de guitarra. GuitarEnsemble es un editor versátil de partituras para guitarra que te permite crear arreglos de conjunto y orquestación de guitarra. Con GuitarEnsemble, puedes representar de manera precisa las partes individuales de las guitarras en un conjunto musical y crear arreglos complejos para grupos de guitarra. Este software está disponible en las plataformas Windows, macOS e iOS, brindándote una amplia gama de opciones para trabajar en tus partituras para guitarra.",
-        "image": "https://cdn.windowsreport.com/wp-content/uploads/2023/02/music-arranger-software.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367950/productos/GuitarEnsemble_utd5wz.jpg",
         "quantity": 10,
         "price": 149,
         "categories": ["Notación Musical"],
@@ -445,7 +445,7 @@
       {
         "name": "StealthNav",
         "description": "Software de vanguardia para naves rebeldes que evita los sistemas de seguimiento y sensores de las naves imperiales. StealthNav es un software de vanguardia diseñado para naves rebeldes que les permite evadir los sistemas de seguimiento y los sensores de las naves imperiales. Con StealthNav, las naves rebeldes pueden operar en el espacio sin ser detectadas, lo que les proporciona una ventaja táctica crucial. Este software está disponible en las plataformas Windows y macOS, brindando a los pilotos rebeldes un control total sobre su sigilo y seguridad.",
-        "image": "https://3.bp.blogspot.com/-NF5TP1jT-IA/WVMK-m_ZwjI/AAAAAAAACGw/_B93OsQ7sakXJjCxXypVipwCoTTtAdz0ACLcBGAs/s1600/01.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367953/productos/StealthNav_fruadx.jpg",
         "quantity": 10,
         "price": 199,
         "categories": ["Logística"],
@@ -455,7 +455,7 @@
       {
         "name": "GhostPulse",
         "description": "Solución innovadora de software para naves rebeldes que les permite eludir los sistemas de detección imperial y disruptir los mecanismos de seguimiento. GhostPulse es una solución innovadora de software diseñada para naves rebeldes que les permite eludir los sistemas de detección imperial y disruptir los mecanismos de seguimiento. Con GhostPulse, las naves rebeldes pueden operar en secreto y evitar la detección por parte del Imperio. Este software está disponible en las plataformas Windows, macOS, Android e iOS, lo que permite su uso en una amplia gama de dispositivos.",
-        "image": "https://1.bp.blogspot.com/-_3Zwu4DwHFs/VvH8M-nxblI/AAAAAAAAAVY/XQ7mRV5G9skyxzK_KqNOdO8meLDqeDeSA/s1600/destiny%2Bspaceship.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367950/productos/GhostPulse_esozge.jpg",
         "quantity": 10,
         "price": 149,
         "categories": ["Nueva República"],
@@ -465,7 +465,7 @@
       {
         "name": "ShadowShield",
         "description": "Presentamos ShadowShield, un innovador software diseñado específicamente para proporcionar protección sigilosa contra los sistemas de sensores imperiales en el espacio. Esta tecnología de vanguardia permite que las naves espaciales operen sin ser detectadas de manera efectiva, evadiendo los sensores de las naves imperiales. Al distorsionar y enmascarar las señales emitidas, ShadowShield confunde los sistemas de seguimiento, haciendo casi imposible que las naves enemigas detecten o rastreen con precisión la nave equipada. Con una instalación sencilla y una integración perfecta en los sistemas de defensa existentes, ShadowShield permite realizar operaciones encubiertas y maniobras estratégicas sin alertar a los sensores imperiales. Obtén la ventaja táctica y opera en sigilo con ShadowShield.",
-        "image": "https://i.ytimg.com/vi/t6mmJX5Hmbw/maxresdefault.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367952/productos/ShadowShield_bhpz8x.jpg",
         "quantity": 10,
         "price": 249,
         "categories": ["Logística"],
@@ -475,7 +475,7 @@
       {
         "name": "ForceNullify",
         "description": "Software revolucionario que interrumpe y neutraliza temporalmente las conexiones con la Fuerza en la cercanía de usuarios de la Fuerza. ForceNullify es un software revolucionario que tiene la capacidad de interrumpir y neutralizar temporalmente las conexiones con la Fuerza en la cercanía de usuarios de la Fuerza. Con ForceNullify, los rebeldes pueden nivelar el campo de juego y reducir la ventaja de los usuarios de la Fuerza del Imperio. Este software está disponible en las plataformas Android y macOS, brindando una poderosa herramienta para combatir a los usuarios de la Fuerza imperiales.",
-        "image": "https://lumiere-a.akamaihd.net/v1/images/01_194dfed7.jpeg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367950/productos/ForceNullify_nry0cj.jpg",
         "quantity": 10,
         "price": 299,
         "categories": ["Nueva República"],
@@ -485,7 +485,7 @@
       {
         "name": "GateMaster Pro",
         "description": "Software de última generación diseñado para administrar las Puertas Estelares, los dispositivos de transporte interestelar destacados en el universo de Stargate. Con el Administrador de Puertas Estelares, puedes controlar y coordinar el funcionamiento de múltiples Puertas Estelares, facilitando los viajes sin problemas entre diferentes planetas y galaxias. Este software avanzado ofrece características como almacenamiento de direcciones de las puertas, programación de activación de puertas, monitoreo de energía y diagnóstico de las puertas. Ya seas un explorador, científico o miembro de un equipo especializado en Puertas Estelares, el Administrador de Puertas Estelares es la herramienta esencial para una gestión eficiente de las puertas.",
-        "image": "https://c4.wallpaperflare.com/wallpaper/261/923/691/stargate-wallpaper-preview.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367950/productos/GateMaster_Pro_zikazh.jpg",
         "quantity": 10,
         "price": 499,
         "categories": ["Gestión de Puertas"],
@@ -495,7 +495,7 @@
       {
         "name": "DroidMaster",
         "description": "Software avanzado con una interfaz única que permite a los usuarios interactuar y controlar de manera limitada los sistemas y protocolos de los droides imperiales. DroidMaster es un software avanzado con una interfaz única que permite a los usuarios interactuar y controlar de manera limitada los sistemas y protocolos de los droides imperiales. Con DroidMaster, los rebeldes pueden aprovechar los recursos de los droides imperiales para sus propios fines. Este software está disponible en las plataformas Windows, macOS, Android e iOS, brindando a los rebeldes una herramienta poderosa para su lucha contra el Imperio.",
-        "image": "https://cdn.vox-cdn.com/thumbor/EjG2LGud7dJtiQ5TjM5OppGruC8=/96x232:547x533/1200x800/filters:focal(96x232:547x533)/cdn.vox-cdn.com/uploads/chorus_image/image/50607251/c2-b5.0.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367949/productos/DroidMaster_pgvxgu.jpg",
         "quantity": 10,
         "price": 299,
         "categories": ["Interfaz de Droides"],
@@ -505,7 +505,7 @@
       {
         "name": "Smuggler's Run",
         "description": "Smuggler's Run es un software altamente especializado diseñado exclusivamente para operadores logísticos profesionales. Con su interfaz fácil de usar y características avanzadas, este software agiliza y mejora la eficiencia de las operaciones de transporte encubiertas.",
-        "image": "https://static1.moviewebimages.com/wordpress/wp-content/uploads/article/dr2mu7AqOQbl6Mglh34GnUSGMBtqiZ.jpg",
+        "image": "https://res.cloudinary.com/dq9qehsik/image/upload/v1687367953/productos/Smuggler_s_Run_pyhcxt.jpg",
         "quantity": 10,
         "price": 199,
         "categories": ["Logística"],
