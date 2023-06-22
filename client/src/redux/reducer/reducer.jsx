@@ -34,7 +34,7 @@ import {
   SET_PRODUCTS,
   SET_FILTERS,
   VIEW_REVIEW,
-  DELETE_REVIEW,
+  PUT_REVIEW,
 } from "../consts";
 
 const initialState = {
@@ -302,7 +302,7 @@ const rootReducer = (state = initialState, action) => {
     case VIEW_REVIEW: {
       return { ...state, review: action.payload };
     }
-    case DELETE_REVIEW: {
+    case PUT_REVIEW: {
       return {
         ...state,
         review: state.review.filter((item) => item.id !== action.payload),

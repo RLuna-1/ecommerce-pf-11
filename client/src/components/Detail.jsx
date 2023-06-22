@@ -35,14 +35,16 @@ export default function Detail() {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(`/reviews?productId=${id}`);
-        setReviews(response.data.rows);
-        console.log(response.data);
+        const fetchedReviews = response.data.rows;
+        setReviews(fetchedReviews);
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }
     };
+  
     fetchReviews();
   }, [id]);
+  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -64,26 +66,8 @@ export default function Detail() {
       });
       throw error;
     }
-    console.log()
   };
 
-  // const deleteReview = (reviewId) => {
-  //   try {
-  //     dispatch(actions.deleteReview(reviewId));
-  //     Swal.fire({
-  //       text: "Se ha borrado la review",
-  //       icon: "success",
-  //       timer: 1100,
-  //     });
-  //   } catch (error) {
-  //     Swal.fire({
-  //       text: "Error al borrar la review",
-  //       icon: "warning",
-  //       timer: 2000,
-  //     });
-  //     throw error;
-  //   }
-  // };
 
   return (
     <main className="grid justify-center items-start mt-20 mb-40 mx-10 grid-cols-2 gap-4 ">
@@ -168,26 +152,31 @@ export default function Detail() {
           <h2 className="text-lg font-bold mb-4">
             Opiniones sobre el Producto
           </h2>
-          {reviews.length > 0 ? (
-            reviews.map((review) => (
-              <div className="bg-gray-100 drop-shadow-lg rounded p-6 mt-4">
-                <div key={review.id} >
-                  <div className="rating">
-                    {Array.from({ length: Math.min(review.rating, 5) }).map(
-                      (_, index) => (
-                        <FontAwesomeIcon icon={faStar} key={index} style={{ color: '#FFD700' }} />
-                      )
-                    )}
-                  </div>
-                  <h3>{review.name}</h3>
-                  <p>{review.description}</p>
-                  {/* <p>{review.user.name}</p> */}
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No hay opiniones disponibles</p>
-          )}
+          
+  {reviews.length > 0 ? (
+    reviews.map((review) => (
+      <div className="bg-gray-100 drop-shadow-lg rounded p-6 mt-4" key={review.id}>
+        <div>
+          <div className="rating">
+            {Array.from({ length: Math.min(review.rating, 5) }).map((_, index) => (
+              <FontAwesomeIcon
+                icon={faStar}
+                key={index}
+                style={{ color: "#FFD700" }}
+              />
+            ))}
+          </div>
+          <h3>{review.name}</h3>
+          <p>{review.description}</p>
+          {/* <p>{review.user.name}</p> */}
+        </div>
+      </div>
+    ))
+  ) : (
+    <p>No hay opiniones disponibles</p>
+  )}
+  
+
         </div>
       </div>
     </main>

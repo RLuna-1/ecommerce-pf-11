@@ -81,7 +81,8 @@ function NewCarrito() {
         
         setTimeout(async () => {
           try {
-            await axios.post("/nodemailer/compra-exitosa", { email: 'example@example.com' });
+            await axios.post("/nodemailer/compra-exitosa", {email: Cookies.get("email") });
+            console.log(Cookies.get())
             console.log('El segundo axios.post se realizó después de 5 minutos');
           } catch (error) {
             console.error("Error al realizar el segundo axios.post:", error);
