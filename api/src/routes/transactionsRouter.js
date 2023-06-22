@@ -1,8 +1,12 @@
 const { Router } = require("express");
 const transactionsRouter = Router();
+const {
+  getAllTransacciones
+} = require("../controllers/transaccionController");
 
 transactionsRouter.get("/", (req, res) => {
-  res.status(200).send("aqui vamos GET");
+  const transacciones = getAllTransacciones()
+  res.status(200).send(transacciones);
 });
 
 transactionsRouter.get("/:id", (req, res) => {
