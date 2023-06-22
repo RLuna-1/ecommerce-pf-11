@@ -18,7 +18,7 @@ import {
   SET_CATEGORIES,
   SET_PRODUCTS,
   VIEW_REVIEW,
-  DELETE_REVIEW,
+  PUT_REVIEW,
 } from "../consts";
 import { toast } from 'react-toastify';
 import axios from "axios";
@@ -778,12 +778,12 @@ export function getReviews(id) {
   }
 }
 
-export function deleteReview( id) {
+export function ediarReview( id) {
   return function (dispatch) {
-    const url = `http://localhost:3001/review/${id}`;
-    return axios.delete(url)
+    const url = `/review/${id}`;
+    return axios.put(url)
         .then(data => {
-          dispatch({ type:DELETE_REVIEW , payload: id });
+          dispatch({ type:PUT_REVIEW , payload: id });
         })
       .then(() => alert('Se borro la review'))
       .catch(error => alert(error, 'Algo salió mal al borrar la review'))
