@@ -53,13 +53,13 @@ const ProductTable = () => {
     disponible: false,
   });
 
-  const filteredData = products.filter((product) => {
+  const filteredData = products ? products.filter((product) => {
     return (
       (product.name.toLowerCase().includes(filter.toLowerCase()) ||
         product.precio.toString().includes(filter.toLowerCase())) &&
       (categoryFilter === "" || product.category === categoryFilter)
     );
-  });
+  }): [];
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
@@ -121,37 +121,38 @@ const ProductTable = () => {
 
   return (
     <div className="antialiased bg-gray-50 dark:bg-gray-900">
-      {/* input,boton,select */}
-      <div className="   flex-wrap flex justify-between items-center mb-4 ">
-        <div className="  flex flex-wrap justify-between items-center">
-          <SearchBar />
-        </div>
-
-        <div>
-          <button
-            onClick={handleAdd}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          >
-            + Agregar Producto
-          </button>
-
-          <select
-            onChange={handleCategoryChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option value="">Todas las categorías</option>
-
-            {categories &&
-              categories.map((category) => (
-                <option key={category.id} value={category.name}>
-                  {category.name}
-                </option>
-              ))}
-          </select>
-        </div>
+    <div className="flex-wrap flex justify-between items-center mb-4">
+      <div className="flex flex-wrap justify-between items-center">
+        <SearchBar />
       </div>
+      <div>
+        <button
+          onClick={handleAdd}
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          + Agregar Producto
+        </button>
 
-      <h2 className="p-2 font-bold mb-4">Productos</h2>
+        <select
+          onChange={handleCategoryChange}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option value="">Todas las categorías</option>
+
+          {categories &&
+            categories.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+        </select>
+      </div>
+    </div>
+
+    <h2 className="p-2 font-bold mb-4">Productos</h2>
+    {filteredData && filteredData.length === 0 ? (
+      <p>No se encontraron productos</p>
+    ) : (
       <table className="w-full border-collapse">
         <thead>
           <tr>
@@ -181,16 +182,16 @@ const ProductTable = () => {
                 {product.deleted ? (
                   <button
                     onClick={() => handleDelete(product)}
-                    className=" bg-emerald-700  text-white rounded py-1 w-1/3"
+                    className="bg-emerald-700 text-white rounded py-1 w-1/3"
                   >
                     Habilitar
                   </button>
                 ) : (
                   <button
                     onClick={() => handleDelete(product)}
-                    className="bg-red-500 text-white rounded px-2 py-1  w-1/3"
+                    className="bg-red-500 text-white rounded px-2 py-1 w-1/3"
                   >
-                    Desabilitar
+                    Deshabilitar
                   </button>
                 )}
               </td>
@@ -198,14 +199,15 @@ const ProductTable = () => {
           ))}
         </tbody>
       </table>
-      <Pagination />
+    )}
+    <Pagination />
+      
       {/* ventana de edición */}
 
       {editModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded  w-2/5 h-screen overflow-scroll ">
             <h2 className="text-lg font-bold mb-2">Editar producto</h2>
-
             <form
               onSubmit={handleEditFormSubmit}
               className="max-w-md mx-auto mt-10 mb-10"
