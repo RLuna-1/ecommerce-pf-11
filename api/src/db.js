@@ -98,7 +98,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 
-const { Product, Category, Wishlist, User, Carrito, Review, DetallesVentas } = sequelize.models;
+const { Product, Category, Wishlist, User, Carrito, Review, DetallesVentas, Transaccion } = sequelize.models;
 
 
 Product.belongsToMany(Category, { through: "products_categories" });
@@ -128,7 +128,8 @@ Carrito.belongsTo(User, {
   as: 'user'
 });
 
-
+User.hasMany(Transaccion); 
+Transaccion.belongsTo(User);
 
 User.hasMany(DetallesVentas);
 DetallesVentas.belongsTo(User);
